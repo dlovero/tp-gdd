@@ -225,17 +225,9 @@ FOREIGN KEY (Cab_Fac_Cliente) REFERENCES [DESCONOCIDOS4].CLIENTE,
 GO
 CREATE TABLE [DESCONOCIDOS4].ITEM_FACTURA(
 Item_Fac_Nro_Fac NUMERIC(18,0)  NOT NULL,
-Item_Fac_Cliente INT  NOT NULL,
-Item_Fac_Fecha DATETIME  NOT NULL,
 Item_Fac_Item INT NOT NULL,
-Item_Fac_Fecha_Hora_Inicio DATETIME,
-Item_Fac_Fecha_Hora_Fin DATETIME,
-Item_Fac_Cant_Km NUMERIC(18,0),
-Item_Fac_Precio_Base NUMERIC(18,2),
-Item_Fac_Valor_Km INT,
-Item_Fac_Total_Viaje NUMERIC(18,2),
-PRIMARY KEY (Item_Fac_Nro_Fac,Item_Fac_Cliente,Item_Fac_Fecha,Item_Fac_Item),
-FOREIGN KEY (Item_Fac_Nro_Fac,Item_Fac_Fecha,Item_Fac_Cliente) REFERENCES [DESCONOCIDOS4].CABECERO_FACTURA(Cab_Fac_Nro,Cab_Fac_Fecha,Cab_Fac_Cliente) 
+Item_Fac_Id_Viaje int  REFERENCES [DESCONOCIDOS4].VIAJE NOT NULL,
+PRIMARY KEY (Item_Fac_Nro_Fac,Item_Fac_Item) 
 );
 GO
 CREATE TABLE [DESCONOCIDOS4].CABECERO_RENDICION(
@@ -249,15 +241,9 @@ PRIMARY KEY (Cab_Rend_Nro,Cab_Rend_Turno,Cab_Rend_Chofer)
 GO
 CREATE TABLE [DESCONOCIDOS4].ITEM_RENDICION(
 Item_Rend_NroRend NUMERIC(18,0)  NOT NULL,
-Item_Rend_Chofer INT  NOT NULL,
-Item_Rend_Turno INT  NOT NULL,
 Item_Rend_Pos SMALLINT NOT NULL,
-Item_Rend_Viaje INT REFERENCES [DESCONOCIDOS4].VIAJE NOT NULL,
-Item_Rend_Fecha_Hora_Inicio DATETIME,
-Item_Rend_Fecha_Hora_Fin DATETIME,
-Item_Rend_Importe NUMERIC(18,2),
-PRIMARY KEY (Item_Rend_NroRend,Item_Rend_Chofer,Item_Rend_Turno,Item_Rend_Pos),
-FOREIGN KEY(Item_Rend_NroRend,Item_Rend_Turno,Item_Rend_Chofer) REFERENCES [DESCONOCIDOS4].CABECERO_RENDICION(Cab_Rend_Nro,Cab_Rend_Turno,Cab_Rend_Chofer)
+Item_Rend_Viaje INT REFERENCES [DESCONOCIDOS4].VIAJE NOT NULL
+PRIMARY KEY (Item_Rend_NroRend,Item_Rend_Pos),
 );
 GO
 CREATE TABLE [DESCONOCIDOS4].ROL(
