@@ -287,7 +287,6 @@ NOT NULL,
 GO
 
 -- // PROGRAMACION DE LA MIGRACION
-
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE;
 GO
@@ -306,8 +305,6 @@ INSERT INTO [DESCONOCIDOS4].PERSONA (Persona_Dni,Persona_Nombre
 	  SELECT Persona_Id FROM [DESCONOCIDOS4].PERSONA
 END
 GO
-
-
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_PERSONA_CHOFER', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_PERSONA_CHOFER;
@@ -373,7 +370,6 @@ BEGIN
 		  Factura_Fecha_Fin 
 	  FROM gd_esquema.Maestra M WHERE Factura_Nro>0
 END
-
 GO
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_VIAJE', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_VIAJE;
@@ -382,7 +378,7 @@ GO
 CREATE PROCEDURE [DESCONOCIDOS4].[PRC_MIGRA_VIAJE]
 AS
 BEGIN
-	  INSERT INTO [DESCONOCIDOS4].VIAJE (Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin) 
+	  INSERT INTO [DESCONOCIDOS4].VIAJE (Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Precio_Base,Viaje_Valor_km,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin) 
 	  SELECT 
 		  DISTINCT
 		  (SELECT Chofer_Id FROM CHOFER LEFT JOIN PERSONA ON Persona_Id=Chofer_Per_Id WHERE M.Chofer_Dni=Persona_Dni),	
@@ -390,10 +386,33 @@ BEGIN
 		  Auto_Patente,
 		  (SELECT Turno_Id FROM TURNO T 
 			WHERE CONCAT(M.Turno_Descripcion,M.Turno_Hora_Inicio,M.Turno_Hora_Fin,M.Turno_Precio_Base,M.Turno_Valor_Kilometro)=CONCAT(T.Turno_Descripcion,T.Turno_Hora_Inicio,T.Turno_Hora_Fin,T.Turno_Precio_Base,T.Turno_Valor_Kilometro) ),
+		  M.Turno_Precio_Base,
+		  M.Turno_Valor_Kilometro,
 		  M.Turno_Precio_Base+(M.Turno_Valor_Kilometro*M.Viaje_Cant_Kilometros),
 		  M.Viaje_Cant_Kilometros,
 		  M.Viaje_Fecha,
 		  DATEADD(SECOND,1,M.Viaje_Fecha)
-	  FROM gd_esquema.Maestra M WHERE M.Rendicion_Nro>0 ORDER BY M.Viaje_Fecha ASC
+	  FROM gd_esquema.Maestra M WHERE M.Factura_Nro>0 ORDER BY M.Viaje_Fecha ASC
 END
 GO
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA;
+GO
+-- Se puebla la tabla PRC_MIGRA_ITEM_FACTURA
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA
+AS
+BEGIN
+	  INSERT INTO [DESCONOCIDOS4].ITEM_FACTURA(Item_Fac_Nro_Fac,Item_Fac_Item,Item_Fac_Id_Viaje) 
+	  SELECT 
+	  DISTINCT 
+		  M2.Factura_Nro, 
+		  ROW_NUMBER() OVER (PARTITION BY M2.Factura_Nro ORDER BY M2.Factura_Nro),
+		  Viaje_Nro 
+	  FROM [DESCONOCIDOS4].VIAJE LEFT JOIN  [DESCONOCIDOS4].CLIENTE ON Viaje_Cliente= Cliente_Id LEFT JOIN [DESCONOCIDOS4].CHOFER ON Viaje_Chofer=Chofer_Id
+	LEFT JOIN  [DESCONOCIDOS4].PERSONA P1 ON P1.Persona_Id= Cliente_Per_ID LEFT JOIN [DESCONOCIDOS4].PERSONA P2 ON P2.Persona_Id= Chofer_Per_Id
+	LEFT JOIN gd_esquema.Maestra M2
+	 ON  CONCAT(M2.Viaje_Fecha,M2.Viaje_Cant_Kilometros,M2.Cliente_Dni,M2.Chofer_Dni,M2.Auto_Patente)=CONCAT(Viaje_Fecha_Hora_Inicio,Viaje_Cantidad_Km,P1.Persona_Dni,P2.Persona_Dni,Viaje_Automovil) 
+	 WHERE M2.Factura_Nro>0 AND M2.Rendicion_Nro IS NULL  GROUP BY M2.Factura_Nro,Viaje_Nro ORDER BY M2.Factura_Nro,Viaje_Nro
+END
+GO
+
