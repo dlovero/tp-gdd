@@ -205,6 +205,8 @@ Viaje_Chofer INT REFERENCES [DESCONOCIDOS4].CHOFER NOT NULL,
 Viaje_Cliente INT REFERENCES [DESCONOCIDOS4].CLIENTE NOT NULL,
 Viaje_Automovil VARCHAR(10) REFERENCES [DESCONOCIDOS4].AUTO NOT NULL,
 Viaje_Turno INT REFERENCES [DESCONOCIDOS4].TURNO NOT NULL,
+Viaje_Precio_Base NUMERIC(18,2) NOT NULL,
+Viaje_Valor_km NUMERIC(18,2) NOT NULL,
 Viaje_Importe NUMERIC(18,2) NOT NULL,
 Viaje_Cantidad_Km NUMERIC(18,0),
 Viaje_Fecha_Hora_Inicio DATETIME,
@@ -231,7 +233,7 @@ PRIMARY KEY (Item_Fac_Nro_Fac,Item_Fac_Item)
 );
 GO
 CREATE TABLE [DESCONOCIDOS4].CABECERO_RENDICION(
-Cab_Rend_Nro NUMERIC(18,0) NOT NULL IDENTITY(1,1),
+Cab_Rend_Nro NUMERIC(18,0) NOT NULL,
 Cab_Rend_Turno INT REFERENCES [DESCONOCIDOS4].TURNO NOT NULL,
 Cab_Rend_Chofer INT REFERENCES [DESCONOCIDOS4].CHOFER NOT NULL,
 Cab_Rend_Fecha DATETIME NOT NULL,
@@ -272,7 +274,8 @@ NOT NULL,
 );
 GO
 
--- // PROGRAMACION DE LA MIGRACION
+-- PROGRAMACION DE LA MIGRACION
+
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE;
 GO
@@ -378,7 +381,7 @@ BEGIN
 		  M.Viaje_Cant_Kilometros,
 		  M.Viaje_Fecha,
 		  DATEADD(SECOND,1,M.Viaje_Fecha)
-	  FROM gd_esquema.Maestra M WHERE M.Factura_Nro>0 ORDER BY M.Viaje_Fecha ASC
+	  FROM gd_esquema.Maestra M WHERE M.Factura_Nro IS NULL AND M.Rendicion_Nro IS NULL ORDER BY M.Viaje_Fecha ASC
 END
 GO
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA', N'P') IS NOT NULL
@@ -400,5 +403,46 @@ BEGIN
 	 ON  CONCAT(M2.Viaje_Fecha,M2.Viaje_Cant_Kilometros,M2.Cliente_Dni,M2.Chofer_Dni,M2.Auto_Patente)=CONCAT(Viaje_Fecha_Hora_Inicio,Viaje_Cantidad_Km,P1.Persona_Dni,P2.Persona_Dni,Viaje_Automovil) 
 	 WHERE M2.Factura_Nro>0 AND M2.Rendicion_Nro IS NULL  GROUP BY M2.Factura_Nro,Viaje_Nro ORDER BY M2.Factura_Nro,Viaje_Nro
 END
+
+GO
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_CAB_RENDICION', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_CAB_RENDICION;
+GO
+-- Se puebla la tabla CABECERO_RENDICION
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_CAB_RENDICION
+AS
+BEGIN
+	  INSERT INTO [DESCONOCIDOS4].CABECERO_RENDICION(Cab_Rend_Nro,Cab_Rend_Turno,Cab_Rend_Chofer,Cab_Rend_Fecha,Cab_Rend_Importe) 
+	  SELECT 
+		  DISTINCT
+		  M.Rendicion_Nro,
+		  (SELECT DISTINCT Turno_Id FROM [DESCONOCIDOS4].TURNO T LEFT JOIN  gd_esquema.Maestra M2 
+			ON CONCAT(M2.Turno_Hora_Inicio,M2.Turno_Hora_Fin,M2.Turno_Descripcion,M2.Turno_Valor_Kilometro,M2.Turno_Precio_Base) =
+				CONCAT(T.Turno_Hora_Inicio,T.Turno_Hora_Fin,T.Turno_Descripcion,T.Turno_Valor_Kilometro,T.Turno_Precio_Base) WHERE M2.Rendicion_Nro=M.Rendicion_Nro ),
+		  (SELECT Chofer_Id FROM [DESCONOCIDOS4].CHOFER LEFT JOIN  [DESCONOCIDOS4].PERSONA ON  Chofer_Per_Id=Persona_Id WHERE Persona_Dni= M.Chofer_Dni),
+		  M.Rendicion_Fecha,
+		  sum(M.Rendicion_Importe)
+	  FROM gd_esquema.Maestra M WHERE M.Rendicion_Nro>0 GROUP BY  M.Rendicion_Nro,M.Chofer_Dni,M.Rendicion_Fecha
+END
 GO
 
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_ITEM_RENDICION', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_ITEM_RENDICION;
+GO
+-- Se puebla la tabla ITEM_RENDICION
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_ITEM_RENDICION
+AS
+BEGIN
+	  INSERT INTO [DESCONOCIDOS4].ITEM_RENDICION(Item_Rend_NroRend,Item_Rend_Pos,Item_Rend_Viaje) 
+	  SELECT 
+	  DISTINCT 
+		  M2.Rendicion_Nro, 
+		  ROW_NUMBER() OVER (PARTITION BY M2.Rendicion_Nro ORDER BY M2.Rendicion_Nro),
+		  Viaje_Nro 
+	  FROM [DESCONOCIDOS4].VIAJE LEFT JOIN  [DESCONOCIDOS4].CLIENTE ON Viaje_Cliente= Cliente_Id LEFT JOIN [DESCONOCIDOS4].CHOFER ON Viaje_Chofer=Chofer_Id
+	LEFT JOIN  [DESCONOCIDOS4].PERSONA P1 ON P1.Persona_Id= Cliente_Per_ID LEFT JOIN [DESCONOCIDOS4].PERSONA P2 ON P2.Persona_Id= Chofer_Per_Id
+	LEFT JOIN gd_esquema.Maestra M2
+	 ON  CONCAT(M2.Viaje_Fecha,M2.Viaje_Cant_Kilometros,M2.Cliente_Dni,M2.Chofer_Dni,M2.Auto_Patente)=CONCAT(Viaje_Fecha_Hora_Inicio,Viaje_Cantidad_Km,P1.Persona_Dni,P2.Persona_Dni,Viaje_Automovil) 
+	 WHERE M2.Rendicion_Nro>0 AND M2.Factura_Nro IS NULL  GROUP BY M2.Rendicion_Nro,Viaje_Nro ORDER BY M2.Rendicion_Nro,Viaje_Nro
+END
+GO
