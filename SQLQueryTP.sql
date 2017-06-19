@@ -162,6 +162,7 @@ Turno_Hora_Fin NUMERIC(18,0),
 Turno_Descripcion VARCHAR(255),
 Turno_Valor_Kilometro NUMERIC(18,2),
 Turno_Precio_Base NUMERIC(18,2),
+Turno_Habilitado BIT DEFAULT 1,
 PRIMARY KEY(Turno_Id));
 GO
 
@@ -196,10 +197,11 @@ PRIMARY KEY(Auto_Id)
 );
 GO
 CREATE TABLE [DESCONOCIDOS4].UNIDAD_DISPONIBLE(
+Uni_Dis_Id INT IDENTITY (1,1) NOT NULL,
 Uni_Dis_Auto INT REFERENCES [DESCONOCIDOS4].AUTO NOT NULL,
 Uni_Dis_Chofer INT REFERENCES [DESCONOCIDOS4].CHOFER NOT NULL,
 Uni_Dis_Turno INT REFERENCES [DESCONOCIDOS4].TURNO NOT NULL,
-PRIMARY KEY(Uni_Dis_Auto,Uni_Dis_Chofer,Uni_Dis_Turno)
+PRIMARY KEY(Uni_Dis_Id)
 );
 GO
 
@@ -537,7 +539,7 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_TURNO
 AS
 BEGIN TRANSACTION
 	  INSERT INTO [DESCONOCIDOS4].TURNO (Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base) 
-	  SELECT DISTINCT Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base FROM gd_esquema.Maestra
+	  SELECT DISTINCT Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base FROM gd_esquema.Maestra ORDER BY Turno_Hora_Inicio
 COMMIT
 GO
 
@@ -774,5 +776,3 @@ EXEC [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADES
 EXEC [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADXROL 
 EXEC [DESCONOCIDOS4].PRC_CARGAR_USUARIO_ROL
 */
-
-
