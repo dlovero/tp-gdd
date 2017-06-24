@@ -179,12 +179,15 @@ GO
 
 CREATE TABLE [DESCONOCIDOS4].TURNO(
 Turno_Id INT NOT NULL IDENTITY(1,1), 
-Turno_Hora_Inicio NUMERIC(18,0),
-Turno_Hora_Fin NUMERIC(18,0),
-Turno_Descripcion VARCHAR(255),
-Turno_Valor_Kilometro NUMERIC(18,2),
-Turno_Precio_Base NUMERIC(18,2),
-PRIMARY KEY(Turno_Id));
+Turno_Hora_Inicio NUMERIC(18,0) NOT NULL,
+Turno_Hora_Fin NUMERIC(18,0) NOT NULL,
+Turno_Descripcion VARCHAR(255) NOT NULL,
+Turno_Valor_Kilometro NUMERIC(18,2) NOT NULL,
+Turno_Precio_Base NUMERIC(18,2) NOT NULL,
+Turno_Habilitado BIT DEFAULT 1
+PRIMARY KEY(Turno_Id),
+CHECK (Turno_Hora_Inicio >=0  AND Turno_Hora_Inicio<=24 AND Turno_Hora_Fin >=0 AND Turno_Hora_Fin<=24)
+);
 GO
 
 CREATE TABLE [DESCONOCIDOS4].MODELO (
@@ -632,6 +635,61 @@ BEGIN
 END
 GO
 
+IF OBJECT_ID('[DESCONOCIDOS4].FN_TURNO_RANGO_OK','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_TURNO_RANGO_OK;
+GO
+-- Devuelve 'SI' si el rango horario no se superpone con el de otro turno y 'NO' por el contrario
+CREATE FUNCTION [DESCONOCIDOS4].FN_TURNO_RANGO_OK(@Hini INT,@Hfin INT)
+RETURNS  CHAR(2) 
+AS
+BEGIN
+  DECLARE @RESUL CHAR(2)	
+  DECLARE @CONT INT	
+  SET @CONT=0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Hora_Inicio>=@Hini AND Turno_Hora_Fin<=@Hini)>1
+  SET @CONT=@CONT+1
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Hora_Inicio>=@Hfin AND Turno_Hora_Fin<=@Hfin)>1
+  SET @CONT=@CONT+1
+  IF @CONT=0
+  SET @RESUL='SI'
+  ELSE 
+  SET @RESUL='NO'
+  RETURN @RESUL
+END
+GO
+IF OBJECT_ID('[DESCONOCIDOS4].FN_TURNO_DENTRO_24','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_TURNO_DENTRO_24;
+GO
+-- Devuelve 'SI' si turno no supera las 24hs, es decir, se encuentra dentro del mismo dia
+CREATE FUNCTION [DESCONOCIDOS4].FN_TURNO_DENTRO_24(@Hini INT,@Hfin INT)
+RETURNS  CHAR(2) 
+AS
+BEGIN
+	DECLARE @RESUL CHAR(2)
+	IF @Hfin>@Hini
+	SET @RESUL ='SI'
+	ELSE 
+	SET @RESUL ='NO'
+  RETURN @RESUL
+END
+GO
+
+IF OBJECT_ID('[DESCONOCIDOS4].FN_REG_TURNO_OK','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_REG_TURNO_OK;
+GO
+-- Devuelve 'SI' el registo del turno cumple con las reglas de negocio para ser insertado
+CREATE FUNCTION [DESCONOCIDOS4].FN_REG_TURNO_OK(@Hini INT,@Hfin INT)
+RETURNS  CHAR(2) 
+AS
+BEGIN
+   DECLARE @RESUL CHAR(2)	
+   IF[DESCONOCIDOS4].FN_TURNO_DENTRO_24(@Hini,@Hfin)='SI' AND [DESCONOCIDOS4].FN_TURNO_RANGO_OK(@Hini,@Hfin)='SI'
+   SET @RESUL='SI'
+   ELSE
+   SET @RESUL='NO'
+   RETURN @RESUL
+END 
+GO
 -- PROCEDIMIENTOS DE MIGRACION Y CARGA DE TABLAS --
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE', N'P') IS NOT NULL
@@ -822,10 +880,6 @@ BEGIN TRANSACTION
 		  DATEADD(SECOND,1,M.Viaje_Fecha)
 	  FROM gd_esquema.Maestra M WHERE M.Factura_Nro IS NULL AND M.Rendicion_Nro IS NULL ORDER BY M.Viaje_Fecha ASC
 COMMIT;
-GO
-
-IF OBJECT_ID (N'[DESCONOCIDOS4].TR_VIAJE_REP', N'TR') IS NOT NULL
-		DROP TRIGGER  [DESCONOCIDOS4].TR_VIAJE_REP;
 GO
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_VIAJE_REP', N'P') IS NOT NULL
@@ -1186,9 +1240,6 @@ EXEC [DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_FACTURA
 EXEC [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU
 EXEC [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU
 
-IF OBJECT_ID (N'[DESCONOCIDOS4].TR_VIAJE_REP', N'TR') IS NOT NULL
-		DROP TRIGGER  [DESCONOCIDOS4].TR_VIAJE_REP;
-GO
 
 
 -- FIN MIGRACION
@@ -1494,12 +1545,96 @@ BEGIN
 		IF [DESCONOCIDOS4].FN_REGISTRO_VIAJE_OK(@Chof,@Clie,@Auto,@Turno,@Cant_KM,@Fecha_hora_ini,@Fecha_hora_fin)='SI'
 		INSERT INTO [DESCONOCIDOS4].VIAJE (Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Precio_Base,Viaje_Valor_km,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin)
 		SELECT Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Precio_Base,Viaje_Valor_km,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin FROM INSERTED
-		--ELSE 
-		--raiserror('Existen inconsistencias en los datos', 16, 1)	
+		ELSE 
+		raiserror('Existen inconsistencias en los datos', 16, 1)	
 END
 GO
 
+/*---------------------------------------- ABM  TURNO -------------------*/
+-- ALTA DE TURNO
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ALTA_TURNO', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_ALTA_TURNO;
+GO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_ALTA_TURNO
+@HIni INT,
+@HFin INT,
+@Descripcion VARCHAR(255),
+@Precio_Base NUMERIC(18,2),
+@Valor_Km NUMERIC(18,2)
+AS 
+BEGIN TRAN
+	INSERT INTO DESCONOCIDOS4.TURNO (Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Precio_Base,Turno_Valor_Kilometro)
+	VALUES(@HIni,@HFin,@Descripcion,@Precio_Base,@Valor_Km)
+COMMIT;
+GO
+IF OBJECT_ID (N'[DESCONOCIDOS4].TR_ALTA_TURNO', N'TR') IS NOT NULL
+		DROP TRIGGER  [DESCONOCIDOS4].TR_ALTA_TURNO;
+GO
 
+CREATE TRIGGER  [DESCONOCIDOS4].TR_ALTA_TURNO ON [DESCONOCIDOS4].TURNO
+INSTEAD OF  INSERT
+AS
+BEGIN 
+	DECLARE @Hini INT
+	DECLARE @Hfin INT
+	SET @Hini= (SELECT I.Turno_Hora_Inicio FROM INSERTED I) 
+	SET @Hfin= (SELECT I.Turno_Hora_Fin FROM INSERTED I) 
+   IF [DESCONOCIDOS4].FN_REG_TURNO_OK(@Hini,@Hfin)='SI'
+   INSERT INTO DESCONOCIDOS4.TURNO (Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Precio_Base,Turno_Valor_Kilometro)
+   SELECT I.Turno_Hora_Inicio,I.Turno_Hora_Fin,I.Turno_Descripcion,I.Turno_Precio_Base,I.Turno_Valor_Kilometro FROM INSERTED I
+   ELSE 
+   raiserror('Fuera de rango horario o se superpone', 16, 1)	
+END
+GO
+
+--MODIFICAR TURNO
+
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MODIFICACION_TURNO', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MODIFICACION_TURNO;
+GO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_MODIFICACION_TURNO
+@Turno_id INT, --debe ingresar por la APP
+@HIni INT,
+@HFin INT,
+@Descripcion VARCHAR(255),
+@Precio_Base NUMERIC(18,2),
+@Valor_Km NUMERIC(18,2),
+@Habilitar BIT
+AS 
+BEGIN TRANSACTION 		
+	UPDATE [DESCONOCIDOS4].TURNO SET  
+	Turno_Hora_Inicio = @HIni,
+	Turno_Hora_Fin=@HFin,
+	Turno_Descripcion=@Descripcion,
+	Turno_Precio_Base=@Precio_Base,
+	Turno_Valor_Kilometro=@Valor_Km,
+	Turno_Habilitado=@Habilitar
+	WHERE Turno_Id= @Turno_id
+COMMIT;
+GO
+-- ELIMINAR TURNO 
+ IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BAJA_TURNO', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BAJA_TURNO;
+GO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_BAJA_TURNO
+@Turno_id INT
+AS
+BEGIN TRANSACTION 
+  UPDATE [DESCONOCIDOS4].TURNO  SET Turno_Habilitado=0 WHERE Turno_Id=@Turno_id
+COMMIT;
+GO
+-- Listar Turnos disponibles.
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_LISTADO_TURNOS_DISPONIBLES', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_LISTADO_TURNOS_DISPONIBLES;
+GO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_LISTADO_TURNOS_DISPONIBLES
+@Desc  VARCHAR(255) 
+AS
+BEGIN 
+	SELECT Turno_Id,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base
+	FROM [DESCONOCIDOS4].TURNO WHERE Turno_Descripcion LIKE ISNULL('%' + @Desc + '%', '%') AND Turno_Habilitado=1
+END
+GO
 
 -- Listar unidades disponibles por turno.
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_LISTADO_UNI_DISPONIBLE', N'P') IS NOT NULL
@@ -1829,4 +1964,5 @@ select * from DESCONOCIDOS4.RAMA_MENU
 exec [DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL 1
 */
 -- TIEMPO 00:01:43
+
 
