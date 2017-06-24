@@ -658,8 +658,7 @@ AS
 BEGIN TRANSACTION	
 	INSERT INTO [DESCONOCIDOS4].USUARIO (Usu_Per_Id,Usu_Nombre_Usuario,Usu_Password)
 	SELECT I.Persona_Id,
-	CONCAT(LEFT(I.Persona_Apellido,4),LEFT(I.Persona_Nombre,3)),
-	HashBytes('SHA2_256',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2)) 
+	CONCAT(LEFT(I.Persona_Apellido,4),LEFT(I.Persona_Nombre,3)),CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2) 
 	FROM INSERTED I 
 
 COMMIT
@@ -673,7 +672,7 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_INSERTAR_ADMIN
 AS
 BEGIN TRANSACTION
 	  INSERT INTO [DESCONOCIDOS4].USUARIO(Usu_Nombre_Usuario,Usu_Password) 
-	  VALUES ('admin',HashBytes('SHA2_256',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'w32e'),2)))
+	  VALUES ('admin',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'w23e'),2))
 COMMIT
 GO
 
@@ -1586,4 +1585,7 @@ BEGIN
         SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
       END
 END
--- TIEMPO 00:01:32
+-- TIEMPO 00:01:33
+
+
+select * from DESCONOCIDOS4.USUARIO where Usu_Nombre_Usuario='admin'
