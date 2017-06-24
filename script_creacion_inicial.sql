@@ -283,8 +283,8 @@ UsuRol_Rol_Id SMALLINT,
 GO
 CREATE TABLE [DESCONOCIDOS4].FUNCIONALIDAD(
 Func_Id INT IDENTITY(1,1),
-Func_Nombre VARCHAR(255),
 Func_Descripcion VARCHAR(255),
+Func_Metodo VARCHAR(255),
 PRIMARY KEY(Func_Id)
 );
 GO
@@ -754,16 +754,25 @@ GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADES 
 AS
 BEGIN TRANSACTION
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_ROL', 'Dar de alta, dar de baja o modificar un rol')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_CLIENTE','Dar de alta, dar de baja o modificar un cliente')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_CHOFER','Dar de alta, dar de baja o modificar un chofer')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_AUTOMOVIL','Dar de alta, dar de baja o modificar un automovil')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_TURNO','Dar de alta, dar de baja o modificar un  turno')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('REGISTRO_VIAJE','Registrar un viaje')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('RENDICION_CHOFER','Rendición de cuenta de un chofer')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('FACTURAR_CLIENTE','Facturar los viajes de un cliente')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('LISTADO_ESTADISTICO','Listados estadísticos')
-	
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarCliente', 'Dar de alta un Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarCliente','Dar de baja un Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarCliente','Dar de modificar un Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarChofer','Dar de alta un Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarChofer','Dar de baja un Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarChofer','Dar de modificar un Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarAutomovil','Dar de alta un Automovil')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarAutomovil','Dar de modificar un Automovil')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarAutomovil','Dar de modificar un Automovil')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarRol','Dar de alta un Rol')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarRol','Dar de modificar un Rol')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarRol','Dar de modificar un Rol')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('facturarCliente','Facturar a Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('rendicionChofer','Rendicion a Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('choferMayorRecaudacion','Listado Chofer con Mayor Recaudacion')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('choferViajeMasLargo','Listado de Viaje mas largo')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('clienteMayorConsumo','Listado Cliente con Mayor Consumo')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('clienteMismoMovil','Listado Cliente con Movil utilizado mas veces en viajes')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('registroViajes','Registro de viajes')
 COMMIT;
 GO
 

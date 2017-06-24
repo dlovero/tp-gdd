@@ -105,7 +105,16 @@ BEGIN
 DROP TABLE DESCONOCIDOS4.ROL ;
 END;
 GO
-
+IF OBJECT_ID('DESCONOCIDOS4.HOJA_MENU') IS NOT NULL
+BEGIN
+DROP TABLE DESCONOCIDOS4.HOJA_MENU ;
+END;
+GO
+IF OBJECT_ID('DESCONOCIDOS4.RAMA_MENU') IS NOT NULL
+BEGIN
+DROP TABLE DESCONOCIDOS4.RAMA_MENU ;
+END;
+GO
 IF OBJECT_ID('DESCONOCIDOS4.FUNCIONALIDAD') IS NOT NULL
 BEGIN
 DROP TABLE DESCONOCIDOS4.FUNCIONALIDAD ;
@@ -282,9 +291,24 @@ UsuRol_Rol_Id SMALLINT REFERENCES [DESCONOCIDOS4].ROL
 GO
 CREATE TABLE [DESCONOCIDOS4].FUNCIONALIDAD(
 Func_Id INT IDENTITY(1,1),
-Func_Nombre VARCHAR(255),
 Func_Descripcion VARCHAR(255),
+Func_Metodo VARCHAR(255),
 PRIMARY KEY(Func_Id)
+);
+GO
+CREATE TABLE [DESCONOCIDOS4].RAMA_MENU(
+Rama_Menu_Id INT NOT NULL IDENTITY(1,1),
+Rama_Menu_Nombre VARCHAR(50) NOT NULL,
+Rama_Menu_Ascendente INT REFERENCES [DESCONOCIDOS4].RAMA_MENU,
+PRIMARY KEY(Rama_Menu_Id)
+);
+GO
+CREATE TABLE [DESCONOCIDOS4].HOJA_MENU(
+Hoja_Menu_Id INT NOT NULL IDENTITY(1,1),
+Hoja_Menu_Nombre NVARCHAR(50) NOT NULL,
+Hoja_Menu_Funcion INT REFERENCES [DESCONOCIDOS4].FUNCIONALIDAD NOT NULL,
+Hoja_Menu_Ascendente INT REFERENCES [DESCONOCIDOS4].RAMA_MENU,
+PRIMARY KEY(Hoja_Menu_Id)
 );
 GO
 CREATE TABLE [DESCONOCIDOS4].FUNCIONALIDADXROL(
@@ -707,16 +731,129 @@ GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADES 
 AS
 BEGIN TRANSACTION
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_ROL', 'Dar de alta, dar de baja o modificar un rol')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_CLIENTE','Dar de alta, dar de baja o modificar un cliente')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_CHOFER','Dar de alta, dar de baja o modificar un chofer')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_AUTOMOVIL','Dar de alta, dar de baja o modificar un automovil')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('ABM_TURNO','Dar de alta, dar de baja o modificar un  turno')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('REGISTRO_VIAJE','Registrar un viaje')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('RENDICION_CHOFER','Rendición de cuenta de un chofer')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('FACTURAR_CLIENTE','Facturar los viajes de un cliente')
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Nombre,Func_Descripcion) VALUES ('LISTADO_ESTADISTICO','Listados estadísticos')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarCliente', 'Dar de alta un Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarCliente','Dar de baja un Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarCliente','Dar de modificar un Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarChofer','Dar de alta un Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarChofer','Dar de baja un Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarChofer','Dar de modificar un Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarAutomovil','Dar de alta un Automovil')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarAutomovil','Dar de modificar un Automovil')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarAutomovil','Dar de modificar un Automovil')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarRol','Dar de alta un Rol')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarRol','Dar de modificar un Rol')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarRol','Dar de modificar un Rol')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('facturarCliente','Facturar a Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('rendicionChofer','Rendicion a Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('choferMayorRecaudacion','Listado Chofer con Mayor Recaudacion')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('choferViajeMasLargo','Listado de Viaje mas largo')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('clienteMayorConsumo','Listado Cliente con Mayor Consumo')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('clienteMismoMovil','Listado Cliente con Movil utilizado mas veces en viajes')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('registroViajes','Registro de viajes')
 	
+COMMIT;
+GO
+
+IF OBJECT_ID ('[DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU', 'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU;
+GO
+--Se pueba la tabla  RAMA_MENU
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU 
+AS
+BEGIN TRANSACTION
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('ABM')
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('Facturacion y Rendicion')
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('Listados')
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('Registros')
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Cliente',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Chofer',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Rol',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Automovil',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Chofer',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados'))
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Cliente',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados'))
+COMMIT;
+GO
+
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU;
+GO
+--Se pueba la tabla  HOJA_MENU
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU 
+AS
+BEGIN TRANSACTION
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarCliente'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente' and
+	 Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarCliente'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente' 
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarCliente'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente' 
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarChofer'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer' 
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarChofer')
+	,(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarChofer'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarAutomovil')
+	,(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Automovil'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarAutomovil')
+	,(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Automovil'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarAutomovil'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Automovil'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarRol'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Rol'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarRol'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Rol'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarRol'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Rol'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Facturar a Cliente',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='facturarCliente'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Facturacion y Rendicion'))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Rendicion a Chofer',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='rendicionChofer'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Facturacion y Rendicion'))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Mayor Recaudacion',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='choferMayorRecaudacion'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Viaje mas largo',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='choferViajeMasLargo'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Mayor Recaudacion',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='clienteMayorConsumo'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Viaje mas largo',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='clienteMismoMovil'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Viajes',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='registroViajes'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Registros'))
 COMMIT;
 GO
 
@@ -754,7 +891,120 @@ BEGIN TRANSACTION
 	WHERE Rol_Nombre='ADMINISTRATIVO' AND Usu_Nombre_Usuario='admin'
 COMMIT;
 GO
+IF OBJECT_ID(N'[DESCONOCIDOS4].FN_OBTENER_ANCESTROS', N'TF') IS NOT NULL
+		DROP FUNCTION  [DESCONOCIDOS4].FN_OBTENER_ANCESTROS;
+GO
+Create FUNCTION [DESCONOCIDOS4].FN_OBTENER_ANCESTROS
+(
+	@IdAncestro INT
+)
+RETURNS @TablaMenu TABLE 
+(
+   Id INT NOT NULL IDENTITY(1,1),
+   Nombre nvarchar(50),
+   Ascendente INT,
+   Metodo VARCHAR(50),
+   Descripcion VARCHAR(50)
+)
+as
+begin
+Declare @NombreRama VARCHAR(50), @IdAscendente INT
+DECLARE CU_Ramas CURSOR FOR
+select Rama_Menu_Nombre, Rama_Menu_Ascendente from DESCONOCIDOS4.RAMA_MENU RM where RM.Rama_Menu_Id=@IdAncestro
 
+Open CU_Ramas
+FETCH NEXT FROM CU_Ramas
+INTO @NombreRama, @IdAscendente
+while @@FETCH_STATUS=0
+begin
+IF @IdAscendente IS NULL
+BEGIN
+	INSERT INTO @TablaMenu (Nombre, Ascendente, Metodo, Descripcion) VALUES (@NombreRama, NULL, NULL, NULL)
+END
+ELSE
+BEGIN
+INSERT INTO @TablaMenu SELECT Nombre, Ascendente, Metodo, Descripcion FROM [DESCONOCIDOS4].FN_OBTENER_ANCESTROS(@IdAscendente)
+INSERT INTO @TablaMenu (Nombre, Ascendente, Metodo, Descripcion) VALUES (@NombreRama, @IdAscendente, NULL, NULL)
+END
+
+FETCH NEXT FROM CU_Ramas
+INTO @NombreRama, @IdAscendente
+END
+
+CLOSE CU_Ramas
+DEALLOCATE CU_Ramas
+RETURN
+END
+GO
+IF OBJECT_ID(N'[DESCONOCIDOS4].FN_OBTENER_MENU',N'TF') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_OBTENER_MENU;
+GO
+CREATE FUNCTION [DESCONOCIDOS4].FN_OBTENER_MENU
+(
+	@IdRol INT
+)
+returns @TablaMenu TABLE 
+(
+   Id INT NOT NULL IDENTITY(1,1),
+   Nombre nvarchar(50),
+   Ascendente INT,
+   Metodo VARCHAR(50),
+   Descripcion VARCHAR(50)
+)
+as
+begin
+Declare @NombreRama VARCHAR(50), @IdAscendente INT, @Metodo VARCHAR(50), @Descripcion VARCHAR(50)
+
+DECLARE CU_Hojas CURSOR FOR
+(select Hoja_Menu_Nombre, Hoja_Menu_Ascendente, Func_Metodo, Func_Descripcion from
+(select Func_Id, Func_Descripcion, Func_Metodo from (select * from DESCONOCIDOS4.FUNCIONALIDADXROL where FuncRol_Rol_Id=@IdRol) FUNROL join DESCONOCIDOS4.FUNCIONALIDAD 
+	on FUNROL.FunRol_Func_Id=Func_Id) FUN join DESCONOCIDOS4.HOJA_MENU on FUN.Func_Id = HOJA_MENU.Hoja_Menu_Funcion) 
+
+Open CU_Hojas
+FETCH NEXT FROM CU_Hojas
+INTO @NombreRama, @IdAscendente, @Metodo, @Descripcion
+while @@FETCH_STATUS=0
+begin
+IF @IdAscendente IS NOT NULL
+BEGIN
+	INSERT INTO @TablaMenu SELECT Nombre, Ascendente, Metodo, Descripcion FROM [DESCONOCIDOS4].FN_OBTENER_ANCESTROS(@IdAscendente)
+END
+INSERT INTO @TablaMenu (Nombre, Ascendente, Metodo, Descripcion) VALUES (@NombreRama, @IdAscendente, @Metodo, @Descripcion)
+
+FETCH NEXT FROM CU_Hojas
+INTO @NombreRama, @IdAscendente, @Metodo, @Descripcion
+END
+
+CLOSE CU_Hojas
+DEALLOCATE CU_Hojas
+RETURN
+END
+GO
+
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL;
+GO
+CREATE PROC [DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL
+(
+	@IdRol INT
+)
+AS
+BEGIN
+DECLARE @TablaMenu TABLE 
+(
+   Id INT NOT NULL IDENTITY(1,1),
+   Nombre nvarchar(50),
+   Ascendente INT,
+   Metodo VARCHAR(50),
+   Descripcion VARCHAR(50)
+)
+INSERT INTO @TablaMenu SELECT Nombre, Ascendente, Metodo, Descripcion FROM [DESCONOCIDOS4].FN_OBTENER_MENU(1)
+DELETE FROM @TablaMenu WHERE ID IN (SELECT Id FROM @TablaMenu TM WHERE TM.Nombre IN (SELECT NOMBRE FROM @TablaMenu WHERE Ascendente IS NULL) AND TM.Id>(SELECT TOP 1 ID FROM @TablaMenu WHERE Ascendente IS NULL AND NOMBRE=TM.Nombre))
+DELETE FROM @TablaMenu WHERE ID IN (SELECT Id FROM @TablaMenu TM WHERE TM.Nombre IN (SELECT NOMBRE FROM @TablaMenu WHERE Ascendente IS NOT NULL AND METODO IS NULL) AND TM.Id>(SELECT TOP 1 ID FROM @TablaMenu WHERE Ascendente IS NOT NULL AND METODO IS NULL AND NOMBRE=TM.Nombre))
+SELECT Nombre, ISNUMERIC(Ascendente) Ascendente, Metodo, Descripcion FROM @TablaMenu
+RETURNS
+END
+GO
 -- EJECUCION DE MIGRACION
 /*
 EXEC [DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE
@@ -775,4 +1025,15 @@ EXEC [DESCONOCIDOS4].PRC_CARGAR_ROLES
 EXEC [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADES 
 EXEC [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADXROL 
 EXEC [DESCONOCIDOS4].PRC_CARGAR_USUARIO_ROL
+EXEC [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU
+EXEC [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU
 */
+
+
+
+EXEC [DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL 1
+
+
+SELECT * FROM sys.all_objects WHERE name like '%FN_OBTENER_ANCESTROS%' AND system_type_id IN(167, 175, 231, 239);
+
+Ya hay un objeto con el nombre 'FN_OBTENER_MENU' en la base de datos.
