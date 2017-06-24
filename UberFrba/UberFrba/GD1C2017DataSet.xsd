@@ -26,6 +26,8 @@
               <Mapping SourceColumn="codigoUsuario" DataSetColumn="UserId" />
               <Mapping SourceColumn="Rol_Id" DataSetColumn="Rol_Id" />
               <Mapping SourceColumn="Rol_Nombre" DataSetColumn="Rol_Nombre" />
+              <Mapping SourceColumn="Nombre" DataSetColumn="Nombre" />
+              <Mapping SourceColumn="Apellido" DataSetColumn="Apellido" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_VALIDAR_USUARIO" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="validarUsuario" GetMethodModifier="Public" GetMethodName="validarUsuario" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="validarUsuario" UserSourceName="validarUsuario">
@@ -84,7 +86,7 @@
   <xs:element name="GD1C2017DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GD1C2017DataSet" msprop:Generator_UserDSName="GD1C2017DataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="PRC_VALIDAR_USUARIO" msprop:Generator_TableClassName="PRC_VALIDAR_USUARIODataTable" msprop:Generator_TableVarName="tablePRC_VALIDAR_USUARIO" msprop:Generator_RowChangedName="PRC_VALIDAR_USUARIORowChanged" msprop:Generator_TablePropName="PRC_VALIDAR_USUARIO" msprop:Generator_RowDeletingName="PRC_VALIDAR_USUARIORowDeleting" msprop:Generator_RowChangingName="PRC_VALIDAR_USUARIORowChanging" msprop:Generator_RowEvHandlerName="PRC_VALIDAR_USUARIORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_VALIDAR_USUARIORowDeleted" msprop:Generator_RowClassName="PRC_VALIDAR_USUARIORow" msprop:Generator_UserTableName="PRC_VALIDAR_USUARIO" msprop:Generator_RowEvArgName="PRC_VALIDAR_USUARIORowChangeEvent">
+        <xs:element name="PRC_VALIDAR_USUARIO" msprop:Generator_TableClassName="PRC_VALIDAR_USUARIODataTable" msprop:Generator_TableVarName="tablePRC_VALIDAR_USUARIO" msprop:Generator_TablePropName="PRC_VALIDAR_USUARIO" msprop:Generator_RowDeletingName="PRC_VALIDAR_USUARIORowDeleting" msprop:Generator_RowChangingName="PRC_VALIDAR_USUARIORowChanging" msprop:Generator_RowEvHandlerName="PRC_VALIDAR_USUARIORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_VALIDAR_USUARIORowDeleted" msprop:Generator_UserTableName="PRC_VALIDAR_USUARIO" msprop:Generator_RowChangedName="PRC_VALIDAR_USUARIORowChanged" msprop:Generator_RowEvArgName="PRC_VALIDAR_USUARIORowChangeEvent" msprop:Generator_RowClassName="PRC_VALIDAR_USUARIORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="UserId" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" msprop:Generator_UserColumnName="UserId" type="xs:int" minOccurs="0" />
@@ -96,10 +98,24 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Nombre" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Apellido" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnApellido" msprop:Generator_ColumnPropNameInRow="Apellido" msprop:Generator_ColumnPropNameInTable="ApellidoColumn" msprop:Generator_UserColumnName="Apellido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_OBTENER_MENU_X_ROL" msprop:Generator_TableClassName="PRC_OBTENER_MENU_X_ROLDataTable" msprop:Generator_TableVarName="tablePRC_OBTENER_MENU_X_ROL" msprop:Generator_TablePropName="PRC_OBTENER_MENU_X_ROL" msprop:Generator_RowDeletingName="PRC_OBTENER_MENU_X_ROLRowDeleting" msprop:Generator_RowChangingName="PRC_OBTENER_MENU_X_ROLRowChanging" msprop:Generator_RowEvHandlerName="PRC_OBTENER_MENU_X_ROLRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_OBTENER_MENU_X_ROLRowDeleted" msprop:Generator_UserTableName="PRC_OBTENER_MENU_X_ROL" msprop:Generator_RowChangedName="PRC_OBTENER_MENU_X_ROLRowChanged" msprop:Generator_RowEvArgName="PRC_OBTENER_MENU_X_ROLRowChangeEvent" msprop:Generator_RowClassName="PRC_OBTENER_MENU_X_ROLRow">
+        <xs:element name="PRC_OBTENER_MENU_X_ROL" msprop:Generator_TableClassName="PRC_OBTENER_MENU_X_ROLDataTable" msprop:Generator_TableVarName="tablePRC_OBTENER_MENU_X_ROL" msprop:Generator_RowChangedName="PRC_OBTENER_MENU_X_ROLRowChanged" msprop:Generator_TablePropName="PRC_OBTENER_MENU_X_ROL" msprop:Generator_RowDeletingName="PRC_OBTENER_MENU_X_ROLRowDeleting" msprop:Generator_RowChangingName="PRC_OBTENER_MENU_X_ROLRowChanging" msprop:Generator_RowEvHandlerName="PRC_OBTENER_MENU_X_ROLRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_OBTENER_MENU_X_ROLRowDeleted" msprop:Generator_RowClassName="PRC_OBTENER_MENU_X_ROLRow" msprop:Generator_UserTableName="PRC_OBTENER_MENU_X_ROL" msprop:Generator_RowEvArgName="PRC_OBTENER_MENU_X_ROLRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre" minOccurs="0">

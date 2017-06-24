@@ -13,6 +13,70 @@ namespace UberFrba
 {
     public partial class frmIngreso : Form
     {
+        public class SingletonDatosUsuario
+        {
+            public class DatosUsuario
+        {
+            private int idUsuario;
+            public int IdUsuario
+            {
+                get { return idUsuario; }
+                set { idUsuario = value; }
+            }
+            private int rolId;
+            public int RolId
+            {
+                get { return rolId; }
+                set { rolId = value; }
+            }
+            private String nombreUsuario;
+            public String NombreUsuario
+            {
+                get { return nombreUsuario; }
+                set { nombreUsuario = value; }
+            }
+            private String nombre;
+            public String Nombre
+            {
+                get { return nombre; }
+                set { nombre = value; }
+            }
+            private String apellido;
+            public String Apellido
+            {
+                get { return apellido; }
+                set { apellido = value; }
+            }
+        }
+           private static SingletonDatosUsuario instance;
+           private DatosUsuario datosUsuario;
+           
+           public SingletonDatosUsuario() { }
+           public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido) { 
+               datosUsuario = new DatosUsuario();
+                this.datosUsuario.IdUsuario = id;
+               this.datosUsuario.NombreUsuario = nombreUsuario;
+               this.datosUsuario.Nombre = nombre;
+               this.datosUsuario.Apellido = apellido;
+               instance = this;
+           }
+
+           public void setearRolId(int rolId)
+           {
+               this.datosUsuario.RolId = rolId;
+           }
+           public static SingletonDatosUsuario Instance
+           {
+              get 
+              {
+                 if (instance == null)
+                 {
+                     instance = new SingletonDatosUsuario();
+                 }
+                 return instance;
+              }
+           }
+        }
         static string sha256(string clave)
         {
             System.Security.Cryptography.SHA256Managed encriptador
@@ -70,9 +134,12 @@ namespace UberFrba
                 DataTable tblUsuarioYRoles = adaptador.validarUsuario(textoUsuario.Text, sha256(textoClave.Text));
             List<Tuple<String,String>> roles = new List<Tuple<string,string>>();
             int codigoUsuario=0;
+            String nombreUsuario = "", apellidoUsuario="";
                 foreach (DataRow fila in tblUsuarioYRoles.Rows)
                 {
                     codigoUsuario = fila.Field<int>("UserId");
+                    nombreUsuario = fila.Field<String>("Nombre");
+                    apellidoUsuario = fila.Field<String>("Apellido");
                 }
 
                 switch (codigoUsuario)
@@ -88,7 +155,7 @@ namespace UberFrba
                         break;
                     default:
                         this.Hide();
-                        MessageBox.Show("Ingreso satisfactorio!");
+                        SingletonDatosUsuario datosUsuario = new SingletonDatosUsuario(codigoUsuario, textoUsuario.Text, nombreUsuario, apellidoUsuario);
                         frmRoles fmRoles = new frmRoles();
                         ComboBox frmRolComboRol = (ComboBox)fmRoles.Controls["comboRol"];
                         frmRolComboRol.DataSource = tblUsuarioYRoles;
@@ -98,5 +165,10 @@ namespace UberFrba
                         break;
                 }
             }
+
+        private void frmIngreso_Load(object sender, EventArgs e)
+        {
+
+        }
         }
     }

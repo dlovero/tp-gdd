@@ -42,6 +42,8 @@ BEGIN
 	  DECLARE @Usuario_No_Existe INT
       DECLARE @Usuario_No_Habilitado INT
 	  DECLARE @Usuario_Clave_Incorrecta INT
+	  DECLARE @NombreUsuario VARCHAR(50)
+	  DECLARE @ApellidoUsuario VARCHAR(50)
 	  SELECT @Usuario_No_Habilitado = -2
 	  SELECT @Usuario_No_Existe = -1
 	  SELECT @Usuario_Clave_Incorrecta = -3
@@ -49,7 +51,10 @@ BEGIN
 	  SELECT @No_Habilitado = 0
 
       SELECT @Usu_Id = Usu_Id
-      FROM [DESCONOCIDOS4].Usuario WHERE Usu_Nombre_Usuario = @Usuario
+		FROM [DESCONOCIDOS4].Usuario WHERE Usu_Nombre_Usuario = @Usuario
+
+	  SELECT @NombreUsuario = Persona_Nombre, @ApellidoUsuario = Persona_Apellido
+      FROM [DESCONOCIDOS4].Usuario U JOIN [DESCONOCIDOS4].PERSONA P ON U.Usu_Per_Id = P.Persona_Id WHERE U.Usu_Id = @Usu_Id 
 
       IF @Usu_Id IS NOT NULL
 	  -- Usuario Existe
@@ -65,13 +70,13 @@ BEGIN
 						-- Actualiza Intentos Fallidos de ingreso, en caso que sea necesario
 						UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=0 WHERE Usu_Id=@Usu_Id
 					END
-					SELECT @Usu_Id [codigoUsuario], Rol_Id, Rol_Nombre FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
+					SELECT @Usu_Id [codigoUsuario], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
                               WHERE Rol_Habilitado=@Habilitado and UsuRol_Usu_Id=@Usu_Id
 				END
 				ELSE
 				BEGIN
 					-- Usuario Existe, Clave Correcta y No Habilitado
-					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre
+					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
 				END
             END
             ELSE
@@ -81,28 +86,12 @@ BEGIN
 				UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=
 													([DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO(@Usu_Id)) + 1
 												WHERE Usu_Id=@Usu_Id
-				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre
+				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
             END
       END
       ELSE
       BEGIN
 		-- Usuario NO EXISTE
-        SELECT @Usuario_No_Existe [Us	erId], -1 Rol_Id, '' Rol_Nombre
+        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
       END
 END
-
-
-
-
-
-
-SELECT 12 [codigoUsuario], Rol_Id, Rol_Nombre FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
-                              WHERE Rol_Habilitado=1 and UsuRol_Usu_Id=12
-							  go
-							  select * from [DESCONOCIDOS4].usuario where Usu_Id=88
-							  select * from [DESCONOCIDOS4].USUARIO_rol where UsuRol_Usu_Id=88
-							  update [DESCONOCIDOS4].USUARIO set Usu_Habilitado=1 where Usu_Id=89
-							  INSERT INTO [DESCONOCIDOS4].USUARIO_ROL(UsuRol_Usu_Id,UsuRol_Rol_Id) values(88,2)
-							 select CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2)
-EXEC [DESCONOCIDOS4].PRC_VALIDAR_USUARIO 'JiméZAH', '4EC9FABADDF3198934AE53B25B3EB01710809A301E4F5C9A3E5D54CB82286AB0'
-EXEC [DESCONOCIDOS4].PRC_VALIDAR_USUARIO 'JiméZAH', 'Inicio2017'

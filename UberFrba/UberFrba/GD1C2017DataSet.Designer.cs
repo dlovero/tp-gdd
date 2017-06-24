@@ -320,6 +320,10 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnRol_Nombre;
             
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnApellido;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PRC_VALIDAR_USUARIODataTable() {
@@ -379,6 +383,22 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ApellidoColumn {
+                get {
+                    return this.columnApellido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -414,12 +434,14 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_VALIDAR_USUARIORow AddPRC_VALIDAR_USUARIORow(int UserId, string Rol_Nombre) {
+            public PRC_VALIDAR_USUARIORow AddPRC_VALIDAR_USUARIORow(int UserId, string Rol_Nombre, string Nombre, string Apellido) {
                 PRC_VALIDAR_USUARIORow rowPRC_VALIDAR_USUARIORow = ((PRC_VALIDAR_USUARIORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         UserId,
                         null,
-                        Rol_Nombre};
+                        Rol_Nombre,
+                        Nombre,
+                        Apellido};
                 rowPRC_VALIDAR_USUARIORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPRC_VALIDAR_USUARIORow);
                 return rowPRC_VALIDAR_USUARIORow;
@@ -445,6 +467,8 @@ namespace UberFrba {
                 this.columnUserId = base.Columns["UserId"];
                 this.columnRol_Id = base.Columns["Rol_Id"];
                 this.columnRol_Nombre = base.Columns["Rol_Nombre"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnApellido = base.Columns["Apellido"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -456,6 +480,10 @@ namespace UberFrba {
                 base.Columns.Add(this.columnRol_Id);
                 this.columnRol_Nombre = new global::System.Data.DataColumn("Rol_Nombre", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRol_Nombre);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnApellido = new global::System.Data.DataColumn("Apellido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApellido);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnRol_Id}, false));
                 this.columnUserId.ReadOnly = true;
@@ -463,6 +491,10 @@ namespace UberFrba {
                 this.columnRol_Id.ReadOnly = true;
                 this.columnRol_Id.Unique = true;
                 this.columnRol_Nombre.MaxLength = 255;
+                this.columnNombre.ReadOnly = true;
+                this.columnNombre.MaxLength = 50;
+                this.columnApellido.ReadOnly = true;
+                this.columnApellido.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -946,6 +978,38 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_VALIDAR_USUARIO.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombre\' de la tabla \'PRC_VALIDAR_USUARIO\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_VALIDAR_USUARIO.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Apellido {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_VALIDAR_USUARIO.ApellidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Apellido\' de la tabla \'PRC_VALIDAR_USUARIO\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_VALIDAR_USUARIO.ApellidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsUserIdNull() {
                 return this.IsNull(this.tablePRC_VALIDAR_USUARIO.UserIdColumn);
             }
@@ -978,6 +1042,30 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetRol_NombreNull() {
                 this[this.tablePRC_VALIDAR_USUARIO.Rol_NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tablePRC_VALIDAR_USUARIO.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tablePRC_VALIDAR_USUARIO.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsApellidoNull() {
+                return this.IsNull(this.tablePRC_VALIDAR_USUARIO.ApellidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetApellidoNull() {
+                this[this.tablePRC_VALIDAR_USUARIO.ApellidoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1306,6 +1394,8 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("codigoUsuario", "UserId");
             tableMapping.ColumnMappings.Add("Rol_Id", "Rol_Id");
             tableMapping.ColumnMappings.Add("Rol_Nombre", "Rol_Nombre");
+            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("Apellido", "Apellido");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

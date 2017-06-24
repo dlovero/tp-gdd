@@ -34,10 +34,13 @@ namespace UberFrba
 
         private void button1_Click(object sender, EventArgs e)
         {
+            frmIngreso.SingletonDatosUsuario datosUsuario = frmIngreso.SingletonDatosUsuario.Instance;
+            int rolId = Convert.ToInt32(comboRol.SelectedValue);
+            datosUsuario.setearRolId(rolId);
             this.Hide();
             GD1C2017DataSetTableAdapters.PRC_OBTENER_MENU_X_ROLTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_OBTENER_MENU_X_ROLTableAdapter();
-            DataTable tblMenuSegunRol = adaptador.menuSegunRol(1);
+            DataTable tblMenuSegunRol = adaptador.menuSegunRol(rolId);
 
             frmPrincipal fmPrincipal = new frmPrincipal();
             MenuStrip fmPrincipalMenu = (MenuStrip)fmPrincipal.Controls["mnuPrincipal"];
@@ -98,6 +101,14 @@ namespace UberFrba
                 }
                 //string nombreMenu = fila.Field<string>("Nombre");
                 
+            }
+            if (subMenuAuxiliar != null)
+            {
+                mnuAuxiliar.DropDownItems.Add(subMenuAuxiliar);
+            }
+            if (mnuAuxiliar != null)
+            {
+                fmPrincipalMenu.Items.Add(mnuAuxiliar);
             }
             
            /* ToolStripMenuItem mnuABM = new ToolStripMenuItem("ABM");

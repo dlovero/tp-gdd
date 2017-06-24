@@ -998,7 +998,7 @@ DECLARE @TablaMenu TABLE
    Metodo VARCHAR(50),
    Descripcion VARCHAR(50)
 )
-INSERT INTO @TablaMenu SELECT Nombre, Ascendente, Metodo, Descripcion FROM [DESCONOCIDOS4].FN_OBTENER_MENU(1)
+INSERT INTO @TablaMenu SELECT Nombre, Ascendente, Metodo, Descripcion FROM [DESCONOCIDOS4].FN_OBTENER_MENU(@IdRol)
 DELETE FROM @TablaMenu WHERE ID IN (SELECT Id FROM @TablaMenu TM WHERE TM.Nombre IN (SELECT NOMBRE FROM @TablaMenu WHERE Ascendente IS NULL) AND TM.Id>(SELECT TOP 1 ID FROM @TablaMenu WHERE Ascendente IS NULL AND NOMBRE=TM.Nombre))
 DELETE FROM @TablaMenu WHERE ID IN (SELECT Id FROM @TablaMenu TM WHERE TM.Nombre IN (SELECT NOMBRE FROM @TablaMenu WHERE Ascendente IS NOT NULL AND METODO IS NULL) AND TM.Id>(SELECT TOP 1 ID FROM @TablaMenu WHERE Ascendente IS NOT NULL AND METODO IS NULL AND NOMBRE=TM.Nombre))
 SELECT Nombre, ISNUMERIC(Ascendente) Ascendente, Metodo, Descripcion FROM @TablaMenu
@@ -1029,11 +1029,3 @@ EXEC [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU
 EXEC [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU
 */
 
-
-
-EXEC [DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL 1
-
-
-SELECT * FROM sys.all_objects WHERE name like '%FN_OBTENER_ANCESTROS%' AND system_type_id IN(167, 175, 231, 239);
-
-Ya hay un objeto con el nombre 'FN_OBTENER_MENU' en la base de datos.
