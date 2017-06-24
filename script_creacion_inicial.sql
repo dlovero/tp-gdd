@@ -828,23 +828,6 @@ IF OBJECT_ID (N'[DESCONOCIDOS4].TR_VIAJE_REP', N'TR') IS NOT NULL
 		DROP TRIGGER  [DESCONOCIDOS4].TR_VIAJE_REP;
 GO
 
-/*
-CREATE TRIGGER  [DESCONOCIDOS4].TR_VIAJE_REP ON [DESCONOCIDOS4].VIAJE
-INSTEAD OF  INSERT
-AS
-BEGIN TRANSACTION	
-	INSERT INTO [DESCONOCIDOS4].VIAJE_REP(VREP_Chofer,VREP_Cliente,VREP_Automovil,VREP_Turno,VREP_Precio_Base,VREP_Valor_km,VREP_Importe,VREP_Cantidad_Km,VREP_Fecha_Hora_Inicio,VREP_Fecha_Hora_Fin)
-	SELECT I.Viaje_Chofer,I.Viaje_Cliente,I.Viaje_Automovil,I.Viaje_Turno,I.Viaje_Precio_Base,I.Viaje_Valor_km,I.Viaje_Importe,I.Viaje_Cantidad_Km,I.Viaje_Fecha_Hora_Inicio,I.Viaje_Fecha_Hora_Fin
-	FROM INSERTED I GROUP BY I.Viaje_Chofer,I.Viaje_Cliente,I.Viaje_Automovil,I.Viaje_Turno,I.Viaje_Precio_Base,I.Viaje_Valor_km,I.Viaje_Importe,I.Viaje_Cantidad_Km,I.Viaje_Fecha_Hora_Inicio,I.Viaje_Fecha_Hora_Fin
-	HAVING count(*) > 1
-	INSERT INTO [DESCONOCIDOS4].VIAJE
-	SELECT DISTINCT I.Viaje_Chofer,I.Viaje_Cliente,I.Viaje_Automovil,I.Viaje_Turno,I.Viaje_Precio_Base,I.Viaje_Valor_km,I.Viaje_Importe,I.Viaje_Cantidad_Km,I.Viaje_Fecha_Hora_Inicio,I.Viaje_Fecha_Hora_Fin
-	FROM INSERTED I
-
-
-COMMIT;
-GO
-*/
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_VIAJE_REP', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_VIAJE_REP;
 GO
@@ -877,15 +860,17 @@ BEGIN TRANSACTION
 	  DISTINCT 
 		  M2.Factura_Nro, 
 		  ROW_NUMBER() OVER (PARTITION BY M2.Factura_Nro ORDER BY M2.Factura_Nro),
-		  Viaje_Nro 
-	  FROM [DESCONOCIDOS4].VIAJE LEFT JOIN  [DESCONOCIDOS4].CLIENTE ON Viaje_Cliente= Cliente_Id LEFT JOIN [DESCONOCIDOS4].CHOFER ON Viaje_Chofer=Chofer_Id
-	LEFT JOIN  [DESCONOCIDOS4].PERSONA P1 ON P1.Persona_Id= Cliente_Per_ID LEFT JOIN [DESCONOCIDOS4].PERSONA P2 ON P2.Persona_Id= Chofer_Per_Id
-	LEFT JOIN gd_esquema.Maestra M2
-	 ON  CONCAT(M2.Viaje_Fecha,M2.Viaje_Cant_Kilometros,M2.Cliente_Dni,M2.Chofer_Dni,[DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(M2.Auto_Patente))=CONCAT(Viaje_Fecha_Hora_Inicio,Viaje_Cantidad_Km,P1.Persona_Dni,P2.Persona_Dni,Viaje_Automovil) 
-	 WHERE M2.Factura_Nro>0 AND M2.Rendicion_Nro IS NULL  GROUP BY M2.Factura_Nro,Viaje_Nro ORDER BY M2.Factura_Nro,Viaje_Nro
+		  S.Viaje_Nro 
+	  FROM gd_esquema.Maestra M2 LEFT JOIN  
+	  (SELECT Viaje_Nro,Viaje_Fecha_Hora_Inicio,Viaje_Cantidad_Km,P1.Persona_Dni AS DNI_CLIENTE ,P2.Persona_Dni AS DNI_CHOFER,Viaje_Automovil  FROM [DESCONOCIDOS4].VIAJE
+		   
+		LEFT JOIN  [DESCONOCIDOS4].CLIENTE ON Viaje_Cliente= Cliente_Id LEFT JOIN [DESCONOCIDOS4].CHOFER ON Viaje_Chofer=Chofer_Id
+		LEFT JOIN  [DESCONOCIDOS4].PERSONA P1 ON P1.Persona_Id= Cliente_Per_ID LEFT JOIN [DESCONOCIDOS4].PERSONA P2 ON P2.Persona_Id= Chofer_Per_Id) S
+		ON  CONCAT(M2.Viaje_Fecha,M2.Viaje_Cant_Kilometros,M2.Cliente_Dni,M2.Chofer_Dni,[DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(M2.Auto_Patente))=CONCAT(Viaje_Fecha_Hora_Inicio,Viaje_Cantidad_Km,DNI_CLIENTE,DNI_CHOFER,Viaje_Automovil)
+	 
+	 WHERE M2.Factura_Nro>0 AND M2.Rendicion_Nro IS NULL  GROUP BY M2.Factura_Nro,S.Viaje_Nro ORDER BY M2.Factura_Nro,S.Viaje_Nro
 COMMIT
-GO
-
+go
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_FACTURA_REP', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_FACTURA_REP;
 GO
@@ -1629,7 +1614,7 @@ BEGIN
         SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
       END
 END
-
+go
 IF OBJECT_ID(N'[DESCONOCIDOS4].FN_OBTENER_ANCESTROS', N'TF') IS NOT NULL
 		DROP FUNCTION  [DESCONOCIDOS4].FN_OBTENER_ANCESTROS;
 GO
@@ -1845,3 +1830,4 @@ exec [DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL 1
 */
 -- TIEMPO 00:01:33
 
+--SELECT * FROM gd_esquema.Maestra WHERE M2.Factura_Nro>0 AND M2.Rendicion_Nro IS NULL
