@@ -123,13 +123,115 @@ namespace UberFrba
             fmPrincipal.Show();
         }
 
-        private void altaCliente(object sender, EventArgs e)
+        private void agregarCliente(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
             frmAltaCliente.Show();
         }
         private void eliminarCliente(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void modificarCliente(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void agregarChofer(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void eliminarChofer(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void modificarChofer(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void agregarAutomovil(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void eliminarAutomovil(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void modificarAutomovil(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void agregarRol(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void eliminarRol(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void modificarRol(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void facturarCliente(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void rendicionChofer(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void choferMayorRecaudacion(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void choferViajeMasLargo(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void clienteMayorConsumo(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void clienteMismoMovil(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmABM frmAltaCliente = new frmABM();
+            frmAltaCliente.Show();
+        }
+        private void registroViajes(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
