@@ -39,6 +39,17 @@ BEGIN
 DROP TABLE DESCONOCIDOS4.VIAJE_REP ;
 END;
 GO
+IF OBJECT_ID('DESCONOCIDOS4.RENDICION_REP') IS NOT NULL
+BEGIN
+DROP TABLE DESCONOCIDOS4.RENDICION_REP ;
+END;
+GO
+
+IF OBJECT_ID('DESCONOCIDOS4.FACTURA_REP') IS NOT NULL
+BEGIN
+DROP TABLE DESCONOCIDOS4.FACTURA_REP ;
+END;
+GO
 IF OBJECT_ID('DESCONOCIDOS4.UNIDAD_DISPONIBLE') IS NOT NULL
 BEGIN
 DROP TABLE DESCONOCIDOS4.UNIDAD_DISPONIBLE ;
@@ -221,19 +232,33 @@ PRIMARY KEY (Viaje_Nro),
 CHECK (Viaje_Cantidad_Km >0 )
 );
 GO
-CREATE TABLE [DESCONOCIDOS4].VIAJE_REP(
-VREP_Nro INT NOT NULL IDENTITY(1,1),
-VREP_Chofer INT  NOT NULL,
-VREP_Cliente INT NOT NULL,
-VREP_Automovil VARCHAR(10) NOT NULL,
-VREP_Turno INT  NOT NULL,
-VREP_Precio_Base NUMERIC(18,2) NOT NULL,
-VREP_Valor_km NUMERIC(18,2) NOT NULL,
-VREP_Importe NUMERIC(18,2) NOT NULL,
-VREP_Cantidad_Km NUMERIC(18,0),
-VREP_Fecha_Hora_Inicio DATETIME,
-VREP_Fecha_Hora_Fin DATETIME,
-PRIMARY KEY (VREP_Nro)
+CREATE TABLE [DESCONOCIDOS4].VIAJE_REP (
+Auto_Marca VARCHAR(255),
+Auto_Modelo VARCHAR(255),
+Auto_Patente VARCHAR(10),
+Auto_Licencia VARCHAR(26),
+Auto_Rodado VARCHAR(10),
+Chofer_Nombre VARCHAR(255),
+Chofer_Apellido VARCHAR(255),
+Chofer_Dni  NUMERIC(18,0),
+Chofer_Direccion VARCHAR(255),
+Chofer_Telefono  NUMERIC(18,0),
+Chofer_Mail VARCHAR(50),
+Chofer_Fecha_Nac DATETIME,
+Viaje_Cant_Kilometros  NUMERIC(18,0),
+Viaje_Fecha DATETIME,
+Turno_Hora_Inicio  NUMERIC(18,0),
+Turno_Hora_Fin  NUMERIC(18,0),
+Turno_Descripcion VARCHAR(255),
+Turno_Valor_Kilometro  NUMERIC(18,2),
+Turno_Precio_Base  NUMERIC(18,2),
+Cliente_Nombre VARCHAR(255),
+Cliente_Apellido VARCHAR(255),
+Cliente_Dni  NUMERIC(18,0),
+Cliente_Telefono  NUMERIC(18,0),
+Cliente_Direccion VARCHAR(255),
+Cliente_Mail VARCHAR(255),
+Cliente_Fecha_Nac DATETIME,
 );
 GO
 CREATE TABLE [DESCONOCIDOS4].CABECERO_FACTURA(
@@ -268,6 +293,72 @@ Item_Rend_NroRend NUMERIC(18,0)  NOT NULL,
 Item_Rend_Pos SMALLINT NOT NULL,
 Item_Rend_Viaje INT REFERENCES [DESCONOCIDOS4].VIAJE NOT NULL
 PRIMARY KEY (Item_Rend_NroRend,Item_Rend_Pos),
+);
+GO
+CREATE TABLE [DESCONOCIDOS4].FACTURA_REP (
+Auto_Marca VARCHAR(255),
+Auto_Modelo VARCHAR(255),
+Auto_Patente VARCHAR(10),
+Auto_Licencia VARCHAR(26),
+Auto_Rodado VARCHAR(10),
+Chofer_Nombre VARCHAR(255),
+Chofer_Apellido VARCHAR(255),
+Chofer_Dni  NUMERIC(18,0),
+Chofer_Direccion VARCHAR(255),
+Chofer_Telefono  NUMERIC(18,0),
+Chofer_Mail VARCHAR(50),
+Chofer_Fecha_Nac DATETIME,
+Viaje_Cant_Kilometros  NUMERIC(18,0),
+Viaje_Fecha DATETIME,
+Turno_Hora_Inicio  NUMERIC(18,0),
+Turno_Hora_Fin  NUMERIC(18,0),
+Turno_Descripcion VARCHAR(255),
+Turno_Valor_Kilometro  NUMERIC(18,2),
+Turno_Precio_Base  NUMERIC(18,2),
+Cliente_Nombre VARCHAR(255),
+Cliente_Apellido VARCHAR(255),
+Cliente_Dni  NUMERIC(18,0),
+Cliente_Telefono  NUMERIC(18,0),
+Cliente_Direccion VARCHAR(255),
+Cliente_Mail VARCHAR(255),
+Cliente_Fecha_Nac DATETIME,
+Factura_Fecha_Inicio DATETIME,
+Factura_Fecha_Fin DATETIME,
+Factura_Nro NUMERIC(18,0),
+Factura_Fecha DATETIME,
+);
+GO
+
+CREATE TABLE [DESCONOCIDOS4].RENDICION_REP (
+Auto_Marca VARCHAR(255),
+Auto_Modelo VARCHAR(255),
+Auto_Patente VARCHAR(10),
+Auto_Licencia VARCHAR(26),
+Auto_Rodado VARCHAR(10),
+Chofer_Nombre VARCHAR(255),
+Chofer_Apellido VARCHAR(255),
+Chofer_Dni  NUMERIC(18,0),
+Chofer_Direccion VARCHAR(255),
+Chofer_Telefono  NUMERIC(18,0),
+Chofer_Mail VARCHAR(50),
+Chofer_Fecha_Nac DATETIME,
+Viaje_Cant_Kilometros  NUMERIC(18,0),
+Viaje_Fecha DATETIME,
+Turno_Hora_Inicio  NUMERIC(18,0),
+Turno_Hora_Fin  NUMERIC(18,0),
+Turno_Descripcion VARCHAR(255),
+Turno_Valor_Kilometro  NUMERIC(18,2),
+Turno_Precio_Base  NUMERIC(18,2),
+Cliente_Nombre VARCHAR(255),
+Cliente_Apellido VARCHAR(255),
+Cliente_Dni  NUMERIC(18,0),
+Cliente_Telefono  NUMERIC(18,0),
+Cliente_Direccion VARCHAR(255),
+Cliente_Mail VARCHAR(255),
+Cliente_Fecha_Nac DATETIME,
+Rendicion_Nro NUMERIC(18,0),
+Rendicion_Fecha DATETIME,
+Rendicion_Importe NUMERIC(18,2),
 );
 GO
 CREATE TABLE [DESCONOCIDOS4].ROL(
@@ -694,7 +785,7 @@ AS
 BEGIN TRANSACTION
 	  INSERT INTO [DESCONOCIDOS4].VIAJE (Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Precio_Base,Viaje_Valor_km,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin) 
 	  SELECT 
-		  
+		  DISTINCT
 		  (SELECT Chofer_Id FROM CHOFER LEFT JOIN PERSONA ON Persona_Id=Chofer_Per_Id WHERE M.Chofer_Dni=Persona_Dni),	
 		  (SELECT Cliente_Id FROM CLIENTE LEFT JOIN PERSONA ON Persona_Id=Cliente_Per_ID WHERE M.Cliente_Dni=Persona_Dni),	  
 		  [DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(Auto_Patente),
@@ -714,6 +805,7 @@ IF OBJECT_ID (N'[DESCONOCIDOS4].TR_VIAJE_REP', N'TR') IS NOT NULL
 		DROP TRIGGER  [DESCONOCIDOS4].TR_VIAJE_REP;
 GO
 
+/*
 CREATE TRIGGER  [DESCONOCIDOS4].TR_VIAJE_REP ON [DESCONOCIDOS4].VIAJE
 INSTEAD OF  INSERT
 AS
@@ -728,13 +820,32 @@ BEGIN TRANSACTION
 
 
 COMMIT;
-
-
 GO
+*/
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_VIAJE_REP', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_VIAJE_REP;
+GO
+-- Se puebla la tabla VIAJE_REP
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_VIAJE_REP
+AS
+BEGIN TRANSACTION
+	INSERT INTO [DESCONOCIDOS4].VIAJE_REP
+	SELECT Auto_Marca,Auto_Modelo,Auto_Patente,Auto_Licencia,Auto_Rodado,Chofer_Nombre,Chofer_Apellido,Chofer_Dni,Chofer_Direccion,Chofer_Telefono,Chofer_Mail,Chofer_Fecha_Nac,
+	Viaje_Cant_Kilometros,Viaje_Fecha,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base,Cliente_Nombre,Cliente_Apellido,Cliente_Dni,Cliente_Telefono,
+	Cliente_Direccion,Cliente_Mail,Cliente_Fecha_Nac
+	FROM gd_esquema.Maestra M WHERE M.Factura_Nro IS NULL AND M.Rendicion_Nro IS NULL   GROUP BY
+	Auto_Marca,Auto_Modelo,Auto_Patente,Auto_Licencia,Auto_Rodado,Chofer_Nombre,Chofer_Apellido,Chofer_Dni,Chofer_Direccion,Chofer_Telefono,Chofer_Mail,Chofer_Fecha_Nac,
+	Viaje_Cant_Kilometros,Viaje_Fecha,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base,Cliente_Nombre,Cliente_Apellido,Cliente_Dni,Cliente_Telefono,
+	Cliente_Direccion,Cliente_Mail,Cliente_Fecha_Nac
+	HAVING count(*) > 1
+	ORDER BY M.Viaje_Fecha ASC
+COMMIT;
+GO
+
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA;
 GO
--- Se puebla la tabla PRC_MIGRA_ITEM_FACTURA
+-- Se puebla la tabla ITEM_FACTURA
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA
 AS
 BEGIN TRANSACTION
@@ -750,8 +861,49 @@ BEGIN TRANSACTION
 	 ON  CONCAT(M2.Viaje_Fecha,M2.Viaje_Cant_Kilometros,M2.Cliente_Dni,M2.Chofer_Dni,[DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(M2.Auto_Patente))=CONCAT(Viaje_Fecha_Hora_Inicio,Viaje_Cantidad_Km,P1.Persona_Dni,P2.Persona_Dni,Viaje_Automovil) 
 	 WHERE M2.Factura_Nro>0 AND M2.Rendicion_Nro IS NULL  GROUP BY M2.Factura_Nro,Viaje_Nro ORDER BY M2.Factura_Nro,Viaje_Nro
 COMMIT
-
 GO
+
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_FACTURA_REP', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_FACTURA_REP;
+GO
+-- Se puebla la tabla FACTURA_REP
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_FACTURA_REP
+AS
+BEGIN TRANSACTION
+	INSERT INTO [DESCONOCIDOS4].FACTURA_REP
+	SELECT Auto_Marca,Auto_Modelo,Auto_Patente,Auto_Licencia,Auto_Rodado,Chofer_Nombre,Chofer_Apellido,Chofer_Dni,Chofer_Direccion,Chofer_Telefono,Chofer_Mail,Chofer_Fecha_Nac,
+	Viaje_Cant_Kilometros,Viaje_Fecha,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base,Cliente_Nombre,Cliente_Apellido,Cliente_Dni,Cliente_Telefono,
+	Cliente_Direccion,Cliente_Mail,Cliente_Fecha_Nac,Factura_Fecha_Inicio,Factura_Fecha_Fin,Factura_Nro,Factura_Fecha
+	FROM gd_esquema.Maestra M WHERE M.Factura_Nro>0 AND M.Rendicion_Nro IS NULL   GROUP BY
+	Auto_Marca,Auto_Modelo,Auto_Patente,Auto_Licencia,Auto_Rodado,Chofer_Nombre,Chofer_Apellido,Chofer_Dni,Chofer_Direccion,Chofer_Telefono,Chofer_Mail,Chofer_Fecha_Nac,
+	Viaje_Cant_Kilometros,Viaje_Fecha,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base,Cliente_Nombre,Cliente_Apellido,Cliente_Dni,Cliente_Telefono,
+	Cliente_Direccion,Cliente_Mail,Cliente_Fecha_Nac,Factura_Fecha_Inicio,Factura_Fecha_Fin,Factura_Nro,Factura_Fecha
+	HAVING count(*) > 1
+	ORDER BY M.Viaje_Fecha ASC
+COMMIT;
+GO
+
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_RENDICION_REP', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_RENDICION_REP;
+GO
+-- Se puebla la tabla RENDICION_REP
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_RENDICION_REP
+AS
+BEGIN TRANSACTION
+	INSERT INTO [DESCONOCIDOS4].RENDICION_REP
+	SELECT Auto_Marca,Auto_Modelo,Auto_Patente,Auto_Licencia,Auto_Rodado,Chofer_Nombre,Chofer_Apellido,Chofer_Dni,Chofer_Direccion,Chofer_Telefono,Chofer_Mail,Chofer_Fecha_Nac,
+	Viaje_Cant_Kilometros,Viaje_Fecha,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base,Cliente_Nombre,Cliente_Apellido,Cliente_Dni,Cliente_Telefono,
+	Cliente_Direccion,Cliente_Mail,Cliente_Fecha_Nac,Rendicion_Nro,Rendicion_Fecha,Rendicion_Importe
+	FROM gd_esquema.Maestra M WHERE M.Rendicion_Nro>0 AND M.Factura_Nro IS NULL   GROUP BY
+	Auto_Marca,Auto_Modelo,Auto_Patente,Auto_Licencia,Auto_Rodado,Chofer_Nombre,Chofer_Apellido,Chofer_Dni,Chofer_Direccion,Chofer_Telefono,Chofer_Mail,Chofer_Fecha_Nac,
+	Viaje_Cant_Kilometros,Viaje_Fecha,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base,Cliente_Nombre,Cliente_Apellido,Cliente_Dni,Cliente_Telefono,
+	Cliente_Direccion,Cliente_Mail,Cliente_Fecha_Nac,Rendicion_Nro,Rendicion_Fecha,Rendicion_Importe
+	HAVING count(*) > 1
+	ORDER BY M.Viaje_Fecha ASC
+COMMIT;
+GO
+
+
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_CAB_RENDICION', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MIGRA_CAB_RENDICION;
 GO
@@ -909,6 +1061,9 @@ EXEC [DESCONOCIDOS4].PRC_MIGRA_TURNO
 EXEC [DESCONOCIDOS4].PRC_MIGRA_UNIDAD_DISPONIBLE
 EXEC [DESCONOCIDOS4].PRC_MIGRA_CAB_FACTURA
 EXEC [DESCONOCIDOS4].PRC_MIGRA_VIAJE
+EXEC [DESCONOCIDOS4].PRC_MIGRA_VIAJE_REP
+EXEC [DESCONOCIDOS4].PRC_MIGRA_RENDICION_REP
+EXEC [DESCONOCIDOS4].PRC_MIGRA_FACTURA_REP
 EXEC [DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA
 EXEC [DESCONOCIDOS4].PRC_MIGRA_CAB_RENDICION
 EXEC [DESCONOCIDOS4].PRC_MIGRA_ITEM_RENDICION
@@ -917,6 +1072,7 @@ EXEC [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADES
 EXEC [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADXROL 
 EXEC [DESCONOCIDOS4].PRC_CARGAR_USUARIO_ROL
 EXEC [DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_FACTURA
+
 IF OBJECT_ID (N'[DESCONOCIDOS4].TR_VIAJE_REP', N'TR') IS NOT NULL
 		DROP TRIGGER  [DESCONOCIDOS4].TR_VIAJE_REP;
 GO
@@ -1330,4 +1486,13 @@ BEGIN
 END
 GO
 
--- TIEMPO 00:01:19
+-- TIEMPO 00:01:32
+
+SELECT * FROM DESCONOCIDOS4.FACTURA_REP
+
+SELECT * FROM DESCONOCIDOS4.RENDICION_REP
+
+
+
+SELECT * FROM gd_esquema.Maestra M WHERE  M.Factura_Nro>0 AND M.Rendicion_Nro IS NULL
+SELECT * FROM DESCONOCIDOS4.ITEM_FACTURA
