@@ -35,7 +35,6 @@ namespace UberFrba
             MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo, BindingFlags.NonPublic | BindingFlags.Instance);
             EventHandler handler = (EventHandler)Delegate.CreateDelegate(
               typeof(EventHandler), this, methodInfo);
-            //MethodBase metodo = methodInfo.DeclaringType
             return new ToolStripMenuItem(nombre, null, handler, null);
         }
         public class ArgumentosDeEventoDeFuncionDeMenu : EventArgs
