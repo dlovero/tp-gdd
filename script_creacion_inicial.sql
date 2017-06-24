@@ -1828,6 +1828,5 @@ select * from DESCONOCIDOS4.RAMA_MENU
 
 exec [DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL 1
 */
--- TIEMPO 00:01:33
+-- TIEMPO 00:01:43
 
---SELECT * FROM gd_esquema.Maestra WHERE M2.Factura_Nro>0 AND M2.Rendicion_Nro IS NULL
