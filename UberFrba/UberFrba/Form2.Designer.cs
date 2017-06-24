@@ -47,9 +47,9 @@
             // comboRol
             // 
             this.comboRol.FormattingEnabled = true;
-            this.comboRol.Location = new System.Drawing.Point(24, 36);
+            this.comboRol.Location = new System.Drawing.Point(13, 36);
             this.comboRol.Name = "comboRol";
-            this.comboRol.Size = new System.Drawing.Size(113, 21);
+            this.comboRol.Size = new System.Drawing.Size(135, 21);
             this.comboRol.TabIndex = 1;
             // 
             // btnIniciar
