@@ -11,11 +11,9 @@ using System.Data.SqlClient;
 
 namespace UberFrba
 {
-    public partial class frmIngreso : Form
+    public class SingletonDatosUsuario
     {
-        public class SingletonDatosUsuario
-        {
-            public class DatosUsuario
+        public class DatosUsuario
         {
             private int idUsuario;
             public int IdUsuario
@@ -48,35 +46,46 @@ namespace UberFrba
                 set { apellido = value; }
             }
         }
-           private static SingletonDatosUsuario instance;
-           private DatosUsuario datosUsuario;
-           
-           public SingletonDatosUsuario() { }
-           public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido) { 
-               datosUsuario = new DatosUsuario();
-                this.datosUsuario.IdUsuario = id;
-               this.datosUsuario.NombreUsuario = nombreUsuario;
-               this.datosUsuario.Nombre = nombre;
-               this.datosUsuario.Apellido = apellido;
-               instance = this;
-           }
+        private static SingletonDatosUsuario instance;
+        private DatosUsuario datosUsuario;
 
-           public void setearRolId(int rolId)
-           {
-               this.datosUsuario.RolId = rolId;
-           }
-           public static SingletonDatosUsuario Instance
-           {
-              get 
-              {
-                 if (instance == null)
-                 {
-                     instance = new SingletonDatosUsuario();
-                 }
-                 return instance;
-              }
-           }
+        public SingletonDatosUsuario() { }
+        public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido)
+        {
+            datosUsuario = new DatosUsuario();
+            this.datosUsuario.IdUsuario = id;
+            this.datosUsuario.NombreUsuario = nombreUsuario;
+            this.datosUsuario.Nombre = nombre;
+            this.datosUsuario.Apellido = apellido;
+            instance = this;
         }
+        public int obtenerIdUsuario()
+        {
+            return this.datosUsuario.IdUsuario;
+        }
+        public int obtenerIdRol()
+        {
+            return this.datosUsuario.RolId;
+        }
+        public void setearRolId(int rolId)
+        {
+            this.datosUsuario.RolId = rolId;
+        }
+        public static SingletonDatosUsuario Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SingletonDatosUsuario();
+                }
+                return instance;
+            }
+        }
+    }
+    public partial class frmIngreso : Form
+    {
+        
         static string sha256(string clave)
         {
             System.Security.Cryptography.SHA256Managed encriptador
@@ -117,7 +126,7 @@ namespace UberFrba
         }
         public frmIngreso()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
         private void label1_Click(object sender, EventArgs e)
         {
@@ -157,6 +166,7 @@ namespace UberFrba
                         this.Hide();
                         SingletonDatosUsuario datosUsuario = new SingletonDatosUsuario(codigoUsuario, textoUsuario.Text, nombreUsuario, apellidoUsuario);
                         frmRoles fmRoles = new frmRoles();
+                        ((ComboBox)fmRoles.Controls["comboRol"]).Focus();
                         ComboBox frmRolComboRol = (ComboBox)fmRoles.Controls["comboRol"];
                         frmRolComboRol.DataSource = tblUsuarioYRoles;
                         frmRolComboRol.DisplayMember = "Rol_Nombre";

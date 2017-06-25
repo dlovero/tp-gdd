@@ -31,7 +31,6 @@ namespace UberFrba
 
         private ToolStripMenuItem dameUnItemDeFuncion(string nombre, string nombreMetodo)
         {
-            this.GetType().GetMethods();
             MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo, BindingFlags.NonPublic | BindingFlags.Instance);
             EventHandler handler = (EventHandler)Delegate.CreateDelegate(
               typeof(EventHandler), this, methodInfo);
@@ -41,10 +40,10 @@ namespace UberFrba
         {
             public String nombreMetodo { get; set; }
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            frmIngreso.SingletonDatosUsuario datosUsuario = frmIngreso.SingletonDatosUsuario.Instance;
+            SingletonDatosUsuario datosUsuario = SingletonDatosUsuario.Instance;
             int rolId = Convert.ToInt32(comboRol.SelectedValue);
             datosUsuario.setearRolId(rolId);
             this.Hide();
@@ -122,11 +121,60 @@ namespace UberFrba
             }
             fmPrincipal.Show();
         }
+        private static void configurarFormularioAgregarOModificar
+            (Form formulario, String textoFuncion, String textoTipo, Boolean activarSeleccionUsuario, String textoEtiqueta)
+        {
+            if (activarSeleccionUsuario)
+              {
+                ((Label)formulario.Controls["lblUsuario"]).Text = textoTipo;
+                ComboBox frmComboUsuario = (ComboBox)formulario.Controls["comboUsuario"];
+                GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
+                    = new GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter();
+                DataTable tblUsuario = adaptador.obtenerUsuarios();
+                frmComboUsuario.DataSource = tblUsuario;
+                frmComboUsuario.DisplayMember = "Usu_Nombre_Usuario";
+                frmComboUsuario.ValueMember = "Persona_Id";
+                poblarDatosDelFormulario(formulario, adaptador);
+                ((frmABM)formulario).adaptadorDatosUsuarios = adaptador;
+              }
+              else
+              {
+              }
+            ((Label)formulario.Controls["lblUsuario"]).Visible = activarSeleccionUsuario;
+            ((ComboBox)formulario.Controls["comboUsuario"]).Visible = activarSeleccionUsuario;
+            formulario.Text = textoFuncion + textoTipo;
+            ((Label)formulario.Controls["lblUsuario"]).Text = textoEtiqueta;
+            ((TextBox)formulario.Controls["txtNombre"]).Focus();
+            ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion + textoTipo;
+        }
 
+        public static void poblarDatosDelFormulario(Form formulario, GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador)
+        {
+            DataRowView usuario = (DataRowView) ((ComboBox)formulario.Controls["comboUsuario"]).SelectedItem;
+            ((TextBox)formulario.Controls["txtNombre"]).Text = usuario["Persona_Nombre"].ToString();
+            ((TextBox)formulario.Controls["txtApellido"]).Text = usuario["Persona_Apellido"].ToString();
+            ((TextBox)formulario.Controls["txtDNI"]).Text = usuario["Persona_Dni"].ToString();
+            ((TextBox)formulario.Controls["txtCorreo"]).Text = usuario["Persona_Mail"].ToString();
+            ((TextBox)formulario.Controls["txtTelefono"]).Text = usuario["Persona_Telefono"].ToString();
+            ((TextBox)formulario.Controls["txtLocalidad"]).Text = usuario["Persona_Localidad"].ToString();
+            ((TextBox)formulario.Controls["txtCodigoPostal"]).Text = usuario["Persona_Codigo_Postal"].ToString();
+            ((TextBox)formulario.Controls["txtCalle"]).Text = usuario["Persona_Direccion"].ToString();
+            //((TextBox)formulario.Controls["txtNumero"]).DataBindings.Add("Text", adaptador.obtenerUsuarios(), "Persona_Nombre");
+            ((TextBox)formulario.Controls["txtDeptoLote"]).Text = usuario["Persona_Dartamento"].ToString();
+            ((TextBox)formulario.Controls["txtPisoManzana"]).Text = usuario["Persona_Piso"].ToString();
+        }
         private void agregarCliente(object sender, EventArgs e)
         {
+            if ((SingletonDatosUsuario.Instance).obtenerIdRol() == 3)
+            {
+                
+            }
+            else
+            {
+            }
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar ", "Cliente", false,"Cliente:");
             frmAltaCliente.Show();
         }
         private void eliminarCliente(object sender, EventArgs e)
@@ -139,6 +187,7 @@ namespace UberFrba
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar ", "Cliente", true, "Cliente:");
             frmAltaCliente.Show();
         }
         private void agregarChofer(object sender, EventArgs e)

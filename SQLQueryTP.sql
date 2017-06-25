@@ -129,7 +129,7 @@ Persona_Nombre VARCHAR(255)NOT NULL,
 Persona_Apellido VARCHAR(255) NOT NULL,
 Persona_Direccion VARCHAR(255) NOT NULL,
 Persona_Piso SMALLINT NOT NULL,
-Persona_Dartamento  VARCHAR(255) NOT NULL,
+Persona_Departamento  VARCHAR(255) NOT NULL,
 Persona_Localidad  VARCHAR(255) NOT NULL,
 Persona_Telefono NUMERIC(18,0) NOT NULL,
 Persona_Mail VARCHAR(255) NOT NULL,
@@ -446,7 +446,7 @@ BEGIN TRANSACTION
 
 INSERT INTO [DESCONOCIDOS4].PERSONA (Persona_Dni,Persona_Nombre
       ,Persona_Apellido,Persona_Direccion
-      ,Persona_Piso,Persona_Dartamento,Persona_Localidad
+      ,Persona_Piso,Persona_Departamento,Persona_Localidad
       ,Persona_Telefono,Persona_Mail
       ,Persona_Fecha_Nac) 
 	  SELECT DISTINCT Cliente_Dni,Cliente_Nombre,Cliente_Apellido,Cliente_Direccion,'0','-','-',Cliente_Telefono,Cliente_Mail,Cliente_Fecha_Nac FROM gd_esquema.Maestra
@@ -465,7 +465,7 @@ BEGIN TRANSACTION
 
 INSERT INTO [DESCONOCIDOS4].PERSONA (Persona_Dni,Persona_Nombre
       ,Persona_Apellido,Persona_Direccion
-      ,Persona_Piso,Persona_Dartamento,Persona_Localidad
+      ,Persona_Piso,Persona_Departamento,Persona_Localidad
       ,Persona_Telefono,Persona_Mail
       ,Persona_Fecha_Nac) 
 	  SELECT DISTINCT Chofer_Dni,Chofer_Nombre,Chofer_Apellido,Chofer_Direccion,'0','-','-',Chofer_Telefono,Chofer_Mail,Chofer_Fecha_Nac FROM gd_esquema.Maestra
@@ -484,8 +484,7 @@ AS
 BEGIN TRANSACTION	
 	INSERT INTO [DESCONOCIDOS4].USUARIO (Usu_Per_Id,Usu_Nombre_Usuario,Usu_Password)
 	SELECT I.Persona_Id,
-	CONCAT(LEFT(I.Persona_Apellido,4),LEFT(I.Persona_Nombre,3)),
-	CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2)
+	CONCAT(LEFT(I.Persona_Apellido,4),LEFT(I.Persona_Nombre,3)),CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2) 
 	FROM INSERTED I 
 
 COMMIT
@@ -1005,6 +1004,15 @@ SELECT Nombre, ISNUMERIC(Ascendente) Ascendente, Metodo, Descripcion FROM @Tabla
 RETURNS
 END
 GO
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_OBTENER_DATOS_USUARIOS', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_OBTENER_DATOS_USUARIOS;
+GO
+
+CREATE PROC [DESCONOCIDOS4].PRC_OBTENER_DATOS_USUARIOS
+AS
+BEGIN
+select USUARIO.Usu_Nombre_Usuario, Persona.* from DESCONOCIDOS4.USUARIO join DESCONOCIDOS4.PERSONA on Usu_Per_Id=Persona_Id
+END
 -- EJECUCION DE MIGRACION
 /*
 EXEC [DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE
@@ -1029,5 +1037,13 @@ EXEC [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU
 EXEC [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU
 */
 
-select * from DESCONOCIDOS4.USUARIO
+select * from DESCONOCIDOS4.USUARIO_ROL
 FaríSHA
+
+select * from DESCONOCIDOS4.funcionalidad
+
+
+
+select CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2)
+go
+select HashBytes('SHA2_256',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2))
