@@ -11,78 +11,7 @@ using System.Data.SqlClient;
 
 namespace UberFrba
 {
-    public class SingletonDatosUsuario
-    {
-        public class DatosUsuario
-        {
-            private int idUsuario;
-            public int IdUsuario
-            {
-                get { return idUsuario; }
-                set { idUsuario = value; }
-            }
-            private int rolId;
-            public int RolId
-            {
-                get { return rolId; }
-                set { rolId = value; }
-            }
-            private String nombreUsuario;
-            public String NombreUsuario
-            {
-                get { return nombreUsuario; }
-                set { nombreUsuario = value; }
-            }
-            private String nombre;
-            public String Nombre
-            {
-                get { return nombre; }
-                set { nombre = value; }
-            }
-            private String apellido;
-            public String Apellido
-            {
-                get { return apellido; }
-                set { apellido = value; }
-            }
-        }
-        private static SingletonDatosUsuario instance;
-        private DatosUsuario datosUsuario;
-
-        public SingletonDatosUsuario() { }
-        public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido)
-        {
-            datosUsuario = new DatosUsuario();
-            this.datosUsuario.IdUsuario = id;
-            this.datosUsuario.NombreUsuario = nombreUsuario;
-            this.datosUsuario.Nombre = nombre;
-            this.datosUsuario.Apellido = apellido;
-            instance = this;
-        }
-        public int obtenerIdUsuario()
-        {
-            return this.datosUsuario.IdUsuario;
-        }
-        public int obtenerIdRol()
-        {
-            return this.datosUsuario.RolId;
-        }
-        public void setearRolId(int rolId)
-        {
-            this.datosUsuario.RolId = rolId;
-        }
-        public static SingletonDatosUsuario Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new SingletonDatosUsuario();
-                }
-                return instance;
-            }
-        }
-    }
+    
     public partial class frmIngreso : Form
     {
         
@@ -181,4 +110,77 @@ namespace UberFrba
 
         }
         }
+
+    public class SingletonDatosUsuario
+    {
+        public class DatosUsuario
+        {
+            private int idUsuario;
+            public int IdUsuario
+            {
+                get { return idUsuario; }
+                set { idUsuario = value; }
+            }
+            private int rolId;
+            public int RolId
+            {
+                get { return rolId; }
+                set { rolId = value; }
+            }
+            private String nombreUsuario;
+            public String NombreUsuario
+            {
+                get { return nombreUsuario; }
+                set { nombreUsuario = value; }
+            }
+            private String nombre;
+            public String Nombre
+            {
+                get { return nombre; }
+                set { nombre = value; }
+            }
+            private String apellido;
+            public String Apellido
+            {
+                get { return apellido; }
+                set { apellido = value; }
+            }
+        }
+        private static SingletonDatosUsuario instance;
+        private DatosUsuario datosUsuario;
+
+        public SingletonDatosUsuario() { }
+        public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido)
+        {
+            datosUsuario = new DatosUsuario();
+            this.datosUsuario.IdUsuario = id;
+            this.datosUsuario.NombreUsuario = nombreUsuario;
+            this.datosUsuario.Nombre = nombre;
+            this.datosUsuario.Apellido = apellido;
+            instance = this;
+        }
+        public int obtenerIdUsuario()
+        {
+            return this.datosUsuario.IdUsuario;
+        }
+        public int obtenerIdRol()
+        {
+            return this.datosUsuario.RolId;
+        }
+        public void setearRolId(int rolId)
+        {
+            this.datosUsuario.RolId = rolId;
+        }
+        public static SingletonDatosUsuario Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SingletonDatosUsuario();
+                }
+                return instance;
+            }
+        }
+    }
     }

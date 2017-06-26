@@ -36,10 +36,6 @@ namespace UberFrba
               typeof(EventHandler), this, methodInfo);
             return new ToolStripMenuItem(nombre, null, handler, null);
         }
-        public class ArgumentosDeEventoDeFuncionDeMenu : EventArgs
-        {
-            public String nombreMetodo { get; set; }
-        }
         
         private void button1_Click(object sender, EventArgs e)
         {
@@ -132,39 +128,13 @@ namespace UberFrba
         {
             if (esAdministrador())
             {
-                ((Label)formulario.Controls["lblUsuario"]).Text = textoTipo;
-                ComboBox frmComboUsuario = (ComboBox)formulario.Controls["comboUsuario"];
-
-                GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
-                    = new GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter();
-                DataTable tblUsuario = adaptador.obtenerUsuarios(textoTipo);
-                frmComboUsuario.DataSource = tblUsuario;
-                frmComboUsuario.DisplayMember = "Usu_Nombre_Usuario";
-                frmComboUsuario.ValueMember = "Persona_Id";
-                poblarDatosDelFormulario(formulario, adaptador);
-                ((frmABM)formulario).adaptadorDatosUsuarios = adaptador;
-                ((Label)formulario.Controls["lblUsuario"]).Text = textoTipo + ":";
+                //((Button)formulario.Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
+                ((frmABM)formulario).tipoUsuario = textoTipo;
             }
-            ((Label)formulario.Controls["lblUsuario"]).Visible = esAdministrador();
-            ((ComboBox)formulario.Controls["comboUsuario"]).Visible = esAdministrador();
+            ((GroupBox)formulario.Controls["grupoBusquedaABM"]).Visible = esAdministrador();
             formulario.Text = textoFuncion + textoTipo;
             ((TextBox)formulario.Controls["txtNombre"]).Focus();
             ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion + textoTipo;
-        }
-
-        public static void poblarDatosDelFormulario(Form formulario, GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador)
-        {
-            DataRowView usuario = (DataRowView) ((ComboBox)formulario.Controls["comboUsuario"]).SelectedItem;
-            ((TextBox)formulario.Controls["txtNombre"]).Text = usuario["Persona_Nombre"].ToString();
-            ((TextBox)formulario.Controls["txtApellido"]).Text = usuario["Persona_Apellido"].ToString();
-            ((TextBox)formulario.Controls["txtDNI"]).Text = usuario["Persona_Dni"].ToString();
-            ((TextBox)formulario.Controls["txtCorreo"]).Text = usuario["Persona_Mail"].ToString();
-            ((TextBox)formulario.Controls["txtTelefono"]).Text = usuario["Persona_Telefono"].ToString();
-            ((TextBox)formulario.Controls["txtLocalidad"]).Text = usuario["Persona_Localidad"].ToString();
-            ((TextBox)formulario.Controls["txtCodigoPostal"]).Text = usuario["Persona_Cod_Postal"].ToString();
-            ((TextBox)formulario.Controls["txtCalle"]).Text = usuario["Persona_Direccion"].ToString();
-            ((TextBox)formulario.Controls["txtDeptoLote"]).Text = usuario["Persona_Departamento"].ToString();
-            ((TextBox)formulario.Controls["txtPisoManzana"]).Text = usuario["Persona_Piso"].ToString();
         }
 
         private void agregarCliente(object sender, EventArgs e)

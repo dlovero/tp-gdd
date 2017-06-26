@@ -1335,7 +1335,9 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CLIENTES
 @Ape VARCHAR(255),
 @DNI NUMERIC(18,0)
 AS
-BEGIN 
+BEGIN
+	IF (@DNI IS NOT NULL)
+	BEGIN
 	 SELECT 
 	   Persona_Dni
       ,Persona_Nombre
@@ -1353,6 +1355,26 @@ BEGIN
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
               AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI)
               AND C.Cliente_Habilitado = 1;
+	END
+	ELSE
+	BEGIN
+	SELECT 
+	   Persona_Dni
+      ,Persona_Nombre
+      ,Persona_Apellido
+      ,Persona_Direccion
+      ,Persona_Piso
+      ,Persona_Departamento
+      ,Persona_Localidad
+      ,Persona_Cod_Postal
+      ,Persona_Telefono
+      ,Persona_Mail
+      ,Persona_Fecha_Nac
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
+	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
+              AND C.Cliente_Habilitado = 1;
+	END
 END
 GO
 
@@ -1455,8 +1477,31 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CHOFER
 @Ape VARCHAR(255),
 @DNI NUMERIC(18,0)
 AS
-BEGIN 
+BEGIN
+	IF (@DNI IS NOT NULL)
+	BEGIN
 	 SELECT 
+	   Chofer_Id [id]
+	  ,Persona_Dni
+      ,Persona_Nombre
+      ,Persona_Apellido
+      ,Persona_Direccion
+      ,Persona_Piso
+      ,Persona_Departamento
+      ,Persona_Localidad
+      ,Persona_Cod_Postal
+      ,Persona_Telefono
+      ,Persona_Mail
+      ,Persona_Fecha_Nac
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
+	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
+			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI)
+              AND C.Chofer_Habilitado = 1;
+	END
+	ELSE
+	BEGIN
+		SELECT 
 	   Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
@@ -1471,8 +1516,8 @@ BEGIN
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI)
               AND C.Chofer_Habilitado = 1;
+	END
 END
 GO
 -- DAR DE ALTA CHOFER SIENDO CLIENTE
