@@ -702,7 +702,7 @@ BEGIN TRANSACTION
 
 INSERT INTO [DESCONOCIDOS4].PERSONA (Persona_Dni,Persona_Nombre
       ,Persona_Apellido,Persona_Direccion
-      ,Persona_Piso,Persona_Dartamento,Persona_Localidad
+      ,Persona_Piso,Persona_Departamento,Persona_Localidad
       ,Persona_Telefono,Persona_Mail,Persona_Cod_Postal
       ,Persona_Fecha_Nac) 
 	  SELECT DISTINCT Cliente_Dni,Cliente_Nombre,Cliente_Apellido,Cliente_Direccion,'0','-','-',Cliente_Telefono,Cliente_Mail,'-',Cliente_Fecha_Nac FROM gd_esquema.Maestra
@@ -721,7 +721,7 @@ BEGIN TRANSACTION
 
 INSERT INTO [DESCONOCIDOS4].PERSONA (Persona_Dni,Persona_Nombre
       ,Persona_Apellido,Persona_Direccion
-      ,Persona_Piso,Persona_Dartamento,Persona_Localidad
+      ,Persona_Piso,Persona_Departamento,Persona_Localidad
       ,Persona_Telefono,Persona_Mail,Persona_Cod_Postal
       ,Persona_Fecha_Nac) 
 	  SELECT DISTINCT Chofer_Dni,Chofer_Nombre,Chofer_Apellido,Chofer_Direccion,'0','-','-',Chofer_Telefono,Chofer_Mail,'-',Chofer_Fecha_Nac FROM gd_esquema.Maestra
@@ -1319,7 +1319,7 @@ AS
 BEGIN TRANSACTION 	
 	
 	UPDATE [DESCONOCIDOS4].PERSONA SET  Persona_Dni = @DNI,Persona_Nombre=@Nom,Persona_Apellido=@Ape,Persona_Direccion=@Dir_calle,Persona_Piso=@Dir_nro_piso,
-	Persona_Dartamento=@Dir_depto,Persona_Localidad=@localidad,Persona_Cod_Postal=@Cod_Pos,Persona_Telefono=@Tel,Persona_Mail=@Mail,Persona_Fecha_Nac=@Fec_nac
+	Persona_Departamento=@Dir_depto,Persona_Localidad=@localidad,Persona_Cod_Postal=@Cod_Pos,Persona_Telefono=@Tel,Persona_Mail=@Mail,Persona_Fecha_Nac=@Fec_nac
 	WHERE PERSONA.Persona_Id=@PERS_ID
 	UPDATE [DESCONOCIDOS4].CLIENTE SET Cliente_Habilitado=@Habilitar
 	WHERE Cliente_Per_ID=@PERS_ID
@@ -1342,7 +1342,7 @@ BEGIN
       ,Persona_Apellido
       ,Persona_Direccion
       ,Persona_Piso
-      ,Persona_Dartamento
+      ,Persona_Departamento
       ,Persona_Localidad
       ,Persona_Cod_Postal
       ,Persona_Telefono
@@ -1438,7 +1438,7 @@ AS
 BEGIN TRANSACTION 	
 	
 	UPDATE [DESCONOCIDOS4].PERSONA SET  Persona_Dni = @DNI,Persona_Nombre=@Nom,Persona_Apellido=@Ape,Persona_Direccion=@Dir_calle,Persona_Piso=@Dir_nro_piso,
-	Persona_Dartamento=@Dir_depto,Persona_Localidad=@localidad,Persona_Cod_Postal=@Cod_Pos,Persona_Telefono=@Tel,Persona_Mail=@Mail,Persona_Fecha_Nac=@Fec_nac
+	Persona_Departamento=@Dir_depto,Persona_Localidad=@localidad,Persona_Cod_Postal=@Cod_Pos,Persona_Telefono=@Tel,Persona_Mail=@Mail,Persona_Fecha_Nac=@Fec_nac
 	WHERE PERSONA.Persona_Id=@PERS_ID
 	UPDATE [DESCONOCIDOS4].CHOFER SET Chofer_Habilitado=@Habilitar
 	WHERE Chofer_Per_Id=@PERS_ID
@@ -1462,7 +1462,7 @@ BEGIN
       ,Persona_Apellido
       ,Persona_Direccion
       ,Persona_Piso
-      ,Persona_Dartamento
+      ,Persona_Departamento
       ,Persona_Localidad
       ,Persona_Cod_Postal
       ,Persona_Telefono

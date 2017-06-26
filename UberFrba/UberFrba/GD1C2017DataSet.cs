@@ -9,6 +9,9 @@
 }
 
 namespace UberFrba.GD1C2017DataSetTableAdapters {
+    partial class PRC_OBTENER_DATOS_USUARIOS2TableAdapter
+    {
+    }
     
     
     public partial class PRC_VALIDAR_USUARIOTableAdapter {

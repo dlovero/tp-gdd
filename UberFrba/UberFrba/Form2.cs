@@ -121,29 +121,33 @@ namespace UberFrba
             }
             fmPrincipal.Show();
         }
-        private static void configurarFormularioAgregarOModificar
-            (Form formulario, String textoFuncion, String textoTipo, Boolean activarSeleccionUsuario, String textoEtiqueta)
+
+        private static bool esAdministrador()
         {
-            if (activarSeleccionUsuario)
-              {
+            return (SingletonDatosUsuario.Instance).obtenerIdRol() == 1;
+        }
+
+        private static void configurarFormularioAgregarOModificar
+            (Form formulario, String textoFuncion, String textoTipo)
+        {
+            if (esAdministrador())
+            {
                 ((Label)formulario.Controls["lblUsuario"]).Text = textoTipo;
                 ComboBox frmComboUsuario = (ComboBox)formulario.Controls["comboUsuario"];
+
                 GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter();
-                DataTable tblUsuario = adaptador.obtenerUsuarios();
+                DataTable tblUsuario = adaptador.obtenerUsuarios(textoTipo);
                 frmComboUsuario.DataSource = tblUsuario;
                 frmComboUsuario.DisplayMember = "Usu_Nombre_Usuario";
                 frmComboUsuario.ValueMember = "Persona_Id";
                 poblarDatosDelFormulario(formulario, adaptador);
                 ((frmABM)formulario).adaptadorDatosUsuarios = adaptador;
-              }
-              else
-              {
-              }
-            ((Label)formulario.Controls["lblUsuario"]).Visible = activarSeleccionUsuario;
-            ((ComboBox)formulario.Controls["comboUsuario"]).Visible = activarSeleccionUsuario;
+                ((Label)formulario.Controls["lblUsuario"]).Text = textoTipo + ":";
+            }
+            ((Label)formulario.Controls["lblUsuario"]).Visible = esAdministrador();
+            ((ComboBox)formulario.Controls["comboUsuario"]).Visible = esAdministrador();
             formulario.Text = textoFuncion + textoTipo;
-            ((Label)formulario.Controls["lblUsuario"]).Text = textoEtiqueta;
             ((TextBox)formulario.Controls["txtNombre"]).Focus();
             ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion + textoTipo;
         }
@@ -157,55 +161,53 @@ namespace UberFrba
             ((TextBox)formulario.Controls["txtCorreo"]).Text = usuario["Persona_Mail"].ToString();
             ((TextBox)formulario.Controls["txtTelefono"]).Text = usuario["Persona_Telefono"].ToString();
             ((TextBox)formulario.Controls["txtLocalidad"]).Text = usuario["Persona_Localidad"].ToString();
-            ((TextBox)formulario.Controls["txtCodigoPostal"]).Text = usuario["Persona_Codigo_Postal"].ToString();
+            ((TextBox)formulario.Controls["txtCodigoPostal"]).Text = usuario["Persona_Cod_Postal"].ToString();
             ((TextBox)formulario.Controls["txtCalle"]).Text = usuario["Persona_Direccion"].ToString();
-            //((TextBox)formulario.Controls["txtNumero"]).DataBindings.Add("Text", adaptador.obtenerUsuarios(), "Persona_Nombre");
-            ((TextBox)formulario.Controls["txtDeptoLote"]).Text = usuario["Persona_Dartamento"].ToString();
+            ((TextBox)formulario.Controls["txtDeptoLote"]).Text = usuario["Persona_Departamento"].ToString();
             ((TextBox)formulario.Controls["txtPisoManzana"]).Text = usuario["Persona_Piso"].ToString();
         }
+
         private void agregarCliente(object sender, EventArgs e)
         {
-            if ((SingletonDatosUsuario.Instance).obtenerIdRol() == 3)
-            {
-                
-            }
-            else
-            {
-            }
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar ", "Cliente", false,"Cliente:");
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar ", "Cliente");
             frmAltaCliente.Show();
         }
+        
         private void eliminarCliente(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar ", "Cliente");
             frmAltaCliente.Show();
         }
         private void modificarCliente(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar ", "Cliente", true, "Cliente:");
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar ", "Cliente");
             frmAltaCliente.Show();
         }
         private void agregarChofer(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar ", "Chofer");
             frmAltaCliente.Show();
         }
         private void eliminarChofer(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar ", "Chofer");
             frmAltaCliente.Show();
         }
         private void modificarChofer(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar ", "Chofer");
             frmAltaCliente.Show();
         }
         private void agregarAutomovil(object sender, EventArgs e)

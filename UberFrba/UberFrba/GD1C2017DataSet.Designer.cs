@@ -30,6 +30,8 @@ namespace UberFrba {
         
         private PRC_OBTENER_DATOS_USUARIOSDataTable tablePRC_OBTENER_DATOS_USUARIOS;
         
+        private PRC_OBTENER_DATOS_USUARIOS2DataTable tablePRC_OBTENER_DATOS_USUARIOS2;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -66,6 +68,9 @@ namespace UberFrba {
                 }
                 if ((ds.Tables["PRC_OBTENER_DATOS_USUARIOS"] != null)) {
                     base.Tables.Add(new PRC_OBTENER_DATOS_USUARIOSDataTable(ds.Tables["PRC_OBTENER_DATOS_USUARIOS"]));
+                }
+                if ((ds.Tables["PRC_OBTENER_DATOS_USUARIOS2"] != null)) {
+                    base.Tables.Add(new PRC_OBTENER_DATOS_USUARIOS2DataTable(ds.Tables["PRC_OBTENER_DATOS_USUARIOS2"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -112,6 +117,16 @@ namespace UberFrba {
         public PRC_OBTENER_DATOS_USUARIOSDataTable PRC_OBTENER_DATOS_USUARIOS {
             get {
                 return this.tablePRC_OBTENER_DATOS_USUARIOS;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public PRC_OBTENER_DATOS_USUARIOS2DataTable PRC_OBTENER_DATOS_USUARIOS2 {
+            get {
+                return this.tablePRC_OBTENER_DATOS_USUARIOS2;
             }
         }
         
@@ -191,6 +206,9 @@ namespace UberFrba {
                 if ((ds.Tables["PRC_OBTENER_DATOS_USUARIOS"] != null)) {
                     base.Tables.Add(new PRC_OBTENER_DATOS_USUARIOSDataTable(ds.Tables["PRC_OBTENER_DATOS_USUARIOS"]));
                 }
+                if ((ds.Tables["PRC_OBTENER_DATOS_USUARIOS2"] != null)) {
+                    base.Tables.Add(new PRC_OBTENER_DATOS_USUARIOS2DataTable(ds.Tables["PRC_OBTENER_DATOS_USUARIOS2"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -242,6 +260,12 @@ namespace UberFrba {
                     this.tablePRC_OBTENER_DATOS_USUARIOS.InitVars();
                 }
             }
+            this.tablePRC_OBTENER_DATOS_USUARIOS2 = ((PRC_OBTENER_DATOS_USUARIOS2DataTable)(base.Tables["PRC_OBTENER_DATOS_USUARIOS2"]));
+            if ((initTable == true)) {
+                if ((this.tablePRC_OBTENER_DATOS_USUARIOS2 != null)) {
+                    this.tablePRC_OBTENER_DATOS_USUARIOS2.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -258,6 +282,8 @@ namespace UberFrba {
             base.Tables.Add(this.tablePRC_OBTENER_MENU_X_ROL);
             this.tablePRC_OBTENER_DATOS_USUARIOS = new PRC_OBTENER_DATOS_USUARIOSDataTable();
             base.Tables.Add(this.tablePRC_OBTENER_DATOS_USUARIOS);
+            this.tablePRC_OBTENER_DATOS_USUARIOS2 = new PRC_OBTENER_DATOS_USUARIOS2DataTable();
+            base.Tables.Add(this.tablePRC_OBTENER_DATOS_USUARIOS2);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -275,6 +301,12 @@ namespace UberFrba {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializePRC_OBTENER_DATOS_USUARIOS() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializePRC_OBTENER_DATOS_USUARIOS2() {
             return false;
         }
         
@@ -341,6 +373,9 @@ namespace UberFrba {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void PRC_OBTENER_DATOS_USUARIOSRowChangeEventHandler(object sender, PRC_OBTENER_DATOS_USUARIOSRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void PRC_OBTENER_DATOS_USUARIOS2RowChangeEventHandler(object sender, PRC_OBTENER_DATOS_USUARIOS2RowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -968,8 +1003,6 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnPersona_Piso;
             
-            private global::System.Data.DataColumn columnPersona_Dartamento;
-            
             private global::System.Data.DataColumn columnPersona_Localidad;
             
             private global::System.Data.DataColumn columnPersona_Telefono;
@@ -978,7 +1011,13 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnPersona_Fecha_Nac;
             
-            private global::System.Data.DataColumn columnPersona_Codigo_Postal;
+            private global::System.Data.DataColumn columnPersona_Departamento;
+            
+            private global::System.Data.DataColumn columnPersona_Cod_Postal;
+            
+            private global::System.Data.DataColumn columnUsu_Nombre_Usuario;
+            
+            private global::System.Data.DataColumn columnCliente_Id;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1063,14 +1102,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Persona_DartamentoColumn {
-                get {
-                    return this.columnPersona_Dartamento;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn Persona_LocalidadColumn {
                 get {
                     return this.columnPersona_Localidad;
@@ -1103,9 +1134,33 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Persona_Codigo_PostalColumn {
+            public global::System.Data.DataColumn Persona_DepartamentoColumn {
                 get {
-                    return this.columnPersona_Codigo_Postal;
+                    return this.columnPersona_Departamento;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Persona_Cod_PostalColumn {
+                get {
+                    return this.columnPersona_Cod_Postal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Usu_Nombre_UsuarioColumn {
+                get {
+                    return this.columnUsu_Nombre_Usuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Cliente_IdColumn {
+                get {
+                    return this.columnCliente_Id;
                 }
             }
             
@@ -1146,7 +1201,7 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_OBTENER_DATOS_USUARIOSRow AddPRC_OBTENER_DATOS_USUARIOSRow(decimal Persona_Dni, string Persona_Nombre, string Persona_Apellido, string Persona_Direccion, short Persona_Piso, string Persona_Dartamento, string Persona_Localidad, decimal Persona_Telefono, string Persona_Mail, System.DateTime Persona_Fecha_Nac, string Persona_Codigo_Postal) {
+            public PRC_OBTENER_DATOS_USUARIOSRow AddPRC_OBTENER_DATOS_USUARIOSRow(decimal Persona_Dni, string Persona_Nombre, string Persona_Apellido, string Persona_Direccion, short Persona_Piso, string Persona_Localidad, decimal Persona_Telefono, string Persona_Mail, System.DateTime Persona_Fecha_Nac, string Persona_Departamento, string Persona_Cod_Postal, string Usu_Nombre_Usuario) {
                 PRC_OBTENER_DATOS_USUARIOSRow rowPRC_OBTENER_DATOS_USUARIOSRow = ((PRC_OBTENER_DATOS_USUARIOSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1155,12 +1210,14 @@ namespace UberFrba {
                         Persona_Apellido,
                         Persona_Direccion,
                         Persona_Piso,
-                        Persona_Dartamento,
                         Persona_Localidad,
                         Persona_Telefono,
                         Persona_Mail,
                         Persona_Fecha_Nac,
-                        Persona_Codigo_Postal};
+                        Persona_Departamento,
+                        Persona_Cod_Postal,
+                        Usu_Nombre_Usuario,
+                        null};
                 rowPRC_OBTENER_DATOS_USUARIOSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPRC_OBTENER_DATOS_USUARIOSRow);
                 return rowPRC_OBTENER_DATOS_USUARIOSRow;
@@ -1196,12 +1253,14 @@ namespace UberFrba {
                 this.columnPersona_Apellido = base.Columns["Persona_Apellido"];
                 this.columnPersona_Direccion = base.Columns["Persona_Direccion"];
                 this.columnPersona_Piso = base.Columns["Persona_Piso"];
-                this.columnPersona_Dartamento = base.Columns["Persona_Dartamento"];
                 this.columnPersona_Localidad = base.Columns["Persona_Localidad"];
                 this.columnPersona_Telefono = base.Columns["Persona_Telefono"];
                 this.columnPersona_Mail = base.Columns["Persona_Mail"];
                 this.columnPersona_Fecha_Nac = base.Columns["Persona_Fecha_Nac"];
-                this.columnPersona_Codigo_Postal = base.Columns["Persona_Codigo_Postal"];
+                this.columnPersona_Departamento = base.Columns["Persona_Departamento"];
+                this.columnPersona_Cod_Postal = base.Columns["Persona_Cod_Postal"];
+                this.columnUsu_Nombre_Usuario = base.Columns["Usu_Nombre_Usuario"];
+                this.columnCliente_Id = base.Columns["Cliente_Id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1219,8 +1278,6 @@ namespace UberFrba {
                 base.Columns.Add(this.columnPersona_Direccion);
                 this.columnPersona_Piso = new global::System.Data.DataColumn("Persona_Piso", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPersona_Piso);
-                this.columnPersona_Dartamento = new global::System.Data.DataColumn("Persona_Dartamento", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPersona_Dartamento);
                 this.columnPersona_Localidad = new global::System.Data.DataColumn("Persona_Localidad", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPersona_Localidad);
                 this.columnPersona_Telefono = new global::System.Data.DataColumn("Persona_Telefono", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -1229,32 +1286,33 @@ namespace UberFrba {
                 base.Columns.Add(this.columnPersona_Mail);
                 this.columnPersona_Fecha_Nac = new global::System.Data.DataColumn("Persona_Fecha_Nac", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPersona_Fecha_Nac);
-                this.columnPersona_Codigo_Postal = new global::System.Data.DataColumn("Persona_Codigo_Postal", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPersona_Codigo_Postal);
+                this.columnPersona_Departamento = new global::System.Data.DataColumn("Persona_Departamento", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPersona_Departamento);
+                this.columnPersona_Cod_Postal = new global::System.Data.DataColumn("Persona_Cod_Postal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPersona_Cod_Postal);
+                this.columnUsu_Nombre_Usuario = new global::System.Data.DataColumn("Usu_Nombre_Usuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsu_Nombre_Usuario);
+                this.columnCliente_Id = new global::System.Data.DataColumn("Cliente_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCliente_Id);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPersona_Id}, true));
                 this.columnPersona_Id.AutoIncrement = true;
                 this.columnPersona_Id.AllowDBNull = false;
                 this.columnPersona_Id.ReadOnly = true;
                 this.columnPersona_Id.Unique = true;
-                this.columnPersona_Dni.AllowDBNull = false;
-                this.columnPersona_Nombre.AllowDBNull = false;
                 this.columnPersona_Nombre.MaxLength = 255;
-                this.columnPersona_Apellido.AllowDBNull = false;
                 this.columnPersona_Apellido.MaxLength = 255;
-                this.columnPersona_Direccion.AllowDBNull = false;
                 this.columnPersona_Direccion.MaxLength = 255;
-                this.columnPersona_Piso.AllowDBNull = false;
-                this.columnPersona_Dartamento.AllowDBNull = false;
-                this.columnPersona_Dartamento.MaxLength = 255;
-                this.columnPersona_Localidad.AllowDBNull = false;
                 this.columnPersona_Localidad.MaxLength = 255;
-                this.columnPersona_Telefono.AllowDBNull = false;
-                this.columnPersona_Mail.AllowDBNull = false;
                 this.columnPersona_Mail.MaxLength = 255;
-                this.columnPersona_Fecha_Nac.AllowDBNull = false;
-                this.columnPersona_Codigo_Postal.AllowDBNull = false;
-                this.columnPersona_Codigo_Postal.MaxLength = 8;
+                this.columnPersona_Departamento.MaxLength = 255;
+                this.columnPersona_Cod_Postal.MaxLength = 255;
+                this.columnUsu_Nombre_Usuario.MaxLength = 255;
+                this.columnCliente_Id.AutoIncrement = true;
+                this.columnCliente_Id.AutoIncrementSeed = -1;
+                this.columnCliente_Id.AutoIncrementStep = -1;
+                this.columnCliente_Id.AllowDBNull = false;
+                this.columnCliente_Id.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1341,6 +1399,271 @@ namespace UberFrba {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "PRC_OBTENER_DATOS_USUARIOSDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class PRC_OBTENER_DATOS_USUARIOS2DataTable : global::System.Data.TypedTableBase<PRC_OBTENER_DATOS_USUARIOS2Row> {
+            
+            private global::System.Data.DataColumn columnColumn1;
+            
+            private global::System.Data.DataColumn columnColumn2;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_OBTENER_DATOS_USUARIOS2DataTable() {
+                this.TableName = "PRC_OBTENER_DATOS_USUARIOS2";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal PRC_OBTENER_DATOS_USUARIOS2DataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected PRC_OBTENER_DATOS_USUARIOS2DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Column1Column {
+                get {
+                    return this.columnColumn1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Column2Column {
+                get {
+                    return this.columnColumn2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_OBTENER_DATOS_USUARIOS2Row this[int index] {
+                get {
+                    return ((PRC_OBTENER_DATOS_USUARIOS2Row)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_OBTENER_DATOS_USUARIOS2RowChangeEventHandler PRC_OBTENER_DATOS_USUARIOS2RowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_OBTENER_DATOS_USUARIOS2RowChangeEventHandler PRC_OBTENER_DATOS_USUARIOS2RowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_OBTENER_DATOS_USUARIOS2RowChangeEventHandler PRC_OBTENER_DATOS_USUARIOS2RowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_OBTENER_DATOS_USUARIOS2RowChangeEventHandler PRC_OBTENER_DATOS_USUARIOS2RowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddPRC_OBTENER_DATOS_USUARIOS2Row(PRC_OBTENER_DATOS_USUARIOS2Row row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_OBTENER_DATOS_USUARIOS2Row AddPRC_OBTENER_DATOS_USUARIOS2Row(string Column1, string Column2) {
+                PRC_OBTENER_DATOS_USUARIOS2Row rowPRC_OBTENER_DATOS_USUARIOS2Row = ((PRC_OBTENER_DATOS_USUARIOS2Row)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Column1,
+                        Column2};
+                rowPRC_OBTENER_DATOS_USUARIOS2Row.ItemArray = columnValuesArray;
+                this.Rows.Add(rowPRC_OBTENER_DATOS_USUARIOS2Row);
+                return rowPRC_OBTENER_DATOS_USUARIOS2Row;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                PRC_OBTENER_DATOS_USUARIOS2DataTable cln = ((PRC_OBTENER_DATOS_USUARIOS2DataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new PRC_OBTENER_DATOS_USUARIOS2DataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnColumn1 = base.Columns["Column1"];
+                this.columnColumn2 = base.Columns["Column2"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn1);
+                this.columnColumn2 = new global::System.Data.DataColumn("Column2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn2);
+                this.columnColumn1.ReadOnly = true;
+                this.columnColumn1.MaxLength = 10;
+                this.columnColumn2.ReadOnly = true;
+                this.columnColumn2.MaxLength = 4;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_OBTENER_DATOS_USUARIOS2Row NewPRC_OBTENER_DATOS_USUARIOS2Row() {
+                return ((PRC_OBTENER_DATOS_USUARIOS2Row)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new PRC_OBTENER_DATOS_USUARIOS2Row(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(PRC_OBTENER_DATOS_USUARIOS2Row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.PRC_OBTENER_DATOS_USUARIOS2RowChanged != null)) {
+                    this.PRC_OBTENER_DATOS_USUARIOS2RowChanged(this, new PRC_OBTENER_DATOS_USUARIOS2RowChangeEvent(((PRC_OBTENER_DATOS_USUARIOS2Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.PRC_OBTENER_DATOS_USUARIOS2RowChanging != null)) {
+                    this.PRC_OBTENER_DATOS_USUARIOS2RowChanging(this, new PRC_OBTENER_DATOS_USUARIOS2RowChangeEvent(((PRC_OBTENER_DATOS_USUARIOS2Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.PRC_OBTENER_DATOS_USUARIOS2RowDeleted != null)) {
+                    this.PRC_OBTENER_DATOS_USUARIOS2RowDeleted(this, new PRC_OBTENER_DATOS_USUARIOS2RowChangeEvent(((PRC_OBTENER_DATOS_USUARIOS2Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.PRC_OBTENER_DATOS_USUARIOS2RowDeleting != null)) {
+                    this.PRC_OBTENER_DATOS_USUARIOS2RowDeleting(this, new PRC_OBTENER_DATOS_USUARIOS2RowChangeEvent(((PRC_OBTENER_DATOS_USUARIOS2Row)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovePRC_OBTENER_DATOS_USUARIOS2Row(PRC_OBTENER_DATOS_USUARIOS2Row row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GD1C2017DataSet ds = new GD1C2017DataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "PRC_OBTENER_DATOS_USUARIOS2DataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1694,7 +2017,13 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Persona_Dni {
                 get {
-                    return ((decimal)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DniColumn]));
+                    try {
+                        return ((decimal)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DniColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Dni\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS\' es " +
+                                "DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DniColumn] = value;
@@ -1705,7 +2034,13 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Persona_Nombre {
                 get {
-                    return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_NombreColumn]));
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Nombre\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS\' " +
+                                "es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_NombreColumn] = value;
@@ -1716,7 +2051,13 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Persona_Apellido {
                 get {
-                    return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_ApellidoColumn]));
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_ApellidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Apellido\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS" +
+                                "\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_ApellidoColumn] = value;
@@ -1727,7 +2068,13 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Persona_Direccion {
                 get {
-                    return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DireccionColumn]));
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DireccionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Direccion\' de la tabla \'PRC_OBTENER_DATOS_USUARIO" +
+                                "S\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DireccionColumn] = value;
@@ -1738,7 +2085,13 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public short Persona_Piso {
                 get {
-                    return ((short)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_PisoColumn]));
+                    try {
+                        return ((short)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_PisoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Piso\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS\' es" +
+                                " DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_PisoColumn] = value;
@@ -1747,20 +2100,15 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Persona_Dartamento {
-                get {
-                    return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DartamentoColumn]));
-                }
-                set {
-                    this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DartamentoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Persona_Localidad {
                 get {
-                    return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_LocalidadColumn]));
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_LocalidadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Localidad\' de la tabla \'PRC_OBTENER_DATOS_USUARIO" +
+                                "S\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_LocalidadColumn] = value;
@@ -1771,7 +2119,13 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Persona_Telefono {
                 get {
-                    return ((decimal)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_TelefonoColumn]));
+                    try {
+                        return ((decimal)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_TelefonoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Telefono\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS" +
+                                "\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_TelefonoColumn] = value;
@@ -1782,7 +2136,13 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Persona_Mail {
                 get {
-                    return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_MailColumn]));
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_MailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Mail\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS\' es" +
+                                " DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_MailColumn] = value;
@@ -1793,7 +2153,13 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime Persona_Fecha_Nac {
                 get {
-                    return ((global::System.DateTime)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Fecha_NacColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Fecha_NacColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Fecha_Nac\' de la tabla \'PRC_OBTENER_DATOS_USUARIO" +
+                                "S\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Fecha_NacColumn] = value;
@@ -1802,13 +2168,281 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Persona_Codigo_Postal {
+            public string Persona_Departamento {
                 get {
-                    return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Codigo_PostalColumn]));
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DepartamentoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Departamento\' de la tabla \'PRC_OBTENER_DATOS_USUA" +
+                                "RIOS\' es DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Codigo_PostalColumn] = value;
+                    this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DepartamentoColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Persona_Cod_Postal {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Cod_PostalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Persona_Cod_Postal\' de la tabla \'PRC_OBTENER_DATOS_USUARI" +
+                                "OS\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Cod_PostalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Usu_Nombre_Usuario {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Usu_Nombre_UsuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Usu_Nombre_Usuario\' de la tabla \'PRC_OBTENER_DATOS_USUARI" +
+                                "OS\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_OBTENER_DATOS_USUARIOS.Usu_Nombre_UsuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Cliente_Id {
+                get {
+                    return ((int)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.Cliente_IdColumn]));
+                }
+                set {
+                    this[this.tablePRC_OBTENER_DATOS_USUARIOS.Cliente_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_DniNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DniColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_DniNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DniColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_NombreNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_NombreNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_ApellidoNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_ApellidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_ApellidoNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_ApellidoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_DireccionNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DireccionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_DireccionNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DireccionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_PisoNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_PisoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_PisoNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_PisoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_LocalidadNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_LocalidadColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_LocalidadNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_LocalidadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_TelefonoNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_TelefonoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_TelefonoNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_TelefonoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_MailNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_MailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_MailNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_MailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_Fecha_NacNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Fecha_NacColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_Fecha_NacNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Fecha_NacColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_DepartamentoNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DepartamentoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_DepartamentoNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_DepartamentoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPersona_Cod_PostalNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Cod_PostalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPersona_Cod_PostalNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Persona_Cod_PostalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsu_Nombre_UsuarioNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.Usu_Nombre_UsuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsu_Nombre_UsuarioNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.Usu_Nombre_UsuarioColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class PRC_OBTENER_DATOS_USUARIOS2Row : global::System.Data.DataRow {
+            
+            private PRC_OBTENER_DATOS_USUARIOS2DataTable tablePRC_OBTENER_DATOS_USUARIOS2;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal PRC_OBTENER_DATOS_USUARIOS2Row(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablePRC_OBTENER_DATOS_USUARIOS2 = ((PRC_OBTENER_DATOS_USUARIOS2DataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Column1 {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS2.Column1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Column1\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS2\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_OBTENER_DATOS_USUARIOS2.Column1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Column2 {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_OBTENER_DATOS_USUARIOS2.Column2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Column2\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS2\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_OBTENER_DATOS_USUARIOS2.Column2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsColumn1Null() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS2.Column1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetColumn1Null() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS2.Column1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsColumn2Null() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS2.Column2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetColumn2Null() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS2.Column2Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -1900,6 +2534,40 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PRC_OBTENER_DATOS_USUARIOSRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class PRC_OBTENER_DATOS_USUARIOS2RowChangeEvent : global::System.EventArgs {
+            
+            private PRC_OBTENER_DATOS_USUARIOS2Row eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_OBTENER_DATOS_USUARIOS2RowChangeEvent(PRC_OBTENER_DATOS_USUARIOS2Row row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_OBTENER_DATOS_USUARIOS2Row Row {
                 get {
                     return this.eventRow;
                 }
@@ -2480,12 +3148,14 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Persona_Apellido", "Persona_Apellido");
             tableMapping.ColumnMappings.Add("Persona_Direccion", "Persona_Direccion");
             tableMapping.ColumnMappings.Add("Persona_Piso", "Persona_Piso");
-            tableMapping.ColumnMappings.Add("Persona_Dartamento", "Persona_Dartamento");
             tableMapping.ColumnMappings.Add("Persona_Localidad", "Persona_Localidad");
             tableMapping.ColumnMappings.Add("Persona_Telefono", "Persona_Telefono");
             tableMapping.ColumnMappings.Add("Persona_Mail", "Persona_Mail");
             tableMapping.ColumnMappings.Add("Persona_Fecha_Nac", "Persona_Fecha_Nac");
-            tableMapping.ColumnMappings.Add("Persona_Codigo_Postal", "Persona_Codigo_Postal");
+            tableMapping.ColumnMappings.Add("Persona_Departamento", "Persona_Departamento");
+            tableMapping.ColumnMappings.Add("Persona_Cod_Postal", "Persona_Cod_Postal");
+            tableMapping.ColumnMappings.Add("Usu_Nombre_Usuario", "Usu_Nombre_Usuario");
+            tableMapping.ColumnMappings.Add("Cliente_Id", "Cliente_Id");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2505,19 +3175,27 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             this._commandCollection[0].CommandText = "DESCONOCIDOS4.PRC_OBTENER_DATOS_USUARIOS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TipoUsuario", global::System.Data.SqlDbType.Char, 2, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "DESCONOCIDOS4.PRC_OBTENER_DATOS_USUARIOS";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TipoUsuario", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable dataTable) {
+        public virtual int Fill(GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable dataTable, string TipoUsuario) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((TipoUsuario == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(TipoUsuario));
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -2529,8 +3207,14 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable GetData() {
+        public virtual GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable GetData(string TipoUsuario) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((TipoUsuario == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(TipoUsuario));
+            }
             GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable dataTable = new GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -2540,9 +3224,220 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable obtenerUsuarios() {
+        public virtual GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable obtenerUsuarios(string TipoUsuario) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((TipoUsuario == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(TipoUsuario));
+            }
             GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable dataTable = new GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class PRC_OBTENER_DATOS_USUARIOS2TableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public PRC_OBTENER_DATOS_USUARIOS2TableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "PRC_OBTENER_DATOS_USUARIOS2";
+            tableMapping.ColumnMappings.Add("Column1", "Column1");
+            tableMapping.ColumnMappings.Add("Column2", "Column2");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "DESCONOCIDOS4.PRC_OBTENER_DATOS_USUARIOS2";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TipoUsuario", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "DESCONOCIDOS4.PRC_OBTENER_DATOS_USUARIOS2";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TipoUsuario", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOS2DataTable dataTable, string TipoUsuario) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((TipoUsuario == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(TipoUsuario));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOS2DataTable GetData(string TipoUsuario) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((TipoUsuario == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(TipoUsuario));
+            }
+            GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOS2DataTable dataTable = new GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOS2DataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOS2DataTable pruebas(string TipoUsuario) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((TipoUsuario == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(TipoUsuario));
+            }
+            GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOS2DataTable dataTable = new GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOS2DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

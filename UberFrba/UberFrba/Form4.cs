@@ -13,19 +13,6 @@ namespace UberFrba
     public partial class frmABM : Form
     {
         public GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptadorDatosUsuarios { set; get; }
-        public class Usuario
-        {
-            public String nombre {get;set;}
-            public String apellido { get; set; }
-            public String dni { get; set; }
-            public String correo { get; set; }
-            public String telefono { get; set; }
-            public String localidad { get; set; }
-            public String cofigoPostal { get; set; }
-            public String calle { get; set; }
-            public String departamentoLote { get; set; }
-            public String pisoCasa { get; set; }
-        }
 
         public frmABM()
         {
