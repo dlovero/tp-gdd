@@ -1248,7 +1248,7 @@ EXEC [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU
 
 
 
-
+/*------------------------------------------ABM CLIENTE----------------------------------------------------*/
 -- ALTA DE CLIENTE
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ALTA_CLIENTE', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_ALTA_CLIENTE;
@@ -1389,7 +1389,7 @@ BEGIN TRANSACTION
             INSERT INTO [DESCONOCIDOS4].CLIENTE (Cliente_Per_ID) VALUES(@Per_id);
  COMMIT;
  GO
-
+/*------------------------------------------ABM CHOFER----------------------------------------------------*/
 -- ALTA DE CHOFER
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ALTA_CHOFER', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_ALTA_CHOFER;
@@ -1552,6 +1552,7 @@ BEGIN TRANSACTION
  COMMIT;
  GO
 
+/*------------------------------------------REGISTRAR VIAJE----------------------------------------------------*/
  -- REGISTRO VIAJES
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_REGISTRO_VIAJE', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_REGISTRO_VIAJE;
