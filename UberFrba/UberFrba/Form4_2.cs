@@ -49,29 +49,12 @@ namespace UberFrba
                 grillaBusquedaUsuarios.DataSource = tblDatosResultadoBusquedaUsuarios;
                 grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 grillaBusquedaUsuarios.AutoGenerateColumns = true;
+                formularioResultadoBusqueda.formularioABM = this;
                 formularioResultadoBusqueda.Show();
             } else {
                 MessageBox.Show("No Existe " + this.tipoUsuario + " coincidente con los parametros de busqueda");
             }
             
-            //poblarDatosDelFormulario(formulario, adaptador);
-            //((frmABM)formulario).adaptadorDatosUsuarios = adaptador;
         }
-
-        // public static void poblarDatosDelFormulario(Form formulario, GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador)
-        /* public static void poblarDatosDelFormulario(Form formulario)
-         {
-             ((TextBox)formulario.Controls["txtNombre"]).Text = usuario["Persona_Nombre"].ToString();
-             ((TextBox)formulario.Controls["txtApellido"]).Text = usuario["Persona_Apellido"].ToString();
-             ((TextBox)formulario.Controls["txtDNI"]).Text = usuario["Persona_Dni"].ToString();
-             ((TextBox)formulario.Controls["txtCorreo"]).Text = usuario["Persona_Mail"].ToString();
-             ((TextBox)formulario.Controls["txtTelefono"]).Text = usuario["Persona_Telefono"].ToString();
-             ((TextBox)formulario.Controls["txtLocalidad"]).Text = usuario["Persona_Localidad"].ToString();
-             ((TextBox)formulario.Controls["txtCodigoPostal"]).Text = usuario["Persona_Cod_Postal"].ToString();
-             ((TextBox)formulario.Controls["txtCalle"]).Text = usuario["Persona_Direccion"].ToString();
-             ((TextBox)formulario.Controls["txtDeptoLote"]).Text = usuario["Persona_Departamento"].ToString();
-             ((TextBox)formulario.Controls["txtPisoManzana"]).Text = usuario["Persona_Piso"].ToString();
-         }*/
-
     }
 }

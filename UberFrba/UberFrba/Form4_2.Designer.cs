@@ -288,7 +288,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(234, 53);
+            this.btnBuscar.Location = new System.Drawing.Point(234, 51);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(131, 29);
             this.btnBuscar.TabIndex = 29;
@@ -306,7 +306,7 @@
             this.grupoBusquedaABM.Controls.Add(this.txtBusquedaNombre);
             this.grupoBusquedaABM.Location = new System.Drawing.Point(28, 5);
             this.grupoBusquedaABM.Name = "grupoBusquedaABM";
-            this.grupoBusquedaABM.Size = new System.Drawing.Size(588, 89);
+            this.grupoBusquedaABM.Size = new System.Drawing.Size(588, 86);
             this.grupoBusquedaABM.TabIndex = 30;
             this.grupoBusquedaABM.TabStop = false;
             // 

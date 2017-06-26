@@ -10,4 +10,3 @@ C:\Users\pds\Documents\Visual Studio 2012\Projects\UberFrba\UberFrba\obj\Debug\U
 C:\Users\pds\Documents\Visual Studio 2012\Projects\UberFrba\UberFrba\obj\Debug\UberFrba.exe
 C:\Users\pds\Documents\Visual Studio 2012\Projects\UberFrba\UberFrba\obj\Debug\UberFrba.pdb
 C:\Users\pds\Documents\Visual Studio 2012\Projects\UberFrba\UberFrba\obj\Debug\UberFrba.frmABM.resources
-C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.exe.config

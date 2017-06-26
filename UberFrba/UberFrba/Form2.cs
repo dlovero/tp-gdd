@@ -128,7 +128,8 @@ namespace UberFrba
         {
             if (esAdministrador())
             {
-                //((Button)formulario.Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
+                (((GroupBox)formulario.Controls["grupoBusquedaABM"]).Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
+               // ((Button)formulario.Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
                 ((frmABM)formulario).tipoUsuario = textoTipo;
             }
             ((GroupBox)formulario.Controls["grupoBusquedaABM"]).Visible = esAdministrador();
