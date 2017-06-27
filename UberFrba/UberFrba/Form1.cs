@@ -72,12 +72,14 @@ namespace UberFrba
                 DataTable tblUsuarioYRoles = adaptador.validarUsuario(textoUsuario.Text, sha256(textoClave.Text));
             List<Tuple<String,String>> roles = new List<Tuple<string,string>>();
             int codigoUsuario=0;
-            String nombreUsuario = "", apellidoUsuario="";
+            String nombreUsuario = "", apellidoUsuario = "";
+            int idPersona=-1;
                 foreach (DataRow fila in tblUsuarioYRoles.Rows)
                 {
                     codigoUsuario = fila.Field<int>("UserId");
                     nombreUsuario = fila.Field<String>("Nombre");
                     apellidoUsuario = fila.Field<String>("Apellido");
+                    idPersona = fila.Field<int>("idPersona");
                 }
 
                 switch (codigoUsuario)
@@ -93,7 +95,7 @@ namespace UberFrba
                         break;
                     default:
                         this.Hide();
-                        SingletonDatosUsuario datosUsuario = new SingletonDatosUsuario(codigoUsuario, textoUsuario.Text, nombreUsuario, apellidoUsuario);
+                        SingletonDatosUsuario datosUsuario = new SingletonDatosUsuario(codigoUsuario, textoUsuario.Text, nombreUsuario, apellidoUsuario, idPersona);
                         frmRoles fmRoles = new frmRoles();
                         ((ComboBox)fmRoles.Controls["comboRol"]).Focus();
                         ComboBox frmRolComboRol = (ComboBox)fmRoles.Controls["comboRol"];
@@ -115,6 +117,12 @@ namespace UberFrba
     {
         public class DatosUsuario
         {
+            private int idPersona;
+            public int IdPersona
+            {
+                get { return idPersona; }
+                set { idPersona = value; }
+            }
             private int idUsuario;
             public int IdUsuario
             {
@@ -126,6 +134,12 @@ namespace UberFrba
             {
                 get { return rolId; }
                 set { rolId = value; }
+            }
+            private int idTipoRol;
+            public int IdTipoRol
+            {
+                get { return idTipoRol; }
+                set { idTipoRol = value; }
             }
             private String nombreUsuario;
             public String NombreUsuario
@@ -150,26 +164,43 @@ namespace UberFrba
         private DatosUsuario datosUsuario;
 
         public SingletonDatosUsuario() { }
-        public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido)
+        public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido, int idPersona)
         {
             datosUsuario = new DatosUsuario();
             this.datosUsuario.IdUsuario = id;
             this.datosUsuario.NombreUsuario = nombreUsuario;
             this.datosUsuario.Nombre = nombre;
             this.datosUsuario.Apellido = apellido;
+            this.datosUsuario.IdPersona = idPersona;
             instance = this;
         }
         public int obtenerIdUsuario()
         {
             return this.datosUsuario.IdUsuario;
         }
+        public int obtenerIdTipoRol()
+        {
+            return this.datosUsuario.IdTipoRol;
+        }
         public int obtenerIdRol()
         {
             return this.datosUsuario.RolId;
         }
+        public void setearIdPersona(int idPersona)
+        {
+            this.datosUsuario.IdPersona = idPersona;
+        }
+        public int obtenerIdPersona()
+        {
+            return this.datosUsuario.IdPersona;
+        }
         public void setearRolId(int rolId)
         {
             this.datosUsuario.RolId = rolId;
+        }
+        public void setearIdTipoRol(int idTipoRol)
+        {
+            this.datosUsuario.IdTipoRol = idTipoRol;
         }
         public static SingletonDatosUsuario Instance
         {

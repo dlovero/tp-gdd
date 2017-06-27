@@ -58,6 +58,9 @@
             this.lblBuscarDNI = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.grupoBusquedaABM = new System.Windows.Forms.GroupBox();
+            this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
+            this.lblFechaNacimiento = new System.Windows.Forms.Label();
+            this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.grupoBusquedaABM.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -182,35 +185,35 @@
             this.txtLocalidad.Location = new System.Drawing.Point(133, 260);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(174, 20);
-            this.txtLocalidad.TabIndex = 19;
+            this.txtLocalidad.TabIndex = 20;
             // 
             // txtCodigoPostal
             // 
             this.txtCodigoPostal.Location = new System.Drawing.Point(443, 260);
             this.txtCodigoPostal.Name = "txtCodigoPostal";
             this.txtCodigoPostal.Size = new System.Drawing.Size(174, 20);
-            this.txtCodigoPostal.TabIndex = 20;
+            this.txtCodigoPostal.TabIndex = 23;
             // 
             // txtPisoManzana
             // 
             this.txtPisoManzana.Location = new System.Drawing.Point(443, 227);
             this.txtPisoManzana.Name = "txtPisoManzana";
             this.txtPisoManzana.Size = new System.Drawing.Size(174, 20);
-            this.txtPisoManzana.TabIndex = 18;
+            this.txtPisoManzana.TabIndex = 19;
             // 
             // txtDeptoLote
             // 
             this.txtDeptoLote.Location = new System.Drawing.Point(133, 227);
             this.txtDeptoLote.Name = "txtDeptoLote";
             this.txtDeptoLote.Size = new System.Drawing.Size(174, 20);
-            this.txtDeptoLote.TabIndex = 17;
+            this.txtDeptoLote.TabIndex = 18;
             // 
             // btnAceptar
             // 
             this.btnAceptar.Location = new System.Drawing.Point(110, 302);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(131, 29);
-            this.btnAceptar.TabIndex = 21;
+            this.btnAceptar.TabIndex = 22;
             this.btnAceptar.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
@@ -218,7 +221,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(400, 302);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(131, 29);
-            this.btnCancelar.TabIndex = 22;
+            this.btnCancelar.TabIndex = 23;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -236,28 +239,28 @@
             this.txtCalle.Location = new System.Drawing.Point(133, 195);
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(174, 20);
-            this.txtCalle.TabIndex = 16;
+            this.txtCalle.TabIndex = 17;
             // 
             // txtBusquedaNombre
             // 
             this.txtBusquedaNombre.Location = new System.Drawing.Point(33, 27);
             this.txtBusquedaNombre.Name = "txtBusquedaNombre";
             this.txtBusquedaNombre.Size = new System.Drawing.Size(174, 20);
-            this.txtBusquedaNombre.TabIndex = 23;
+            this.txtBusquedaNombre.TabIndex = 24;
             // 
             // txtBusquedaApellido
             // 
             this.txtBusquedaApellido.Location = new System.Drawing.Point(214, 27);
             this.txtBusquedaApellido.Name = "txtBusquedaApellido";
             this.txtBusquedaApellido.Size = new System.Drawing.Size(174, 20);
-            this.txtBusquedaApellido.TabIndex = 24;
+            this.txtBusquedaApellido.TabIndex = 25;
             // 
             // txtBusquedaDNI
             // 
             this.txtBusquedaDNI.Location = new System.Drawing.Point(395, 27);
             this.txtBusquedaDNI.Name = "txtBusquedaDNI";
             this.txtBusquedaDNI.Size = new System.Drawing.Size(174, 20);
-            this.txtBusquedaDNI.TabIndex = 25;
+            this.txtBusquedaDNI.TabIndex = 26;
             // 
             // lblBusquedaNombre
             // 
@@ -291,7 +294,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(234, 51);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(131, 29);
-            this.btnBuscar.TabIndex = 29;
+            this.btnBuscar.TabIndex = 27;
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
@@ -310,11 +313,40 @@
             this.grupoBusquedaABM.TabIndex = 30;
             this.grupoBusquedaABM.TabStop = false;
             // 
+            // txtFechaNacimiento
+            // 
+            this.txtFechaNacimiento.Location = new System.Drawing.Point(443, 164);
+            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
+            this.txtFechaNacimiento.Size = new System.Drawing.Size(174, 20);
+            this.txtFechaNacimiento.TabIndex = 16;
+            // 
+            // lblFechaNacimiento
+            // 
+            this.lblFechaNacimiento.AutoSize = true;
+            this.lblFechaNacimiento.Location = new System.Drawing.Point(341, 168);
+            this.lblFechaNacimiento.Name = "lblFechaNacimiento";
+            this.lblFechaNacimiento.Size = new System.Drawing.Size(96, 13);
+            this.lblFechaNacimiento.TabIndex = 31;
+            this.lblFechaNacimiento.Text = "Fecha Nacimiento:";
+            // 
+            // ccHabilitado
+            // 
+            this.ccHabilitado.AutoSize = true;
+            this.ccHabilitado.Location = new System.Drawing.Point(443, 198);
+            this.ccHabilitado.Name = "ccHabilitado";
+            this.ccHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.ccHabilitado.TabIndex = 33;
+            this.ccHabilitado.Text = "Habilitado";
+            this.ccHabilitado.UseVisualStyleBackColor = true;
+            // 
             // frmABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 355);
+            this.Controls.Add(this.ccHabilitado);
+            this.Controls.Add(this.txtFechaNacimiento);
+            this.Controls.Add(this.lblFechaNacimiento);
             this.Controls.Add(this.grupoBusquedaABM);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
@@ -380,6 +412,9 @@
         private System.Windows.Forms.Label lblBuscarDNI;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.GroupBox grupoBusquedaABM;
+        private System.Windows.Forms.TextBox txtFechaNacimiento;
+        private System.Windows.Forms.Label lblFechaNacimiento;
+        private System.Windows.Forms.CheckBox ccHabilitado;
 
     }
 }

@@ -40,6 +40,10 @@ namespace UberFrba
             ((TextBox)formulario.Controls["txtCalle"]).Text = filadeDatos.Row["Persona_Direccion"].ToString();
             ((TextBox)formulario.Controls["txtDeptoLote"]).Text = filadeDatos.Row["Persona_Departamento"].ToString();
             ((TextBox)formulario.Controls["txtPisoManzana"]).Text = filadeDatos.Row["Persona_Piso"].ToString();
+            ((TextBox)formulario.Controls["txtFechaNacimiento"]).Text = filadeDatos.Row["Persona_Fecha_Nac"].ToString();
+            ((CheckBox)formulario.Controls["ccHabilitado"]).Checked =(Boolean)filadeDatos.Row["habilitado"];
+            ((frmABM)formulario).idTipoRol = (int)filadeDatos.Row["idTipoRol"];
+            ((frmABM)formulario).idPersona = (int)filadeDatos.Row["Persona_Id"];
         }
 
         private class datosUsuarioResultadoBusqueda

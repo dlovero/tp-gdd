@@ -381,7 +381,7 @@ PRIMARY KEY(Rol_Id)
 );
 GO
 CREATE TABLE [DESCONOCIDOS4].USUARIO_ROL(
-UsuRol_Usu_Id NVARCHAR(255),
+UsuRol_Usu_Id INT REFERENCES [DESCONOCIDOS4].USUARIO,
 UsuRol_Rol_Id SMALLINT,
 );
 GO
@@ -1338,8 +1338,10 @@ AS
 BEGIN
 	IF (@DNI IS NOT NULL)
 	BEGIN
-	 SELECT 
-	   Persona_Dni
+	 SELECT
+	   C.Cliente_Id [idTipoRol]
+	  ,Persona_Id
+	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
       ,Persona_Direccion
@@ -1350,6 +1352,7 @@ BEGIN
       ,Persona_Telefono
       ,Persona_Mail
       ,Persona_Fecha_Nac
+	  ,C.Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
@@ -1359,7 +1362,9 @@ BEGIN
 	ELSE
 	BEGIN
 	SELECT 
-	   Persona_Dni
+	   C.Cliente_Id [idTipoRol]
+	  ,Persona_Id
+	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
       ,Persona_Direccion
@@ -1370,6 +1375,7 @@ BEGIN
       ,Persona_Telefono
       ,Persona_Mail
       ,Persona_Fecha_Nac
+	  ,C.Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
@@ -1501,7 +1507,8 @@ BEGIN
 	IF (@DNI IS NOT NULL)
 	BEGIN
 	 SELECT 
-	   Chofer_Id [id]
+	   Chofer_Id [idTipoRol]
+	  ,Persona_Id
 	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
@@ -1513,6 +1520,7 @@ BEGIN
       ,Persona_Telefono
       ,Persona_Mail
       ,Persona_Fecha_Nac
+	  ,C.Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
@@ -1521,8 +1529,10 @@ BEGIN
 	END
 	ELSE
 	BEGIN
-		SELECT 
-	   Persona_Dni
+	  SELECT 
+	   Chofer_Id [idTipoRol]
+	  ,Persona_Id
+	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
       ,Persona_Direccion
@@ -1533,6 +1543,7 @@ BEGIN
       ,Persona_Telefono
       ,Persona_Mail
       ,Persona_Fecha_Nac
+	  ,C.Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
@@ -1763,6 +1774,7 @@ BEGIN
 	  DECLARE @Usuario_Clave_Incorrecta INT
 	  DECLARE @NombreUsuario VARCHAR(50)
 	  DECLARE @ApellidoUsuario VARCHAR(50)
+	  DECLARE @PersonaId INT
 	  SELECT @Usuario_No_Habilitado = -2
 	  SELECT @Usuario_No_Existe = -1
 	  SELECT @Usuario_Clave_Incorrecta = -3
@@ -1772,7 +1784,7 @@ BEGIN
       SELECT @Usu_Id = Usu_Id
 		FROM [DESCONOCIDOS4].Usuario WHERE Usu_Nombre_Usuario = @Usuario
 
-	  SELECT @NombreUsuario = Persona_Nombre, @ApellidoUsuario = Persona_Apellido
+	  SELECT @NombreUsuario = Persona_Nombre, @ApellidoUsuario = Persona_Apellido, @PersonaId = Persona_Id
       FROM [DESCONOCIDOS4].Usuario U JOIN [DESCONOCIDOS4].PERSONA P ON U.Usu_Per_Id = P.Persona_Id WHERE U.Usu_Id = @Usu_Id 
 
       IF @Usu_Id IS NOT NULL
@@ -1789,13 +1801,13 @@ BEGIN
 						-- Actualiza Intentos Fallidos de ingreso, en caso que sea necesario
 						UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=0 WHERE Usu_Id=@Usu_Id
 					END
-					SELECT @Usu_Id [codigoUsuario], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
+					SELECT @Usu_Id [UserId], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, ISNULL(@PersonaId,0) idPersona FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
                               WHERE Rol_Habilitado=@Habilitado and UsuRol_Usu_Id=@Usu_Id
 				END
 				ELSE
 				BEGIN
 					-- Usuario Existe, Clave Correcta y No Habilitado
-					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
+					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido, 0 idPersona
 				END
             END
             ELSE
@@ -1805,13 +1817,13 @@ BEGIN
 				UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=
 													([DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO(@Usu_Id)) + 1
 												WHERE Usu_Id=@Usu_Id
-				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
+				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido, 0 idPersona
             END
       END
       ELSE
       BEGIN
 		-- Usuario NO EXISTE
-        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
+        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido, 0 idPersona
       END
 END
 go
@@ -2318,5 +2330,3 @@ select * from DESCONOCIDOS4.RAMA_MENU
 exec [DESCONOCIDOS4].PRC_OBTENER_MENU_X_ROL 1
 */
 -- TIEMPO 00:01:21
-
-

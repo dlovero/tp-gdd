@@ -40,8 +40,10 @@ namespace UberFrba
         private void button1_Click(object sender, EventArgs e)
         {
             SingletonDatosUsuario datosUsuario = SingletonDatosUsuario.Instance;
-            int rolId = Convert.ToInt32(comboRol.SelectedValue);
+            int rolId = Convert.ToInt16(comboRol.SelectedValue);
             datosUsuario.setearRolId(rolId);
+            datosUsuario.setearIdTipoRol((int)((new GD1C2017DataSetTableAdapters.PRC_OBTENER_ID_CLIENTE_O_CHOFERTableAdapter())
+                .obtenerIdEnTablaClienteOChofer(datosUsuario.obtenerIdUsuario(), rolId)));
             this.Hide();
             GD1C2017DataSetTableAdapters.PRC_OBTENER_MENU_X_ROLTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_OBTENER_MENU_X_ROLTableAdapter();
@@ -131,54 +133,94 @@ namespace UberFrba
                 (((GroupBox)formulario.Controls["grupoBusquedaABM"]).Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
                // ((Button)formulario.Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
                 ((frmABM)formulario).tipoUsuario = textoTipo;
+                ((frmABM)formulario).tipoFuncion = textoFuncion;
             }
             ((GroupBox)formulario.Controls["grupoBusquedaABM"]).Visible = esAdministrador();
-            formulario.Text = textoFuncion + textoTipo;
+            formulario.Text = textoFuncion + " " + textoTipo;
             ((TextBox)formulario.Controls["txtNombre"]).Focus();
-            ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion + textoTipo;
+            ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion +" "+ textoTipo;
+            EventHandler handler = obtenerManejadorDeAccionDeBotonDeFuncion(formulario, textoFuncion);
+            ((Button)formulario.Controls["btnAceptar"]).Click += handler;
+        }
+
+        private static EventHandler obtenerManejadorDeAccionDeBotonDeFuncion(Form formulario, String textoFuncion)
+        {
+            EventHandler handler;
+            switch (textoFuncion)
+            {
+                case "Agregar":
+                    handler = new EventHandler(((frmABM)formulario).btnAceptar_click);
+                    break;
+                case "Eliminar":
+                    handler = new EventHandler(((frmABM)formulario).btnEliminar_click);
+                    break;
+                case "Modificar":
+                    handler = new EventHandler(((frmABM)formulario).btnModificar_click);
+                    break;
+                default:
+                    handler = new EventHandler(((frmABM)formulario).btnDefecto_click);
+                    break;
+            }
+
+            return new EventHandler(((frmABM)formulario).btnAceptar_click);
         }
 
         private void agregarCliente(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar ", "Cliente");
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar", "Cliente");
+            frmAltaCliente.Controls["grupoBusquedaABM"].Visible = false;
             frmAltaCliente.Show();
         }
         
         private void eliminarCliente(object sender, EventArgs e)
         {
-            this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar ", "Cliente");
-            frmAltaCliente.Show();
+            if (esAdministrador())
+            {
+                this.Hide();
+                frmABM frmAltaCliente = new frmABM();
+                configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Cliente");
+                frmAltaCliente.Show();
+            }
+            else
+            {
+                frmABM.dispararVentanaConMensaje("Cliente", "Eliminar");
+            }
         }
         private void modificarCliente(object sender, EventArgs e)
         {
-            this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar ", "Cliente");
-            frmAltaCliente.Show();
+            if (esAdministrador())
+            {
+                this.Hide();
+                frmABM frmAltaCliente = new frmABM();
+                configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar", "Cliente");
+                frmAltaCliente.Show();
+            }
+            else
+            {
+                frmABM.dispararVentanaConMensaje("Cliente","Modificar");
+            }
         }
         private void agregarChofer(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar ", "Chofer");
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar", "Chofer");
             frmAltaCliente.Show();
         }
         private void eliminarChofer(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar ", "Chofer");
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Chofer");
             frmAltaCliente.Show();
         }
         private void modificarChofer(object sender, EventArgs e)
         {
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar ", "Chofer");
+            configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar", "Chofer");
             frmAltaCliente.Show();
         }
         private void agregarAutomovil(object sender, EventArgs e)
