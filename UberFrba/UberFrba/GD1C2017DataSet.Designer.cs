@@ -703,7 +703,7 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnPersona_Id;
             
-            private global::System.Data.DataColumn columnhabilidado;
+            private global::System.Data.DataColumn columnhabilitado;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -844,9 +844,9 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn habilidadoColumn {
+            public global::System.Data.DataColumn habilitadoColumn {
                 get {
-                    return this.columnhabilidado;
+                    return this.columnhabilitado;
                 }
             }
             
@@ -887,7 +887,7 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_OBTENER_DATOS_USUARIOSRow AddPRC_OBTENER_DATOS_USUARIOSRow(decimal Persona_Dni, string Persona_Nombre, string Persona_Apellido, string Persona_Direccion, short Persona_Piso, string Persona_Departamento, string Persona_Localidad, string Persona_Cod_Postal, decimal Persona_Telefono, string Persona_Mail, System.DateTime Persona_Fecha_Nac, bool habilidado) {
+            public PRC_OBTENER_DATOS_USUARIOSRow AddPRC_OBTENER_DATOS_USUARIOSRow(decimal Persona_Dni, string Persona_Nombre, string Persona_Apellido, string Persona_Direccion, short Persona_Piso, string Persona_Departamento, string Persona_Localidad, string Persona_Cod_Postal, decimal Persona_Telefono, string Persona_Mail, System.DateTime Persona_Fecha_Nac, bool habilitado) {
                 PRC_OBTENER_DATOS_USUARIOSRow rowPRC_OBTENER_DATOS_USUARIOSRow = ((PRC_OBTENER_DATOS_USUARIOSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Persona_Dni,
@@ -903,7 +903,7 @@ namespace UberFrba {
                         Persona_Fecha_Nac,
                         null,
                         null,
-                        habilidado};
+                        habilitado};
                 rowPRC_OBTENER_DATOS_USUARIOSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPRC_OBTENER_DATOS_USUARIOSRow);
                 return rowPRC_OBTENER_DATOS_USUARIOSRow;
@@ -946,7 +946,7 @@ namespace UberFrba {
                 this.columnPersona_Fecha_Nac = base.Columns["Persona_Fecha_Nac"];
                 this.columnidTipoRol = base.Columns["idTipoRol"];
                 this.columnPersona_Id = base.Columns["Persona_Id"];
-                this.columnhabilidado = base.Columns["habilidado"];
+                this.columnhabilitado = base.Columns["habilitado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -978,8 +978,8 @@ namespace UberFrba {
                 base.Columns.Add(this.columnidTipoRol);
                 this.columnPersona_Id = new global::System.Data.DataColumn("Persona_Id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPersona_Id);
-                this.columnhabilidado = new global::System.Data.DataColumn("habilidado", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnhabilidado);
+                this.columnhabilitado = new global::System.Data.DataColumn("habilitado", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhabilitado);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnidTipoRol}, true));
                 this.columnPersona_Dni.AllowDBNull = false;
@@ -2014,31 +2014,31 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool habilidado {
+            public bool habilitado {
                 get {
                     try {
-                        return ((bool)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.habilidadoColumn]));
+                        return ((bool)(this[this.tablePRC_OBTENER_DATOS_USUARIOS.habilitadoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'habilidado\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS\' es D" +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'habilitado\' de la tabla \'PRC_OBTENER_DATOS_USUARIOS\' es D" +
                                 "BNull.", e);
                     }
                 }
                 set {
-                    this[this.tablePRC_OBTENER_DATOS_USUARIOS.habilidadoColumn] = value;
+                    this[this.tablePRC_OBTENER_DATOS_USUARIOS.habilitadoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IshabilidadoNull() {
-                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.habilidadoColumn);
+            public bool IshabilitadoNull() {
+                return this.IsNull(this.tablePRC_OBTENER_DATOS_USUARIOS.habilitadoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SethabilidadoNull() {
-                this[this.tablePRC_OBTENER_DATOS_USUARIOS.habilidadoColumn] = global::System.Convert.DBNull;
+            public void SethabilitadoNull() {
+                this[this.tablePRC_OBTENER_DATOS_USUARIOS.habilitadoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2732,7 +2732,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Persona_Fecha_Nac", "Persona_Fecha_Nac");
             tableMapping.ColumnMappings.Add("idTipoRol", "idTipoRol");
             tableMapping.ColumnMappings.Add("Persona_Id", "Persona_Id");
-            tableMapping.ColumnMappings.Add("habilidado", "habilidado");
+            tableMapping.ColumnMappings.Add("habilitado", "habilitado");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -3460,13 +3460,13 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[7])).CommandText = "DESCONOCIDOS4.PRC_BAJA_CHOFER";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[7])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[7])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[7])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DNI_CHO", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[7])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_CHO", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[8] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[8])).Connection = new global::System.Data.SqlClient.SqlConnection(global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[8])).CommandText = "DESCONOCIDOS4.PRC_BAJA_CLIENTE";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[8])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[8])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[8])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DNI_CLI", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[8])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID_CLI", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[9] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).Connection = new global::System.Data.SqlClient.SqlConnection(global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[9])).CommandText = "DESCONOCIDOS4.PRC_MODIFICACION_CHOFER";
@@ -3980,10 +3980,10 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int eliminarChofer(global::System.Nullable<decimal> DNI_CHO) {
+        public virtual int eliminarChofer(global::System.Nullable<int> ID_CHO) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[7]));
-            if ((DNI_CHO.HasValue == true)) {
-                command.Parameters[1].Value = ((decimal)(DNI_CHO.Value));
+            if ((ID_CHO.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(ID_CHO.Value));
             }
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
@@ -4008,10 +4008,10 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int eliminarCliente(global::System.Nullable<decimal> DNI_CLI) {
+        public virtual int eliminarCliente(global::System.Nullable<int> ID_CLI) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[8]));
-            if ((DNI_CLI.HasValue == true)) {
-                command.Parameters[1].Value = ((decimal)(DNI_CLI.Value));
+            if ((ID_CLI.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(ID_CLI.Value));
             }
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;

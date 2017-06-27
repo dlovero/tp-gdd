@@ -185,9 +185,15 @@ namespace UberFrba
             }
             else
             {
+                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
+                    = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
                 frmABM.dispararVentanaConMensaje("Cliente", "Eliminar");
+                adaptador.eliminarCliente
+                    (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
+                frmABM.mensajeAutoEliminacionYSalidaDeAplicacion("Eliminar", "Cliente");
             }
         }
+
         private void modificarCliente(object sender, EventArgs e)
         {
             if (esAdministrador())
@@ -199,7 +205,7 @@ namespace UberFrba
             }
             else
             {
-                frmABM.dispararVentanaConMensaje("Cliente","Modificar");
+
             }
         }
         private void agregarChofer(object sender, EventArgs e)
@@ -211,10 +217,22 @@ namespace UberFrba
         }
         private void eliminarChofer(object sender, EventArgs e)
         {
-            this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Chofer");
-            frmAltaCliente.Show();
+            if (esAdministrador())
+            {
+                this.Hide();
+                frmABM frmAltaCliente = new frmABM();
+                configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Chofer");
+                frmAltaCliente.Show();
+            }
+            else
+            {
+                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
+                    = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+                frmABM.dispararVentanaConMensaje("Chofer", "Eliminar");
+                adaptador.eliminarCliente
+                    (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
+                frmABM.mensajeAutoEliminacionYSalidaDeAplicacion("Eliminar", "Chofer");
+            }
         }
         private void modificarChofer(object sender, EventArgs e)
         {

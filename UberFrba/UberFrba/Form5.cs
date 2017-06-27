@@ -60,6 +60,11 @@ namespace UberFrba
             public String Persona_Mail { get; set; }
             public String Persona_Fecha_Nacimiento { get; set; }
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
 }
