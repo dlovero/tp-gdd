@@ -1058,3 +1058,12 @@ select * from DESCONOCIDOS4.funcionalidad
 select CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2)
 go
 select HashBytes('SHA2_256',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'Inicio2017'),2))
+
+
+
+
+SELECT name, 
+       type
+  FROM dbo.sysobjects
+ WHERE (type = 'TF') or (type = 'FN') and name not like '%objects'
+

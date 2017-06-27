@@ -71,11 +71,11 @@ namespace UberFrba
             if (verificarDatosNoSeanNulos())
             {
                 dispararVentanaConMensaje(this.tipoUsuario, this.tipoFuncion);
-                ajecutarFuncionConTipoUsuario();
+                ejecutarFuncionConTipoUsuario();
             }
         }
 
-        public void ajecutarFuncionConTipoUsuario()
+        public void ejecutarFuncionConTipoUsuario()
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
@@ -88,6 +88,7 @@ namespace UberFrba
                             (Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtCalle.Text
                             , Convert.ToInt16(txtPisoManzana.Text), txtDeptoLote.Text, txtLocalidad.Text, txtCodigoPostal.Text
                             , Convert.ToInt32(txtTelefono.Text), txtCorreo.Text, Convert.ToDateTime(txtFechaNacimiento.Text));
+                            this.Close();
                     }
                     else
                     {
@@ -95,6 +96,7 @@ namespace UberFrba
                             (Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtCalle.Text
                             , Convert.ToInt16(txtPisoManzana.Text), txtDeptoLote.Text, txtLocalidad.Text, txtCodigoPostal.Text
                             , Convert.ToInt32(txtTelefono.Text), txtCorreo.Text, Convert.ToDateTime(txtFechaNacimiento.Text));
+                        this.Close();
                     }
                     break;
                 case "Eliminar":
@@ -103,10 +105,12 @@ namespace UberFrba
                         case 3:
                             adaptador.eliminarCliente
                                 (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
+                            mensajeAutoEliminacionYSalidaDeAplicacion(tipoFuncion,tipoUsuario);
                             break;
                         case 2:
                             adaptador.eliminarChofer
                                 (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
+                            mensajeAutoEliminacionYSalidaDeAplicacion(tipoFuncion, tipoUsuario);
                             break;
                         case 1:
                             if (tipoUsuario.Equals("Cliente"))
@@ -117,6 +121,7 @@ namespace UberFrba
                                 adaptador.eliminarChofer
                                     (idTipoRol);
                             }
+                            this.Close();
                             break;
                     }
                     break;
@@ -159,6 +164,20 @@ namespace UberFrba
             
         }
 
+        public static void mensajeAutoEliminacionYSalidaDeAplicacion(String funcion, String usuario)
+        {
+            DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " esta/e nueva/o " + usuario, funcion + " " + usuario,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (resultado == DialogResult.Yes)
+            {
+                MessageBox.Show("La aplicacion se cerrara, debido a que usted dio de baja su rol de " + usuario +
+                " si posee otro rol, debera iniciar e ingresar nuevamente al sistema con otro rol.", "Salida de la aplicacion",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Application.Exit();
+            }
+        }
+
+
         private Boolean verificarDatosNoSeanNulos()
         {
             Boolean resultado=true;
@@ -182,14 +201,21 @@ namespace UberFrba
         public void btnEliminar_click(object sender, EventArgs e)
         {
             dispararVentanaConMensaje(this.tipoUsuario, this.tipoFuncion);
+            ejecutarFuncionConTipoUsuario();
         }
         public void btnModificar_click(object sender, EventArgs e)
         {
             dispararVentanaConMensaje(this.tipoUsuario, this.tipoFuncion);
+            ejecutarFuncionConTipoUsuario();
         }
         public void btnDefecto_click(object sender, EventArgs e)
         {
             MessageBox.Show("Excelente");
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
