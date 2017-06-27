@@ -1617,6 +1617,41 @@ BEGIN TRANSACTION
  COMMIT;
  GO
 
+
+ IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_OBTENER_ID_CLIENTE_O_CHOFER', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_OBTENER_ID_CLIENTE_O_CHOFER;
+GO
+CREATE PROC [DESCONOCIDOS4].PRC_OBTENER_ID_CLIENTE_O_CHOFER
+(
+	@IdUsuario INT,
+	@IdRol INT
+)
+AS
+BEGIN
+DECLARE @TipoUsuario VARCHAR(50)
+SET @TipoUsuario = (SELECT ROL_NOMBRE FROM DESCONOCIDOS4.ROL WHERE Rol_Id=@IdRol)
+IF (@TipoUsuario = 'CLIENTE')
+	BEGIN
+		SELECT Cliente_Id [id] FROM DESCONOCIDOS4.Usuario U join [DESCONOCIDOS4].USUARIO_ROL on U.Usu_Id=UsuRol_Usu_Id
+			join DESCONOCIDOS4.ROL on UsuRol_Rol_Id = Rol_Id join DESCONOCIDOS4.Cliente C on c.cliente_Per_Id=U.Usu_Per_Id
+			WHERE Rol_Habilitado=1 and UsuRol_Usu_Id=@IdUsuario and Rol_Id=@IdRol and c.cliente_Habilitado=1
+	END
+ELSE
+	BEGIN
+		IF (@TipoUsuario = 'CHOFER')
+		BEGIN
+			SELECT Chofer_Id [id] FROM DESCONOCIDOS4.Usuario U join [DESCONOCIDOS4].USUARIO_ROL on U.Usu_Id=UsuRol_Usu_Id 
+				join DESCONOCIDOS4.ROL on UsuRol_Rol_Id = Rol_Id join DESCONOCIDOS4.CHOFER C on c.Chofer_Per_Id=U.Usu_Per_Id
+				WHERE Rol_Habilitado=1 and UsuRol_Usu_Id =@IdUsuario and Rol_Id=@IdRol and c.Chofer_Habilitado=1
+		END
+		ELSE
+			SELECT -1 [id]
+	END
+END
+GO
+
+
+
 /*------------------------------------------REGISTRAR VIAJE----------------------------------------------------*/
  -- REGISTRO VIAJES
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_REGISTRO_VIAJE', N'P') IS NOT NULL
@@ -1883,6 +1918,58 @@ GO
 
 
 /*------------------------- SP Y FUNCIONES PARA LOGIN --------------------------------------------------*/
+
+
+IF OBJECT_ID('[DESCONOCIDOS4].PRC_OBTENER_ANCESTROS',N'P') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].PRC_OBTENER_ANCESTROS;
+GO
+CREATE PROC [DESCONOCIDOS4].PRC_OBTENER_ANCESTROS
+(
+	@IdAncestro INT
+)
+as
+begin
+DECLARE @TablaMenu TABLE 
+(
+   Nombre nvarchar(50),
+   Ascendente INT,
+   Metodo VARCHAR(50),
+   Descripcion VARCHAR(50)
+)
+Declare @NombreRama VARCHAR(50), @IdAscendente INT
+
+DECLARE CU_Ramas CURSOR FOR
+select Rama_Menu_Nombre, Rama_Menu_Ascendente from DESCONOCIDOS4.RAMA_MENU RM where RM.Rama_Menu_Id=@IdAncestro
+
+
+Open CU_Ramas
+FETCH NEXT FROM CU_Ramas
+INTO @NombreRama, @IdAscendente
+while @@FETCH_STATUS=0
+begin
+IF @IdAscendente IS NULL
+BEGIN
+	INSERT INTO @TablaMenu (Nombre, Ascendente, Metodo, Descripcion) VALUES (@NombreRama, NULL, NULL, NULL)
+END
+ELSE
+BEGIN
+EXEC PRC_OBTENER_ANCESTROS @IdAscendente
+INSERT INTO @TablaMenu (Nombre, Ascendente, Metodo, Descripcion) VALUES (@NombreRama, @IdAscendente, NULL, NULL)
+END
+
+
+FETCH NEXT FROM CU_Ramas
+INTO @NombreRama, @IdAscendente
+END
+
+CLOSE CU_Ramas
+DEALLOCATE CU_Ramas
+SELECT * FROM @TablaMenu
+RETURN
+END
+GO
+
+
 
 IF OBJECT_ID('[DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO','FN') IS NOT NULL
 	DROP FUNCTION [DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO;
