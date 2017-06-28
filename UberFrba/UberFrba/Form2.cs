@@ -100,8 +100,6 @@ namespace UberFrba
                     }
 
                 }
-                //string nombreMenu = fila.Field<string>("Nombre");
-                
             }
             if (subMenuAuxiliar != null)
             {

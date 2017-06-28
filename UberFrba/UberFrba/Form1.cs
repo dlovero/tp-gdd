@@ -299,12 +299,6 @@ namespace UberFrba
             MessageBox.Show("Error al operar en la BD", "ERROR",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        //public static Boolean mensajeAlertaAntesDeAccion(String funcion, String usuario)
-        //{
-        //    DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " esta/e nueva/o " + usuario, funcion + " " + usuario,
-        //        MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-        //    return (resultado == DialogResult.Yes);
-        //}
     }
 
     public class ArgumentosParaEventoBotonAgregar : EventArgs
@@ -477,64 +471,6 @@ namespace UberFrba
             }
         }
 
-        //public override void eliminarCliente()
-        //{
-        //    //        configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Cliente");
-        //    //        frmAltaCliente.Show();
-        //    frmABM frmBajaCliente = parametrizarFormulario("Eliminar", "Cliente");
-        //    frmBajaCliente.Controls["btnAceptar"].Click += (sender, e) =>
-        //        accionBotonEliminarCliente(sender, e, frmBajaCliente, "Eliminar", "Cliente");
-        //    frmBajaCliente.Show();
-        //}
-
-
-
-        //private void accionBotonEliminarCliente(object sender, EventArgs e, frmABM frmBajaCliente, string funcion, string rol)
-        //{
-        //    if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
-        //    {
-        //        GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-        //                = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-        //        adaptador.eliminarCliente(frmBajaCliente.idTipoRol);
-        //        frmBajaCliente.Close();
-        //    }
-        //}
-
-        //public override void eliminarChofer()
-        //{
-        //    frmABM frmBajaChofer = parametrizarFormulario("Eliminar", "Chofer");
-        //    frmBajaChofer.Controls["btnAceptar"].Click += (sender, e) =>
-        //        accionBotonEliminarChofer(sender, e, frmBajaChofer, "Eliminar", "Chofer");
-        //    frmBajaChofer.Show();
-        //}
-
-        //public void accionBotonEliminarChofer(object sender, EventArgs e, frmABM frmBajaChofer, string funcion, string rol)
-        //{
-        //    if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
-        //    {
-        //        GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-        //                = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-        //        adaptador.eliminarChofer(frmBajaChofer.idTipoRol);
-        //        frmBajaChofer.Close();
-        //    }
-        //}
-
-        //public override void agregarCliente()
-        //{
-        //    frmABM frmAltaCliente = parametrizarFormulario("Agregar", "Cliente");
-        //    frmAltaCliente.Controls["btnAceptar"].Click += (sender, e) =>
-        //        accionBotonAgregarCliente(sender, e, frmAltaCliente, "Agregar", "Cliente");
-        //    frmAltaCliente.Show();
-        //}
-
-        //public override void agregarChofer()
-        //{
-        //    frmABM frmAltaChofer = parametrizarFormulario("Agregar", "Chofer");
-        //    frmAltaChofer.Controls["btnAceptar"].Click += (sender, e) =>
-        //        accionBotonAgregarChofer(sender, e, frmAltaChofer, "frmBajaCliente", "Chofer");
-        //    frmAltaChofer.Show();
-        //}
-
         public frmABM parametrizarFormulario(String funcion, String rol)
         {
             frmABM frmAltaCliente = new frmABM();
@@ -556,45 +492,7 @@ namespace UberFrba
             ((frmABM)formulario).tipoFuncion = textoFuncion;
         }
 
-        //public void accionBotonAgregarCliente(object sender, EventArgs e, frmABM formulario, String rol, String funcion)
-        //{
-        //    if (formulario.verificarDatosNoSeanNulos())
-        //    {
-        //        if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
-        //        {
-        //            Control.ControlCollection c = formulario.Controls;
-        //            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-        //                    = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-        //            adaptador.agregarCliente
-        //                            (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
-        //                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-        //                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text));
-        //            formulario.Close();
-        //            mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
-        //        }
-        //    }
-        //}
-
-        //public void accionBotonAgregarChofer(object sender, EventArgs e, frmABM formulario, String rol, String funcion)
-        //{
-        //    if (formulario.verificarDatosNoSeanNulos())
-        //    {
-        //        if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
-        //        {
-        //            frmABM.mensajeAlertaAntesDeAccion(rol, funcion);
-        //            Control.ControlCollection c = formulario.Controls;
-        //            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-        //                    = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-        //            adaptador.agregarChofer
-        //                            (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
-        //                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-        //                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text));
-        //            formulario.Close();
-        //            mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
-        //        }
-        //    }
-        //}
-        
+       
         public void mensajeCreacionDeUsuario(String nombre, String apellido)
         {
             //FIXME: evitar overflow al utilizar substring, agregar consulta a db para traer el nuevo usuario y mostrarlo. Acciona como validacion
@@ -616,32 +514,82 @@ namespace UberFrba
 
         public override void eliminar(String rol)
         {
-            mensajeFuncionNoValidaParaElRol(rol);
+            String funcion = "Eliminar";
+            if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
+            {
+                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
+                        = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+                String nombreMetodo = funcion.ToLower() + rol + "EnBD";
+                MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
+                methodInfo.Invoke(this, new object[] { IdTipoRol, adaptador });
+                frmABM.mensajeAutoEliminacionYSalidaDeAplicacion(funcion, rol);
+            }
+        }
+
+        public void eliminarClienteEnBD(int idTipoRol, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.eliminarCliente(idTipoRol);
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
+
+        public void eliminarChoferEnBD(int idTipoRol, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.eliminarChofer(idTipoRol);
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
         }
 
         public override void modificar(String rol)
         {
-            mensajeFuncionNoValidaParaElRol(rol);
+            String funcion = "Modificar";
+            if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
+            {
+                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
+                        = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+                String nombreMetodo = funcion.ToLower() + rol + "EnBD";
+                MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
+                methodInfo.Invoke(this, new object[] { IdTipoRol, adaptador });
+            }
         }
-        //public override void agregarChofer()
-        //{
-        //    mensajeFuncionNoValidaParaElRol("Chofer");
-        //}
 
-        //public override void agregarCliente()
-        //{
-        //    mensajeFuncionNoValidaParaElRol("Cliente");
-        //}
+        public void modificarClienteEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.modificarCliente(SingletonDatosUsuario.Instance.obtenerIdPersona(),Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text), Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
 
-        //public override void eliminarChofer()
-        //{
-        //    mensajeFuncionNoValidaParaElRol("Chofer");
-        //}
-
-        //public override void eliminarCliente()
-        //{
-        //    mensajeFuncionNoValidaParaElRol("Cliente");
-        //}
+        public void modificarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.modificarChofer(SingletonDatosUsuario.Instance.obtenerIdPersona(), Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text), Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }  
 
         private void mensajeFuncionNoValidaParaElRol(String rol)
         {

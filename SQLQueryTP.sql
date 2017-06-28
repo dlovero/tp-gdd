@@ -1050,6 +1050,14 @@ EXEC [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU
 
 select * from DESCONOCIDOS4.USUARIO_ROL
 FaríSHA
+select * from DESCONOCIDOS4.USUARIO order by Usu_Id desc
+go
+select * from DESCONOCIDOS4.CLIENTE order by Cliente_Id desc
+select * from DESCONOCIDOS4.PERSONA order by Persona_Id desc
+go
+select * from DESCONOCIDOS4.USUARIO order by Usu_Id desc
+go
+select * from DESCONOCIDOS4.CHOFER order by Chofer_Id desc
 
 select * from DESCONOCIDOS4.funcionalidad
 
