@@ -42,7 +42,6 @@
             this.lblSeleccionRol.Size = new System.Drawing.Size(102, 17);
             this.lblSeleccionRol.TabIndex = 0;
             this.lblSeleccionRol.Text = "Seleccione Rol";
-            this.lblSeleccionRol.Click += new System.EventHandler(this.label1_Click);
             // 
             // comboRol
             // 
@@ -72,7 +71,6 @@
             this.Controls.Add(this.lblSeleccionRol);
             this.Name = "frmRoles";
             this.Text = "Rol";
-            this.Load += new System.EventHandler(this.frmRoles_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -19,11 +19,6 @@ namespace UberFrba
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private ToolStripMenuItem dameUnItemDeMenu(string nombre)
         {
             return new ToolStripMenuItem(nombre);
@@ -41,10 +36,9 @@ namespace UberFrba
         {
             SingletonDatosUsuario datosUsuario = SingletonDatosUsuario.Instance;
             int rolId = Convert.ToInt16(comboRol.SelectedValue);
-            datosUsuario.setearRolId(rolId);
-            datosUsuario.setearIdTipoRol((int)((new GD1C2017DataSetTableAdapters.PRC_OBTENER_ID_CLIENTE_O_CHOFERTableAdapter())
-                .obtenerIdEnTablaClienteOChofer(datosUsuario.obtenerIdUsuario(), rolId)));
             this.Hide();
+            datosUsuario.configurarRol(rolId, comboRol.Text);
+            
             GD1C2017DataSetTableAdapters.PRC_OBTENER_MENU_X_ROLTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_OBTENER_MENU_X_ROLTableAdapter();
             DataTable tblMenuSegunRol = adaptador.menuSegunRol(rolId);
@@ -120,126 +114,95 @@ namespace UberFrba
             fmPrincipal.Show();
         }
 
-        private static bool esAdministrador()
-        {
-            return (SingletonDatosUsuario.Instance).obtenerIdRol() == 1;
-        }
+        //private static EventHandler obtenerManejadorDeAccionDeBotonDeFuncion(Form formulario, String textoFuncion)
+        //{
+        //    EventHandler handler;
+        //    switch (textoFuncion)
+        //    {
+        //        case "Eliminar":
+        //            handler = new EventHandler(((frmABM)formulario).btnEliminar_click);
+        //            break;
+        //        case "Modificar":
+        //            handler = new EventHandler(((frmABM)formulario).btnModificar_click);
+        //            break;
+        //        default:
+        //            handler = new EventHandler(((frmABM)formulario).btnDefecto_click);
+        //            break;
+        //    }
 
-        private static void configurarFormularioAgregarOModificar
-            (Form formulario, String textoFuncion, String textoTipo)
-        {
-            if (esAdministrador())
-            {
-                (((GroupBox)formulario.Controls["grupoBusquedaABM"]).Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
-               // ((Button)formulario.Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
-                ((frmABM)formulario).tipoUsuario = textoTipo;
-                ((frmABM)formulario).tipoFuncion = textoFuncion;
-            }
-            ((GroupBox)formulario.Controls["grupoBusquedaABM"]).Visible = esAdministrador();
-            formulario.Text = textoFuncion + " " + textoTipo;
-            ((TextBox)formulario.Controls["txtNombre"]).Focus();
-            ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion +" "+ textoTipo;
-            EventHandler handler = obtenerManejadorDeAccionDeBotonDeFuncion(formulario, textoFuncion);
-            ((Button)formulario.Controls["btnAceptar"]).Click += handler;
-        }
-
-        private static EventHandler obtenerManejadorDeAccionDeBotonDeFuncion(Form formulario, String textoFuncion)
-        {
-            EventHandler handler;
-            switch (textoFuncion)
-            {
-                case "Agregar":
-                    handler = new EventHandler(((frmABM)formulario).btnAceptar_click);
-                    break;
-                case "Eliminar":
-                    handler = new EventHandler(((frmABM)formulario).btnEliminar_click);
-                    break;
-                case "Modificar":
-                    handler = new EventHandler(((frmABM)formulario).btnModificar_click);
-                    break;
-                default:
-                    handler = new EventHandler(((frmABM)formulario).btnDefecto_click);
-                    break;
-            }
-
-            return new EventHandler(((frmABM)formulario).btnAceptar_click);
-        }
+        //    return new EventHandler(((frmABM)formulario).btnAceptar_click);
+        //}
 
         private void agregarCliente(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar", "Cliente");
-            frmAltaCliente.Controls["grupoBusquedaABM"].Visible = false;
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.agregarCliente();
         }
         
         private void eliminarCliente(object sender, EventArgs e)
         {
-            if (esAdministrador())
-            {
-                this.Hide();
-                frmABM frmAltaCliente = new frmABM();
-                configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Cliente");
-                frmAltaCliente.Show();
-            }
-            else
-            {
-                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-                    = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-                frmABM.dispararVentanaConMensaje("Cliente", "Eliminar");
-                adaptador.eliminarCliente
-                    (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
-                frmABM.mensajeAutoEliminacionYSalidaDeAplicacion("Eliminar", "Cliente");
-            }
+        //    if (esAdministrador())
+        //    {
+        //        this.Hide();
+        //        frmABM frmAltaCliente = new frmABM();
+        //        configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Cliente");
+        //        frmAltaCliente.Show();
+        //    }
+        //    else
+        //    {
+        //        GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
+        //            = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+        //        frmABM.dispararVentanaConMensaje("Cliente", "Eliminar");
+        //        adaptador.eliminarCliente
+        //            (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
+        //        frmABM.mensajeAutoEliminacionYSalidaDeAplicacion("Eliminar", "Cliente");
+        //    }
         }
 
         private void modificarCliente(object sender, EventArgs e)
         {
-            if (esAdministrador())
-            {
-                this.Hide();
-                frmABM frmAltaCliente = new frmABM();
-                configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar", "Cliente");
-                frmAltaCliente.Show();
-            }
-            else
-            {
+        //    if (esAdministrador())
+        //    {
+        //        this.Hide();
+        //        frmABM frmAltaCliente = new frmABM();
+        //        configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar", "Cliente");
+        //        frmAltaCliente.Show();
+        //    }
+        //    else
+        //    {
 
-            }
+        //    }
         }
         private void agregarChofer(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Agregar", "Chofer");
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.agregarChofer();
         }
         private void eliminarChofer(object sender, EventArgs e)
         {
-            if (esAdministrador())
-            {
-                this.Hide();
-                frmABM frmAltaCliente = new frmABM();
-                configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Chofer");
-                frmAltaCliente.Show();
-            }
-            else
-            {
-                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-                    = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-                frmABM.dispararVentanaConMensaje("Chofer", "Eliminar");
-                adaptador.eliminarCliente
-                    (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
-                frmABM.mensajeAutoEliminacionYSalidaDeAplicacion("Eliminar", "Chofer");
-            }
+        //    if (esAdministrador())
+        //    {
+        //        this.Hide();
+        //        frmABM frmAltaCliente = new frmABM();
+        //        configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Chofer");
+        //        frmAltaCliente.Show();
+        //    }
+        //    else
+        //    {
+        //        GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
+        //            = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+        //        frmABM.dispararVentanaConMensaje("Chofer", "Eliminar");
+        //        adaptador.eliminarCliente
+        //            (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
+        //        frmABM.mensajeAutoEliminacionYSalidaDeAplicacion("Eliminar", "Chofer");
+        //    }
         }
         private void modificarChofer(object sender, EventArgs e)
         {
-            this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar", "Chofer");
-            frmAltaCliente.Show();
+        //    this.Hide();
+        //    frmABM frmAltaCliente = new frmABM();
+        //    configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar", "Chofer");
+        //    frmAltaCliente.Show();
         }
         private void agregarAutomovil(object sender, EventArgs e)
         {
@@ -318,10 +281,6 @@ namespace UberFrba
             this.Hide();
             frmABM frmAltaCliente = new frmABM();
             frmAltaCliente.Show();
-        }
-        private void frmRoles_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

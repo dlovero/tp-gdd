@@ -54,7 +54,6 @@
             this.usuario.Size = new System.Drawing.Size(68, 20);
             this.usuario.TabIndex = 2;
             this.usuario.Text = "Usuario:";
-            this.usuario.Click += new System.EventHandler(this.label1_Click);
             // 
             // clave
             // 
@@ -65,7 +64,6 @@
             this.clave.Size = new System.Drawing.Size(52, 20);
             this.clave.TabIndex = 3;
             this.clave.Text = "Clave:";
-            this.clave.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // textoUsuario
             // 
@@ -94,7 +92,6 @@
             this.Controls.Add(this.button2);
             this.Name = "frmIngreso";
             this.Text = "Ingreso";
-            this.Load += new System.EventHandler(this.frmIngreso_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

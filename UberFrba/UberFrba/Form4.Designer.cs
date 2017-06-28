@@ -373,7 +373,6 @@
             this.Controls.Add(this.etiNombre);
             this.Name = "frmABM";
             this.Text = "Form4";
-            this.Load += new System.EventHandler(this.frmABM_Load);
             this.grupoBusquedaABM.ResumeLayout(false);
             this.grupoBusquedaABM.PerformLayout();
             this.ResumeLayout(false);

@@ -28,6 +28,7 @@ namespace UberFrba
             }
             return hash.ToString();
         }
+
         class Usuario
         {
             private int idUsuario;
@@ -53,16 +54,10 @@ namespace UberFrba
                 return roles;
             }
         }
+
         public frmIngreso()
         {
             InitializeComponent();
-        }
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -106,11 +101,6 @@ namespace UberFrba
                         break;
                 }
             }
-
-        private void frmIngreso_Load(object sender, EventArgs e)
-        {
-
-        }
         }
 
     public class SingletonDatosUsuario
@@ -162,6 +152,7 @@ namespace UberFrba
         }
         private static SingletonDatosUsuario instance;
         private DatosUsuario datosUsuario;
+        public IFuncionalidadRoles rol {set; get;}
 
         public SingletonDatosUsuario() { }
         public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido, int idPersona)
@@ -174,34 +165,53 @@ namespace UberFrba
             this.datosUsuario.IdPersona = idPersona;
             instance = this;
         }
+
+        public void configurarRol(int idRol, String nombreRol)
+        {
+            //TODO:MEJORAR para que no dependa del harcodeo por string "ADMINISTRATIVO"
+            rol = soyRolAdministrador(nombreRol) ? (IFuncionalidadRoles)new RolAdministrador(idRol, this.datosUsuario.IdUsuario, nombreRol) : (IFuncionalidadRoles)new RolGenerico(idRol, this.datosUsuario.IdUsuario, nombreRol);
+        }
+
+        public bool soyRolAdministrador(string nombreRol)
+        {
+            return nombreRol.ToUpper().Equals(VariablesGlobales.NOMBRE_ROL_ADMINISTRADOR);
+        }
+
         public int obtenerIdUsuario()
         {
             return this.datosUsuario.IdUsuario;
         }
+
         public int obtenerIdTipoRol()
         {
             return this.datosUsuario.IdTipoRol;
         }
+
         public int obtenerIdRol()
         {
             return this.datosUsuario.RolId;
         }
+
         public void setearIdPersona(int idPersona)
         {
             this.datosUsuario.IdPersona = idPersona;
         }
+
         public int obtenerIdPersona()
         {
             return this.datosUsuario.IdPersona;
         }
+
         public void setearRolId(int rolId)
         {
             this.datosUsuario.RolId = rolId;
         }
+
         public void setearIdTipoRol(int idTipoRol)
         {
             this.datosUsuario.IdTipoRol = idTipoRol;
         }
+
         public static SingletonDatosUsuario Instance
         {
             get
@@ -214,4 +224,218 @@ namespace UberFrba
             }
         }
     }
+
+    public interface IFuncionalidadRoles
+    {
+        void agregarCliente();
+        void agregarChofer();
+        void eliminarCliente();
+        void eliminarChofer();
     }
+
+    public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
+    {
+        public FuncionalidadSegunRol(int idRol, int idUsuario, String nombreRol)
+        {
+            this.idRol = idRol;
+            this.idTipoRol = obtenerIdTipoRol(idRol, idUsuario); ;
+            this.nombreRol = nombreRol;
+        }
+
+        private int idRol;
+        public int IdRol
+        {
+            get { return idRol; }
+            set { idRol = value; }
+        }
+
+        private int idTipoRol;
+        public int IdTipoRol
+        {
+            get { return idTipoRol; }
+            set { idTipoRol = value; }
+        }
+
+        private String nombreRol;
+        public String NombreRol
+        {
+            get { return nombreRol; }
+            set { nombreRol = value; }
+        }
+
+        private int obtenerIdTipoRol(int idRol, int idUsuario)
+        {
+            return (int)(new GD1C2017DataSetTableAdapters.PRC_OBTENER_ID_CLIENTE_O_CHOFERTableAdapter())
+                .obtenerIdEnTablaClienteOChofer(idUsuario, IdRol);
+        }
+
+        public abstract void agregarCliente();
+        public abstract void agregarChofer();
+        public abstract void eliminarCliente();
+        public abstract void eliminarChofer();
+
+        public abstract void completarConfiguracion
+            (frmABM formulario, String textoFuncion, String textoTipo);
+
+        protected void configurarFormularioAgregarOModificar
+            (frmABM formulario, String textoFuncion, String textoTipo)
+        {
+            completarConfiguracion(formulario, textoFuncion, textoTipo);
+            formulario.Text = textoFuncion + " " + textoTipo;
+            ((TextBox)formulario.Controls["txtNombre"]).Focus();
+            ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
+        }
+    }
+
+    public class ArgumentosParaEventoBotonAgregar : EventArgs
+    {
+        public frmABM formulario { set; get; }
+    }
+
+    public class RolAdministrador : FuncionalidadSegunRol
+    {
+        public RolAdministrador(int idRol, int idUsuario, String nombreRol)
+            : base(idRol, idUsuario, nombreRol)
+        { }
+
+        public override void eliminarCliente()
+        {
+            //        configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Cliente");
+            //        frmAltaCliente.Show();
+            frmABM frmBajaCliente = parametrizarFormulario("Eliminar", "Cliente");
+            frmBajaCliente.Controls["btnAceptar"].Click += (sender, e) =>
+                accionBotonAgregarCliente(sender, e, frmBajaCliente, "Eliminar", "Cliente");
+            frmBajaCliente.Show();
+        }
+
+        public override void eliminarChofer()
+        {
+            frmABM frmBajaChofer = parametrizarFormulario("Eliminar", "Chofer");
+            frmBajaChofer.Controls["btnAceptar"].Click += (sender, e) =>
+                accionBotonAgregarChofer(sender, e, frmBajaChofer, "Eliminar", "Chofer");
+            frmBajaChofer.Show();
+        }
+
+        public override void agregarCliente()
+        {
+            frmABM frmAltaCliente = parametrizarFormulario("Agregar", "Cliente");
+            frmAltaCliente.Controls["btnAceptar"].Click += (sender, e) =>
+                accionBotonAgregarCliente(sender, e, frmAltaCliente, "Agregar", "Cliente");
+            frmAltaCliente.Show();
+        }
+
+        public override void agregarChofer()
+        {
+            frmABM frmAltaChofer = parametrizarFormulario("Agregar", "Chofer");
+            frmAltaChofer.Controls["btnAceptar"].Click += (sender, e) =>
+                accionBotonAgregarChofer(sender, e, frmAltaChofer, "frmBajaCliente", "Chofer");
+            frmAltaChofer.Show();
+        }
+
+        private frmABM parametrizarFormulario(String funcion, String rol)
+        {
+            frmABM frmAltaCliente = new frmABM();
+            configurarFormularioAgregarOModificar(frmAltaCliente, funcion, rol);
+            frmAltaCliente.Controls["grupoBusquedaABM"].Visible = verificarCondicionesParaVisualizarPAnelDeBusqueda(funcion);
+            return frmAltaCliente;
+        }
+
+        private bool verificarCondicionesParaVisualizarPAnelDeBusqueda(String funcion)
+        {
+            return SingletonDatosUsuario.Instance.soyRolAdministrador(NombreRol) && !(funcion.ToUpper().Equals("AGREGAR"));
+        }
+
+        public override void completarConfiguracion
+            (frmABM formulario, String textoFuncion, String textoTipo)
+        {
+            (((GroupBox)formulario.Controls["grupoBusquedaABM"]).Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
+            ((frmABM)formulario).tipoUsuario = textoTipo;
+            ((frmABM)formulario).tipoFuncion = textoFuncion;
+        }
+
+        public void accionBotonAgregarCliente(object sender, EventArgs e, frmABM formulario, String rol, String funcion)
+        {
+            if (formulario.verificarDatosNoSeanNulos())
+            {
+                frmABM.dispararVentanaConMensaje(funcion, rol);
+                Control.ControlCollection c = formulario.Controls;
+                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
+                        = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+                adaptador.agregarCliente
+                                (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                                , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
+                                , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text));
+                formulario.Close();
+                mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
+            }
+        }
+
+        public void accionBotonAgregarChofer(object sender, EventArgs e, frmABM formulario, String rol, String funcion)
+        {
+            if (formulario.verificarDatosNoSeanNulos())
+            {
+                frmABM.dispararVentanaConMensaje(funcion, rol);
+                Control.ControlCollection c = formulario.Controls;
+                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
+                        = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+                adaptador.agregarChofer
+                                (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                                , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
+                                , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text));
+                formulario.Close();
+                mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
+            }
+        }
+        
+        public void mensajeCreacionDeUsuario(String nombre, String apellido)
+        {
+            MessageBox.Show("Se ha creado el usuario \"" + apellido.Substring(0, 4) + nombre.Substring(0, 3)+ "\" con clave \"Inicio2017\"", "Se ha creado Usuario",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+    }
+
+    public class RolGenerico : FuncionalidadSegunRol
+    {
+        public RolGenerico(int idRol, int idUsuario, String nombreRol)
+            : base(idRol, idUsuario, nombreRol)
+        { }
+
+        public override void agregarChofer()
+        {
+            mensajeFuncionNoValidaParaElRol("Chofer");
+        }
+
+        public override void agregarCliente()
+        {
+            mensajeFuncionNoValidaParaElRol("Cliente");
+        }
+
+        public override void eliminarChofer()
+        {
+            mensajeFuncionNoValidaParaElRol("Chofer");
+        }
+
+        public override void eliminarCliente()
+        {
+            mensajeFuncionNoValidaParaElRol("Cliente");
+        }
+
+        private void mensajeFuncionNoValidaParaElRol(String rol)
+        {
+            MessageBox.Show("Un " + NombreRol + " no puede agregar un "+rol, "Funcion no permitida para un " + NombreRol,
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        public override void completarConfiguracion
+            (frmABM formulario, String textoFuncion, String textoTipo)
+        {
+            ((GroupBox)formulario.Controls["grupoBusquedaABM"]).Visible = false;
+        }
+    }
+    public static class VariablesGlobales
+    {
+        public const string NOMBRE_ROL_ADMINISTRADOR = "ADMINISTRATIVO";
+    }
+    
+}

@@ -22,16 +22,6 @@ namespace UberFrba
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmABM_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
@@ -62,17 +52,8 @@ namespace UberFrba
 
         public static void dispararVentanaConMensaje(String tipoUsuario, String tipoFuncion)
         {
-            MessageBox.Show("¿Esta segura/o de " + tipoFuncion + " esta/e nueva/o " + tipoUsuario, tipoFuncion + " " + tipoUsuario,
+            MessageBox.Show("¿Esta segura/o de " + tipoFuncion + " este " + tipoUsuario, tipoFuncion + " " + tipoUsuario,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-        }
-
-        public void btnAceptar_click(object sender, EventArgs e)
-        {
-            if (verificarDatosNoSeanNulos())
-            {
-                dispararVentanaConMensaje(this.tipoUsuario, this.tipoFuncion);
-                ejecutarFuncionConTipoUsuario();
-            }
         }
 
         public void ejecutarFuncionConTipoUsuario()
@@ -81,24 +62,6 @@ namespace UberFrba
                     = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
             switch (tipoFuncion)
             {
-                case "Agregar":
-                    if (tipoUsuario.Equals("Cliente"))
-                    {
-                            adaptador.agregarCliente
-                            (Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtCalle.Text
-                            , Convert.ToInt16(txtPisoManzana.Text), txtDeptoLote.Text, txtLocalidad.Text, txtCodigoPostal.Text
-                            , Convert.ToInt32(txtTelefono.Text), txtCorreo.Text, Convert.ToDateTime(txtFechaNacimiento.Text));
-                            this.Close();
-                    }
-                    else
-                    {
-                        adaptador.agregarChofer
-                            (Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtCalle.Text
-                            , Convert.ToInt16(txtPisoManzana.Text), txtDeptoLote.Text, txtLocalidad.Text, txtCodigoPostal.Text
-                            , Convert.ToInt32(txtTelefono.Text), txtCorreo.Text, Convert.ToDateTime(txtFechaNacimiento.Text));
-                        this.Close();
-                    }
-                    break;
                 case "Eliminar":
                     switch (SingletonDatosUsuario.Instance.obtenerIdRol())
                     {
@@ -178,7 +141,7 @@ namespace UberFrba
         }
 
 
-        private Boolean verificarDatosNoSeanNulos()
+        public Boolean verificarDatosNoSeanNulos()
         {
             Boolean resultado=true;
             foreach (Control c in this.Controls)
