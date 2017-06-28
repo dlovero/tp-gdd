@@ -114,96 +114,42 @@ namespace UberFrba
             fmPrincipal.Show();
         }
 
-        //private static EventHandler obtenerManejadorDeAccionDeBotonDeFuncion(Form formulario, String textoFuncion)
-        //{
-        //    EventHandler handler;
-        //    switch (textoFuncion)
-        //    {
-        //        case "Eliminar":
-        //            handler = new EventHandler(((frmABM)formulario).btnEliminar_click);
-        //            break;
-        //        case "Modificar":
-        //            handler = new EventHandler(((frmABM)formulario).btnModificar_click);
-        //            break;
-        //        default:
-        //            handler = new EventHandler(((frmABM)formulario).btnDefecto_click);
-        //            break;
-        //    }
-
-        //    return new EventHandler(((frmABM)formulario).btnAceptar_click);
-        //}
-
         private void agregarCliente(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregarCliente();
+            SingletonDatosUsuario.Instance.rol.agregar("Cliente");
         }
         
         private void eliminarCliente(object sender, EventArgs e)
         {
-        //    if (esAdministrador())
-        //    {
-        //        this.Hide();
-        //        frmABM frmAltaCliente = new frmABM();
-        //        configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Cliente");
-        //        frmAltaCliente.Show();
-        //    }
-        //    else
-        //    {
-        //        GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-        //            = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-        //        frmABM.dispararVentanaConMensaje("Cliente", "Eliminar");
-        //        adaptador.eliminarCliente
-        //            (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
-        //        frmABM.mensajeAutoEliminacionYSalidaDeAplicacion("Eliminar", "Cliente");
-        //    }
+            this.Hide();
+            SingletonDatosUsuario.Instance.rol.eliminar("Cliente");
         }
 
         private void modificarCliente(object sender, EventArgs e)
         {
-        //    if (esAdministrador())
-        //    {
-        //        this.Hide();
-        //        frmABM frmAltaCliente = new frmABM();
-        //        configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar", "Cliente");
-        //        frmAltaCliente.Show();
-        //    }
-        //    else
-        //    {
-
-        //    }
+            this.Hide();
+            SingletonDatosUsuario.Instance.rol.modificar("Cliente");
         }
+
         private void agregarChofer(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregarChofer();
+            SingletonDatosUsuario.Instance.rol.agregar("Chofer");
         }
+
         private void eliminarChofer(object sender, EventArgs e)
         {
-        //    if (esAdministrador())
-        //    {
-        //        this.Hide();
-        //        frmABM frmAltaCliente = new frmABM();
-        //        configurarFormularioAgregarOModificar(frmAltaCliente, "Eliminar", "Chofer");
-        //        frmAltaCliente.Show();
-        //    }
-        //    else
-        //    {
-        //        GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-        //            = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-        //        frmABM.dispararVentanaConMensaje("Chofer", "Eliminar");
-        //        adaptador.eliminarCliente
-        //            (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
-        //        frmABM.mensajeAutoEliminacionYSalidaDeAplicacion("Eliminar", "Chofer");
-        //    }
+            this.Hide();
+            SingletonDatosUsuario.Instance.rol.eliminar("Chofer");
         }
+
         private void modificarChofer(object sender, EventArgs e)
         {
-        //    this.Hide();
-        //    frmABM frmAltaCliente = new frmABM();
-        //    configurarFormularioAgregarOModificar(frmAltaCliente, "Modificar", "Chofer");
-        //    frmAltaCliente.Show();
+            this.Hide();
+            SingletonDatosUsuario.Instance.rol.modificar("Chofer");
         }
+
         private void agregarAutomovil(object sender, EventArgs e)
         {
             this.Hide();

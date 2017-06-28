@@ -50,10 +50,11 @@ namespace UberFrba
             
         }
 
-        public static void dispararVentanaConMensaje(String tipoUsuario, String tipoFuncion)
+        public static Boolean mensajeAlertaAntesDeAccion(String rol, String funcion)
         {
-            MessageBox.Show("¿Esta segura/o de " + tipoFuncion + " este " + tipoUsuario, tipoFuncion + " " + tipoUsuario,
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " esta/e nueva/o " + rol, funcion + " " + rol,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            return (resultado == DialogResult.Yes);
         }
 
         public void ejecutarFuncionConTipoUsuario()
@@ -75,17 +76,17 @@ namespace UberFrba
                                 (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
                             mensajeAutoEliminacionYSalidaDeAplicacion(tipoFuncion, tipoUsuario);
                             break;
-                        case 1:
-                            if (tipoUsuario.Equals("Cliente"))
-                            {
-                                adaptador.eliminarCliente
-                                    (idTipoRol);
-                            } else {
-                                adaptador.eliminarChofer
-                                    (idTipoRol);
-                            }
-                            this.Close();
-                            break;
+                        //case 1:
+                        //    if (tipoUsuario.Equals("Cliente"))
+                        //    {
+                        //        adaptador.eliminarCliente
+                        //            (idTipoRol);
+                        //    } else {
+                        //        adaptador.eliminarChofer
+                        //            (idTipoRol);
+                        //    }
+                        //    this.Close();
+                        //    break;
                     }
                     break;
                 case "Modificar":
@@ -141,6 +142,8 @@ namespace UberFrba
         }
 
 
+
+
         public Boolean verificarDatosNoSeanNulos()
         {
             Boolean resultado=true;
@@ -163,12 +166,12 @@ namespace UberFrba
 
         public void btnEliminar_click(object sender, EventArgs e)
         {
-            dispararVentanaConMensaje(this.tipoUsuario, this.tipoFuncion);
+            mensajeAlertaAntesDeAccion(this.tipoUsuario, this.tipoFuncion);
             ejecutarFuncionConTipoUsuario();
         }
         public void btnModificar_click(object sender, EventArgs e)
         {
-            dispararVentanaConMensaje(this.tipoUsuario, this.tipoFuncion);
+            mensajeAlertaAntesDeAccion(this.tipoUsuario, this.tipoFuncion);
             ejecutarFuncionConTipoUsuario();
         }
         public void btnDefecto_click(object sender, EventArgs e)
