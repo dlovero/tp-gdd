@@ -1964,7 +1964,7 @@ GO
 
 
 IF OBJECT_ID('[DESCONOCIDOS4].PRC_OBTENER_ANCESTROS',N'P') IS NOT NULL
-	DROP FUNCTION [DESCONOCIDOS4].PRC_OBTENER_ANCESTROS;
+	DROP PROCEDURE [DESCONOCIDOS4].PRC_OBTENER_ANCESTROS;
 GO
 CREATE PROC [DESCONOCIDOS4].PRC_OBTENER_ANCESTROS
 (
@@ -2060,13 +2060,14 @@ BEGIN
 	  DECLARE @Usuario_Clave_Incorrecta INT
 	  DECLARE @NombreUsuario VARCHAR(50)
 	  DECLARE @ApellidoUsuario VARCHAR(50)
+	  DECLARE @PersonaId INT
 	  SELECT @Usuario_No_Habilitado = -2
 	  SELECT @Usuario_No_Existe = -1
 	  SELECT @Usuario_Clave_Incorrecta = -3
 	  SELECT @Habilitado = 1
 	  SELECT @No_Habilitado = 0
 
-      SELECT @Usu_Id = ISNULL(Usu_Id,-1)
+      SELECT @Usu_Id = Usu_Id
 		FROM [DESCONOCIDOS4].Usuario WHERE Usu_Nombre_Usuario = @Usuario
 
 	  SELECT @NombreUsuario = Persona_Nombre, @ApellidoUsuario = Persona_Apellido
@@ -2086,13 +2087,13 @@ BEGIN
 						-- Actualiza Intentos Fallidos de ingreso, en caso que sea necesario
 						UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=0 WHERE Usu_Id=@Usu_Id
 					END
-					SELECT @Usu_Id [codigoUsuario], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
+					SELECT @Usu_Id [codigoUsuario], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, isnull(@PersonaId,0) idPersona FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
                               WHERE Rol_Habilitado=@Habilitado and UsuRol_Usu_Id=@Usu_Id
 				END
 				ELSE
 				BEGIN
 					-- Usuario Existe, Clave Correcta y No Habilitado
-					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
+					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido, 0 idPersona
 				END
             END
             ELSE
@@ -2102,13 +2103,13 @@ BEGIN
 				UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=
 													([DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO(@Usu_Id)) + 1
 												WHERE Usu_Id=@Usu_Id
-				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
+				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido ,0 idPersona
             END
       END
       ELSE
       BEGIN
 		-- Usuario NO EXISTE
-        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido
+        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido, 0 idPersona
       END
 END
 go
