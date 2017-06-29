@@ -20,13 +20,17 @@ namespace UberFrba
 
         private void grillaDatosResultadoBusqueda_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            completarFormularioABMConDatosDeUsuarioSeleccionado();
+        }
+
+        private void completarFormularioABMConDatosDeUsuarioSeleccionado()
+        {
             System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
-            DataRowView row = ((DataRowView)(this.grillaDatosResultadoBusqueda.Rows[e.RowIndex]).DataBoundItem);
+            DataRowView row = ((DataRowView)(this.grillaDatosResultadoBusqueda.CurrentRow).DataBoundItem);
             String nombre = (String)row.Row["Persona_Nombre"];
-            
-           poblarDatosDelFormulario(formularioABM, row);
-           (formularioABM.Controls["grupoDatosPersona"]).Enabled = true;
-           this.Close();
+            poblarDatosDelFormulario(formularioABM, row);
+            (formularioABM.Controls["grupoDatosPersona"]).Enabled = true;
+            this.Close();
         }
 
         public static void poblarDatosDelFormulario(Form formulario, DataRowView filadeDatos)
@@ -42,30 +46,35 @@ namespace UberFrba
             ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtCalle"]).Text = filadeDatos.Row["Persona_Direccion"].ToString();
             ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtDeptoLote"]).Text = filadeDatos.Row["Persona_Departamento"].ToString();
             ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtPisoManzana"]).Text = filadeDatos.Row["Persona_Piso"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtFechaNacimiento"]).Text = filadeDatos.Row["Persona_Fecha_Nac"].ToString();
+            ((DateTimePicker)(formulario.Controls["grupoDatosPersona"]).Controls["selectorFechaNacimiento"]).Value = Convert.ToDateTime(filadeDatos.Row["Persona_Fecha_Nac"].ToString());
             ((CheckBox)(formulario.Controls["grupoDatosPersona"]).Controls["ccHabilitado"]).Checked = (Boolean)filadeDatos.Row["habilitado"];
             ((frmABM)formulario).idTipoRol = (int)filadeDatos.Row["idTipoRol"];
             ((frmABM)formulario).idPersona = (int)filadeDatos.Row["Persona_Id"];
         }
 
-        private class datosUsuarioResultadoBusqueda
-        {
-            public String Persona_Nombre { get; set; }
-            public String Persona_Apellido { get; set; }
-            public String Persona_Dni { get; set; }
-            public String Persona_Localidad { get; set; }
-            public String Persona_Cod_Postal { get; set; }
-            public String Persona_Direccion { get; set; }
-            public String Persona_Piso { get; set; }
-            public String Persona_Departamento { get; set; }
-            public String Persona_Telefono { get; set; }
-            public String Persona_Mail { get; set; }
-            public String Persona_Fecha_Nacimiento { get; set; }
-        }
+        //private class datosUsuarioResultadoBusqueda
+        //{
+        //    public String Persona_Nombre { get; set; }
+        //    public String Persona_Apellido { get; set; }
+        //    public String Persona_Dni { get; set; }
+        //    public String Persona_Localidad { get; set; }
+        //    public String Persona_Cod_Postal { get; set; }
+        //    public String Persona_Direccion { get; set; }
+        //    public String Persona_Piso { get; set; }
+        //    public String Persona_Departamento { get; set; }
+        //    public String Persona_Telefono { get; set; }
+        //    public String Persona_Mail { get; set; }
+        //    public String Persona_Fecha_Nacimiento { get; set; }
+        //}
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            completarFormularioABMConDatosDeUsuarioSeleccionado();
         }
     }
 

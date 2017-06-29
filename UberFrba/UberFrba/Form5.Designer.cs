@@ -30,6 +30,7 @@
         {
             this.grillaDatosResultadoBusqueda = new System.Windows.Forms.DataGridView();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaDatosResultadoBusqueda)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(298, 268);
+            this.btnCancelar.Location = new System.Drawing.Point(474, 273);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(108, 30);
             this.btnCancelar.TabIndex = 1;
@@ -55,11 +56,21 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Location = new System.Drawing.Point(153, 273);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(108, 30);
+            this.btnSeleccionar.TabIndex = 2;
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
             // frmResultadoBusquedaUsuarioABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 315);
+            this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grillaDatosResultadoBusqueda);
             this.Name = "frmResultadoBusquedaUsuarioABM";
@@ -72,5 +83,6 @@
 
         private System.Windows.Forms.DataGridView grillaDatosResultadoBusqueda;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnSeleccionar;
     }
 }

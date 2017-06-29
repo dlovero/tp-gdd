@@ -352,7 +352,6 @@ namespace UberFrba
                     String nombreMetodo = funcion.ToLower() + rol + "EnBD";
                     MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
                     methodInfo.Invoke(this, new object[] { c, adaptador });
-                    mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
                     formulario.Close();
                 }
             }
@@ -396,12 +395,13 @@ namespace UberFrba
                 adaptador.agregarCliente
                             (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text));
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value);
             }
             catch (SqlException e)
             {
                 mensajeErrorEnDB();
             }
+            mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
         }
 
         public void agregarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
@@ -411,12 +411,13 @@ namespace UberFrba
                 adaptador.agregarChofer
                             (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text));
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value);
             }
             catch (SqlException e)
             {
                 mensajeErrorEnDB();
             }
+            mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
         }
 
         public void eliminarClienteEnBD(int idTipoRol, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
@@ -450,7 +451,7 @@ namespace UberFrba
                 adaptador.modificarCliente
                             (idPersona, Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text)
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value
                             , Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
             }
             catch (SqlException e)
@@ -467,7 +468,7 @@ namespace UberFrba
                 adaptador.modificarChofer
                             (idPersona, Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text),
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value,
                             Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
             }
             catch (SqlException e)
@@ -574,7 +575,7 @@ namespace UberFrba
             {
                 adaptador.modificarCliente(SingletonDatosUsuario.Instance.obtenerIdPersona(),Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text), Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value, Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
             }
             catch (SqlException e)
             {
@@ -588,7 +589,7 @@ namespace UberFrba
             {
                 adaptador.modificarChofer(SingletonDatosUsuario.Instance.obtenerIdPersona(), Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(c["txtFechaNacimiento"].Text), Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value, Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
             }
             catch (SqlException e)
             {

@@ -59,9 +59,9 @@
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
-            this.txtFechaNacimiento = new System.Windows.Forms.TextBox();
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.grupoDatosPersona = new System.Windows.Forms.GroupBox();
+            this.selectorFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosPersona.SuspendLayout();
             this.SuspendLayout();
@@ -325,13 +325,6 @@
             this.lblFechaNacimiento.TabIndex = 31;
             this.lblFechaNacimiento.Text = "Fecha Nacimiento:";
             // 
-            // txtFechaNacimiento
-            // 
-            this.txtFechaNacimiento.Location = new System.Drawing.Point(434, 74);
-            this.txtFechaNacimiento.Name = "txtFechaNacimiento";
-            this.txtFechaNacimiento.Size = new System.Drawing.Size(174, 20);
-            this.txtFechaNacimiento.TabIndex = 16;
-            // 
             // ccHabilitado
             // 
             this.ccHabilitado.AutoSize = true;
@@ -344,8 +337,8 @@
             // 
             // grupoDatosPersona
             // 
+            this.grupoDatosPersona.Controls.Add(this.selectorFechaNacimiento);
             this.grupoDatosPersona.Controls.Add(this.ccHabilitado);
-            this.grupoDatosPersona.Controls.Add(this.txtFechaNacimiento);
             this.grupoDatosPersona.Controls.Add(this.lblFechaNacimiento);
             this.grupoDatosPersona.Controls.Add(this.btnCancelar);
             this.grupoDatosPersona.Controls.Add(this.btnAceptar);
@@ -374,6 +367,16 @@
             this.grupoDatosPersona.Size = new System.Drawing.Size(622, 264);
             this.grupoDatosPersona.TabIndex = 34;
             this.grupoDatosPersona.TabStop = false;
+            // 
+            // selectorFechaNacimiento
+            // 
+            this.selectorFechaNacimiento.Location = new System.Drawing.Point(434, 71);
+            this.selectorFechaNacimiento.MaxDate = new System.DateTime(2017, 6, 29, 0, 0, 0, 0);
+            this.selectorFechaNacimiento.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.selectorFechaNacimiento.Name = "selectorFechaNacimiento";
+            this.selectorFechaNacimiento.Size = new System.Drawing.Size(174, 20);
+            this.selectorFechaNacimiento.TabIndex = 34;
+            this.selectorFechaNacimiento.Value = new System.DateTime(2017, 6, 29, 0, 0, 0, 0);
             // 
             // frmABM
             // 
@@ -425,9 +428,9 @@
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblFechaNacimiento;
-        private System.Windows.Forms.TextBox txtFechaNacimiento;
         private System.Windows.Forms.CheckBox ccHabilitado;
         private System.Windows.Forms.GroupBox grupoDatosPersona;
+        private System.Windows.Forms.DateTimePicker selectorFechaNacimiento;
 
     }
 }

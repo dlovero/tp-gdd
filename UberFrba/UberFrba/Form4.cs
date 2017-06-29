@@ -20,6 +20,10 @@ namespace UberFrba
         public frmABM()
         {
             InitializeComponent();
+            this.selectorFechaNacimiento.MaxDate = DateTime.Now.AddYears(-18);
+            this.selectorFechaNacimiento.Value = DateTime.Now.AddYears(-18);
+            this.selectorFechaNacimiento.Format = DateTimePickerFormat.Custom;
+            this.selectorFechaNacimiento.CustomFormat = "dd 'de' MMMM 'de' yyyy";
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -43,6 +47,7 @@ namespace UberFrba
                 grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 grillaBusquedaUsuarios.AutoGenerateColumns = true;
                 formularioResultadoBusqueda.formularioABM = this;
+                formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar "+this.tipoUsuario;
                 formularioResultadoBusqueda.Show();
             } else {
                 MessageBox.Show("No Existe " + this.tipoUsuario + " coincidente con los parametros de busqueda");
@@ -88,11 +93,6 @@ namespace UberFrba
                 }
             }
             return resultado;
-        }
-
-        public void btnDefecto_click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Excelente");
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
