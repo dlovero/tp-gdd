@@ -756,6 +756,25 @@ AS
 END
 GO
 
+IF OBJECT_ID('[DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO;
+GO
+-- DEVUELVE 'SI' si el auto ya esta asignado a ese turno.
+CREATE FUNCTION [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@CHOFER INT)
+RETURNS CHAR(2)
+AS
+ BEGIN
+ DECLARE @RESUL CHAR(2)
+ IF (SELECT COUNT(*) FROM [DESCONOCIDOS4].UNIDAD_DISPONIBLE UD WHERE UD.Uni_Dis_Chofer=@CHOFER)>=1
+ SET @RESUL ='SI'
+ ELSE
+ SET @RESUL ='NO'
+ RETURN @RESUL
+END
+
+GO
+
+
 /*------------------------- PROCEDIMIENTOS DE MIGRACION Y CARGA DE TABLAS -----------------------------------*/
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE', N'P') IS NOT NULL
@@ -1873,7 +1892,7 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_ALTA_AUTOMOVIL_UNI_DISPO
 @Chofer INT
 AS 
 BEGIN TRAN
- IF [DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO'
+ IF [DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@Chofer)= 'NO'
   BEGIN
   INSERT INTO  [DESCONOCIDOS4].AUTO (Auto_patente,Auto_Detalle,Auto_Marca_Modelo,Auto_Habilitado) 
   VALUES 
@@ -1887,7 +1906,7 @@ BEGIN TRAN
   VALUES((SELECT MAX(Auto_Id) FROM [DESCONOCIDOS4].AUTO) ,@Chofer,@Turno)	
  END
  ELSE
- RAISERROR('Este chofer ya esta asignado en ese turno',16,1)
+ RAISERROR('Este chofer ya esta asignado en ese turno o a un auto',16,1)
 COMMIT;
 GO
 
@@ -1904,8 +1923,8 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_MODIFICACION_AUTO_DIS
 @Hab BIT
 AS 
 BEGIN TRAN
- IF ([DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND 
-	[DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO([DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(@Patente), @Turno) ='NO')
+ IF ([DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND   [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@Chofer)= 'NO'
+	 and [DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO([DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(@Patente), @Turno) ='NO')
   BEGIN
 	  UPDATE [DESCONOCIDOS4].AUTO 
 		SET  Auto_Patente=@Patente,Auto_Marca_Modelo=[DESCONOCIDOS4].FN_MARCAMOD_X_MARCA_MODELO(@Marca, @Modelo),
@@ -2069,6 +2088,7 @@ BEGIN
 	  SELECT @Habilitado = 1
 	  SELECT @No_Habilitado = 0
 
+
       SELECT @Usu_Id = Usu_Id
 		FROM [DESCONOCIDOS4].Usuario WHERE Usu_Nombre_Usuario = @Usuario
 
@@ -2089,13 +2109,13 @@ BEGIN
 						-- Actualiza Intentos Fallidos de ingreso, en caso que sea necesario
 						UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=0 WHERE Usu_Id=@Usu_Id
 					END
-					SELECT @Usu_Id [codigoUsuario], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, isnull(@PersonaId,0) idPersona FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
+					SELECT @Usu_Id [UserId], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, isnull(@PersonaId,0) idPersona FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
                               WHERE Rol_Habilitado=@Habilitado and UsuRol_Usu_Id=@Usu_Id
 				END
 				ELSE
 				BEGIN
 					-- Usuario Existe, Clave Correcta y No Habilitado
-					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido, 0 idPersona
+					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
 				END
             END
             ELSE
@@ -2105,13 +2125,13 @@ BEGIN
 				UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=
 													([DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO(@Usu_Id)) + 1
 												WHERE Usu_Id=@Usu_Id
-				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido ,0 idPersona
+				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
             END
       END
       ELSE
       BEGIN
 		-- Usuario NO EXISTE
-        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido, 0 idPersona
+        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
       END
 END
 go
