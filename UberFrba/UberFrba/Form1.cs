@@ -12,7 +12,6 @@ using System.Data.SqlClient;
 
 namespace UberFrba
 {
-    
     public partial class frmIngreso : Form
     {
         
@@ -231,10 +230,6 @@ namespace UberFrba
         void agregar(String rol);
         void eliminar(String rol);
         void modificar(String rol);
-        //void agregarCliente();
-        //void agregarChofer();
-        //void eliminarCliente();
-        //void eliminarChofer();
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -276,10 +271,6 @@ namespace UberFrba
         public abstract void agregar(String rol);
         public abstract void eliminar(String rol);
         public abstract void modificar(String rol);
-        //public abstract void agregarCliente();
-        //public abstract void agregarChofer();
-        //public abstract void eliminarCliente();
-        //public abstract void eliminarChofer();
 
         public abstract void completarConfiguracion
             (frmABM formulario, String textoFuncion, String textoTipo);
@@ -289,8 +280,10 @@ namespace UberFrba
         {
             completarConfiguracion(formulario, textoFuncion, textoTipo);
             formulario.Text = textoFuncion + " " + textoTipo;
-            ((TextBox)formulario.Controls["txtNombre"]).Focus();
-            ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
+            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Focus();
+           // ((TextBox)formulario.Controls["txtNombre"]).Focus();
+           // ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
+            ((Button)(formulario.Controls["grupoDatosPersona"]).Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
         }
 
 
@@ -315,23 +308,33 @@ namespace UberFrba
         public override void agregar(String rol)
         {
             frmABM frmAlta = parametrizarFormulario("Agregar", rol);
-            frmAlta.Controls["btnAceptar"].Click += (sender, e) =>
+            (frmAlta.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
                 accionBotonAgregar(sender, e, frmAlta, "Agregar", rol);
+            //desabilitarTodo(frmAlta.Controls["grupoDatosPersona"].Controls);
             frmAlta.Show();
         }
+                
+        //private void desabilitarTodo(Control.ControlCollection controles)
+        //{
+        //    foreach (Control c in controles)
+        //    {
+        //        c.Enabled = false;
+        //    }
+        //}
 
         public override void eliminar(String rol)
         {
             frmABM frmBaja = parametrizarFormulario("Eliminar", rol);
-            frmBaja.Controls["btnAceptar"].Click += (sender, e) =>
+            (frmBaja.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
                 accionBotonEliminar(sender, e, frmBaja, "Eliminar", rol);
+            (frmBaja.Controls["grupoDatosPersona"]).Enabled = false;
             frmBaja.Show();
         }
 
         public override void modificar(String rol)
         {
             frmABM frmModificar = parametrizarFormulario("Modificar", rol);
-            frmModificar.Controls["btnAceptar"].Click += (sender, e) =>
+            (frmModificar.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
                 accionBotonModificar(sender, e, frmModificar, "Modificar", rol);
             frmModificar.Show();
         }
@@ -342,7 +345,8 @@ namespace UberFrba
             {
                 if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
-                    Control.ControlCollection c = formulario.Controls;
+                   // Control.ControlCollection c = formulario.Controls;
+                    Control.ControlCollection c = (formulario.Controls["grupoDatosPersona"]).Controls;
                     GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
                             = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
                     String nombreMetodo = funcion.ToLower() + rol + "EnBD";
@@ -373,7 +377,8 @@ namespace UberFrba
             {
                 if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
-                    Control.ControlCollection c = formulario.Controls;
+                    //Control.ControlCollection c = formulario.Controls;
+                    Control.ControlCollection c = (formulario.Controls["grupoDatosPersona"]).Controls;
                     GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
                             = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
                     String nombreMetodo = funcion.ToLower() + rol + "EnBD";
@@ -607,5 +612,4 @@ namespace UberFrba
     {
         public const string NOMBRE_ROL_ADMINISTRADOR = "ADMINISTRATIVO";
     }
-    
 }

@@ -38,6 +38,9 @@
             this.grillaDatosResultadoBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaDatosResultadoBusqueda.Location = new System.Drawing.Point(6, 9);
             this.grillaDatosResultadoBusqueda.Name = "grillaDatosResultadoBusqueda";
+            this.grillaDatosResultadoBusqueda.ReadOnly = true;
+            this.grillaDatosResultadoBusqueda.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.grillaDatosResultadoBusqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grillaDatosResultadoBusqueda.Size = new System.Drawing.Size(725, 234);
             this.grillaDatosResultadoBusqueda.TabIndex = 0;
             this.grillaDatosResultadoBusqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grillaDatosResultadoBusqueda_CellContentDoubleClick);

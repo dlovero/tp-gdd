@@ -57,51 +57,6 @@ namespace UberFrba
             return (resultado == DialogResult.Yes);
         }
 
-        //public void ejecutarFuncionConTipoUsuario()
-        //{
-        //    GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-        //            = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-        //    switch (tipoFuncion)
-        //    {
-        //        //case "Eliminar":
-        //        //    switch (SingletonDatosUsuario.Instance.obtenerIdRol())
-        //        //    {
-        //        //        case 3:
-        //        //            adaptador.eliminarCliente
-        //        //                (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
-        //        //            mensajeAutoEliminacionYSalidaDeAplicacion(tipoFuncion,tipoUsuario);
-        //        //            break;
-        //        //        case 2:
-        //        //            adaptador.eliminarChofer
-        //        //                (SingletonDatosUsuario.Instance.obtenerIdTipoRol());
-        //        //            mensajeAutoEliminacionYSalidaDeAplicacion(tipoFuncion, tipoUsuario);
-        //        //            break;
-        //        //    }
-        //        //    break;
-        //        case "Modificar":
-                    
-        //            switch (SingletonDatosUsuario.Instance.obtenerIdRol())
-        //            {
-        //                case 3:
-        //                    adaptador.modificarCliente
-        //                    (SingletonDatosUsuario.Instance.obtenerIdPersona(),Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtCalle.Text
-        //                    , Convert.ToInt16(txtPisoManzana.Text), txtDeptoLote.Text, txtLocalidad.Text, txtCodigoPostal.Text
-        //                    , Convert.ToInt32(txtTelefono.Text), txtCorreo.Text, Convert.ToDateTime(txtFechaNacimiento.Text), ccHabilitado.Checked);
-        //                    break;
-        //                case 2:
-        //                    adaptador.modificarChofer
-        //                    (SingletonDatosUsuario.Instance.obtenerIdPersona(), Convert.ToInt32(txtDNI.Text), txtNombre.Text, txtApellido.Text, txtCalle.Text
-        //                    , Convert.ToInt16(txtPisoManzana.Text), txtDeptoLote.Text, txtLocalidad.Text, txtCodigoPostal.Text
-        //                    , Convert.ToInt32(txtTelefono.Text), txtCorreo.Text, Convert.ToDateTime(txtFechaNacimiento.Text), ccHabilitado.Checked);
-        //                    break;
-        //            }
-        //            break;
-        //        default:
-        //            break;
-        //    }
-            
-        //}
-
         public static void mensajeAutoEliminacionYSalidaDeAplicacion(String funcion, String usuario)
         {
             DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " esta/e nueva/o " + usuario, funcion + " " + usuario,
@@ -114,9 +69,6 @@ namespace UberFrba
                 Application.Exit();
             }
         }
-
-
-
 
         public Boolean verificarDatosNoSeanNulos()
         {
@@ -138,16 +90,6 @@ namespace UberFrba
             return resultado;
         }
 
-        //public void btnEliminar_click(object sender, EventArgs e)
-        //{
-        //    mensajeAlertaAntesDeAccion(this.tipoUsuario, this.tipoFuncion);
-        //    ejecutarFuncionConTipoUsuario();
-        //}
-        //public void btnModificar_click(object sender, EventArgs e)
-        //{
-        //    mensajeAlertaAntesDeAccion(this.tipoUsuario, this.tipoFuncion);
-        //    ejecutarFuncionConTipoUsuario();
-        //}
         public void btnDefecto_click(object sender, EventArgs e)
         {
             MessageBox.Show("Excelente");
