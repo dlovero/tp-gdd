@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnIngresar = new System.Windows.Forms.Button();
             this.usuario = new System.Windows.Forms.Label();
             this.clave = new System.Windows.Forms.Label();
             this.textoUsuario = new System.Windows.Forms.TextBox();
             this.textoClave = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button2
+            // btnIngresar
             // 
-            this.button2.Location = new System.Drawing.Point(128, 133);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 30);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Ingresar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnIngresar.Location = new System.Drawing.Point(128, 133);
+            this.btnIngresar.Name = "btnIngresar";
+            this.btnIngresar.Size = new System.Drawing.Size(96, 30);
+            this.btnIngresar.TabIndex = 1;
+            this.btnIngresar.Text = "Ingresar";
+            this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // usuario
             // 
@@ -89,7 +89,7 @@
             this.Controls.Add(this.textoUsuario);
             this.Controls.Add(this.clave);
             this.Controls.Add(this.usuario);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnIngresar);
             this.Name = "frmIngreso";
             this.Text = "Ingreso";
             this.ResumeLayout(false);
@@ -99,7 +99,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Label usuario;
         private System.Windows.Forms.Label clave;
         private System.Windows.Forms.TextBox textoUsuario;

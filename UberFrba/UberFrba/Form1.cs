@@ -14,7 +14,6 @@ namespace UberFrba
 {
     public partial class frmIngreso : Form
     {
-        
         static string sha256(string clave)
         {
             System.Security.Cryptography.SHA256Managed encriptador
@@ -60,22 +59,17 @@ namespace UberFrba
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnIngresar_Click(object sender, EventArgs e)
         {
                 GD1C2017DataSetTableAdapters.PRC_VALIDAR_USUARIOTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_VALIDAR_USUARIOTableAdapter();
                 DataTable tblUsuarioYRoles = adaptador.validarUsuario(textoUsuario.Text, sha256(textoClave.Text));
             List<Tuple<String,String>> roles = new List<Tuple<string,string>>();
-            int codigoUsuario=0;
-            String nombreUsuario = "", apellidoUsuario = "";
-            int idPersona=-1;
-                foreach (DataRow fila in tblUsuarioYRoles.Rows)
-                {
-                    codigoUsuario = fila.Field<int>("UserId");
-                    nombreUsuario = fila.Field<String>("Nombre");
-                    apellidoUsuario = fila.Field<String>("Apellido");
-                    idPersona = fila.Field<int>("idPersona");
-                }
+
+            int codigoUsuario = tblUsuarioYRoles.Rows[0].Field<int>("UserId");
+            String nombreUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Nombre");
+            String apellidoUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Apellido");
+            int idPersona = tblUsuarioYRoles.Rows[0].Field<int>("idPersona");
 
                 switch (codigoUsuario)
                 {
@@ -286,11 +280,25 @@ namespace UberFrba
             ((Button)(formulario.Controls["grupoDatosPersona"]).Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
         }
 
-
         public void mensajeErrorEnDB()
         {
             MessageBox.Show("Error al operar en la BD", "ERROR",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        protected Control.ControlCollection obtenerGrupoControlesDeFormularioABM(frmABM formulario, String grupoControles)
+        {
+            return (formulario.Controls[grupoControles]).Controls;
+        }
+
+        protected GD1C2017DataSetTableAdapters.QueriesTableAdapter obtenerAdaptadorBD()
+        {
+            return new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+        }
+
+        protected void ejecutarMetodoDeAccionConParametros(MethodInfo methodInfo, object[] objParametros)
+        {
+            methodInfo.Invoke(this, objParametros);
         }
     }
 
@@ -307,36 +315,28 @@ namespace UberFrba
 
         public override void agregar(String rol)
         {
-            frmABM frmAlta = parametrizarFormulario("Agregar", rol);
-            (frmAlta.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
-                accionBotonAgregar(sender, e, frmAlta, "Agregar", rol);
-            //desabilitarTodo(frmAlta.Controls["grupoDatosPersona"].Controls);
-            frmAlta.Show();
+            Action<object, EventArgs, frmABM, string, string> metodo = accionBotonAgregar;
+            armarFormulario(rol, metodo, "Agregar");
         }
-                
-        //private void desabilitarTodo(Control.ControlCollection controles)
-        //{
-        //    foreach (Control c in controles)
-        //    {
-        //        c.Enabled = false;
-        //    }
-        //}
 
         public override void eliminar(String rol)
         {
-            frmABM frmBaja = parametrizarFormulario("Eliminar", rol);
-            (frmBaja.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
-                accionBotonEliminar(sender, e, frmBaja, "Eliminar", rol);
-            (frmBaja.Controls["grupoDatosPersona"]).Enabled = false;
-            frmBaja.Show();
+            Action<object, EventArgs, frmABM, string, string> metodo = accionBotonEliminar;
+            armarFormulario(rol, metodo, "Eliminar");
         }
 
         public override void modificar(String rol)
         {
-            frmABM frmModificar = parametrizarFormulario("Modificar", rol);
-            (frmModificar.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
-                accionBotonModificar(sender, e, frmModificar, "Modificar", rol);
-            frmModificar.Show();
+            Action<object, EventArgs, frmABM, string, string> metodo = accionBotonModificar;
+            armarFormulario(rol, metodo, "Modificar");
+        }
+
+        private void armarFormulario(String rol, Action<object, EventArgs, frmABM, string, string> metodo, String funcion)
+        {
+            frmABM frmAlta = parametrizarFormulario(funcion, rol);
+            (frmAlta.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
+                metodo(sender, e, frmAlta, funcion, rol);
+            frmAlta.Show();
         }
 
         private void accionBotonAgregar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
@@ -345,13 +345,12 @@ namespace UberFrba
             {
                 if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
-                   // Control.ControlCollection c = formulario.Controls;
                     Control.ControlCollection c = (formulario.Controls["grupoDatosPersona"]).Controls;
                     GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
                             = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
                     String nombreMetodo = funcion.ToLower() + rol + "EnBD";
                     MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
-                    methodInfo.Invoke(this, new object[] { c, adaptador });
+                    ejecutarMetodoDeAccionConParametros(methodInfo, new object[] { c, adaptador });
                     formulario.Close();
                 }
             }
@@ -365,7 +364,7 @@ namespace UberFrba
                         = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
                 String nombreMetodo = funcion.ToLower() + rol + "EnBD";
                 MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
-                methodInfo.Invoke(this, new object[] { formulario.idTipoRol, adaptador });
+                ejecutarMetodoDeAccionConParametros(methodInfo, new object[] { formulario.idTipoRol, adaptador });
                 formulario.Close();
             }
         }
@@ -376,13 +375,11 @@ namespace UberFrba
             {
                 if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
-                    //Control.ControlCollection c = formulario.Controls;
-                    Control.ControlCollection c = (formulario.Controls["grupoDatosPersona"]).Controls;
-                    GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-                            = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
                     String nombreMetodo = funcion.ToLower() + rol + "EnBD";
                     MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
-                    methodInfo.Invoke(this, new object[] { c, adaptador, formulario.idPersona });
+                    ejecutarMetodoDeAccionConParametros(methodInfo, new object[] { 
+                        obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona"), 
+                        obtenerAdaptadorBD(), formulario.idPersona });
                     formulario.Close();
                 }
             }
@@ -395,7 +392,7 @@ namespace UberFrba
                 adaptador.agregarCliente
                             (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value);
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
             }
             catch (SqlException e)
             {
@@ -411,7 +408,7 @@ namespace UberFrba
                 adaptador.agregarChofer
                             (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value);
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
             }
             catch (SqlException e)
             {
