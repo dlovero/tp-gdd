@@ -221,9 +221,15 @@ namespace UberFrba
 
     public interface IFuncionalidadRoles
     {
-        void agregar(String rol);
-        void eliminar(String rol);
-        void modificar(String rol);
+        void agregarClienteChofer(String rol);
+        void eliminarClienteChofer(String rol);
+        void modificarClienteChofer(String rol);
+        void agregarAutomovil(String rol);
+        void eliminarAutomovil(String rol);
+        void modificarAutomovil(String rol);
+        void agregarRol(String rol);
+        void eliminarRol(String rol);
+        void modificarRol(String rol);
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -262,9 +268,15 @@ namespace UberFrba
                 .obtenerIdEnTablaClienteOChofer(idUsuario, IdRol);
         }
 
-        public abstract void agregar(String rol);
-        public abstract void eliminar(String rol);
-        public abstract void modificar(String rol);
+        public abstract void agregarClienteChofer(String rol);
+        public abstract void eliminarClienteChofer(String rol);
+        public abstract void modificarClienteChofer(String rol);
+        public abstract void agregarAutomovil(String rol);
+        public abstract void eliminarAutomovil(String rol);
+        public abstract void modificarAutomovil(String rol);
+        public abstract void agregarRol(String rol);
+        public abstract void eliminarRol(String rol);
+        public abstract void modificarRol(String rol);
 
         public abstract void completarConfiguracion
             (frmABM formulario, String textoFuncion, String textoTipo);
@@ -275,8 +287,6 @@ namespace UberFrba
             completarConfiguracion(formulario, textoFuncion, textoTipo);
             formulario.Text = textoFuncion + " " + textoTipo;
             ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Focus();
-           // ((TextBox)formulario.Controls["txtNombre"]).Focus();
-           // ((Button)formulario.Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
             ((Button)(formulario.Controls["grupoDatosPersona"]).Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
         }
 
@@ -300,6 +310,11 @@ namespace UberFrba
         {
             methodInfo.Invoke(this, objParametros);
         }
+
+        protected MethodInfo obtenerNombreMetodo(string funcion, string rol)
+        {
+            return this.GetType().GetMethod(funcion.ToLower() + rol + "EnBD");
+        }
     }
 
     public class ArgumentosParaEventoBotonAgregar : EventArgs
@@ -313,22 +328,95 @@ namespace UberFrba
             : base(idRol, idUsuario, nombreRol)
         { }
 
-        public override void agregar(String rol)
+        public override void agregarClienteChofer(String rol)
         {
             Action<object, EventArgs, frmABM, string, string> metodo = accionBotonAgregar;
             armarFormulario(rol, metodo, "Agregar");
         }
 
-        public override void eliminar(String rol)
+        public override void eliminarClienteChofer(String rol)
         {
             Action<object, EventArgs, frmABM, string, string> metodo = accionBotonEliminar;
             armarFormulario(rol, metodo, "Eliminar");
         }
 
-        public override void modificar(String rol)
+        public override void modificarClienteChofer(String rol)
         {
             Action<object, EventArgs, frmABM, string, string> metodo = accionBotonModificar;
             armarFormulario(rol, metodo, "Modificar");
+        }
+
+        public override void agregarAutomovil(String rol)
+        {
+            frmAutomovil frmAutomovil = new frmAutomovil();
+            String funcion = "Agregar";
+            frmAutomovil.construite(frmAutomovil);
+            (frmAutomovil.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
+                accionBotonAgregarAutomovil(sender, e, frmAutomovil, funcion, rol);
+            frmAutomovil.Show();
+        }
+
+        private void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
+        {
+            if (formulario.verificarDatosNoSeanNulos())
+            {
+                if (frmAutomovil.mensajeAlertaAntesDeAccion(rol, funcion))
+                {
+                    ejecutarMetodoDeAccionConParametros(
+                        obtenerNombreMetodo(funcion, rol),
+                        new object[] { 
+                            formulario.obtenerGrupoControlesDeDatosDeAutomovil(formulario,"grupoDatosAutomovil")
+                            ,obtenerAdaptadorBD() });
+                    formulario.Close();
+                }
+            }
+        }
+
+        public override void eliminarAutomovil(String rol)
+        {
+            frmAutomovil frmAutomovil = new frmAutomovil();
+            String funcion = "Eliminar";
+            (frmAutomovil.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
+                accionBotonEliminarAutomovil(sender, e, frmAutomovil, funcion, rol);
+            frmAutomovil.Show();
+        }
+
+        private void accionBotonEliminarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
+        {
+            if (frmAutomovil.mensajeAlertaAntesDeAccion(rol, funcion))
+            {
+                ejecutarMetodoDeAccionConParametros(
+                    obtenerNombreMetodo(funcion, rol),
+                    new object[] { 
+                        formulario.obtenerGrupoControlesDeDatosDeAutomovil(formulario,"grupoDatosAutomovil")
+                        ,obtenerAdaptadorBD() });
+                formulario.Close();
+            }
+        }
+
+        public override void modificarAutomovil(String rol)
+        {
+            frmAutomovil frmAutomovil = new frmAutomovil();
+            String funcion = "Modificar";
+            (frmAutomovil.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
+                accionBotonModificarAutomovil(sender, e, frmAutomovil, funcion, rol);
+            frmAutomovil.Show();
+        }
+
+        private void accionBotonModificarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
+        {
+            if (formulario.verificarDatosNoSeanNulos())
+            {
+                if (frmAutomovil.mensajeAlertaAntesDeAccion(rol, funcion))
+                {
+                    ejecutarMetodoDeAccionConParametros(
+                        obtenerNombreMetodo(funcion, rol),
+                        new object[] { 
+                            formulario.obtenerGrupoControlesDeDatosDeAutomovil(formulario,"grupoDatosAutomovil")
+                            ,obtenerAdaptadorBD() });
+                    formulario.Close();
+                }
+            }
         }
 
         private void armarFormulario(String rol, Action<object, EventArgs, frmABM, string, string> metodo, String funcion)
@@ -345,12 +433,9 @@ namespace UberFrba
             {
                 if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
-                    Control.ControlCollection c = (formulario.Controls["grupoDatosPersona"]).Controls;
-                    GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-                            = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-                    String nombreMetodo = funcion.ToLower() + rol + "EnBD";
-                    MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
-                    ejecutarMetodoDeAccionConParametros(methodInfo, new object[] { c, adaptador });
+                    ejecutarMetodoDeAccionConParametros(obtenerNombreMetodo(funcion, rol), new object[] { 
+                        obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona")
+                        ,obtenerAdaptadorBD() });
                     formulario.Close();
                 }
             }
@@ -360,11 +445,9 @@ namespace UberFrba
         {
             if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
             {
-                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador
-                        = new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-                String nombreMetodo = funcion.ToLower() + rol + "EnBD";
-                MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
-                ejecutarMetodoDeAccionConParametros(methodInfo, new object[] { formulario.idTipoRol, adaptador });
+                ejecutarMetodoDeAccionConParametros(
+                    obtenerNombreMetodo(funcion, rol),
+                    new object[] { formulario.idTipoRol, obtenerAdaptadorBD() });
                 formulario.Close();
             }
         }
@@ -375,14 +458,65 @@ namespace UberFrba
             {
                 if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
-                    String nombreMetodo = funcion.ToLower() + rol + "EnBD";
-                    MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
-                    ejecutarMetodoDeAccionConParametros(methodInfo, new object[] { 
+                    ejecutarMetodoDeAccionConParametros(
+                        obtenerNombreMetodo(funcion, rol),
+                        new object[] { 
                         obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona"), 
                         obtenerAdaptadorBD(), formulario.idPersona });
                     formulario.Close();
                 }
             }
+        }
+
+        public void agregarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.agregarAutomovil
+                            (Convert.ToInt32(c["comboMarca"].Text), 
+                            Convert.ToInt32(c["txtModelo"].Text),
+                            c["txtPatente"].Text,
+                            Convert.ToInt32(c["comboTurno"].Text),
+                            Convert.ToInt32(c["comboChofer"].Text));
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+            //mensajeCreacionDeAutomovil(c["txtNombre"].Text, c["txtApellido"].Text);
+        }
+
+        public void eliminarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.eliminarAutomovil
+                            (0);
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+            //mensajeCreacionDeAutomovil(c["txtNombre"].Text, c["txtApellido"].Text);
+        }
+
+        public void modificarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.modificarAutomovil
+                            (Convert.ToInt32(c["comboMarca"].Text),
+                            Convert.ToInt32(c["txtModelo"].Text),
+                            c["txtPatente"].Text,
+                            Convert.ToInt32(c["comboTurno"].Text),
+                            Convert.ToInt32(c["comboChofer"].Text),
+                            Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+            //mensajeCreacionDeAutomovil(c["txtNombre"].Text, c["txtApellido"].Text);
         }
 
         public void agregarClienteEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
@@ -494,7 +628,6 @@ namespace UberFrba
             ((frmABM)formulario).tipoUsuario = textoTipo;
             ((frmABM)formulario).tipoFuncion = textoFuncion;
         }
-
        
         public void mensajeCreacionDeUsuario(String nombre, String apellido)
         {
@@ -502,6 +635,10 @@ namespace UberFrba
             MessageBox.Show("Se ha creado el usuario \"" + apellido.Substring(0, 4) + nombre.Substring(0, 3)+ "\" con clave \"Inicio2017\"", "Se ha creado Usuario",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        public override void agregarRol(String rol) { }
+        public override void eliminarRol(String rol) { }
+        public override void modificarRol(String rol) { }
     }
 
     public class RolGenerico : FuncionalidadSegunRol
@@ -510,12 +647,19 @@ namespace UberFrba
             : base(idRol, idUsuario, nombreRol)
         { }
 
-        public override void agregar(String rol)
+        public override void agregarClienteChofer(String rol)
         {
             mensajeFuncionNoValidaParaElRol(rol);
         }
 
-        public override void eliminar(String rol)
+        public override void agregarRol(String rol) { }
+        public override void eliminarRol(String rol) { }
+        public override void modificarRol(String rol) { }
+        public override void agregarAutomovil(String rol) { }
+        public override void eliminarAutomovil(String rol) { }
+        public override void modificarAutomovil(String rol) { }
+
+        public override void eliminarClienteChofer(String rol)
         {
             String funcion = "Eliminar";
             if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))
@@ -553,7 +697,7 @@ namespace UberFrba
             }
         }
 
-        public override void modificar(String rol)
+        public override void modificarClienteChofer(String rol)
         {
             String funcion = "Modificar";
             if (frmABM.mensajeAlertaAntesDeAccion(rol, funcion))

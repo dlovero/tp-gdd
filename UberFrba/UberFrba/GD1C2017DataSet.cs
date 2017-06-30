@@ -9,6 +9,10 @@
 }
 
 namespace UberFrba.GD1C2017DataSetTableAdapters {
+    partial class PRC_LISTADO_TURNOS_DISPONIBLESTableAdapter
+    {
+    }
+
     partial class PRC_OBTENER_ID_CLIENTE_O_CHOFERTableAdapter
     {
     }

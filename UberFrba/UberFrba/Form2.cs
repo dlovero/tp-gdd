@@ -115,74 +115,68 @@ namespace UberFrba
         private void agregarCliente(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregar("Cliente");
+            SingletonDatosUsuario.Instance.rol.agregarClienteChofer("Cliente");
         }
         
         private void eliminarCliente(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.eliminar("Cliente");
+            SingletonDatosUsuario.Instance.rol.eliminarClienteChofer("Cliente");
         }
 
         private void modificarCliente(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.modificar("Cliente");
+            SingletonDatosUsuario.Instance.rol.modificarClienteChofer("Cliente");
         }
 
         private void agregarChofer(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregar("Chofer");
+            SingletonDatosUsuario.Instance.rol.agregarClienteChofer("Chofer");
         }
 
         private void eliminarChofer(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.eliminar("Chofer");
+            SingletonDatosUsuario.Instance.rol.eliminarClienteChofer("Chofer");
         }
 
         private void modificarChofer(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.modificar("Chofer");
+            SingletonDatosUsuario.Instance.rol.modificarClienteChofer("Chofer");
         }
 
         private void agregarAutomovil(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.agregarAutomovil("Automovil");
         }
         private void eliminarAutomovil(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.eliminarAutomovil("Automovil");
         }
         private void modificarAutomovil(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.modificarAutomovil("Automovil");
         }
         private void agregarRol(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.agregarRol("Rol");
         }
         private void eliminarRol(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.eliminarRol("Rol");
         }
         private void modificarRol(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.modificarRol("Rol");
         }
         private void facturarCliente(object sender, EventArgs e)
         {

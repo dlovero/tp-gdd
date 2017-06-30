@@ -35,7 +35,6 @@ namespace UberFrba
 
         public static void poblarDatosDelFormulario(Form formulario, DataRowView filadeDatos)
         {
-
             ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Text = filadeDatos.Row["Persona_Nombre"].ToString();
             ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtApellido"]).Text = filadeDatos.Row["Persona_Apellido"].ToString();
             ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtDNI"]).Text = filadeDatos.Row["Persona_Dni"].ToString();
@@ -52,21 +51,6 @@ namespace UberFrba
             ((frmABM)formulario).idPersona = (int)filadeDatos.Row["Persona_Id"];
         }
 
-        //private class datosUsuarioResultadoBusqueda
-        //{
-        //    public String Persona_Nombre { get; set; }
-        //    public String Persona_Apellido { get; set; }
-        //    public String Persona_Dni { get; set; }
-        //    public String Persona_Localidad { get; set; }
-        //    public String Persona_Cod_Postal { get; set; }
-        //    public String Persona_Direccion { get; set; }
-        //    public String Persona_Piso { get; set; }
-        //    public String Persona_Departamento { get; set; }
-        //    public String Persona_Telefono { get; set; }
-        //    public String Persona_Mail { get; set; }
-        //    public String Persona_Fecha_Nacimiento { get; set; }
-        //}
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -77,5 +61,4 @@ namespace UberFrba
             completarFormularioABMConDatosDeUsuarioSeleccionado();
         }
     }
-
 }

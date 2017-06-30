@@ -1,6 +1,6 @@
 ﻿namespace UberFrba
 {
-    partial class Form6
+    partial class frmAutomovil
     {
         /// <summary>
         /// Required designer variable.
@@ -29,30 +29,31 @@
         private void InitializeComponent()
         {
             this.grupoBusquedaABM = new System.Windows.Forms.GroupBox();
+            this.comboMarcaBusqueda = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtBusquedaChofer = new System.Windows.Forms.TextBox();
             this.lblBuscarDNI = new System.Windows.Forms.Label();
             this.lblBuscarApellido = new System.Windows.Forms.Label();
             this.lblBusquedaNombre = new System.Windows.Forms.Label();
             this.txtBusquedaModelo = new System.Windows.Forms.TextBox();
             this.txtBusquedaPatente = new System.Windows.Forms.TextBox();
-            this.txtModelo = new System.Windows.Forms.TextBox();
-            this.txtBusquedaChofer = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboMarcaBusqueda = new System.Windows.Forms.ComboBox();
             this.comboMarca = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblPatente = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPatente = new System.Windows.Forms.TextBox();
             this.lblTurno = new System.Windows.Forms.Label();
             this.comboTurno = new System.Windows.Forms.ComboBox();
             this.comboChofer = new System.Windows.Forms.ComboBox();
             this.lblChofer = new System.Windows.Forms.Label();
-            this.grupoDatosAutomobil = new System.Windows.Forms.GroupBox();
-            this.btnAceptar = new System.Windows.Forms.Button();
+            this.grupoDatosAutomovil = new System.Windows.Forms.GroupBox();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.ccHabilitado = new System.Windows.Forms.CheckBox();
+            this.comboModelo = new System.Windows.Forms.ComboBox();
             this.grupoBusquedaABM.SuspendLayout();
-            this.grupoDatosAutomobil.SuspendLayout();
+            this.grupoDatosAutomovil.SuspendLayout();
             this.SuspendLayout();
             // 
             // grupoBusquedaABM
@@ -73,6 +74,23 @@
             this.grupoBusquedaABM.TabStop = false;
             this.grupoBusquedaABM.Text = "Busqueda";
             // 
+            // comboMarcaBusqueda
+            // 
+            this.comboMarcaBusqueda.FormattingEnabled = true;
+            this.comboMarcaBusqueda.Location = new System.Drawing.Point(33, 26);
+            this.comboMarcaBusqueda.Name = "comboMarcaBusqueda";
+            this.comboMarcaBusqueda.Size = new System.Drawing.Size(174, 21);
+            this.comboMarcaBusqueda.TabIndex = 32;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(318, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Chofer";
+            // 
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(442, 44);
@@ -81,6 +99,13 @@
             this.btnBuscar.TabIndex = 27;
             this.btnBuscar.Text = "Buscar Automovil";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            // 
+            // txtBusquedaChofer
+            // 
+            this.txtBusquedaChofer.Location = new System.Drawing.Point(247, 68);
+            this.txtBusquedaChofer.Name = "txtBusquedaChofer";
+            this.txtBusquedaChofer.Size = new System.Drawing.Size(174, 20);
+            this.txtBusquedaChofer.TabIndex = 29;
             // 
             // lblBuscarDNI
             // 
@@ -123,37 +148,6 @@
             this.txtBusquedaPatente.Size = new System.Drawing.Size(174, 20);
             this.txtBusquedaPatente.TabIndex = 25;
             // 
-            // txtModelo
-            // 
-            this.txtModelo.Location = new System.Drawing.Point(31, 60);
-            this.txtModelo.Name = "txtModelo";
-            this.txtModelo.Size = new System.Drawing.Size(174, 20);
-            this.txtModelo.TabIndex = 24;
-            // 
-            // txtBusquedaChofer
-            // 
-            this.txtBusquedaChofer.Location = new System.Drawing.Point(247, 68);
-            this.txtBusquedaChofer.Name = "txtBusquedaChofer";
-            this.txtBusquedaChofer.Size = new System.Drawing.Size(174, 20);
-            this.txtBusquedaChofer.TabIndex = 29;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(318, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Chofer";
-            // 
-            // comboMarcaBusqueda
-            // 
-            this.comboMarcaBusqueda.FormattingEnabled = true;
-            this.comboMarcaBusqueda.Location = new System.Drawing.Point(33, 26);
-            this.comboMarcaBusqueda.Name = "comboMarcaBusqueda";
-            this.comboMarcaBusqueda.Size = new System.Drawing.Size(174, 21);
-            this.comboMarcaBusqueda.TabIndex = 32;
-            // 
             // comboMarca
             // 
             this.comboMarca.FormattingEnabled = true;
@@ -189,12 +183,12 @@
             this.lblPatente.TabIndex = 36;
             this.lblPatente.Text = "Patente";
             // 
-            // textBox1
+            // txtPatente
             // 
-            this.textBox1.Location = new System.Drawing.Point(245, 16);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(174, 20);
-            this.textBox1.TabIndex = 35;
+            this.txtPatente.Location = new System.Drawing.Point(245, 16);
+            this.txtPatente.Name = "txtPatente";
+            this.txtPatente.Size = new System.Drawing.Size(174, 20);
+            this.txtPatente.TabIndex = 35;
             // 
             // lblTurno
             // 
@@ -216,7 +210,7 @@
             // comboChofer
             // 
             this.comboChofer.FormattingEnabled = true;
-            this.comboChofer.Location = new System.Drawing.Point(134, 104);
+            this.comboChofer.Location = new System.Drawing.Point(31, 106);
             this.comboChofer.Name = "comboChofer";
             this.comboChofer.Size = new System.Drawing.Size(174, 21);
             this.comboChofer.TabIndex = 41;
@@ -224,40 +218,32 @@
             // lblChofer
             // 
             this.lblChofer.AutoSize = true;
-            this.lblChofer.Location = new System.Drawing.Point(202, 88);
+            this.lblChofer.Location = new System.Drawing.Point(99, 90);
             this.lblChofer.Name = "lblChofer";
             this.lblChofer.Size = new System.Drawing.Size(38, 13);
             this.lblChofer.TabIndex = 40;
             this.lblChofer.Text = "Chofer";
             // 
-            // grupoDatosAutomobil
+            // grupoDatosAutomovil
             // 
-            this.grupoDatosAutomobil.Controls.Add(this.btnCancelar);
-            this.grupoDatosAutomobil.Controls.Add(this.btnAceptar);
-            this.grupoDatosAutomobil.Controls.Add(this.comboChofer);
-            this.grupoDatosAutomobil.Controls.Add(this.lblChofer);
-            this.grupoDatosAutomobil.Controls.Add(this.comboTurno);
-            this.grupoDatosAutomobil.Controls.Add(this.lblTurno);
-            this.grupoDatosAutomobil.Controls.Add(this.lblPatente);
-            this.grupoDatosAutomobil.Controls.Add(this.textBox1);
-            this.grupoDatosAutomobil.Controls.Add(this.label3);
-            this.grupoDatosAutomobil.Controls.Add(this.label2);
-            this.grupoDatosAutomobil.Controls.Add(this.comboMarca);
-            this.grupoDatosAutomobil.Controls.Add(this.txtModelo);
-            this.grupoDatosAutomobil.Location = new System.Drawing.Point(28, 112);
-            this.grupoDatosAutomobil.Name = "grupoDatosAutomobil";
-            this.grupoDatosAutomobil.Size = new System.Drawing.Size(612, 140);
-            this.grupoDatosAutomobil.TabIndex = 42;
-            this.grupoDatosAutomobil.TabStop = false;
-            this.grupoDatosAutomobil.Text = "groupBox1";
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Location = new System.Drawing.Point(440, 28);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(131, 29);
-            this.btnAceptar.TabIndex = 33;
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.grupoDatosAutomovil.Controls.Add(this.comboModelo);
+            this.grupoDatosAutomovil.Controls.Add(this.ccHabilitado);
+            this.grupoDatosAutomovil.Controls.Add(this.btnCancelar);
+            this.grupoDatosAutomovil.Controls.Add(this.btnAceptar);
+            this.grupoDatosAutomovil.Controls.Add(this.comboChofer);
+            this.grupoDatosAutomovil.Controls.Add(this.lblChofer);
+            this.grupoDatosAutomovil.Controls.Add(this.comboTurno);
+            this.grupoDatosAutomovil.Controls.Add(this.lblTurno);
+            this.grupoDatosAutomovil.Controls.Add(this.lblPatente);
+            this.grupoDatosAutomovil.Controls.Add(this.txtPatente);
+            this.grupoDatosAutomovil.Controls.Add(this.label3);
+            this.grupoDatosAutomovil.Controls.Add(this.label2);
+            this.grupoDatosAutomovil.Controls.Add(this.comboMarca);
+            this.grupoDatosAutomovil.Location = new System.Drawing.Point(26, 110);
+            this.grupoDatosAutomovil.Name = "grupoDatosAutomovil";
+            this.grupoDatosAutomovil.Size = new System.Drawing.Size(612, 140);
+            this.grupoDatosAutomovil.TabIndex = 42;
+            this.grupoDatosAutomovil.TabStop = false;
             // 
             // btnCancelar
             // 
@@ -268,19 +254,44 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // Form6
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(440, 28);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(131, 29);
+            this.btnAceptar.TabIndex = 33;
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            // 
+            // ccHabilitado
+            // 
+            this.ccHabilitado.AutoSize = true;
+            this.ccHabilitado.Location = new System.Drawing.Point(245, 108);
+            this.ccHabilitado.Name = "ccHabilitado";
+            this.ccHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.ccHabilitado.TabIndex = 43;
+            this.ccHabilitado.Text = "Habilitado";
+            this.ccHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // comboModelo
+            // 
+            this.comboModelo.FormattingEnabled = true;
+            this.comboModelo.Location = new System.Drawing.Point(31, 60);
+            this.comboModelo.Name = "comboModelo";
+            this.comboModelo.Size = new System.Drawing.Size(174, 21);
+            this.comboModelo.TabIndex = 44;
+            // 
+            // frmAutomovil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(646, 261);
-            this.Controls.Add(this.grupoDatosAutomobil);
+            this.Controls.Add(this.grupoDatosAutomovil);
             this.Controls.Add(this.grupoBusquedaABM);
-            this.Name = "Form6";
-            this.Text = "Form6";
+            this.Name = "frmAutomovil";
             this.grupoBusquedaABM.ResumeLayout(false);
             this.grupoBusquedaABM.PerformLayout();
-            this.grupoDatosAutomobil.ResumeLayout(false);
-            this.grupoDatosAutomobil.PerformLayout();
+            this.grupoDatosAutomovil.ResumeLayout(false);
+            this.grupoDatosAutomovil.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -297,18 +308,19 @@
         private System.Windows.Forms.Label lblBusquedaNombre;
         private System.Windows.Forms.TextBox txtBusquedaModelo;
         private System.Windows.Forms.TextBox txtBusquedaPatente;
-        private System.Windows.Forms.TextBox txtModelo;
         private System.Windows.Forms.ComboBox comboMarca;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblPatente;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPatente;
         private System.Windows.Forms.Label lblTurno;
         private System.Windows.Forms.ComboBox comboTurno;
         private System.Windows.Forms.ComboBox comboChofer;
         private System.Windows.Forms.Label lblChofer;
-        private System.Windows.Forms.GroupBox grupoDatosAutomobil;
+        private System.Windows.Forms.GroupBox grupoDatosAutomovil;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.CheckBox ccHabilitado;
+        private System.Windows.Forms.ComboBox comboModelo;
     }
 }
