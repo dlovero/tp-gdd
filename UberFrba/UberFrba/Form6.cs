@@ -49,26 +49,29 @@ namespace UberFrba
             return (formulario.Controls[nombreGrupoDeControles]).Controls;
         }
 
-        internal static void construite(frmAutomovil frmAutomovil)
+        internal static Boolean construite(frmAutomovil frmAutomovil)
         {
-            contruirFormularioAgregar(frmAutomovil);
+            return contruirFormularioAgregar(frmAutomovil);
             //construirComboTurno(frmAutomovil);
             //construirComboMarca(frmAutomovil);
             ////construirComboModelo(frmAutomovil);
             //construirComboChofer(frmAutomovil);
             //inhabilitarComboModelo(frmAutomovil);
-            frmAutomovil.Show();
         }
 
-        private static void contruirFormularioAgregar(frmAutomovil frmAutomovil)
+        private static Boolean contruirFormularioAgregar(frmAutomovil frmAutomovil)
         {
-            desabilitarGrupoControlesDeBusqueda(frmAutomovil);
-            construirComboTurno(frmAutomovil);
-            construirComboMarca(frmAutomovil);
-            construirComboModelo(frmAutomovil);
-            construirComboChofer(frmAutomovil);
-            asociarModeloASeleccionDeMarca(frmAutomovil);
-            construirBotonAccionAgregar(frmAutomovil);
+            Boolean continua = construirComboChofer(frmAutomovil);
+            if (continua)
+            {
+                desabilitarGrupoControlesDeBusqueda(frmAutomovil);
+                construirComboTurno(frmAutomovil);
+                construirComboMarca(frmAutomovil);
+                construirComboModelo(frmAutomovil);
+                asociarModeloASeleccionDeMarca(frmAutomovil);
+                construirBotonAccionAgregar(frmAutomovil);
+            }
+            return continua;
         }
 
         private static void construirBotonAccionAgregar(frmAutomovil frmAutomovil)
@@ -146,21 +149,34 @@ namespace UberFrba
             frmAutomovilComboModelo.ValueMember = "Modelo_Id";
         }
 
-        private static void construirComboChofer(frmAutomovil frmAutomovil)
+        private static Boolean construirComboChofer(frmAutomovil frmAutomovil)
         {
-            GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFERTableAdapter adaptador
-                    = new GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFERTableAdapter();
-            DataTable tblChofer = adaptador.obtenerChoferesHabilitados("%", "%", null);
-            ComboBox frmAutomovilComboChofer = (ComboBox)frmAutomovil.Controls["grupoDatosAutomovil"].Controls["comboChofer"];
-            var diccionarioDatosChofer = new Dictionary<int, String>();
-            foreach (DataRow fila in tblChofer.Rows)
+            GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter adaptador
+                    = new GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter();
+            DataTable tblChofer = adaptador.obtenerChoferesHabilitados();
+            if (tblChofer.Rows.Count > 0)
             {
-                diccionarioDatosChofer.Add((int)fila["id"], ((string)fila["Persona_Apellido"]) + " " +((string)fila["Persona_Nombre"]));
-            }
+                ComboBox frmAutomovilComboChofer = (ComboBox)frmAutomovil.Controls["grupoDatosAutomovil"].Controls["comboChofer"];
+                var diccionarioDatosChofer = new Dictionary<int, String>();
+                foreach (DataRow fila in tblChofer.Rows)
+                {
+                    diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_PERSONA"]));
+                }
 
-            frmAutomovilComboChofer.DataSource = new BindingSource(diccionarioDatosChofer,null);
-            frmAutomovilComboChofer.DisplayMember = "Value";
-            frmAutomovilComboChofer.ValueMember = "Key";
+                frmAutomovilComboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);
+                frmAutomovilComboChofer.DisplayMember = "Value";
+                frmAutomovilComboChofer.ValueMember = "Key";
+            } else {
+                dispararMensajeYCancelarAccion(frmAutomovil);
+            }
+            return tblChofer.Rows.Count > 0;
+        }
+
+        private static void dispararMensajeYCancelarAccion(frmAutomovil frmAutomovil)
+        {           
+            DialogResult resultado = MessageBox.Show("No hay choferes disponibles para asociar.", "Agregar Automovil",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            frmAutomovil.Close();
         }
 
         private static void comboMarcaSelectedIndexChanged(object sender, EventArgs e, frmAutomovil formulario)

@@ -351,10 +351,12 @@ namespace UberFrba
         {
             frmAutomovil frmAutomovil = new frmAutomovil();
             String funcion = "Agregar";
-            frmAutomovil.construite(frmAutomovil);
-            (frmAutomovil.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
+            if (frmAutomovil.construite(frmAutomovil))
+            {
+                (frmAutomovil.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
                 accionBotonAgregarAutomovil(sender, e, frmAutomovil, funcion, rol);
-            frmAutomovil.Show();
+                frmAutomovil.Show();
+            }
         }
 
         public override void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
