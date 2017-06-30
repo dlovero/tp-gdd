@@ -230,6 +230,7 @@ namespace UberFrba
         void agregarRol(String rol);
         void eliminarRol(String rol);
         void modificarRol(String rol);
+        void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol);
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -277,7 +278,7 @@ namespace UberFrba
         public abstract void agregarRol(String rol);
         public abstract void eliminarRol(String rol);
         public abstract void modificarRol(String rol);
-
+        public abstract void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol);
         public abstract void completarConfiguracion
             (frmABM formulario, String textoFuncion, String textoTipo);
 
@@ -356,7 +357,7 @@ namespace UberFrba
             frmAutomovil.Show();
         }
 
-        private void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
+        public override void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
         {
             if (formulario.verificarDatosNoSeanNulos())
             {
@@ -473,11 +474,11 @@ namespace UberFrba
             try
             {
                 adaptador.agregarAutomovil
-                            (Convert.ToInt32(c["comboMarca"].Text), 
-                            Convert.ToInt32(c["txtModelo"].Text),
+                            (Convert.ToInt32(((ComboBox)c["comboMarca"]).SelectedValue),
+                            Convert.ToInt32(((ComboBox)c["comboModelo"]).SelectedValue),
                             c["txtPatente"].Text,
-                            Convert.ToInt32(c["comboTurno"].Text),
-                            Convert.ToInt32(c["comboChofer"].Text));
+                            Convert.ToInt32(((ComboBox)c["comboTurno"]).SelectedValue),
+                            Convert.ToInt32(((ComboBox)c["comboChofer"]).SelectedValue));
             }
             catch (SqlException e)
             {
@@ -722,6 +723,22 @@ namespace UberFrba
             {
                 mensajeErrorEnDB();
             }
+        }
+
+        public override void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
+        {
+            //if (formulario.verificarDatosNoSeanNulos())
+            //{
+            //    if (frmAutomovil.mensajeAlertaAntesDeAccion(rol, funcion))
+            //    {
+            //        ejecutarMetodoDeAccionConParametros(
+            //            obtenerNombreMetodo(funcion, rol),
+            //            new object[] { 
+            //                formulario.obtenerGrupoControlesDeDatosDeAutomovil(formulario,"grupoDatosAutomovil")
+            //                ,obtenerAdaptadorBD() });
+            //        formulario.Close();
+            //    }
+            //}
         }
 
         public void modificarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)

@@ -48,10 +48,10 @@
             this.comboChofer = new System.Windows.Forms.ComboBox();
             this.lblChofer = new System.Windows.Forms.Label();
             this.grupoDatosAutomovil = new System.Windows.Forms.GroupBox();
+            this.comboModelo = new System.Windows.Forms.ComboBox();
+            this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.ccHabilitado = new System.Windows.Forms.CheckBox();
-            this.comboModelo = new System.Windows.Forms.ComboBox();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosAutomovil.SuspendLayout();
             this.SuspendLayout();
@@ -245,22 +245,13 @@
             this.grupoDatosAutomovil.TabIndex = 42;
             this.grupoDatosAutomovil.TabStop = false;
             // 
-            // btnCancelar
+            // comboModelo
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(440, 88);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(131, 29);
-            this.btnCancelar.TabIndex = 42;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Location = new System.Drawing.Point(440, 28);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(131, 29);
-            this.btnAceptar.TabIndex = 33;
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.comboModelo.FormattingEnabled = true;
+            this.comboModelo.Location = new System.Drawing.Point(31, 60);
+            this.comboModelo.Name = "comboModelo";
+            this.comboModelo.Size = new System.Drawing.Size(174, 21);
+            this.comboModelo.TabIndex = 44;
             // 
             // ccHabilitado
             // 
@@ -272,13 +263,23 @@
             this.ccHabilitado.Text = "Habilitado";
             this.ccHabilitado.UseVisualStyleBackColor = true;
             // 
-            // comboModelo
+            // btnCancelar
             // 
-            this.comboModelo.FormattingEnabled = true;
-            this.comboModelo.Location = new System.Drawing.Point(31, 60);
-            this.comboModelo.Name = "comboModelo";
-            this.comboModelo.Size = new System.Drawing.Size(174, 21);
-            this.comboModelo.TabIndex = 44;
+            this.btnCancelar.Location = new System.Drawing.Point(440, 88);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(131, 29);
+            this.btnCancelar.TabIndex = 42;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(440, 28);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(131, 29);
+            this.btnAceptar.TabIndex = 33;
+            this.btnAceptar.UseVisualStyleBackColor = true;
             // 
             // frmAutomovil
             // 

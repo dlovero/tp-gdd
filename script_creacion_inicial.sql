@@ -1665,7 +1665,8 @@ BEGIN
 	ELSE
 	BEGIN
 		SELECT 
-	   Persona_Dni
+	   Chofer_Id [id]
+	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
       ,Persona_Direccion
