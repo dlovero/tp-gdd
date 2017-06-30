@@ -138,7 +138,7 @@ GO
 /*---------Definiciones de Tabla-------------*/
 CREATE TABLE [DESCONOCIDOS4].PERSONA(
 Persona_Id INT IDENTITY(1,1) NOT NULL,
-Persona_Dni NUMERIC(18,0) NOT NULL,
+Persona_Dni NUMERIC(18,0) NOT NULL UNIQUE,
 Persona_Nombre VARCHAR(255)NOT NULL,
 Persona_Apellido VARCHAR(255) NOT NULL,
 Persona_Direccion VARCHAR(255) NOT NULL,
