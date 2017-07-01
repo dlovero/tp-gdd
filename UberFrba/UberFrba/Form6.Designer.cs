@@ -30,9 +30,9 @@
         {
             this.grupoBusquedaABM = new System.Windows.Forms.GroupBox();
             this.comboMarcaBusqueda = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblNombreChofer = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtBusquedaChofer = new System.Windows.Forms.TextBox();
+            this.txtBusquedaNombreChofer = new System.Windows.Forms.TextBox();
             this.lblBuscarDNI = new System.Windows.Forms.Label();
             this.lblBuscarApellido = new System.Windows.Forms.Label();
             this.lblBusquedaNombre = new System.Windows.Forms.Label();
@@ -52,16 +52,20 @@
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.txtBusquedaApellidoChofer = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosAutomovil.SuspendLayout();
             this.SuspendLayout();
             // 
             // grupoBusquedaABM
             // 
-            this.grupoBusquedaABM.Controls.Add(this.comboMarcaBusqueda);
             this.grupoBusquedaABM.Controls.Add(this.label1);
+            this.grupoBusquedaABM.Controls.Add(this.txtBusquedaApellidoChofer);
+            this.grupoBusquedaABM.Controls.Add(this.comboMarcaBusqueda);
+            this.grupoBusquedaABM.Controls.Add(this.lblNombreChofer);
             this.grupoBusquedaABM.Controls.Add(this.btnBuscar);
-            this.grupoBusquedaABM.Controls.Add(this.txtBusquedaChofer);
+            this.grupoBusquedaABM.Controls.Add(this.txtBusquedaNombreChofer);
             this.grupoBusquedaABM.Controls.Add(this.lblBuscarDNI);
             this.grupoBusquedaABM.Controls.Add(this.lblBuscarApellido);
             this.grupoBusquedaABM.Controls.Add(this.lblBusquedaNombre);
@@ -82,30 +86,31 @@
             this.comboMarcaBusqueda.Size = new System.Drawing.Size(174, 21);
             this.comboMarcaBusqueda.TabIndex = 32;
             // 
-            // label1
+            // lblNombreChofer
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(318, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Chofer";
+            this.lblNombreChofer.AutoSize = true;
+            this.lblNombreChofer.Location = new System.Drawing.Point(469, 11);
+            this.lblNombreChofer.Name = "lblNombreChofer";
+            this.lblNombreChofer.Size = new System.Drawing.Size(78, 13);
+            this.lblNombreChofer.TabIndex = 30;
+            this.lblNombreChofer.Text = "Chofer Nombre";
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(442, 44);
+            this.btnBuscar.Location = new System.Drawing.Point(262, 59);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(131, 29);
             this.btnBuscar.TabIndex = 27;
             this.btnBuscar.Text = "Buscar Automovil";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // txtBusquedaChofer
+            // txtBusquedaNombreChofer
             // 
-            this.txtBusquedaChofer.Location = new System.Drawing.Point(247, 68);
-            this.txtBusquedaChofer.Name = "txtBusquedaChofer";
-            this.txtBusquedaChofer.Size = new System.Drawing.Size(174, 20);
-            this.txtBusquedaChofer.TabIndex = 29;
+            this.txtBusquedaNombreChofer.Location = new System.Drawing.Point(427, 27);
+            this.txtBusquedaNombreChofer.Name = "txtBusquedaNombreChofer";
+            this.txtBusquedaNombreChofer.Size = new System.Drawing.Size(156, 20);
+            this.txtBusquedaNombreChofer.TabIndex = 29;
             // 
             // lblBuscarDNI
             // 
@@ -281,6 +286,22 @@
             this.btnAceptar.TabIndex = 33;
             this.btnAceptar.UseVisualStyleBackColor = true;
             // 
+            // txtBusquedaApellidoChofer
+            // 
+            this.txtBusquedaApellidoChofer.Location = new System.Drawing.Point(427, 68);
+            this.txtBusquedaApellidoChofer.Name = "txtBusquedaApellidoChofer";
+            this.txtBusquedaApellidoChofer.Size = new System.Drawing.Size(156, 20);
+            this.txtBusquedaApellidoChofer.TabIndex = 33;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(469, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Chofer Apellido";
+            // 
             // frmAutomovil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,9 +322,9 @@
 
         private System.Windows.Forms.GroupBox grupoBusquedaABM;
         private System.Windows.Forms.ComboBox comboMarcaBusqueda;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblNombreChofer;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.TextBox txtBusquedaChofer;
+        private System.Windows.Forms.TextBox txtBusquedaNombreChofer;
         private System.Windows.Forms.Label lblBuscarDNI;
         private System.Windows.Forms.Label lblBuscarApellido;
         private System.Windows.Forms.Label lblBusquedaNombre;
@@ -323,5 +344,7 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.CheckBox ccHabilitado;
         private System.Windows.Forms.ComboBox comboModelo;
+        private System.Windows.Forms.TextBox txtBusquedaApellidoChofer;
+        private System.Windows.Forms.Label label1;
     }
 }

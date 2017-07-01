@@ -351,7 +351,7 @@ namespace UberFrba
         {
             frmAutomovil frmAutomovil = new frmAutomovil();
             String funcion = "Agregar";
-            if (frmAutomovil.construite(frmAutomovil))
+            if (frmAutomovil.construiteComoFormularioAgregar(frmAutomovil))
             {
                 (frmAutomovil.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
                 accionBotonAgregarAutomovil(sender, e, frmAutomovil, funcion, rol);
@@ -772,5 +772,9 @@ namespace UberFrba
     public static class VariablesGlobales
     {
         public const string NOMBRE_ROL_ADMINISTRADOR = "ADMINISTRATIVO";
+    }
+    interface IGrilla
+    {
+        void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos);
     }
 }

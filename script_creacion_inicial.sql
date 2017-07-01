@@ -1387,11 +1387,9 @@ BEGIN TRANSACTION
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BAJA_CLIENTE;
 GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BAJA_CLIENTE
-@DNI_CLI NUMERIC (18,0)
+@ID_CLI INT
 AS
 BEGIN TRANSACTION 
-	DECLARE @ID_CLI INT
-  SET @ID_CLI= [DESCONOCIDOS4].FN_ID_CLIENTE_X_DNI (@DNI_CLI)
   UPDATE [DESCONOCIDOS4].CLIENTE SET Cliente_Habilitado=0 WHERE Cliente_Id=@ID_CLI
 COMMIT;
 GO
@@ -1438,7 +1436,8 @@ BEGIN
 	IF (@DNI IS NOT NULL)
 	BEGIN
 	 SELECT 
-	   Persona_Dni
+	   Persona_Id
+	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
       ,Persona_Direccion
@@ -1449,6 +1448,8 @@ BEGIN
       ,Persona_Telefono
       ,Persona_Mail
       ,Persona_Fecha_Nac
+	  ,Cliente_Id [idTipoRol]
+	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
@@ -1458,7 +1459,8 @@ BEGIN
 	ELSE
 	BEGIN
 	SELECT 
-	   Persona_Dni
+	   Persona_Id
+	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
       ,Persona_Direccion
@@ -1469,6 +1471,8 @@ BEGIN
       ,Persona_Telefono
       ,Persona_Mail
       ,Persona_Fecha_Nac
+	  ,Cliente_Id [idTipoRol]
+	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
@@ -1571,11 +1575,9 @@ BEGIN TRANSACTION
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BAJA_CHOFER;
 GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BAJA_CHOFER
-@DNI_CHO NUMERIC (18,0)
+@ID_CHO INT
 AS
 BEGIN TRANSACTION 
-  DECLARE @ID_CHO INT
-  SET @ID_CHO= [DESCONOCIDOS4].FN_ID_CHOFER_X_DNI(@DNI_CHO)
   UPDATE [DESCONOCIDOS4].CHOFER  SET Chofer_Habilitado=0 WHERE Chofer_Id=@ID_CHO
 COMMIT;
 GO
@@ -1656,6 +1658,8 @@ BEGIN
       ,Persona_Telefono
       ,Persona_Mail
       ,Persona_Fecha_Nac
+	  ,Chofer_Id [idTipoRol]
+	  ,Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
@@ -1677,6 +1681,8 @@ BEGIN
       ,Persona_Telefono
       ,Persona_Mail
       ,Persona_Fecha_Nac
+	  ,Chofer_Id [idTipoRol]
+	  ,Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
@@ -2027,8 +2033,8 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_LISTADO_AUTOS_DISPONIBLES
 @Modelo VARCHAR(255),
 @Patente VARCHAR(10),
 @NomCh VARCHAR(255),
-@ApeCh VARCHAR(255),
-@DniChofer INT
+@ApeCh VARCHAR(255)
+--@DniChofer INT
 AS
 BEGIN 
 	SELECT DISTINCT  A.Auto_Id,A.Auto_Patente,A.Auto_Detalle,A.Auto_Marca_Modelo,A.Auto_Habilitado
@@ -2040,8 +2046,8 @@ BEGIN
 	MD.Modelo_Nombre LIKE ISNULL('%' + @Modelo + '%', '%') AND
 	A.Auto_Patente  LIKE ISNULL('%' + @Patente + '%', '%') AND
 	P.Persona_Nombre  LIKE ISNULL('%' + @NomCh + '%', '%')  AND
-	P.Persona_Apellido  LIKE ISNULL('%' + @ApeCh + '%', '%') AND	
-	convert(varchar(50),P.Persona_Dni)  LIKE ISNULL('%' + convert(varchar(50),@DniChofer) + '%', '%')
+	P.Persona_Apellido  LIKE ISNULL('%' + @ApeCh + '%', '%')-- AND	
+	--convert(varchar(50),P.Persona_Dni)  LIKE ISNULL('%' + convert(varchar(50),@DniChofer) + '%', '%')
 	AND A.Auto_Habilitado=1 AND  A.Auto_Id IN (SELECT Uni_Dis_Auto FROM [DESCONOCIDOS4].UNIDAD_DISPONIBLE)
 END
 GO
@@ -2056,8 +2062,8 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_LISTADO_AUTOS_SIN_CONDI
 @Modelo VARCHAR(255),
 @Patente VARCHAR(10),
 @NomCh VARCHAR(255),
-@ApeCh VARCHAR(255),
-@DniChofer INT
+@ApeCh VARCHAR(255)
+--@DniChofer INT
 AS
 BEGIN 
 	SELECT DISTINCT  A.Auto_Id,A.Auto_Patente,A.Auto_Detalle,A.Auto_Marca_Modelo,A.Auto_Habilitado
@@ -2069,8 +2075,8 @@ BEGIN
 	MD.Modelo_Nombre LIKE ISNULL('%' + @Modelo + '%', '%') AND
 	A.Auto_Patente  LIKE ISNULL('%' + @Patente + '%', '%') AND
 	P.Persona_Nombre  LIKE ISNULL('%' + @NomCh + '%', '%')  AND
-	P.Persona_Apellido  LIKE ISNULL('%' + @ApeCh + '%', '%') AND	
-	convert(varchar(50),P.Persona_Dni)  LIKE ISNULL('%' + convert(varchar(50),@DniChofer) + '%', '%')
+	P.Persona_Apellido  LIKE ISNULL('%' + @ApeCh + '%', '%') --AND	
+	--convert(varchar(50),P.Persona_Dni)  LIKE ISNULL('%' + convert(varchar(50),@DniChofer) + '%', '%')
 	
 END
 GO
