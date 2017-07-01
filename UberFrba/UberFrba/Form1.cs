@@ -233,6 +233,7 @@ namespace UberFrba
         void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol);
 
         void accionBotonEliminarAutomovil(object sender, EventArgs e, frmAutomovil frmAutomovil, string p1, string p2);
+        void accionBotonModificarAutomovil(object sender, EventArgs e, frmAutomovil frmAutomovil, string p1, string p2);
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -282,6 +283,7 @@ namespace UberFrba
         public abstract void modificarRol(String rol);
         public abstract void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol);
         public abstract void accionBotonEliminarAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol);
+        public abstract void accionBotonModificarAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol);
         public abstract void completarConfiguracion
             (frmABM formulario, String textoFuncion, String textoTipo);
 
@@ -352,11 +354,16 @@ namespace UberFrba
 
         public override void agregarAutomovil(String rol)
         {
-            frmAutomovil frmAutomovil = new frmAutomovil();
-            if (frmAutomovil.construiteComoFormularioAgregar(frmAutomovil))
+            frmAutomovilAgregar frmAutomovil = new frmAutomovilAgregar();
+            if (frmAutomovil.construite())
             {
                 frmAutomovil.Show();
             }
+            //frmAutomovil frmAutomovil = new frmAutomovil();
+            //if (frmAutomovil.construiteComoFormularioAgregar())
+            //{
+            //    frmAutomovil.Show();
+            //}
         }
 
         public override void accionBotonAgregarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
@@ -377,11 +384,16 @@ namespace UberFrba
 
         public override void eliminarAutomovil(String rol)
         {
-            frmAutomovil frmAutomovil = new frmAutomovilEliminar();
-            if (frmAutomovil.construiteComoFormularioEliminar(frmAutomovil))
+            frmAutomovilEliminar frmAutomovil = new frmAutomovilEliminar();
+            if (frmAutomovil.construite())
             {
                 frmAutomovil.Show();
             }
+            //frmAutomovil frmAutomovil = new frmAutomovilEliminar();
+            //if (frmAutomovil.construiteComoFormularioEliminar(frmAutomovil))
+            //{
+            //    frmAutomovil.Show();
+            //}
         }
 
         public override void accionBotonEliminarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
@@ -400,14 +412,19 @@ namespace UberFrba
 
         public override void modificarAutomovil(String rol)
         {
-            frmAutomovil frmAutomovil = new frmAutomovil();
-            if (frmAutomovil.construiteComoFormularioModificar(frmAutomovil))
+            frmAutomovilModificar frmAutomovil = new frmAutomovilModificar();
+            if (frmAutomovil.construite())
             {
                 frmAutomovil.Show();
             }
+            //frmAutomovil frmAutomovil = new frmAutomovil();
+            //if (frmAutomovil.construiteComoFormularioModificar(frmAutomovil))
+            //{
+            //    frmAutomovil.Show();
+            //}
         }
 
-        private void accionBotonModificarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
+        public override void accionBotonModificarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
         {
             if (formulario.verificarDatosNoSeanNulos())
             {
@@ -417,8 +434,7 @@ namespace UberFrba
                         obtenerNombreMetodo(funcion, rol),
                         new object[] { 
                             formulario.obtenerGrupoControlesDeDatosDeAutomovil(formulario,"grupoDatosAutomovil")
-                            ,obtenerAdaptadorBD()
-                            ,formulario.idAutomovil });
+                            ,obtenerAdaptadorBD()});
                     formulario.Close();
                 }
             }
@@ -510,11 +526,11 @@ namespace UberFrba
             try
             {
                 adaptador.modificarAutomovil
-                            (Convert.ToInt32(c["comboMarca"].Text),
-                            Convert.ToInt32(c["txtModelo"].Text),
+                            (Convert.ToInt32(((ComboBox)c["comboMarca"]).SelectedValue),
+                            Convert.ToInt32(((ComboBox)c["comboModelo"]).SelectedValue),
                             c["txtPatente"].Text,
-                            Convert.ToInt32(c["comboTurno"].Text),
-                            Convert.ToInt32(c["comboChofer"].Text),
+                            Convert.ToInt32(((ComboBox)c["comboTurno"]).SelectedValue),
+                            Convert.ToInt32(((ComboBox)c["comboChofer"]).SelectedValue),
                             Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
             }
             catch (SqlException e)
@@ -746,6 +762,10 @@ namespace UberFrba
         }
 
         public override void accionBotonEliminarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
+        {
+        }
+
+        public override void accionBotonModificarAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol)
         {
         }
 
