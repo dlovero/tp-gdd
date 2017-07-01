@@ -2153,8 +2153,10 @@ BEGIN
 	MR.Marca_Nombre,
 	A.Auto_Detalle,
 	A.Auto_Patente,
+	ch.Chofer_Id,
 	P.Persona_Nombre,
 	P.Persona_Apellido,
+	MD.Modelo_Nombre,	
 	TUR.Turno_Descripcion	
 
 	FROM [DESCONOCIDOS4].AUTO A  
