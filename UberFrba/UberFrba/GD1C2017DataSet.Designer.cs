@@ -4316,6 +4316,12 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnAuto_Id;
             
+            private global::System.Data.DataColumn columnAuto_Habilitado;
+            
+            private global::System.Data.DataColumn columnChofer_Id;
+            
+            private global::System.Data.DataColumn columnModelo_Nombre;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONDataTable() {
@@ -4407,6 +4413,30 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Auto_HabilitadoColumn {
+                get {
+                    return this.columnAuto_Habilitado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Chofer_IdColumn {
+                get {
+                    return this.columnChofer_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Modelo_NombreColumn {
+                get {
+                    return this.columnModelo_Nombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4442,7 +4472,7 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow AddPRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow(string Marca_Nombre, string Auto_Detalle, string Auto_Patente, string Persona_Nombre, string Persona_Apellido, string Turno_Descripcion) {
+            public PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow AddPRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow(string Marca_Nombre, string Auto_Detalle, string Auto_Patente, string Persona_Nombre, string Persona_Apellido, string Turno_Descripcion, bool Auto_Habilitado, string Modelo_Nombre) {
                 PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow rowPRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow = ((PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Marca_Nombre,
@@ -4451,7 +4481,10 @@ namespace UberFrba {
                         Persona_Nombre,
                         Persona_Apellido,
                         Turno_Descripcion,
-                        null};
+                        null,
+                        Auto_Habilitado,
+                        null,
+                        Modelo_Nombre};
                 rowPRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow);
                 return rowPRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow;
@@ -4481,6 +4514,9 @@ namespace UberFrba {
                 this.columnPersona_Apellido = base.Columns["Persona_Apellido"];
                 this.columnTurno_Descripcion = base.Columns["Turno_Descripcion"];
                 this.columnAuto_Id = base.Columns["Auto_Id"];
+                this.columnAuto_Habilitado = base.Columns["Auto_Habilitado"];
+                this.columnChofer_Id = base.Columns["Chofer_Id"];
+                this.columnModelo_Nombre = base.Columns["Modelo_Nombre"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4500,6 +4536,12 @@ namespace UberFrba {
                 base.Columns.Add(this.columnTurno_Descripcion);
                 this.columnAuto_Id = new global::System.Data.DataColumn("Auto_Id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAuto_Id);
+                this.columnAuto_Habilitado = new global::System.Data.DataColumn("Auto_Habilitado", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAuto_Habilitado);
+                this.columnChofer_Id = new global::System.Data.DataColumn("Chofer_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnChofer_Id);
+                this.columnModelo_Nombre = new global::System.Data.DataColumn("Modelo_Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnModelo_Nombre);
                 this.columnMarca_Nombre.MaxLength = 255;
                 this.columnAuto_Detalle.MaxLength = 26;
                 this.columnAuto_Patente.AllowDBNull = false;
@@ -4512,6 +4554,11 @@ namespace UberFrba {
                 this.columnAuto_Id.AutoIncrementStep = -1;
                 this.columnAuto_Id.AllowDBNull = false;
                 this.columnAuto_Id.ReadOnly = true;
+                this.columnChofer_Id.AutoIncrement = true;
+                this.columnChofer_Id.AutoIncrementSeed = -1;
+                this.columnChofer_Id.AutoIncrementStep = -1;
+                this.columnChofer_Id.ReadOnly = true;
+                this.columnModelo_Nombre.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6041,6 +6088,57 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Auto_Habilitado {
+                get {
+                    try {
+                        return ((bool)(this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Auto_HabilitadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Auto_Habilitado\' de la tabla \'PRC_LISTADO_AUTOS_SIN_CONDI" +
+                                "_PARA_MODIFICACION\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Auto_HabilitadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Chofer_Id {
+                get {
+                    try {
+                        return ((int)(this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Chofer_IdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Chofer_Id\' de la tabla \'PRC_LISTADO_AUTOS_SIN_CONDI_PARA_" +
+                                "MODIFICACION\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Chofer_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Modelo_Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Modelo_NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Modelo_Nombre\' de la tabla \'PRC_LISTADO_AUTOS_SIN_CONDI_P" +
+                                "ARA_MODIFICACION\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Modelo_NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsMarca_NombreNull() {
                 return this.IsNull(this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Marca_NombreColumn);
             }
@@ -6097,6 +6195,42 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTurno_DescripcionNull() {
                 this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Turno_DescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAuto_HabilitadoNull() {
+                return this.IsNull(this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Auto_HabilitadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAuto_HabilitadoNull() {
+                this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Auto_HabilitadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsChofer_IdNull() {
+                return this.IsNull(this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Chofer_IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetChofer_IdNull() {
+                this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Chofer_IdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsModelo_NombreNull() {
+                return this.IsNull(this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Modelo_NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetModelo_NombreNull() {
+                this[this.tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION.Modelo_NombreColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9202,6 +9336,9 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Persona_Apellido", "Persona_Apellido");
             tableMapping.ColumnMappings.Add("Turno_Descripcion", "Turno_Descripcion");
             tableMapping.ColumnMappings.Add("Auto_Id", "Auto_Id");
+            tableMapping.ColumnMappings.Add("Auto_Habilitado", "Auto_Habilitado");
+            tableMapping.ColumnMappings.Add("Chofer_Id", "Chofer_Id");
+            tableMapping.ColumnMappings.Add("Modelo_Nombre", "Modelo_Nombre");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

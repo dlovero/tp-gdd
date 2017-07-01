@@ -2154,6 +2154,7 @@ BEGIN
 	A.Auto_Id,
 	A.Auto_Detalle,
 	A.Auto_Patente,
+	A.Auto_Habilitado,
 	ch.Chofer_Id,
 	P.Persona_Nombre,
 	P.Persona_Apellido,

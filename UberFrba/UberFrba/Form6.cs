@@ -276,13 +276,13 @@ namespace UberFrba
             ((ComboBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["comboTurno"]).Text
                 = (String)filaDeDatos.Row["Turno_Descripcion"];
             ((ComboBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["comboModelo"]).Text
-                = (String)filaDeDatos.Row["Auto_Detalle"];
+                = (String)filaDeDatos.Row["Modelo_Nombre"];
             ((ComboBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["comboChofer"]).Text
                 = (String)filaDeDatos.Row["Persona_Apellido"] + " " + (String)filaDeDatos.Row["Persona_Nombre"];
             ((TextBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["txtPatente"]).Text
                 = (String)filaDeDatos.Row["Auto_Patente"];
-            ((CheckBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["ccHabilitado"]).Text
-                = (String)filaDeDatos.Row["Auto_Patente"];
+            ((CheckBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["ccHabilitado"]).Checked
+                = (Boolean)filaDeDatos.Row["Auto_Habilitado"];
 
             ((frmAutomovil)formulario).idAutomovil = (int)filaDeDatos.Row["Auto_id"];
             asociarModeloASeleccionDeMarca((frmAutomovil)formulario);

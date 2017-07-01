@@ -440,6 +440,9 @@
               <Mapping SourceColumn="Persona_Apellido" DataSetColumn="Persona_Apellido" />
               <Mapping SourceColumn="Turno_Descripcion" DataSetColumn="Turno_Descripcion" />
               <Mapping SourceColumn="Auto_Id" DataSetColumn="Auto_Id" />
+              <Mapping SourceColumn="Auto_Habilitado" DataSetColumn="Auto_Habilitado" />
+              <Mapping SourceColumn="Chofer_Id" DataSetColumn="Chofer_Id" />
+              <Mapping SourceColumn="Modelo_Nombre" DataSetColumn="Modelo_Nombre" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="obtenerListadoAutosSegunDatosBusqueda" GetMethodModifier="Public" GetMethodName="obtenerListadoAutosSegunDatosBusqueda" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="obtenerListadoAutosSegunDatosBusqueda" UserSourceName="obtenerListadoAutosSegunDatosBusqueda">
@@ -1133,6 +1136,15 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Auto_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAuto_Id" msprop:Generator_ColumnPropNameInRow="Auto_Id" msprop:Generator_ColumnPropNameInTable="Auto_IdColumn" msprop:Generator_UserColumnName="Auto_Id" type="xs:int" />
+              <xs:element name="Auto_Habilitado" msprop:Generator_ColumnVarNameInTable="columnAuto_Habilitado" msprop:Generator_ColumnPropNameInRow="Auto_Habilitado" msprop:Generator_ColumnPropNameInTable="Auto_HabilitadoColumn" msprop:Generator_UserColumnName="Auto_Habilitado" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Chofer_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnChofer_Id" msprop:Generator_ColumnPropNameInRow="Chofer_Id" msprop:Generator_ColumnPropNameInTable="Chofer_IdColumn" msprop:Generator_UserColumnName="Chofer_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Modelo_Nombre" msprop:Generator_ColumnVarNameInTable="columnModelo_Nombre" msprop:Generator_ColumnPropNameInRow="Modelo_Nombre" msprop:Generator_ColumnPropNameInTable="Modelo_NombreColumn" msprop:Generator_UserColumnName="Modelo_Nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

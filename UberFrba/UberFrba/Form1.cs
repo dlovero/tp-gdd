@@ -392,7 +392,8 @@ namespace UberFrba
                     obtenerNombreMetodo(funcion, rol),
                     new object[] { 
                         formulario.obtenerGrupoControlesDeDatosDeAutomovil(formulario,"grupoDatosAutomovil")
-                        ,obtenerAdaptadorBD() });
+                        ,obtenerAdaptadorBD()
+                        ,formulario.idAutomovil});
                 formulario.Close();
             }
         }
