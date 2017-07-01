@@ -2138,6 +2138,7 @@ BEGIN
 	
 	
 	MR.Marca_Nombre,
+	A.Auto_Id,
 	A.Auto_Detalle,
 	A.Auto_Patente,
 	P.Persona_Nombre,

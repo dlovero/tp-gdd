@@ -12,6 +12,13 @@ namespace UberFrba
 {
     public partial class frmAutomovil : Form, IGrilla
     {
+
+        public int idAutomovil { set; get; }
+
+        public virtual void configurarEstadoFormulario()
+        {
+        }
+
         public frmAutomovil()
         {
             InitializeComponent();
@@ -39,7 +46,7 @@ namespace UberFrba
 
         public static Boolean mensajeAlertaAntesDeAccion(String rol, String funcion)
         {
-            DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " esta/e nueva/o " + rol, funcion + " " + rol,
+            DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " este nuevo " + rol + "?", funcion + " " + rol,
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             return (resultado == DialogResult.Yes);
         }
@@ -51,7 +58,7 @@ namespace UberFrba
 
         internal static Boolean construite(frmAutomovil frmAutomovil)
         {
-            return contruirComoFormularioEliminar(frmAutomovil);
+            return construiteComoFormularioEliminar(frmAutomovil);
             //construirComboTurno(frmAutomovil);
             //construirComboMarca(frmAutomovil);
             //construirComboModelo(frmAutomovil);
@@ -59,10 +66,10 @@ namespace UberFrba
             //inhabilitarComboModelo(frmAutomovil);
         }
 
-        private static bool contruirComoFormularioEliminar(frmAutomovil frmAutomovil)
+        internal static bool construiteComoFormularioEliminar(frmAutomovil frmAutomovil)
         {
             inhabilitarGrupoDatosAutomovil(frmAutomovil);
-            construirComboMarca(frmAutomovil);
+            construirComboMarca(frmAutomovil, "grupoBusquedaABM", "comboMarcaBusqueda");
             //construirBotonAccionBuscar(frmAutomovil);
             return true;
         }
@@ -74,7 +81,7 @@ namespace UberFrba
             {
                 desabilitarGrupoControlesDeBusqueda(frmAutomovil);
                 construirComboTurno(frmAutomovil);
-                construirComboMarca(frmAutomovil);
+                construirComboMarca(frmAutomovil, "grupoDatosAutomovil", "comboMarca");
                 construirComboModelo(frmAutomovil);
                 asociarModeloASeleccionDeMarca(frmAutomovil);
                 construirBotonAccionAgregar(frmAutomovil);
@@ -111,9 +118,19 @@ namespace UberFrba
                  comboMarcaSelectedIndexChanged(sender, e, frmAutomovil);
         }
 
+        private static void habilitarGrupoDatosAutomovil(frmAutomovil frmAutomovil)
+        {
+            actualizarEstadoHabilitacionGrupoDatosAutomovil(frmAutomovil, true);
+        }
+
         private static void inhabilitarGrupoDatosAutomovil(frmAutomovil frmAutomovil)
         {
-            obtenerControlesDeGrupo(frmAutomovil, "grupoDatosAutomovil").Enabled = false;
+            actualizarEstadoHabilitacionGrupoDatosAutomovil(frmAutomovil, false);
+        }
+
+        private static void actualizarEstadoHabilitacionGrupoDatosAutomovil(frmAutomovil frmAutomovil, Boolean estado)
+        {
+            obtenerControlesDeGrupo(frmAutomovil, "grupoDatosAutomovil").Enabled = estado;
         }
 
         private static void construirComboTurno(frmAutomovil frmAutomovil)
@@ -132,12 +149,12 @@ namespace UberFrba
             return (GroupBox)frmAutomovil.Controls[nombreGrupo];
         }
 
-        private static void construirComboMarca(frmAutomovil frmAutomovil)
+        private static void construirComboMarca(frmAutomovil frmAutomovil, String grupo, String combo)
         {
             GD1C2017DataSetTableAdapters.PRC_LISTA_MARCATableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_LISTA_MARCATableAdapter();
             DataTable tblMarcas = adaptador.obtenerListadoMarcasAutomovil();
-            ComboBox frmAutomovilComboMarca = (ComboBox)frmAutomovil.Controls["grupoDatosAutomovil"].Controls["comboMarca"];
+            ComboBox frmAutomovilComboMarca = (ComboBox)frmAutomovil.Controls[grupo].Controls[combo];
             frmAutomovilComboMarca.DataSource = tblMarcas;
             frmAutomovilComboMarca.DisplayMember = "Marca_Nombre";
             frmAutomovilComboMarca.ValueMember = "Marca_Id";
@@ -198,14 +215,14 @@ namespace UberFrba
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDITableAdapter adaptador =
-                new GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDITableAdapter();
-            DataTable tblListadoAutomoviles = adaptador.obtenerListadoBusquedaAutos(
-                 this.FindForm().Controls["comboMarcaBusqueda"].Text
-                ,this.FindForm().Controls["txtBusquedaModelo"].Text
-                ,this.FindForm().Controls["txtBusquedaPatente"].Text
-                ,this.FindForm().Controls["txtBusquedaNombreChofer"].Text
-                ,this.FindForm().Controls["txtBusquedaApellidoChofer"].Text);
+            GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONTableAdapter();
+            DataTable tblListadoAutomoviles = adaptador.obtenerListadoAutosSegunDatosBusqueda(
+                 this.Controls["grupoBusquedaABM"].Controls["comboMarcaBusqueda"].Text
+                ,this.Controls["grupoBusquedaABM"].Controls["txtBusquedaModelo"].Text
+                ,this.Controls["grupoBusquedaABM"].Controls["txtBusquedaPatente"].Text
+                ,this.Controls["grupoBusquedaABM"].Controls["txtBusquedaNombreChofer"].Text
+                ,this.Controls["grupoBusquedaABM"].Controls["txtBusquedaApellidoChofer"].Text);
 
 
             if (tblListadoAutomoviles != null && tblListadoAutomoviles.Rows.Count > 0)
@@ -234,27 +251,66 @@ namespace UberFrba
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
-            String nombre = (String)filaDeDatos.Row["Persona_Nombre"];
+            habilitarGrupoDatosAutomovil(this);
+            construirComboTurno(this);
+            construirComboMarca(this, "grupoDatosAutomovil", "comboMarca");
+            construirComboModelo(this);
+            asociarModeloASeleccionDeMarca(this);
+            construirBotonAccionEliminar(this);
+            
             poblarDatosDelFormulario(this.FindForm(), filaDeDatos);
-            (this.FindForm().Controls["grupoDatosPersona"]).Enabled = true;
+            this.configurarEstadoFormulario();
         }
 
-        public static void poblarDatosDelFormulario(Form formulario, DataRowView filadeDatos)
+        private void construirBotonAccionEliminar(frmAutomovil frmAutomovil)
         {
-            construirComboTurno((frmAutomovil)formulario);
-            construirComboMarca((frmAutomovil)formulario);
-            construirComboModelo((frmAutomovil)formulario);
+            construirNombreBotonAceptar(frmAutomovil, "Eliminar Automovil");
+            (frmAutomovil.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
+                SingletonDatosUsuario.Instance.rol.accionBotonEliminarAutomovil(sender, e, frmAutomovil, "Eliminar", "Automovil");
+        }
 
-            ((ComboBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Text = filadeDatos.Row["Persona_Nombre"].ToString();
+        public static void poblarDatosDelFormulario(Form formulario, DataRowView filaDeDatos)
+        {
+            ((ComboBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["comboMarca"]).Text
+                = (String)filaDeDatos.Row["Marca_Nombre"];
+            ((ComboBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["comboTurno"]).Text
+                = (String)filaDeDatos.Row["Turno_Descripcion"];
+            ((ComboBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["comboModelo"]).Text
+                = (String)filaDeDatos.Row["Auto_Detalle"];
+            ((ComboBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["comboChofer"]).Text
+                = (String)filaDeDatos.Row["Persona_Apellido"] + " " + (String)filaDeDatos.Row["Persona_Nombre"];
+            ((TextBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["txtPatente"]).Text
+                = (String)filaDeDatos.Row["Auto_Patente"];
+            ((CheckBox)(formulario.Controls["grupoDatosAutomovil"]).Controls["ccHabilitado"]).Text
+                = (String)filaDeDatos.Row["Auto_Patente"];
 
+            ((frmAutomovil)formulario).idAutomovil = (int)filaDeDatos.Row["Auto_id"];
             asociarModeloASeleccionDeMarca((frmAutomovil)formulario);
+        }
 
-            formulario.Controls["comboMarca"].Text = filadeDatos.Row["Persona_Apellido"].ToString();
-            
-            ((DateTimePicker)(formulario.Controls["grupoDatosPersona"]).Controls["selectorFechaNacimiento"]).Value = Convert.ToDateTime(filadeDatos.Row["Persona_Fecha_Nac"].ToString());
-            ((CheckBox)(formulario.Controls["grupoDatosPersona"]).Controls["ccHabilitado"]).Checked = (Boolean)filadeDatos.Row["habilitado"];
-            ((frmABM)formulario).idTipoRol = (int)filadeDatos.Row["idTipoRol"];
-            ((frmABM)formulario).idPersona = (int)filadeDatos.Row["Persona_Id"];
+        internal static bool construiteComoFormularioModificar(frmAutomovil frmAutomovil)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public partial class frmAutomovilEliminar:frmAutomovil
+    {
+        public override void configurarEstadoFormulario()
+        {
+            (this.Controls["grupoDatosAutomovil"].Controls["comboMarca"]).Enabled = false;
+            (this.Controls["grupoDatosAutomovil"].Controls["comboModelo"]).Enabled = false;
+            (this.Controls["grupoDatosAutomovil"].Controls["comboTurno"]).Enabled = false;
+            (this.Controls["grupoDatosAutomovil"].Controls["comboChofer"]).Enabled = false;
+            (this.Controls["grupoDatosAutomovil"].Controls["txtPatente"]).Enabled = false;
+            (this.Controls["grupoDatosAutomovil"].Controls["ccHabilitado"]).Enabled = false;
+        }
+    }
+
+        public partial class frmAutomovilModificar:frmAutomovil
+    {
+            public override void configurarEstadoFormulario()
+        {
         }
     }
 }
