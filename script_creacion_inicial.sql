@@ -1646,7 +1646,7 @@ BEGIN
 	IF (@DNI IS NOT NULL)
 	BEGIN
 	 SELECT 
-	   Chofer_Id [id]
+	   Persona_Id
 	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
@@ -1669,7 +1669,7 @@ BEGIN
 	ELSE
 	BEGIN
 		SELECT 
-	   Chofer_Id [id]
+	   Persona_Id
 	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
