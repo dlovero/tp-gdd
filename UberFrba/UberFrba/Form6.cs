@@ -167,7 +167,7 @@ namespace UberFrba
                 var diccionarioDatosChofer = new Dictionary<int, String>();
                 foreach (DataRow fila in tblChofer.Rows)
                 {
-                    diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_PERSONA"]));
+                    diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_NOMBRE"]));
                 }
 
                 frmAutomovilComboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);

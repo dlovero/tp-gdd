@@ -2857,8 +2857,6 @@ namespace UberFrba {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PRC_BUSCAR_CHOFERDataTable : global::System.Data.TypedTableBase<PRC_BUSCAR_CHOFERRow> {
             
-            private global::System.Data.DataColumn columnid;
-            
             private global::System.Data.DataColumn columnPersona_Dni;
             
             private global::System.Data.DataColumn columnPersona_Nombre;
@@ -2884,6 +2882,8 @@ namespace UberFrba {
             private global::System.Data.DataColumn columnidTipoRol;
             
             private global::System.Data.DataColumn columnhabilitado;
+            
+            private global::System.Data.DataColumn columnPersona_Id;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2916,14 +2916,6 @@ namespace UberFrba {
             protected PRC_BUSCAR_CHOFERDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn idColumn {
-                get {
-                    return this.columnid;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3032,6 +3024,14 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Persona_IdColumn {
+                get {
+                    return this.columnPersona_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3070,7 +3070,6 @@ namespace UberFrba {
             public PRC_BUSCAR_CHOFERRow AddPRC_BUSCAR_CHOFERRow(decimal Persona_Dni, string Persona_Nombre, string Persona_Apellido, string Persona_Direccion, short Persona_Piso, string Persona_Departamento, string Persona_Localidad, string Persona_Cod_Postal, decimal Persona_Telefono, string Persona_Mail, System.DateTime Persona_Fecha_Nac, bool habilitado) {
                 PRC_BUSCAR_CHOFERRow rowPRC_BUSCAR_CHOFERRow = ((PRC_BUSCAR_CHOFERRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         Persona_Dni,
                         Persona_Nombre,
                         Persona_Apellido,
@@ -3083,7 +3082,8 @@ namespace UberFrba {
                         Persona_Mail,
                         Persona_Fecha_Nac,
                         null,
-                        habilitado};
+                        habilitado,
+                        null};
                 rowPRC_BUSCAR_CHOFERRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPRC_BUSCAR_CHOFERRow);
                 return rowPRC_BUSCAR_CHOFERRow;
@@ -3091,9 +3091,10 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_BUSCAR_CHOFERRow FindByid(int id) {
+            public PRC_BUSCAR_CHOFERRow FindByPersona_IdidTipoRol(int Persona_Id, int idTipoRol) {
                 return ((PRC_BUSCAR_CHOFERRow)(this.Rows.Find(new object[] {
-                            id})));
+                            Persona_Id,
+                            idTipoRol})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3113,7 +3114,6 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnid = base.Columns["id"];
                 this.columnPersona_Dni = base.Columns["Persona_Dni"];
                 this.columnPersona_Nombre = base.Columns["Persona_Nombre"];
                 this.columnPersona_Apellido = base.Columns["Persona_Apellido"];
@@ -3127,13 +3127,12 @@ namespace UberFrba {
                 this.columnPersona_Fecha_Nac = base.Columns["Persona_Fecha_Nac"];
                 this.columnidTipoRol = base.Columns["idTipoRol"];
                 this.columnhabilitado = base.Columns["habilitado"];
+                this.columnPersona_Id = base.Columns["Persona_Id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid);
                 this.columnPersona_Dni = new global::System.Data.DataColumn("Persona_Dni", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPersona_Dni);
                 this.columnPersona_Nombre = new global::System.Data.DataColumn("Persona_Nombre", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3160,12 +3159,11 @@ namespace UberFrba {
                 base.Columns.Add(this.columnidTipoRol);
                 this.columnhabilitado = new global::System.Data.DataColumn("habilitado", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnhabilitado);
+                this.columnPersona_Id = new global::System.Data.DataColumn("Persona_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPersona_Id);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnid}, true));
-                this.columnid.AutoIncrement = true;
-                this.columnid.AllowDBNull = false;
-                this.columnid.ReadOnly = true;
-                this.columnid.Unique = true;
+                                this.columnPersona_Id,
+                                this.columnidTipoRol}, true));
                 this.columnPersona_Dni.AllowDBNull = false;
                 this.columnPersona_Nombre.AllowDBNull = false;
                 this.columnPersona_Nombre.MaxLength = 255;
@@ -3189,6 +3187,11 @@ namespace UberFrba {
                 this.columnidTipoRol.AutoIncrementStep = -1;
                 this.columnidTipoRol.AllowDBNull = false;
                 this.columnidTipoRol.ReadOnly = true;
+                this.columnPersona_Id.AutoIncrement = true;
+                this.columnPersona_Id.AutoIncrementSeed = -1;
+                this.columnPersona_Id.AutoIncrementStep = -1;
+                this.columnPersona_Id.AllowDBNull = false;
+                this.columnPersona_Id.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5006,17 +5009,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int id {
-                get {
-                    return ((int)(this[this.tablePRC_BUSCAR_CHOFER.idColumn]));
-                }
-                set {
-                    this[this.tablePRC_BUSCAR_CHOFER.idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal Persona_Dni {
                 get {
                     return ((decimal)(this[this.tablePRC_BUSCAR_CHOFER.Persona_DniColumn]));
@@ -5160,6 +5152,17 @@ namespace UberFrba {
                 }
                 set {
                     this[this.tablePRC_BUSCAR_CHOFER.habilitadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Persona_Id {
+                get {
+                    return ((int)(this[this.tablePRC_BUSCAR_CHOFER.Persona_IdColumn]));
+                }
+                set {
+                    this[this.tablePRC_BUSCAR_CHOFER.Persona_IdColumn] = value;
                 }
             }
             
@@ -7589,7 +7592,6 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "PRC_BUSCAR_CHOFER";
-            tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("Persona_Dni", "Persona_Dni");
             tableMapping.ColumnMappings.Add("Persona_Nombre", "Persona_Nombre");
             tableMapping.ColumnMappings.Add("Persona_Apellido", "Persona_Apellido");
@@ -7603,6 +7605,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Persona_Fecha_Nac", "Persona_Fecha_Nac");
             tableMapping.ColumnMappings.Add("idTipoRol", "idTipoRol");
             tableMapping.ColumnMappings.Add("habilitado", "habilitado");
+            tableMapping.ColumnMappings.Add("Persona_Id", "Persona_Id");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

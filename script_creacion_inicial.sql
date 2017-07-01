@@ -1453,8 +1453,7 @@ BEGIN
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI)
-              AND C.Cliente_Habilitado = 1;
+              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
 	END
 	ELSE
 	BEGIN
@@ -1475,8 +1474,7 @@ BEGIN
 	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-              AND C.Cliente_Habilitado = 1;
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
 	END
 END
 GO
@@ -1663,8 +1661,7 @@ BEGIN
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI)
-              AND C.Chofer_Habilitado = 1;
+			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
 	END
 	ELSE
 	BEGIN
@@ -1685,8 +1682,7 @@ BEGIN
 	  ,Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-              AND C.Chofer_Habilitado = 1;
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
 	END
 END
 GO

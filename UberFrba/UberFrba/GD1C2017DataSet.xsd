@@ -277,7 +277,6 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="id" DataSetColumn="id" />
               <Mapping SourceColumn="Persona_Dni" DataSetColumn="Persona_Dni" />
               <Mapping SourceColumn="Persona_Nombre" DataSetColumn="Persona_Nombre" />
               <Mapping SourceColumn="Persona_Apellido" DataSetColumn="Persona_Apellido" />
@@ -291,6 +290,7 @@
               <Mapping SourceColumn="Persona_Fecha_Nac" DataSetColumn="Persona_Fecha_Nac" />
               <Mapping SourceColumn="idTipoRol" DataSetColumn="idTipoRol" />
               <Mapping SourceColumn="habilitado" DataSetColumn="habilitado" />
+              <Mapping SourceColumn="Persona_Id" DataSetColumn="Persona_Id" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -915,7 +915,6 @@
         <xs:element name="PRC_BUSCAR_CHOFER" msprop:Generator_TableClassName="PRC_BUSCAR_CHOFERDataTable" msprop:Generator_TableVarName="tablePRC_BUSCAR_CHOFER" msprop:Generator_RowChangedName="PRC_BUSCAR_CHOFERRowChanged" msprop:Generator_TablePropName="PRC_BUSCAR_CHOFER" msprop:Generator_RowDeletingName="PRC_BUSCAR_CHOFERRowDeleting" msprop:Generator_RowChangingName="PRC_BUSCAR_CHOFERRowChanging" msprop:Generator_RowEvHandlerName="PRC_BUSCAR_CHOFERRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_BUSCAR_CHOFERRowDeleted" msprop:Generator_RowClassName="PRC_BUSCAR_CHOFERRow" msprop:Generator_UserTableName="PRC_BUSCAR_CHOFER" msprop:Generator_RowEvArgName="PRC_BUSCAR_CHOFERRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
               <xs:element name="Persona_Dni" msprop:Generator_ColumnVarNameInTable="columnPersona_Dni" msprop:Generator_ColumnPropNameInRow="Persona_Dni" msprop:Generator_ColumnPropNameInTable="Persona_DniColumn" msprop:Generator_UserColumnName="Persona_Dni" type="xs:decimal" />
               <xs:element name="Persona_Nombre" msprop:Generator_ColumnVarNameInTable="columnPersona_Nombre" msprop:Generator_ColumnPropNameInRow="Persona_Nombre" msprop:Generator_ColumnPropNameInTable="Persona_NombreColumn" msprop:Generator_UserColumnName="Persona_Nombre">
                 <xs:simpleType>
@@ -971,6 +970,7 @@
               <xs:element name="Persona_Fecha_Nac" msprop:Generator_ColumnVarNameInTable="columnPersona_Fecha_Nac" msprop:Generator_ColumnPropNameInRow="Persona_Fecha_Nac" msprop:Generator_ColumnPropNameInTable="Persona_Fecha_NacColumn" msprop:Generator_UserColumnName="Persona_Fecha_Nac" type="xs:dateTime" />
               <xs:element name="idTipoRol" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidTipoRol" msprop:Generator_ColumnPropNameInRow="idTipoRol" msprop:Generator_ColumnPropNameInTable="idTipoRolColumn" msprop:Generator_UserColumnName="idTipoRol" type="xs:int" />
               <xs:element name="habilitado" msprop:Generator_ColumnVarNameInTable="columnhabilitado" msprop:Generator_ColumnPropNameInRow="habilitado" msprop:Generator_ColumnPropNameInTable="habilitadoColumn" msprop:Generator_UserColumnName="habilitado" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Persona_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPersona_Id" msprop:Generator_ColumnPropNameInRow="Persona_Id" msprop:Generator_ColumnPropNameInTable="Persona_IdColumn" msprop:Generator_UserColumnName="Persona_Id" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1071,7 +1071,8 @@
     </xs:unique>
     <xs:unique name="PRC_BUSCAR_CHOFER_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:PRC_BUSCAR_CHOFER" />
-      <xs:field xpath="mstns:id" />
+      <xs:field xpath="mstns:Persona_Id" />
+      <xs:field xpath="mstns:idTipoRol" />
     </xs:unique>
     <xs:unique name="PRC_LISTA_CHOFERES_NO_ASIG_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:PRC_LISTA_CHOFERES_NO_ASIG" />
