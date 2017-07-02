@@ -14,6 +14,8 @@ namespace UberFrba
     {
         public frmABM formularioABM { set; get; }
         public frmAutomovil frmAutomovil { set; get; }
+        public frmABMTurno frmTurno { set; get; }
+
         public frmResultadoBusquedaUsuarioABM()
         {
             InitializeComponent();
@@ -36,7 +38,23 @@ namespace UberFrba
 
         private IGrilla obtenerFormulario()
         {
-            return (formularioABM != null) ? (IGrilla)formularioABM : (IGrilla)frmAutomovil;
+            Form formulario;
+            if (formularioABM != null)
+            {
+                formulario = formularioABM;
+            }
+            else
+            {
+                if (frmAutomovil != null)
+                {
+                    formulario = frmAutomovil;
+                }
+                else
+                {
+                    formulario = frmTurno;
+                }
+            }
+            return (IGrilla)formulario;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -55,12 +55,12 @@ namespace UberFrba
             
         }
 
-        public static Boolean mensajeAlertaAntesDeAccion(String rol, String funcion)
-        {
-            DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " esta/e nueva/o " + rol, funcion + " " + rol,
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            return (resultado == DialogResult.Yes);
-        }
+        //public static Boolean mensajeAlertaAntesDeAccion(String rol, String funcion)
+        //{
+        //    DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " esta/e nueva/o " + rol, funcion + " " + rol,
+        //        MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+        //    return (resultado == DialogResult.Yes);
+        //}
 
         public static void mensajeAutoEliminacionYSalidaDeAplicacion(String funcion, String usuario)
         {
@@ -75,25 +75,25 @@ namespace UberFrba
             }
         }
 
-        public Boolean verificarDatosNoSeanNulos()
-        {
-            Boolean resultado=true;
-            foreach (Control c in this.Controls)
-            {
-                if (c is TextBox)
-                {
-                    TextBox textBox = c as TextBox;
-                    if (String.IsNullOrEmpty(textBox.Text) && !textBox.Name.Equals("txtCorreo"))
-                    {
-                        MessageBox.Show("El correo electronico es el unico dato opcional, el resto son obligatorios", "Datos requeridos",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        resultado= false;
-                        break;
-                    }
-                }
-            }
-            return resultado;
-        }
+        //public Boolean verificarDatosNoSeanNulos()
+        //{
+        //    Boolean resultado=true;
+        //    foreach (Control c in this.Controls)
+        //    {
+        //        if (c is TextBox)
+        //        {
+        //            TextBox textBox = c as TextBox;
+        //            if (String.IsNullOrEmpty(textBox.Text) && !textBox.Name.Equals("txtCorreo"))
+        //            {
+        //                MessageBox.Show("El correo electronico es el unico dato opcional, el resto son obligatorios", "Datos requeridos",
+        //                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //                resultado= false;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    return resultado;
+        //}
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {

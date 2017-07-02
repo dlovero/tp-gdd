@@ -2026,6 +2026,8 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnTurno_Precio_Base;
             
+            private global::System.Data.DataColumn columnTurno_Habilitado;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PRC_LISTADO_TURNOS_DISPONIBLESDataTable() {
@@ -2109,6 +2111,14 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Turno_HabilitadoColumn {
+                get {
+                    return this.columnTurno_Habilitado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2144,7 +2154,7 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_LISTADO_TURNOS_DISPONIBLESRow AddPRC_LISTADO_TURNOS_DISPONIBLESRow(decimal Turno_Hora_Inicio, decimal Turno_Hora_Fin, string Turno_Descripcion, decimal Turno_Valor_Kilometro, decimal Turno_Precio_Base) {
+            public PRC_LISTADO_TURNOS_DISPONIBLESRow AddPRC_LISTADO_TURNOS_DISPONIBLESRow(decimal Turno_Hora_Inicio, decimal Turno_Hora_Fin, string Turno_Descripcion, decimal Turno_Valor_Kilometro, decimal Turno_Precio_Base, bool Turno_Habilitado) {
                 PRC_LISTADO_TURNOS_DISPONIBLESRow rowPRC_LISTADO_TURNOS_DISPONIBLESRow = ((PRC_LISTADO_TURNOS_DISPONIBLESRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2152,7 +2162,8 @@ namespace UberFrba {
                         Turno_Hora_Fin,
                         Turno_Descripcion,
                         Turno_Valor_Kilometro,
-                        Turno_Precio_Base};
+                        Turno_Precio_Base,
+                        Turno_Habilitado};
                 rowPRC_LISTADO_TURNOS_DISPONIBLESRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPRC_LISTADO_TURNOS_DISPONIBLESRow);
                 return rowPRC_LISTADO_TURNOS_DISPONIBLESRow;
@@ -2188,6 +2199,7 @@ namespace UberFrba {
                 this.columnTurno_Descripcion = base.Columns["Turno_Descripcion"];
                 this.columnTurno_Valor_Kilometro = base.Columns["Turno_Valor_Kilometro"];
                 this.columnTurno_Precio_Base = base.Columns["Turno_Precio_Base"];
+                this.columnTurno_Habilitado = base.Columns["Turno_Habilitado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2205,6 +2217,8 @@ namespace UberFrba {
                 base.Columns.Add(this.columnTurno_Valor_Kilometro);
                 this.columnTurno_Precio_Base = new global::System.Data.DataColumn("Turno_Precio_Base", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTurno_Precio_Base);
+                this.columnTurno_Habilitado = new global::System.Data.DataColumn("Turno_Habilitado", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTurno_Habilitado);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTurno_Id}, true));
                 this.columnTurno_Id.AutoIncrement = true;
@@ -5289,6 +5303,35 @@ namespace UberFrba {
                     this[this.tablePRC_LISTADO_TURNOS_DISPONIBLES.Turno_Precio_BaseColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Turno_Habilitado {
+                get {
+                    try {
+                        return ((bool)(this[this.tablePRC_LISTADO_TURNOS_DISPONIBLES.Turno_HabilitadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Turno_Habilitado\' de la tabla \'PRC_LISTADO_TURNOS_DISPONI" +
+                                "BLES\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_LISTADO_TURNOS_DISPONIBLES.Turno_HabilitadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTurno_HabilitadoNull() {
+                return this.IsNull(this.tablePRC_LISTADO_TURNOS_DISPONIBLES.Turno_HabilitadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTurno_HabilitadoNull() {
+                this[this.tablePRC_LISTADO_TURNOS_DISPONIBLES.Turno_HabilitadoColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -7727,6 +7770,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Turno_Descripcion", "Turno_Descripcion");
             tableMapping.ColumnMappings.Add("Turno_Valor_Kilometro", "Turno_Valor_Kilometro");
             tableMapping.ColumnMappings.Add("Turno_Precio_Base", "Turno_Precio_Base");
+            tableMapping.ColumnMappings.Add("Turno_Habilitado", "Turno_Habilitado");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

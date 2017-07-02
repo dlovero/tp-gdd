@@ -183,6 +183,7 @@
               <Mapping SourceColumn="Turno_Descripcion" DataSetColumn="Turno_Descripcion" />
               <Mapping SourceColumn="Turno_Valor_Kilometro" DataSetColumn="Turno_Valor_Kilometro" />
               <Mapping SourceColumn="Turno_Precio_Base" DataSetColumn="Turno_Precio_Base" />
+              <Mapping SourceColumn="Turno_Habilitado" DataSetColumn="Turno_Habilitado" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_LISTADO_TURNOS_DISPONIBLES" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="obtenerTurnosDisponibles" GetMethodModifier="Public" GetMethodName="obtenerTurnosDisponibles" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="obtenerTurnosDisponibles" UserSourceName="obtenerTurnosDisponibles">
@@ -929,6 +930,7 @@
               </xs:element>
               <xs:element name="Turno_Valor_Kilometro" msprop:Generator_ColumnVarNameInTable="columnTurno_Valor_Kilometro" msprop:Generator_ColumnPropNameInRow="Turno_Valor_Kilometro" msprop:Generator_ColumnPropNameInTable="Turno_Valor_KilometroColumn" msprop:Generator_UserColumnName="Turno_Valor_Kilometro" type="xs:decimal" />
               <xs:element name="Turno_Precio_Base" msprop:Generator_ColumnVarNameInTable="columnTurno_Precio_Base" msprop:Generator_ColumnPropNameInRow="Turno_Precio_Base" msprop:Generator_ColumnPropNameInTable="Turno_Precio_BaseColumn" msprop:Generator_UserColumnName="Turno_Precio_Base" type="xs:decimal" />
+              <xs:element name="Turno_Habilitado" msprop:Generator_ColumnVarNameInTable="columnTurno_Habilitado" msprop:Generator_ColumnPropNameInRow="Turno_Habilitado" msprop:Generator_ColumnPropNameInTable="Turno_HabilitadoColumn" msprop:Generator_UserColumnName="Turno_Habilitado" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
