@@ -27,6 +27,17 @@ namespace UberFrba
             this.selectorFechaNacimiento.CustomFormat = "dd 'de' MMMM 'de' yyyy";
         }
 
+        public virtual void accionesAdicionales()
+        {
+        }
+
+        public virtual Boolean construite(String rolParaAlta)
+        { return false; }
+
+        public virtual void construirBotonAccion(String rolParaAlta)
+        {
+        }
+
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             if (validarDatosParaBusqueda())
@@ -87,29 +98,23 @@ namespace UberFrba
             this.Close();
         }
 
-        public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
+        public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filadeDatos)
         {
-            String nombre = (String)filaDeDatos.Row["Persona_Nombre"];
-            poblarDatosDelFormulario(this.FindForm(), filaDeDatos);
-            (this.FindForm().Controls["grupoDatosPersona"]).Enabled = true;
-        }
-
-        public static void poblarDatosDelFormulario(Form formulario, DataRowView filadeDatos)
-        {
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Text = filadeDatos.Row["Persona_Nombre"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtApellido"]).Text = filadeDatos.Row["Persona_Apellido"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtDNI"]).Text = filadeDatos.Row["Persona_Dni"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtCorreo"]).Text = filadeDatos.Row["Persona_Mail"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtTelefono"]).Text = filadeDatos.Row["Persona_Telefono"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtLocalidad"]).Text = filadeDatos.Row["Persona_Localidad"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtCodigoPostal"]).Text = filadeDatos.Row["Persona_Cod_Postal"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtCalle"]).Text = filadeDatos.Row["Persona_Direccion"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtDeptoLote"]).Text = filadeDatos.Row["Persona_Departamento"].ToString();
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtPisoManzana"]).Text = filadeDatos.Row["Persona_Piso"].ToString();
-            ((DateTimePicker)(formulario.Controls["grupoDatosPersona"]).Controls["selectorFechaNacimiento"]).Value = Convert.ToDateTime(filadeDatos.Row["Persona_Fecha_Nac"].ToString());
-            ((CheckBox)(formulario.Controls["grupoDatosPersona"]).Controls["ccHabilitado"]).Checked = (Boolean)filadeDatos.Row["habilitado"];
-            ((frmABM)formulario).idTipoRol = (int)filadeDatos.Row["idTipoRol"];
-            ((frmABM)formulario).idPersona = (int)filadeDatos.Row["Persona_Id"];
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Text = filadeDatos.Row["Persona_Nombre"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtApellido"]).Text = filadeDatos.Row["Persona_Apellido"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtDNI"]).Text = filadeDatos.Row["Persona_Dni"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtCorreo"]).Text = filadeDatos.Row["Persona_Mail"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtTelefono"]).Text = filadeDatos.Row["Persona_Telefono"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtLocalidad"]).Text = filadeDatos.Row["Persona_Localidad"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtCodigoPostal"]).Text = filadeDatos.Row["Persona_Cod_Postal"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtCalle"]).Text = filadeDatos.Row["Persona_Direccion"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtDeptoLote"]).Text = filadeDatos.Row["Persona_Departamento"].ToString();
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtPisoManzana"]).Text = filadeDatos.Row["Persona_Piso"].ToString();
+            ((DateTimePicker)(this.Controls["grupoDatosPersona"]).Controls["selectorFechaNacimiento"]).Value = Convert.ToDateTime(filadeDatos.Row["Persona_Fecha_Nac"].ToString());
+            ((CheckBox)(this.Controls["grupoDatosPersona"]).Controls["ccHabilitado"]).Checked = (Boolean)filadeDatos.Row["habilitado"];
+            ((frmABM)this).idTipoRol = (int)filadeDatos.Row["idTipoRol"];
+            ((frmABM)this).idPersona = (int)filadeDatos.Row["Persona_Id"];
+            accionesAdicionales();
         }
 
         private void txtBusquedaNombre_KeyPress(object sender, KeyPressEventArgs e)
@@ -175,6 +180,138 @@ namespace UberFrba
         private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
         {
             MetodosGlobales.permitirSoloIngresoCorreoElectronico(e);
+        }
+
+        protected void prepararFormularioSegunRol
+            (String textoFuncion, String textoTipo)
+        {
+            if (SingletonDatosUsuario.Instance.rol.soyAdministrador())
+            {
+                prepararRolAdministrador(textoTipo, textoFuncion);
+            }
+            else
+            {
+                prepararRolGenerico();
+            }
+            this.Text = textoFuncion + " " + textoTipo;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Focus();
+            ((Button)(this.Controls["grupoDatosPersona"]).Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
+        }
+
+        protected void prepararRolGenerico()
+        {
+            this.Controls["grupoBusquedaABM"].Visible = false;
+        }
+
+        protected void prepararRolAdministrador(String textoTipo, String textoFuncion)
+        {
+            this.Controls["grupoDatosPersona"].Visible = false;
+            (((GroupBox)this.Controls["grupoBusquedaABM"]).Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
+            this.tipoUsuario = textoTipo;
+            this.tipoFuncion = textoFuncion;
+        }
+
+
+        protected void construirNombreBotonAceptar(String nombre)
+        {
+            ((Button)(obtenerControlesDeGrupo("grupoDatosPersona").
+                Controls["btnAceptar"])).Text = nombre;
+        }
+
+        public Control.ControlCollection obtenerGrupoControlesDelFormulario(String nombreGrupoDeControles)
+        {
+            return (Controls[nombreGrupoDeControles]).Controls;
+        }
+
+        protected GroupBox obtenerControlesDeGrupo(String nombreGrupo)
+        {
+            return (GroupBox)this.Controls[nombreGrupo];
+        }
+    }
+
+    public partial class frmClienteChoferAgregar : frmABM
+    {
+        public override Boolean construite(String rolParaAlta)
+        {
+            this.Controls["grupoBusquedaABM"].Visible = false;
+            construirBotonAccion(rolParaAlta);
+            return true;
+        }
+        
+        public override void construirBotonAccion(String rolParaAlta)
+        {
+            construirNombreBotonAceptar("Agregar " + rolParaAlta);
+            (this.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
+                SingletonDatosUsuario.Instance.rol.accionBotonClienteChofer(
+                sender, e, this, "Agregar", rolParaAlta,
+                obtenerGrupoControlesDelFormulario("grupoDatosPersona")
+            );
+        }
+    }
+
+    public partial class frmClienteChoferModificar : frmABM
+    {
+        public override Boolean construite(String rolParaAlta)
+        {
+            prepararFormularioSegunRol("Modificar", rolParaAlta);
+            construirBotonAccion(rolParaAlta);
+            return true;
+        }
+    
+        public override void construirBotonAccion(String rolParaAlta)
+        {
+            construirNombreBotonAceptar("Modificar " + rolParaAlta);
+            (this.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
+                SingletonDatosUsuario.Instance.rol.accionBotonClienteChofer(
+                sender, e, this, "Modificar", rolParaAlta,
+                obtenerGrupoControlesDelFormulario("grupoDatosPersona")
+            );
+        }
+
+        public override void accionesAdicionales()
+        {
+            this.Controls["grupoDatosPersona"].Visible = true;
+        }
+    }
+    public partial class frmClienteChoferEliminar : frmABM
+    {
+        public override Boolean construite(String rolParaAlta)
+        {
+            prepararFormularioSegunRol("Modificar", rolParaAlta);
+            construirBotonAccion(rolParaAlta);
+            return true;
+        }
+
+        public override void construirBotonAccion(String rolParaAlta)
+        {
+            construirNombreBotonAceptar("Eliminar " + rolParaAlta);
+            (this.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
+                SingletonDatosUsuario.Instance.rol.accionBotonClienteChofer(
+                sender, e, this, "Eliminar", rolParaAlta,
+                obtenerGrupoControlesDelFormulario("grupoDatosPersona")
+            );
+        }
+
+        public override void accionesAdicionales()
+        {
+            inhabilitarControles();
+            this.Controls["grupoDatosPersona"].Visible = true;
+        }
+
+        private void inhabilitarControles()
+        {
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtNombre"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtApellido"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtDNI"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtCalle"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtDeptoLote"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtLocalidad"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtCorreo"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtTelefono"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtPisoManzana"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtCodigoPostal"]).ReadOnly = true;
+            ((DateTimePicker)(this.Controls["grupoDatosPersona"]).Controls["selectorFechaNacimiento"]).Enabled = false; 
+            ((CheckBox)(this.Controls["grupoDatosPersona"]).Controls["ccHabilitado"]).Enabled = false;
         }
     }
 }

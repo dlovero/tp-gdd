@@ -234,6 +234,7 @@ namespace UberFrba
 
     public interface IFuncionalidadRoles
     {
+        Boolean soyAdministrador();
         void agregarClienteChofer(String rol);
         void eliminarClienteChofer(String rol);
         void modificarClienteChofer(String rol);
@@ -245,6 +246,7 @@ namespace UberFrba
         void modificarTurno(String rol);
         void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
+        void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -283,6 +285,7 @@ namespace UberFrba
                 .obtenerIdEnTablaClienteOChofer(idUsuario, IdRol);
         }
 
+        public abstract Boolean soyAdministrador();
         public abstract void agregarClienteChofer(String rol);
         public abstract void eliminarClienteChofer(String rol);
         public abstract void modificarClienteChofer(String rol);
@@ -294,18 +297,8 @@ namespace UberFrba
         public abstract void modificarTurno(String rol);
         public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
-        public abstract void completarConfiguracion
-            (frmABM formulario, String textoFuncion, String textoTipo);
-
-        protected void configurarFormularioAgregarOModificar
-            (frmABM formulario, String textoFuncion, String textoTipo)
-        {
-            completarConfiguracion(formulario, textoFuncion, textoTipo);
-            formulario.Text = textoFuncion + " " + textoTipo;
-            ((TextBox)(formulario.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Focus();
-            ((Button)(formulario.Controls["grupoDatosPersona"]).Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
-        }
-
+        public abstract void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
+       
         public void mensajeErrorEnDB()
         {
             MessageBox.Show("Error al operar en la BD", "ERROR",
@@ -337,29 +330,35 @@ namespace UberFrba
     {
         public frmABM formulario { set; get; }
     }
-
+    
     public class RolAdministrador : FuncionalidadSegunRol
     {
         public RolAdministrador(int idRol, int idUsuario, String nombreRol)
             : base(idRol, idUsuario, nombreRol)
         { }
 
+        public override Boolean soyAdministrador() { return true; }
         public override void agregarClienteChofer(String rol)
         {
-            Action<object, EventArgs, frmABM, string, string> metodo = accionBotonAgregar;
-            armarFormulario(rol, metodo, "Agregar");
+            construirFormularioClienteChofer(new frmClienteChoferAgregar(), rol);
+        }
+
+        private void construirFormularioClienteChofer(frmABM frmClienteChoferAgregar, String rolParaAlta)
+        {
+            if (frmClienteChoferAgregar.construite(rolParaAlta))
+            {
+                frmClienteChoferAgregar.Show();
+            }
         }
 
         public override void eliminarClienteChofer(String rol)
         {
-            Action<object, EventArgs, frmABM, string, string> metodo = accionBotonEliminar;
-            armarFormulario(rol, metodo, "Eliminar");
+            construirFormularioClienteChofer(new frmClienteChoferEliminar(), rol);
         }
 
         public override void modificarClienteChofer(String rol)
         {
-            Action<object, EventArgs, frmABM, string, string> metodo = accionBotonModificar;
-            armarFormulario(rol, metodo, "Modificar");
+            construirFormularioClienteChofer(new frmClienteChoferModificar(), rol);
         }
 
         public override void agregarAutomovil(String rol)
@@ -401,6 +400,23 @@ namespace UberFrba
             }
         }
 
+        public override void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos)
+        {
+            if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
+                                                        MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+            {
+                if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+                {
+                    ejecutarMetodoDeAccionConParametros(
+                        obtenerNombreMetodo(funcion, rol),
+                        new object[] { 
+                            datos
+                            ,obtenerAdaptadorBD() });
+                    formulario.Close();
+                }
+            }
+        }
+
         public override void eliminarAutomovil(String rol)
         {
             construirFormularioAutomovil(new frmAutomovilEliminar());
@@ -417,14 +433,6 @@ namespace UberFrba
         public override void modificarAutomovil(String rol)
         {
             construirFormularioAutomovil(new frmAutomovilModificar());
-        }
-
-        private void armarFormulario(String rol, Action<object, EventArgs, frmABM, string, string> metodo, String funcion)
-        {
-            frmABM frmAlta = parametrizarFormulario(funcion, rol);
-            (frmAlta.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
-                metodo(sender, e, frmAlta, funcion, rol);
-            frmAlta.Show();
         }
 
         private void accionBotonAgregar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
@@ -485,7 +493,6 @@ namespace UberFrba
             {
                 mensajeErrorEnDB();
             }
-            //mensajeCreacionDeAutomovil(c["txtNombre"].Text, c["txtApellido"].Text);
         }
 
         public void eliminarAutomovilEnBD(int idAuto, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
@@ -499,7 +506,6 @@ namespace UberFrba
             {
                 mensajeErrorEnDB();
             }
-            //mensajeCreacionDeAutomovil(c["txtNombre"].Text, c["txtApellido"].Text);
         }
 
         public void modificarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
@@ -518,7 +524,6 @@ namespace UberFrba
             {
                 mensajeErrorEnDB();
             }
-            //mensajeCreacionDeAutomovil(c["txtNombre"].Text, c["txtApellido"].Text);
         }
 
         public void agregarClienteEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
@@ -660,27 +665,6 @@ namespace UberFrba
             }
         }
 
-        public frmABM parametrizarFormulario(String funcion, String rol)
-        {
-            frmABM frmAltaCliente = new frmABM();
-            configurarFormularioAgregarOModificar(frmAltaCliente, funcion, rol);
-            frmAltaCliente.Controls["grupoBusquedaABM"].Visible = verificarCondicionesParaVisualizarPAnelDeBusqueda(funcion);
-            return frmAltaCliente;
-        }
-
-        private bool verificarCondicionesParaVisualizarPAnelDeBusqueda(String funcion)
-        {
-            return SingletonDatosUsuario.Instance.soyRolAdministrador(NombreRol) && !(funcion.ToUpper().Equals("AGREGAR"));
-        }
-
-        public override void completarConfiguracion
-            (frmABM formulario, String textoFuncion, String textoTipo)
-        {
-            (((GroupBox)formulario.Controls["grupoBusquedaABM"]).Controls["btnBuscar"]).Text = "Buscar " + textoTipo;
-            ((frmABM)formulario).tipoUsuario = textoTipo;
-            ((frmABM)formulario).tipoFuncion = textoFuncion;
-        }
-       
         public void mensajeCreacionDeUsuario(String nombre, String apellido)
         {
             //FIXME: evitar overflow al utilizar substring, agregar consulta a db para traer el nuevo usuario y mostrarlo. Acciona como validacion
@@ -716,6 +700,7 @@ namespace UberFrba
         public RolGenerico(int idRol, int idUsuario, String nombreRol)
             : base(idRol, idUsuario, nombreRol)
         { }
+        public override Boolean soyAdministrador() { return false; }
 
         public override void agregarClienteChofer(String rol)
         {
@@ -802,6 +787,10 @@ namespace UberFrba
         {
         }
 
+        public override void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos)
+        {
+        }
+
         public void modificarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
         {
             try
@@ -820,12 +809,6 @@ namespace UberFrba
         {
             MessageBox.Show("Un " + NombreRol + " no puede agregar un "+rol, "Funcion no permitida para un " + NombreRol,
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-
-        public override void completarConfiguracion
-            (frmABM formulario, String textoFuncion, String textoTipo)
-        {
-            ((GroupBox)formulario.Controls["grupoBusquedaABM"]).Visible = false;
         }
     }
     public static class VariablesGlobales
