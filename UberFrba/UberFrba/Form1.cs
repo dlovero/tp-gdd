@@ -231,6 +231,7 @@ namespace UberFrba
         void eliminarRol(String rol);
         void modificarRol(String rol);
         void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
+        void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -279,6 +280,7 @@ namespace UberFrba
         public abstract void eliminarRol(String rol);
         public abstract void modificarRol(String rol);
         public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
+        public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         public abstract void completarConfiguracion
             (frmABM formulario, String textoFuncion, String textoTipo);
 
@@ -725,6 +727,10 @@ namespace UberFrba
         {
         }
 
+        public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos)
+        {
+        }
+
         public void modificarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
         {
             try
@@ -763,7 +769,7 @@ namespace UberFrba
 
     public static class MetodosGlobales
     {
-        public static Boolean verificarDatosNoSeanNulos(Form formulario, Mensajes mensaje, Mensajes titulo)
+        public static Boolean verificarDatosNoSeanNulos(Form formulario, String mensaje, String titulo)
         {
             Boolean resultado = true;
             foreach (Control c in formulario.Controls)
@@ -773,7 +779,7 @@ namespace UberFrba
                     TextBox textBox = c as TextBox;
                     if (String.IsNullOrEmpty(textBox.Text) && !textBox.Name.Equals("txtCorreo"))
                     {
-                        MessageBox.Show(Convert.ToString(mensaje), Convert.ToString(titulo), MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         resultado = false;
                         break;
                     }
@@ -793,13 +799,32 @@ namespace UberFrba
             return (resultado == DialogResult.Yes);
         }
 
-        public enum Mensajes
+        public static class Mensajes
         {
-            mensajeDatosNulos="Todos los datos son obligatorios",
-            mensajeTituloVentanaDatosNulos="Datos requeridos",
-            mensajeDatosNulosAltaClienteChofer="El correo electronico es el unico dato opcional, el resto son obligatorios",
-            mensajeAlertaAntesDeAccionInicio="¿Esta segura/o de ",
-            mensajeAlertaAntesDeAccionFin = " este nuevo ",
+            public static String mensajeDatosNulos{
+                get {
+                    return "Todos los datos son obligatorios";
+                }}
+            public static String mensajeTituloVentanaDatosNulos
+            {
+                get {
+                    return "Datos requeridos";;
+                }}
+            public static String mensajeDatosNulosAltaClienteChofer
+            {
+                get {
+                    return "El correo electronico es el unico dato opcional, el resto son obligatorios";
+                }}
+            public static String mensajeAlertaAntesDeAccionInicio
+            {
+                get {
+                    return "¿Esta segura/o de ";
+                }}
+            public static String mensajeAlertaAntesDeAccionFin
+            {
+                get {
+                    return " este nuevo ";
+                }}
         }
     }
 }

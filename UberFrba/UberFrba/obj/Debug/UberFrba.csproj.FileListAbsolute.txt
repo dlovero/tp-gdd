@@ -16,6 +16,7 @@ C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmPrincipal.res
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmABM.resources
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmResultadoBusquedaUsuarioABM.resources
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmAutomovil.resources
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmABMTurno.resources
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.Properties.Resources.resources
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.csproj.GenerateResource.Cache
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.exe.config
@@ -23,5 +24,3 @@ C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.pdb
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.pdb
-C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.csprojResolveAssemblyReference.cache
-C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmABMTurno.resources
