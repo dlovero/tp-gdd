@@ -368,8 +368,9 @@ namespace UberFrba
 
         public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol, object datos)
         {
-            if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
-                                                        MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+            //if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
+            //                                            MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+            if (formulario.verificarDatosDeFormulario())
             {
                 if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
@@ -380,13 +381,20 @@ namespace UberFrba
                             ,obtenerAdaptadorBD() });
                     formulario.Close();
                 }
+            }
+            else
+            {
+                MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
+                     MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
+                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
         public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos)
         {
-            if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
-                                                        MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+            //if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
+            //                                            MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+            if (formulario.verificarDatosDeFormulario())
             {
                 if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
@@ -398,12 +406,19 @@ namespace UberFrba
                     formulario.Close();
                 }
             }
+            else
+            {
+                MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
+                     MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
+                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         public override void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos)
         {
-            if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
-                                                        MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+            //if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
+            //                                            MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+            if (formulario.verificarDatosDeFormulario())
             {
                 if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
                 {
@@ -414,6 +429,12 @@ namespace UberFrba
                             ,obtenerAdaptadorBD() });
                     formulario.Close();
                 }
+            }
+            else
+            {
+                MessageBox.Show( MetodosGlobales.Mensajes.mensajeDatosNulos,
+                     MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
+                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -435,48 +456,48 @@ namespace UberFrba
             construirFormularioAutomovil(new frmAutomovilModificar());
         }
 
-        private void accionBotonAgregar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
-        {
-            if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulosAltaClienteChofer,
-                                                        MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
-            {
-                if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
-                {
-                    ejecutarMetodoDeAccionConParametros(obtenerNombreMetodo(funcion, rol), new object[] { 
-                        obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona")
-                        ,obtenerAdaptadorBD() });
-                    formulario.Close();
-                }
-            }
-        }
+        //private void accionBotonAgregar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
+        //{
+        //    if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulosAltaClienteChofer,
+        //                                                MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+        //    {
+        //        if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+        //        {
+        //            ejecutarMetodoDeAccionConParametros(obtenerNombreMetodo(funcion, rol), new object[] { 
+        //                obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona")
+        //                ,obtenerAdaptadorBD() });
+        //            formulario.Close();
+        //        }
+        //    }
+        //}
 
-        private void accionBotonEliminar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
-        {
-            if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
-            {
-                ejecutarMetodoDeAccionConParametros(
-                    obtenerNombreMetodo(funcion, rol),
-                    new object[] { formulario.idTipoRol, obtenerAdaptadorBD() });
-                formulario.Close();
-            }
-        }
+        //private void accionBotonEliminar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
+        //{
+        //    if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+        //    {
+        //        ejecutarMetodoDeAccionConParametros(
+        //            obtenerNombreMetodo(funcion, rol),
+        //            new object[] { formulario.idTipoRol, obtenerAdaptadorBD() });
+        //        formulario.Close();
+        //    }
+        //}
 
-        private void accionBotonModificar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
-        {
-            if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulosAltaClienteChofer,
-                                                        MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
-            {
-                if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
-                {
-                    ejecutarMetodoDeAccionConParametros(
-                        obtenerNombreMetodo(funcion, rol),
-                        new object[] { 
-                        obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona"), 
-                        obtenerAdaptadorBD(), formulario.idPersona });
-                    formulario.Close();
-                }
-            }
-        }
+        //private void accionBotonModificar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
+        //{
+        //    if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulosAltaClienteChofer,
+        //                                                MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
+        //    {
+        //        if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+        //        {
+        //            ejecutarMetodoDeAccionConParametros(
+        //                obtenerNombreMetodo(funcion, rol),
+        //                new object[] { 
+        //                obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona"), 
+        //                obtenerAdaptadorBD(), formulario.idPersona });
+        //            formulario.Close();
+        //        }
+        //    }
+        //}
 
         public void agregarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
         {
@@ -582,12 +603,12 @@ namespace UberFrba
             }
         }
 
-        public void modificarClienteEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador, int idPersona)
+        public void modificarClienteEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
         {
             try
             {
                 adaptador.modificarCliente
-                            (idPersona, Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                            (Convert.ToInt32(c["lblIdPersona"].Text), Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
                             , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value
                             , Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
@@ -769,9 +790,12 @@ namespace UberFrba
         {
             try
             {
-                adaptador.modificarCliente(SingletonDatosUsuario.Instance.obtenerIdPersona(),Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
-                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value, Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+                adaptador.modificarCliente(Convert.ToInt32(c["lblIdPersona"].Text), Convert.ToInt32(c["txtDNI"].Text), 
+                    c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                    , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text,
+                    c["txtCodigoPostal"].Text, Convert.ToInt32(c["txtTelefono"].Text),
+                    c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value,
+                    Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
             }
             catch (SqlException e)
             {
@@ -823,40 +847,26 @@ namespace UberFrba
 
     public static class MetodosGlobales
     {
-        public static void validaCorreoElectronico(String correoElectronico)
-        {
-            try
-            {
-                if (correoElectronico.Length > 0)
-                {
-                    String address = new MailAddress(correoElectronico).Address;
-                }
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("La direccion de correo electronico no es valida.", "Error",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
 
-        public static Boolean verificarDatosNoSeanNulos(Form formulario, String mensaje, String titulo)
-        {
-            Boolean resultado = true;
-            foreach (Control c in formulario.Controls)
-            {
-                if (c is TextBox)
-                {
-                    TextBox textBox = c as TextBox;
-                    if (String.IsNullOrEmpty(textBox.Text) && !textBox.Name.Equals("txtCorreo"))
-                    {
-                        MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        resultado = false;
-                        break;
-                    }
-                }
-            }
-            return resultado;
-        }
+        //public static Boolean verificarDatosNoSeanNulos(Form formulario, String mensaje, String titulo)
+        //{
+        //    Boolean resultado = true;
+        //    foreach (Control c in formulario.Controls)
+        //    {
+        //        if (c is TextBox)
+        //        {
+        //            TextBox textBox = c as TextBox;
+        //            if (String.IsNullOrEmpty(textBox.Text) && !textBox.Name.Equals("txtCorreo"))
+        //            {
+        //                MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //                resultado = false;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //    return resultado;
+        //}
 
         public static Boolean mensajeAlertaAntesDeAccion(String rol, String funcion)
         {
@@ -930,6 +940,33 @@ namespace UberFrba
             }
         }
 
+
+        public static void permitirSoloIngresoHorario(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && !esSeparadorPermitido(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private static bool esSeparadorPermitido(char caracter)
+        {
+            return (new KeysConverter()).ConvertToString(caracter).Equals(":");
+        }
+
+        public static void permitirSoloIngresoMoneda(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && !esPuntoDecimalPermitido(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private static bool esPuntoDecimalPermitido(char caracter)
+        {
+            return (new KeysConverter()).ConvertToString(caracter).Equals(".");
+        }
+
         public static class Mensajes
         {
             public static String mensajeDatosNulos{
@@ -972,50 +1009,88 @@ namespace UberFrba
             }
         }
 
-        
     }
 
     public static class Validaciones
     {
         public static Boolean validarCampoAlfanumericoConVacio(String cadenaAValidar)
         {
-            Match match = Regex.Match(cadenaAValidar, @"^[a-zA-Z][a-zA-Z0-9]*$");
-            return match.Success;
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z][a-zA-Z0-9]*$");
         }
 
         public static Boolean validarCampoAlfanumerico(String cadenaAValidar)
         {
-            Match match = Regex.Match(cadenaAValidar, @"^[a-zA-Z0-9]+$");
-            return match.Success;
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z0-9]+$");
         }
 
         public static Boolean validarCampoClave(String cadenaAValidar)
         {
-            Match match = Regex.Match(cadenaAValidar, @"[a-zA-Z0-9\!\#\$\%\._-]+$");
-            return match.Success;
+            return evaluarCadenaConExpresion(cadenaAValidar, @"[a-zA-Z0-9\!\#\$\%\._-]+$");
         }
 
         public static Boolean validarCampoNumericoConVacio(String cadenaAValidar)
         {
-            Match match = Regex.Match(cadenaAValidar, @"^[0-9]*$");
-            return match.Success;
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[0-9]*$");
         }
 
         public static Boolean validarCampoNumerico(String cadenaAValidar)
         {
-            Match match = Regex.Match(cadenaAValidar, @"^[0-9]+$");
-            return match.Success;
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[0-9]+$");
         }
 
         public static Boolean validarCampoAlfabeticoConVacio(String cadenaAValidar)
         {
-            Match match = Regex.Match(cadenaAValidar, @"^[a-zA-Z]*$");
-            return match.Success;
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z]*$");
         }
 
         public static Boolean validarCampoAlfabetico(String cadenaAValidar)
         {
-            Match match = Regex.Match(cadenaAValidar, @"^[a-zA-Z]+$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z]+$");
+        }
+
+        public static Boolean validarCodigoPostal(String cadenaAValidar)
+        {
+            return evaluarCadenaConExpresion(cadenaAValidar, @"[a-zA-Z][0-9]{4}[a-zA-Z]{3}");
+        }
+
+        public static Boolean validarCorreoElectronico(String correoElectronico)
+        {
+            Boolean resultado;
+            try
+            {
+                if (correoElectronico.Length > 0)
+                {
+                    String address = new MailAddress(correoElectronico).Address;
+                }
+                resultado = true;
+            }
+            catch (FormatException)
+            {
+                resultado = false;
+                //MessageBox.Show("La direccion de correo electronico no es valida.", "Error",
+                //MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return resultado;
+        }
+
+        public static Boolean validarPatente(String cadenaAValidar)
+        {
+            return evaluarCadenaConExpresion(cadenaAValidar, @"[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}|[a-zA-Z]{3}[0-9]{3}");
+        }
+
+        public static Boolean validarCampoHorario(String cadenaAValidar)
+        {
+            return evaluarCadenaConExpresion(cadenaAValidar, @"([01][0-9]|2[0-3]):[0-5][0-9]");
+        }
+
+        public static Boolean validarCampoMonetario(String cadenaAValidar)
+        {
+            return evaluarCadenaConExpresion(cadenaAValidar, @"[0-9]+\.[0-9]{1,2}");
+        }
+
+        private static bool evaluarCadenaConExpresion(String cadenaAValidar, String expresionRegular)
+        {
+            Match match = Regex.Match(cadenaAValidar, expresionRegular);
             return match.Success;
         }
     }

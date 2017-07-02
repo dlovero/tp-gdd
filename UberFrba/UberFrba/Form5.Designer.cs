@@ -40,6 +40,7 @@
             this.grillaDatosResultadoBusqueda.AllowUserToDeleteRows = false;
             this.grillaDatosResultadoBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaDatosResultadoBusqueda.Location = new System.Drawing.Point(6, 9);
+            this.grillaDatosResultadoBusqueda.MultiSelect = false;
             this.grillaDatosResultadoBusqueda.Name = "grillaDatosResultadoBusqueda";
             this.grillaDatosResultadoBusqueda.ReadOnly = true;
             this.grillaDatosResultadoBusqueda.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
@@ -50,6 +51,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(474, 273);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(108, 30);

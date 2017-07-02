@@ -207,9 +207,35 @@ namespace UberFrba
             asociarModeloASeleccionDeMarca();
         }
 
-        internal static bool construiteComoFormularioModificar(frmAutomovil frmAutomovil)
+        public bool verificarDatosDeFormulario()
         {
-            throw new NotImplementedException();
+            return
+            Validaciones.validarPatente(this.Controls["grupoDatosAutomovil"].Controls["txtPatente"].Text);
+        }
+
+        private void txtBusquedaPatente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
+        }
+
+        private void txtBusquedaModelo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumericoConBlancos(e);
+        }
+
+        private void txtBusquedaNombreChofer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfabeticoConBlancos(e);
+        }
+
+        private void txtBusquedaApellidoChofer_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfabeticoConBlancos(e);
+        }
+
+        private void txtPatente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
         }
     }
 

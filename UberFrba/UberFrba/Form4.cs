@@ -112,8 +112,9 @@ namespace UberFrba
             ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtPisoManzana"]).Text = filadeDatos.Row["Persona_Piso"].ToString();
             ((DateTimePicker)(this.Controls["grupoDatosPersona"]).Controls["selectorFechaNacimiento"]).Value = Convert.ToDateTime(filadeDatos.Row["Persona_Fecha_Nac"].ToString());
             ((CheckBox)(this.Controls["grupoDatosPersona"]).Controls["ccHabilitado"]).Checked = (Boolean)filadeDatos.Row["habilitado"];
-            ((frmABM)this).idTipoRol = (int)filadeDatos.Row["idTipoRol"];
-            ((frmABM)this).idPersona = (int)filadeDatos.Row["Persona_Id"];
+            this.idTipoRol = (int)filadeDatos.Row["idTipoRol"];
+            this.idPersona = (int)filadeDatos.Row["Persona_Id"];
+            ((Label)(this.Controls["grupoDatosPersona"]).Controls["lblIdPersona"]).Text = filadeDatos.Row["Persona_Id"].ToString();
             accionesAdicionales();
         }
 
@@ -227,6 +228,21 @@ namespace UberFrba
         {
             return (GroupBox)this.Controls[nombreGrupo];
         }
+
+        public bool verificarDatosDeFormulario()
+        {
+            return 
+            Validaciones.validarCampoAlfabeticoConVacio(this.Controls["grupoDatosPersona"].Controls["txtNombre"].Text) &&
+            Validaciones.validarCampoAlfabeticoConVacio(this.Controls["grupoDatosPersona"].Controls["txtApellido"].Text) &&
+            Validaciones.validarCampoNumerico(this.Controls["grupoDatosPersona"].Controls["txtDNI"].Text) &&
+            Validaciones.validarCorreoElectronico(this.Controls["grupoDatosPersona"].Controls["txtCorreo"].Text) &&
+            Validaciones.validarCampoNumerico(this.Controls["grupoDatosPersona"].Controls["txtTelefono"].Text) &&
+            Validaciones.validarCampoAlfanumericoConVacio(this.Controls["grupoDatosPersona"].Controls["txtLocalidad"].Text) &&
+            Validaciones.validarCodigoPostal(this.Controls["grupoDatosPersona"].Controls["txtCodigoPostal"].Text) &&
+            Validaciones.validarCampoAlfanumericoConVacio(this.Controls["grupoDatosPersona"].Controls["txtCalle"].Text) &&
+            Validaciones.validarCampoAlfanumerico(this.Controls["grupoDatosPersona"].Controls["txtDeptoLote"].Text) &&
+            Validaciones.validarCampoAlfanumerico(this.Controls["grupoDatosPersona"].Controls["txtPisoManzana"].Text);
+        }
     }
 
     public partial class frmClienteChoferAgregar : frmABM
@@ -234,6 +250,9 @@ namespace UberFrba
         public override Boolean construite(String rolParaAlta)
         {
             this.Controls["grupoBusquedaABM"].Visible = false;
+            this.Text = "Agregar " + rolParaAlta;
+            ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Focus();
+            ((Button)(this.Controls["grupoDatosPersona"]).Controls["btnAceptar"]).Text = this.Text;
             construirBotonAccion(rolParaAlta);
             return true;
         }
@@ -277,7 +296,7 @@ namespace UberFrba
     {
         public override Boolean construite(String rolParaAlta)
         {
-            prepararFormularioSegunRol("Modificar", rolParaAlta);
+            prepararFormularioSegunRol("Eliminar", rolParaAlta);
             construirBotonAccion(rolParaAlta);
             return true;
         }
@@ -288,7 +307,7 @@ namespace UberFrba
             (this.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
                 SingletonDatosUsuario.Instance.rol.accionBotonClienteChofer(
                 sender, e, this, "Eliminar", rolParaAlta,
-                obtenerGrupoControlesDelFormulario("grupoDatosPersona")
+                this.idPersona
             );
         }
 

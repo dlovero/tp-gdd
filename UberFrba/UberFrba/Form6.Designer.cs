@@ -93,6 +93,7 @@
             this.txtBusquedaApellidoChofer.Name = "txtBusquedaApellidoChofer";
             this.txtBusquedaApellidoChofer.Size = new System.Drawing.Size(156, 20);
             this.txtBusquedaApellidoChofer.TabIndex = 33;
+            this.txtBusquedaApellidoChofer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaApellidoChofer_KeyPress);
             // 
             // comboMarcaBusqueda
             // 
@@ -127,6 +128,7 @@
             this.txtBusquedaNombreChofer.Name = "txtBusquedaNombreChofer";
             this.txtBusquedaNombreChofer.Size = new System.Drawing.Size(156, 20);
             this.txtBusquedaNombreChofer.TabIndex = 29;
+            this.txtBusquedaNombreChofer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaNombreChofer_KeyPress);
             // 
             // lblBuscarDNI
             // 
@@ -140,7 +142,7 @@
             // lblBuscarApellido
             // 
             this.lblBuscarApellido.AutoSize = true;
-            this.lblBuscarApellido.Location = new System.Drawing.Point(318, 10);
+            this.lblBuscarApellido.Location = new System.Drawing.Point(307, 10);
             this.lblBuscarApellido.Name = "lblBuscarApellido";
             this.lblBuscarApellido.Size = new System.Drawing.Size(42, 13);
             this.lblBuscarApellido.TabIndex = 27;
@@ -157,10 +159,11 @@
             // 
             // txtBusquedaModelo
             // 
-            this.txtBusquedaModelo.Location = new System.Drawing.Point(247, 27);
+            this.txtBusquedaModelo.Location = new System.Drawing.Point(236, 27);
             this.txtBusquedaModelo.Name = "txtBusquedaModelo";
             this.txtBusquedaModelo.Size = new System.Drawing.Size(174, 20);
             this.txtBusquedaModelo.TabIndex = 26;
+            this.txtBusquedaModelo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaModelo_KeyPress);
             // 
             // txtBusquedaPatente
             // 
@@ -168,6 +171,7 @@
             this.txtBusquedaPatente.Name = "txtBusquedaPatente";
             this.txtBusquedaPatente.Size = new System.Drawing.Size(174, 20);
             this.txtBusquedaPatente.TabIndex = 25;
+            this.txtBusquedaPatente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaPatente_KeyPress);
             // 
             // comboMarca
             // 
@@ -207,9 +211,11 @@
             // txtPatente
             // 
             this.txtPatente.Location = new System.Drawing.Point(245, 16);
+            this.txtPatente.MaxLength = 7;
             this.txtPatente.Name = "txtPatente";
             this.txtPatente.Size = new System.Drawing.Size(174, 20);
             this.txtPatente.TabIndex = 35;
+            this.txtPatente.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPatente_KeyPress);
             // 
             // lblTurno
             // 

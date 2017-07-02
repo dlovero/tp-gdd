@@ -62,6 +62,7 @@
             this.txtCodigoPostal = new System.Windows.Forms.TextBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.selectorFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.lblIdPersona = new System.Windows.Forms.Label();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosPersona.SuspendLayout();
             this.SuspendLayout();
@@ -346,6 +347,7 @@
             // 
             // grupoDatosPersona
             // 
+            this.grupoDatosPersona.Controls.Add(this.lblIdPersona);
             this.grupoDatosPersona.Controls.Add(this.txtCodigoPostal);
             this.grupoDatosPersona.Controls.Add(this.txtDNI);
             this.grupoDatosPersona.Controls.Add(this.selectorFechaNacimiento);
@@ -405,15 +407,25 @@
             this.selectorFechaNacimiento.TabIndex = 34;
             this.selectorFechaNacimiento.Value = new System.DateTime(2017, 6, 29, 0, 0, 0, 0);
             // 
+            // lblIdPersona
+            // 
+            this.lblIdPersona.AutoSize = true;
+            this.lblIdPersona.Location = new System.Drawing.Point(559, 220);
+            this.lblIdPersona.Name = "lblIdPersona";
+            this.lblIdPersona.Size = new System.Drawing.Size(0, 13);
+            this.lblIdPersona.TabIndex = 39;
+            this.lblIdPersona.Visible = false;
+            // 
             // frmABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(638, 355);
-            this.ControlBox = false;
             this.Controls.Add(this.grupoBusquedaABM);
             this.Controls.Add(this.grupoDatosPersona);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmABM";
             this.Text = "Form4";
             this.grupoBusquedaABM.ResumeLayout(false);
@@ -460,6 +472,7 @@
         private System.Windows.Forms.DateTimePicker selectorFechaNacimiento;
         private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtCodigoPostal;
+        private System.Windows.Forms.Label lblIdPersona;
 
     }
 }

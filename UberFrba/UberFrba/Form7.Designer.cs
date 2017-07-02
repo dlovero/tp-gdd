@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grupoDatosTurno = new System.Windows.Forms.GroupBox();
+            this.lblIdTurno = new System.Windows.Forms.Label();
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.txtHoraInicio = new System.Windows.Forms.TextBox();
             this.txtHoraFin = new System.Windows.Forms.TextBox();
@@ -46,7 +47,6 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.lblBuscarDNI = new System.Windows.Forms.Label();
             this.txtBusquedaDescripcion = new System.Windows.Forms.TextBox();
-            this.lblIdTurno = new System.Windows.Forms.Label();
             this.grupoDatosTurno.SuspendLayout();
             this.grupoBusquedaTurno.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +73,15 @@
             this.grupoDatosTurno.TabIndex = 44;
             this.grupoDatosTurno.TabStop = false;
             // 
+            // lblIdTurno
+            // 
+            this.lblIdTurno.AutoSize = true;
+            this.lblIdTurno.Location = new System.Drawing.Point(383, 108);
+            this.lblIdTurno.Name = "lblIdTurno";
+            this.lblIdTurno.Size = new System.Drawing.Size(0, 13);
+            this.lblIdTurno.TabIndex = 52;
+            this.lblIdTurno.Visible = false;
+            // 
             // ccHabilitado
             // 
             this.ccHabilitado.AutoSize = true;
@@ -89,6 +98,7 @@
             this.txtHoraInicio.Name = "txtHoraInicio";
             this.txtHoraInicio.Size = new System.Drawing.Size(174, 20);
             this.txtHoraInicio.TabIndex = 50;
+            this.txtHoraInicio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHoraInicio_KeyPress);
             // 
             // txtHoraFin
             // 
@@ -96,6 +106,7 @@
             this.txtHoraFin.Name = "txtHoraFin";
             this.txtHoraFin.Size = new System.Drawing.Size(174, 20);
             this.txtHoraFin.TabIndex = 49;
+            this.txtHoraFin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHoraFin_KeyPress);
             // 
             // txtDescripcion
             // 
@@ -103,6 +114,7 @@
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(174, 20);
             this.txtDescripcion.TabIndex = 48;
+            this.txtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDescripcion_KeyPress);
             // 
             // txtPrecioBase
             // 
@@ -110,9 +122,11 @@
             this.txtPrecioBase.Name = "txtPrecioBase";
             this.txtPrecioBase.Size = new System.Drawing.Size(174, 20);
             this.txtPrecioBase.TabIndex = 46;
+            this.txtPrecioBase.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioBase_KeyPress);
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(440, 88);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(131, 29);
@@ -162,6 +176,7 @@
             this.txtValorKilometro.Name = "txtValorKilometro";
             this.txtValorKilometro.Size = new System.Drawing.Size(174, 20);
             this.txtValorKilometro.TabIndex = 35;
+            this.txtValorKilometro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValorKilometro_KeyPress);
             // 
             // label3
             // 
@@ -218,15 +233,7 @@
             this.txtBusquedaDescripcion.Name = "txtBusquedaDescripcion";
             this.txtBusquedaDescripcion.Size = new System.Drawing.Size(174, 20);
             this.txtBusquedaDescripcion.TabIndex = 25;
-            // 
-            // lblIdTurno
-            // 
-            this.lblIdTurno.AutoSize = true;
-            this.lblIdTurno.Location = new System.Drawing.Point(383, 108);
-            this.lblIdTurno.Name = "lblIdTurno";
-            this.lblIdTurno.Size = new System.Drawing.Size(0, 13);
-            this.lblIdTurno.TabIndex = 52;
-            this.lblIdTurno.Visible = false;
+            this.txtBusquedaDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaDescripcion_KeyPress);
             // 
             // frmABMTurno
             // 

@@ -88,7 +88,45 @@ namespace UberFrba
             this.Close();
         }
 
+        public bool verificarDatosDeFormulario()
+        {
+            return
+            Validaciones.validarCampoHorario(this.Controls["grupoDatosTurno"].Controls["txtHoraInicio"].Text) &&
+            Validaciones.validarCampoHorario(this.Controls["grupoDatosTurno"].Controls["txtHoraFin"].Text) &&
+            Validaciones.validarCampoMonetario(this.Controls["grupoDatosTurno"].Controls["txtValorKilometro"].Text) &&
+            Validaciones.validarCampoMonetario(this.Controls["grupoDatosTurno"].Controls["txtPrecioBase"].Text) &&
+            Validaciones.validarCampoAlfanumericoConVacio(this.Controls["grupoDatosTurno"].Controls["txtDescripcion"].Text);
+        }
 
+        private void txtBusquedaDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
+        }
+
+        private void txtHoraInicio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoHorario(e);
+        }
+
+        private void txtHoraFin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoHorario(e);
+        }
+
+        private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
+        }
+
+        private void txtValorKilometro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoMoneda(e);
+        }
+
+        private void txtPrecioBase_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoMoneda(e);
+        }
     }
 
     public partial class frmTurnoAgregar : frmABMTurno
