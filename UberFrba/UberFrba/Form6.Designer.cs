@@ -315,9 +315,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(646, 261);
-            this.ControlBox = false;
             this.Controls.Add(this.grupoDatosAutomovil);
             this.Controls.Add(this.grupoBusquedaABM);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmAutomovil";
             this.grupoBusquedaABM.ResumeLayout(false);
             this.grupoBusquedaABM.PerformLayout();

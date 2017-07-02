@@ -207,7 +207,7 @@ namespace UberFrba
             asociarModeloASeleccionDeMarca();
         }
 
-        public bool verificarDatosDeFormulario()
+        public virtual bool verificarDatosDeFormulario()
         {
             return
             Validaciones.validarPatente(this.Controls["grupoDatosAutomovil"].Controls["txtPatente"].Text);
@@ -264,6 +264,11 @@ namespace UberFrba
             (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
                SingletonDatosUsuario.Instance.rol.accionBotonAutomovil(sender, e, this, "Eliminar", "Automovil",
                this.idAutomovil);
+        }
+
+        public override bool verificarDatosDeFormulario()
+        {
+            return true;
         }
 
         public override void configurarEstadoFormulario()

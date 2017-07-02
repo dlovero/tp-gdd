@@ -88,7 +88,7 @@ namespace UberFrba
             this.Close();
         }
 
-        public bool verificarDatosDeFormulario()
+        public virtual bool verificarDatosDeFormulario()
         {
             return
             Validaciones.validarCampoHorario(this.Controls["grupoDatosTurno"].Controls["txtHoraInicio"].Text) &&
@@ -166,6 +166,11 @@ namespace UberFrba
                 sender, e, this, "Eliminar", "Turno",
                 Convert.ToInt32(obtenerGrupoControlesDelFormulario("grupoDatosTurno")["lblIdTurno"].Text)
             );
+        }
+
+        public override bool verificarDatosDeFormulario()
+        {
+            return true;
         }
 
         public override void accionesAdicionales()

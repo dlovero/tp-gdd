@@ -109,6 +109,8 @@ namespace UberFrba
             {
                 fmPrincipalMenu.Items.Add(mnuAuxiliar);
             }
+            EventHandler salida = new EventHandler(salirAplicacion);
+            fmPrincipalMenu.Items.Add(new ToolStripMenuItem("Salir", null, salida, null));
             fmPrincipal.Show();
         }
 
@@ -222,6 +224,11 @@ namespace UberFrba
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void salirAplicacion(object sender, EventArgs e)
         {
             Application.Exit();
         }
