@@ -58,13 +58,6 @@ namespace UberFrba
 
         public virtual Boolean construite()
         { return false; }
-        
-        //protected void construirBotonAccionAgregar()
-        //{
-        //    construirNombreBotonAceptar("Agregar Automovil");
-        //    (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
-        //        SingletonDatosUsuario.Instance.rol.accionBotonAgregarAutomovil(sender, e, this, "Agregar", "Automovil");
-        //}
 
         protected void desabilitarGrupoControlesDeBusqueda()
         {
@@ -223,9 +216,6 @@ namespace UberFrba
 
         public virtual void construirBotonAccion()
         {
-            //construirNombreBotonAceptar("Eliminar Automovil");
-            //(this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
-            //    SingletonDatosUsuario.Instance.rol.accionBotonEliminarAutomovil(sender, e, this, "Eliminar", "Automovil");
         }
 
         protected void poblarDatosDelFormulario(DataRowView filaDeDatos)
@@ -278,8 +268,6 @@ namespace UberFrba
             (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
                SingletonDatosUsuario.Instance.rol.accionBotonAutomovil(sender, e, this, "Eliminar", "Automovil",
                this.idAutomovil);
-            //(this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
-            //    SingletonDatosUsuario.Instance.rol.accionBotonEliminarAutomovil(sender, e, this, "Eliminar", "Automovil");
         }
 
         public override void configurarEstadoFormulario()
@@ -316,8 +304,6 @@ namespace UberFrba
             (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
                 SingletonDatosUsuario.Instance.rol.accionBotonAutomovil(sender, e, this, "Agregar", "Automovil",
                 obtenerGrupoControlesDeDatosDeAutomovil("grupoDatosAutomovil"));
-            //(this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
-            //    SingletonDatosUsuario.Instance.rol.accionBotonAgregarAutomovil(sender, e, this, "Agregar", "Automovil");
         }
 
     }
