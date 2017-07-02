@@ -368,8 +368,6 @@ namespace UberFrba
 
         public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol, object datos)
         {
-            //if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
-            //                                            MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
             if (formulario.verificarDatosDeFormulario())
             {
                 if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
@@ -392,8 +390,6 @@ namespace UberFrba
 
         public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos)
         {
-            //if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
-            //                                            MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
             if (formulario.verificarDatosDeFormulario())
             {
                 if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
@@ -416,8 +412,6 @@ namespace UberFrba
 
         public override void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos)
         {
-            //if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
-            //                                            MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
             if (formulario.verificarDatosDeFormulario())
             {
                 if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
@@ -455,50 +449,7 @@ namespace UberFrba
         {
             construirFormularioAutomovil(new frmAutomovilModificar());
         }
-
-        //private void accionBotonAgregar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
-        //{
-        //    if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulosAltaClienteChofer,
-        //                                                MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
-        //    {
-        //        if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
-        //        {
-        //            ejecutarMetodoDeAccionConParametros(obtenerNombreMetodo(funcion, rol), new object[] { 
-        //                obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona")
-        //                ,obtenerAdaptadorBD() });
-        //            formulario.Close();
-        //        }
-        //    }
-        //}
-
-        //private void accionBotonEliminar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
-        //{
-        //    if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
-        //    {
-        //        ejecutarMetodoDeAccionConParametros(
-        //            obtenerNombreMetodo(funcion, rol),
-        //            new object[] { formulario.idTipoRol, obtenerAdaptadorBD() });
-        //        formulario.Close();
-        //    }
-        //}
-
-        //private void accionBotonModificar(object sender, EventArgs e, frmABM formulario, string funcion, string rol)
-        //{
-        //    if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulosAltaClienteChofer,
-        //                                                MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos))
-        //    {
-        //        if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
-        //        {
-        //            ejecutarMetodoDeAccionConParametros(
-        //                obtenerNombreMetodo(funcion, rol),
-        //                new object[] { 
-        //                obtenerGrupoControlesDeFormularioABM(formulario, "grupoDatosPersona"), 
-        //                obtenerAdaptadorBD(), formulario.idPersona });
-        //            formulario.Close();
-        //        }
-        //    }
-        //}
-
+       
         public void agregarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
         {
             try
@@ -723,18 +674,14 @@ namespace UberFrba
         { }
         public override Boolean soyAdministrador() { return false; }
 
-        public override void agregarClienteChofer(String rol)
-        {
-            mensajeFuncionNoValidaParaElRol(rol);
-        }
-
-        public override void agregarTurno(String rol) { }
-        public override void eliminarTurno(String rol) { }
-        public override void modificarTurno(String rol) { }
-        public override void agregarAutomovil(String rol) { }
-        public override void eliminarAutomovil(String rol) { }
-        public override void modificarAutomovil(String rol) { }
-
+        public override void agregarClienteChofer(String rol){ mensajeFuncionNoValidaParaElRol(rol); }
+        public override void agregarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        public override void agregarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        public override void eliminarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        public override void eliminarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        public override void modificarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        public override void modificarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        
         public override void eliminarClienteChofer(String rol)
         {
             String funcion = "Eliminar";
@@ -847,27 +794,7 @@ namespace UberFrba
 
     public static class MetodosGlobales
     {
-        
-
-        //public static Boolean verificarDatosNoSeanNulos(Form formulario, String mensaje, String titulo)
-        //{
-        //    Boolean resultado = true;
-        //    foreach (Control c in formulario.Controls)
-        //    {
-        //        if (c is TextBox)
-        //        {
-        //            TextBox textBox = c as TextBox;
-        //            if (String.IsNullOrEmpty(textBox.Text) && !textBox.Name.Equals("txtCorreo"))
-        //            {
-        //                MessageBox.Show(mensaje, titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //                resultado = false;
-        //                break;
-        //            }
-        //        }
-        //    }
-        //    return resultado;
-        //}
-
+     
         public static Boolean mensajeAlertaAntesDeAccion(String rol, String funcion)
         {
             DialogResult resultado = MessageBox.Show(Mensajes.mensajeAlertaAntesDeAccionInicio + funcion
