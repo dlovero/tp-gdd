@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 
 namespace UberFrba
 {
@@ -62,20 +63,22 @@ namespace UberFrba
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            if (validarDatosDelFormulario())
+            {
                 GD1C2017DataSetTableAdapters.PRC_VALIDAR_USUARIOTableAdapter adaptador
-                    = new GD1C2017DataSetTableAdapters.PRC_VALIDAR_USUARIOTableAdapter();
+                        = new GD1C2017DataSetTableAdapters.PRC_VALIDAR_USUARIOTableAdapter();
                 DataTable tblUsuarioYRoles = adaptador.validarUsuario(textoUsuario.Text, sha256(textoClave.Text));
-            List<Tuple<String,String>> roles = new List<Tuple<string,string>>();
+                List<Tuple<String, String>> roles = new List<Tuple<string, string>>();
 
-            int codigoUsuario = tblUsuarioYRoles.Rows[0].Field<int>("UserId");
-            String nombreUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Nombre");
-            String apellidoUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Apellido");
-            int idPersona = tblUsuarioYRoles.Rows[0].Field<int>("idPersona");
+                int codigoUsuario = tblUsuarioYRoles.Rows[0].Field<int>("UserId");
+                String nombreUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Nombre");
+                String apellidoUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Apellido");
+                int idPersona = tblUsuarioYRoles.Rows[0].Field<int>("idPersona");
 
                 switch (codigoUsuario)
                 {
                     case -1:
-                         MessageBox.Show("Usuario no existe.");
+                        MessageBox.Show("Usuario no existe.");
                         break;
                     case -2:
                         MessageBox.Show("Usuario Bloqueado.");
@@ -95,8 +98,17 @@ namespace UberFrba
                         fmRoles.Show();
                         break;
                 }
+            } else {
+                MetodosGlobales.mansajeErrorValidacion();
             }
         }
+
+        private bool validarDatosDelFormulario()
+        {
+            return (Validaciones.validarCampoAlfanumerico(textoUsuario.Text) 
+                && Validaciones.validarCampoClave(textoClave.Text));
+        }
+    }
 
     public class SingletonDatosUsuario
     {
@@ -874,6 +886,67 @@ namespace UberFrba
             return (resultado == DialogResult.Yes);
         }
 
+        public static void mansajeErrorValidacion()
+        {
+            MessageBox.Show(Mensajes.mensajeErrorEnValidacionDatosDeFormulario
+                        , Mensajes.mensajeErrorEnValidacionDatosDeFormularioTitulo
+                        , MessageBoxButtons.OK
+                        , MessageBoxIcon.Error);
+        }
+
+        public static void permitirSoloIngresoNumerico(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        public static void permitirSoloIngresoAlfanumerico(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        public static void permitirSoloIngresoCorreoElectronico(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && !esSimboloPermitido(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private static bool esSimboloPermitido(char caracter)
+        {
+            return (new HashSet<string> { "@", ".", "-", "_" }).Any(v => (new KeysConverter()).ConvertToString(caracter).Equals(v));
+        }
+
+        public static void permitirSoloIngresoAlfanumericoConBlancos(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        public static void permitirSoloIngresoAlfabeticoConBlancos(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        public static void permitirSoloIngresoAlfabetico(KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         public static class Mensajes
         {
             public static String mensajeDatosNulos{
@@ -900,6 +973,67 @@ namespace UberFrba
                 get {
                     return " este nuevo ";
                 }}
+            public static String mensajeErrorEnValidacionDatosDeFormulario
+            {
+                get
+                {
+                    return "Error en validacion de datos. Revise los mismos y reintente.";
+                }
+            }
+            public static String mensajeErrorEnValidacionDatosDeFormularioTitulo
+            {
+                get
+                {
+                    return "Error Validacion";
+                }
+            }
+        }
+
+        
+    }
+
+    public static class Validaciones
+    {
+        public static Boolean validarCampoAlfanumericoConVacio(String cadenaAValidar)
+        {
+            Match match = Regex.Match(cadenaAValidar, @"^[a-zA-Z][a-zA-Z0-9]*$");
+            return match.Success;
+        }
+
+        public static Boolean validarCampoAlfanumerico(String cadenaAValidar)
+        {
+            Match match = Regex.Match(cadenaAValidar, @"^[a-zA-Z0-9]+$");
+            return match.Success;
+        }
+
+        public static Boolean validarCampoClave(String cadenaAValidar)
+        {
+            Match match = Regex.Match(cadenaAValidar, @"[a-zA-Z0-9\!\#\$\%\._-]+$");
+            return match.Success;
+        }
+
+        public static Boolean validarCampoNumericoConVacio(String cadenaAValidar)
+        {
+            Match match = Regex.Match(cadenaAValidar, @"^[0-9]*$");
+            return match.Success;
+        }
+
+        public static Boolean validarCampoNumerico(String cadenaAValidar)
+        {
+            Match match = Regex.Match(cadenaAValidar, @"^[0-9]+$");
+            return match.Success;
+        }
+
+        public static Boolean validarCampoAlfabeticoConVacio(String cadenaAValidar)
+        {
+            Match match = Regex.Match(cadenaAValidar, @"^[a-zA-Z]*$");
+            return match.Success;
+        }
+
+        public static Boolean validarCampoAlfabetico(String cadenaAValidar)
+        {
+            Match match = Regex.Match(cadenaAValidar, @"^[a-zA-Z]+$");
+            return match.Success;
         }
     }
 }

@@ -59,9 +59,9 @@
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.grupoDatosPersona = new System.Windows.Forms.GroupBox();
+            this.txtCodigoPostal = new System.Windows.Forms.TextBox();
+            this.txtDNI = new System.Windows.Forms.TextBox();
             this.selectorFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
-            this.txtCodigoPostal = new System.Windows.Forms.MaskedTextBox();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosPersona.SuspendLayout();
             this.SuspendLayout();
@@ -69,23 +69,29 @@
             // txtBusquedaNombre
             // 
             this.txtBusquedaNombre.Location = new System.Drawing.Point(33, 27);
+            this.txtBusquedaNombre.MaxLength = 255;
             this.txtBusquedaNombre.Name = "txtBusquedaNombre";
             this.txtBusquedaNombre.Size = new System.Drawing.Size(174, 20);
             this.txtBusquedaNombre.TabIndex = 24;
+            this.txtBusquedaNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaNombre_KeyPress);
             // 
             // txtBusquedaApellido
             // 
             this.txtBusquedaApellido.Location = new System.Drawing.Point(214, 27);
+            this.txtBusquedaApellido.MaxLength = 255;
             this.txtBusquedaApellido.Name = "txtBusquedaApellido";
             this.txtBusquedaApellido.Size = new System.Drawing.Size(174, 20);
             this.txtBusquedaApellido.TabIndex = 25;
+            this.txtBusquedaApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaApellido_KeyPress);
             // 
             // txtBusquedaDNI
             // 
             this.txtBusquedaDNI.Location = new System.Drawing.Point(395, 27);
+            this.txtBusquedaDNI.MaxLength = 18;
             this.txtBusquedaDNI.Name = "txtBusquedaDNI";
             this.txtBusquedaDNI.Size = new System.Drawing.Size(174, 20);
             this.txtBusquedaDNI.TabIndex = 26;
+            this.txtBusquedaDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBusquedaDNI_KeyPress);
             // 
             // lblBusquedaNombre
             // 
@@ -231,58 +237,74 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(124, 7);
+            this.txtNombre.MaxLength = 255;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(174, 20);
             this.txtNombre.TabIndex = 11;
+            this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(124, 39);
+            this.txtApellido.MaxLength = 255;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(174, 20);
             this.txtApellido.TabIndex = 12;
+            this.txtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtApellido_KeyPress);
             // 
             // txtCorreo
             // 
             this.txtCorreo.Location = new System.Drawing.Point(434, 10);
+            this.txtCorreo.MaxLength = 255;
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(174, 20);
             this.txtCorreo.TabIndex = 14;
+            this.txtCorreo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCorreo_KeyPress);
             // 
             // txtTelefono
             // 
             this.txtTelefono.Location = new System.Drawing.Point(434, 42);
+            this.txtTelefono.MaxLength = 18;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(174, 20);
             this.txtTelefono.TabIndex = 15;
+            this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
             // 
             // txtCalle
             // 
             this.txtCalle.Location = new System.Drawing.Point(124, 105);
+            this.txtCalle.MaxLength = 255;
             this.txtCalle.Name = "txtCalle";
             this.txtCalle.Size = new System.Drawing.Size(174, 20);
             this.txtCalle.TabIndex = 17;
+            this.txtCalle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCalle_KeyPress);
             // 
             // txtLocalidad
             // 
             this.txtLocalidad.Location = new System.Drawing.Point(124, 170);
+            this.txtLocalidad.MaxLength = 255;
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.Size = new System.Drawing.Size(174, 20);
             this.txtLocalidad.TabIndex = 20;
+            this.txtLocalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLocalidad_KeyPress);
             // 
             // txtPisoManzana
             // 
             this.txtPisoManzana.Location = new System.Drawing.Point(434, 137);
+            this.txtPisoManzana.MaxLength = 5;
             this.txtPisoManzana.Name = "txtPisoManzana";
             this.txtPisoManzana.Size = new System.Drawing.Size(174, 20);
             this.txtPisoManzana.TabIndex = 19;
+            this.txtPisoManzana.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPisoManzana_KeyPress);
             // 
             // txtDeptoLote
             // 
             this.txtDeptoLote.Location = new System.Drawing.Point(124, 137);
+            this.txtDeptoLote.MaxLength = 255;
             this.txtDeptoLote.Name = "txtDeptoLote";
             this.txtDeptoLote.Size = new System.Drawing.Size(174, 20);
             this.txtDeptoLote.TabIndex = 18;
+            this.txtDeptoLote.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDeptoLote_KeyPress);
             // 
             // btnAceptar
             // 
@@ -355,6 +377,24 @@
             this.grupoDatosPersona.TabIndex = 34;
             this.grupoDatosPersona.TabStop = false;
             // 
+            // txtCodigoPostal
+            // 
+            this.txtCodigoPostal.Location = new System.Drawing.Point(434, 170);
+            this.txtCodigoPostal.MaxLength = 8;
+            this.txtCodigoPostal.Name = "txtCodigoPostal";
+            this.txtCodigoPostal.Size = new System.Drawing.Size(174, 20);
+            this.txtCodigoPostal.TabIndex = 38;
+            this.txtCodigoPostal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigoPostal_KeyPress);
+            // 
+            // txtDNI
+            // 
+            this.txtDNI.Location = new System.Drawing.Point(124, 71);
+            this.txtDNI.MaxLength = 18;
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(174, 20);
+            this.txtDNI.TabIndex = 37;
+            this.txtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNI_KeyPress);
+            // 
             // selectorFechaNacimiento
             // 
             this.selectorFechaNacimiento.Location = new System.Drawing.Point(434, 71);
@@ -364,22 +404,6 @@
             this.selectorFechaNacimiento.Size = new System.Drawing.Size(174, 20);
             this.selectorFechaNacimiento.TabIndex = 34;
             this.selectorFechaNacimiento.Value = new System.DateTime(2017, 6, 29, 0, 0, 0, 0);
-            // 
-            // txtDNI
-            // 
-            this.txtDNI.Location = new System.Drawing.Point(124, 71);
-            this.txtDNI.Mask = "99999999";
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(174, 20);
-            this.txtDNI.TabIndex = 35;
-            // 
-            // txtCodigoPostal
-            // 
-            this.txtCodigoPostal.Location = new System.Drawing.Point(434, 173);
-            this.txtCodigoPostal.Mask = "99999999";
-            this.txtCodigoPostal.Name = "txtCodigoPostal";
-            this.txtCodigoPostal.Size = new System.Drawing.Size(174, 20);
-            this.txtCodigoPostal.TabIndex = 36;
             // 
             // frmABM
             // 
@@ -434,8 +458,8 @@
         private System.Windows.Forms.CheckBox ccHabilitado;
         private System.Windows.Forms.GroupBox grupoDatosPersona;
         private System.Windows.Forms.DateTimePicker selectorFechaNacimiento;
-        private System.Windows.Forms.MaskedTextBox txtDNI;
-        private System.Windows.Forms.MaskedTextBox txtCodigoPostal;
+        private System.Windows.Forms.TextBox txtDNI;
+        private System.Windows.Forms.TextBox txtCodigoPostal;
 
     }
 }

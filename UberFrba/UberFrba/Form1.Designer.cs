@@ -32,7 +32,7 @@
             this.usuario = new System.Windows.Forms.Label();
             this.clave = new System.Windows.Forms.Label();
             this.textoClave = new System.Windows.Forms.TextBox();
-            this.textoUsuario = new System.Windows.Forms.MaskedTextBox();
+            this.textoUsuario = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnIngresar
@@ -40,7 +40,7 @@
             this.btnIngresar.Location = new System.Drawing.Point(69, 119);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(96, 30);
-            this.btnIngresar.TabIndex = 3;
+            this.btnIngresar.TabIndex = 4;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
@@ -52,7 +52,7 @@
             this.usuario.Location = new System.Drawing.Point(7, 27);
             this.usuario.Name = "usuario";
             this.usuario.Size = new System.Drawing.Size(68, 20);
-            this.usuario.TabIndex = 4;
+            this.usuario.TabIndex = 5;
             this.usuario.Text = "Usuario:";
             // 
             // clave
@@ -62,25 +62,27 @@
             this.clave.Location = new System.Drawing.Point(23, 73);
             this.clave.Name = "clave";
             this.clave.Size = new System.Drawing.Size(52, 20);
-            this.clave.TabIndex = 5;
+            this.clave.TabIndex = 6;
             this.clave.Text = "Clave:";
             // 
             // textoClave
             // 
             this.textoClave.AcceptsTab = true;
             this.textoClave.Location = new System.Drawing.Point(91, 73);
+            this.textoClave.MaxLength = 16;
             this.textoClave.Name = "textoClave";
             this.textoClave.PasswordChar = '*';
             this.textoClave.Size = new System.Drawing.Size(133, 20);
-            this.textoClave.TabIndex = 2;
+            this.textoClave.TabIndex = 3;
             // 
             // textoUsuario
             // 
+            this.textoUsuario.AcceptsTab = true;
             this.textoUsuario.Location = new System.Drawing.Point(91, 29);
-            this.textoUsuario.Mask = "LLLLLLLLLLLLLLLL";
+            this.textoUsuario.MaxLength = 16;
             this.textoUsuario.Name = "textoUsuario";
             this.textoUsuario.Size = new System.Drawing.Size(133, 20);
-            this.textoUsuario.TabIndex = 1;
+            this.textoUsuario.TabIndex = 2;
             // 
             // frmIngreso
             // 
@@ -109,7 +111,7 @@
         private System.Windows.Forms.Label usuario;
         private System.Windows.Forms.Label clave;
         private System.Windows.Forms.TextBox textoClave;
-        private System.Windows.Forms.MaskedTextBox textoUsuario;
+        private System.Windows.Forms.TextBox textoUsuario;
 
     }
 }

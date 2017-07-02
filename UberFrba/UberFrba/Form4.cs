@@ -29,31 +29,44 @@ namespace UberFrba
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
+            if (validarDatosParaBusqueda())
+            {
+                GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
                 = new GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter();
-            DataTable tblDatosResultadoBusquedaUsuarios;
-            if (string.IsNullOrEmpty(this.txtBusquedaDNI.Text))
-            {
-                tblDatosResultadoBusquedaUsuarios = adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, null);
-            }
-            else
-            {
-                tblDatosResultadoBusquedaUsuarios = adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, int.Parse(this.txtBusquedaDNI.Text));
-            }
-            if (tblDatosResultadoBusquedaUsuarios != null && tblDatosResultadoBusquedaUsuarios.Rows.Count > 0)
-            {
-                frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
-                DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
-                grillaBusquedaUsuarios.DataSource = tblDatosResultadoBusquedaUsuarios;
-                grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grillaBusquedaUsuarios.AutoGenerateColumns = true;
-                formularioResultadoBusqueda.formularioABM = this;
-                formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar "+this.tipoUsuario;
-                formularioResultadoBusqueda.Show();
+                DataTable tblDatosResultadoBusquedaUsuarios;
+                if (string.IsNullOrEmpty(this.txtBusquedaDNI.Text))
+                {
+                    tblDatosResultadoBusquedaUsuarios = adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, null);
+                }
+                else
+                {
+                    tblDatosResultadoBusquedaUsuarios = adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, int.Parse(this.txtBusquedaDNI.Text));
+                }
+                if (tblDatosResultadoBusquedaUsuarios != null && tblDatosResultadoBusquedaUsuarios.Rows.Count > 0)
+                {
+                    frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
+                    DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
+                    grillaBusquedaUsuarios.DataSource = tblDatosResultadoBusquedaUsuarios;
+                    grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                    grillaBusquedaUsuarios.AutoGenerateColumns = true;
+                    formularioResultadoBusqueda.formularioABM = this;
+                    formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar " + this.tipoUsuario;
+                    formularioResultadoBusqueda.Show();
+                }
+                else
+                {
+                    MessageBox.Show("No Existe " + this.tipoUsuario + " coincidente con los parametros de busqueda");
+                }
             } else {
-                MessageBox.Show("No Existe " + this.tipoUsuario + " coincidente con los parametros de busqueda");
+                MetodosGlobales.mansajeErrorValidacion();
             }
-            
+        }
+
+        private Boolean validarDatosParaBusqueda()
+        {
+            return (Validaciones.validarCampoAlfabeticoConVacio(txtBusquedaNombre.Text)
+                && Validaciones.validarCampoNumericoConVacio(txtBusquedaDNI.Text))
+                && Validaciones.validarCampoAlfabeticoConVacio(txtBusquedaApellido.Text);
         }
 
         public static void mensajeAutoEliminacionYSalidaDeAplicacion(String funcion, String usuario)
@@ -99,9 +112,69 @@ namespace UberFrba
             ((frmABM)formulario).idPersona = (int)filadeDatos.Row["Persona_Id"];
         }
 
-        private void txtCorreo_LostFocus(object sender, EventArgs e)
+        private void txtBusquedaNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+            MetodosGlobales.permitirSoloIngresoAlfabeticoConBlancos(e);
+        }
+
+        private void txtBusquedaApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfabeticoConBlancos(e);
+        }
+
+        private void txtBusquedaDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoNumerico(e);
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoNumerico(e);
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfabeticoConBlancos(e);
+        }
+
+        private void txtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfabeticoConBlancos(e);
+        }
+
+        private void txtCalle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumericoConBlancos(e);
+        }
+
+        private void txtDeptoLote_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
+        }
+
+        private void txtLocalidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumericoConBlancos(e);
+        }
+
+        private void txtPisoManzana_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
+        }
+
+        private void txtCodigoPostal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoNumerico(e);
+        }
+
+        private void txtCorreo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoCorreoElectronico(e);
         }
     }
 }
