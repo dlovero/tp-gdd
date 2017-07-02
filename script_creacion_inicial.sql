@@ -1858,11 +1858,12 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_ALTA_TURNO
 @HFin INT,
 @Descripcion VARCHAR(255),
 @Precio_Base NUMERIC(18,2),
-@Valor_Km NUMERIC(18,2)
+@Valor_Km NUMERIC(18,2),
+@Habilitado BIT
 AS 
 BEGIN TRAN
-	INSERT INTO DESCONOCIDOS4.TURNO (Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Precio_Base,Turno_Valor_Kilometro)
-	VALUES(@HIni,@HFin,@Descripcion,@Precio_Base,@Valor_Km)
+	INSERT INTO DESCONOCIDOS4.TURNO (Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Precio_Base,Turno_Valor_Kilometro,Turno_Habilitado)
+	VALUES(@HIni,@HFin,@Descripcion,@Precio_Base,@Valor_Km,@Habilitado)
 COMMIT;
 GO
 IF OBJECT_ID (N'[DESCONOCIDOS4].TR_ALTA_TURNO', N'TR') IS NOT NULL

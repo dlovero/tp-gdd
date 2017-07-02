@@ -52,10 +52,16 @@ namespace UberFrba
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtValorKilometro"]).Text = filaDeDatos.Row["Turno_Valor_Kilometro"].ToString();
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtPrecioBase"]).Text = filaDeDatos.Row["Turno_Precio_Base"].ToString();
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtDescripcion"]).Text = filaDeDatos.Row["Turno_Descripcion"].ToString();
+            ((Label)(this.Controls["grupoDatosTurno"]).Controls["lblIdTurno"]).Text = filaDeDatos.Row["Turno_Id"].ToString();
             ((CheckBox)(this.Controls["grupoDatosTurno"]).Controls["ccHabilitado"]).Checked = (Boolean)filaDeDatos.Row["Turno_Habilitado"];
+            accionesAdicionales();
         }
 
         public virtual void construirBotonAccion()
+        {
+        }
+
+        public virtual void accionesAdicionales()
         {
         }
 
@@ -75,6 +81,11 @@ namespace UberFrba
             return (GroupBox)this.Controls[nombreGrupo];
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
 
     }
 
@@ -83,14 +94,15 @@ namespace UberFrba
         public override Boolean construite()
         {
             this.Controls["grupoBusquedaTurno"].Visible = false;
+            construirBotonAccion();
             //construirComboMarca("grupoDatosAutomovil", "comboMarca");
             return true;
         }
 
-        public virtual void construirBotonAccion()
+        public override void construirBotonAccion()
         {
             construirNombreBotonAceptar("Agregar Turno");
-            (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
+            (this.Controls["grupoDatosTurno"]).Controls["btnAceptar"].Click += (sender, e) =>
                 SingletonDatosUsuario.Instance.rol.accionBotonTurno(
                 sender, e, this, "Agregar", "Turno",
                 obtenerGrupoControlesDelFormulario("grupoDatosTurno")
@@ -107,8 +119,30 @@ namespace UberFrba
             return true;
         }
 
-        public virtual void construirBotonAccion()
+        public override void construirBotonAccion()
         {
+            construirNombreBotonAceptar("Eliminar Turno");
+            (this.Controls["grupoDatosTurno"]).Controls["btnAceptar"].Click += (sender, e) =>
+                SingletonDatosUsuario.Instance.rol.accionBotonTurno(
+                sender, e, this, "Eliminar", "Turno",
+                Convert.ToInt32(obtenerGrupoControlesDelFormulario("grupoDatosTurno")["lblIdTurno"].Text)
+            );
+        }
+
+        public override void accionesAdicionales()
+        {
+            inhabilitarControles();
+            this.Controls["grupoDatosTurno"].Visible = true;
+        }
+
+        private void inhabilitarControles()
+        {
+            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtHoraInicio"]).ReadOnly=true;
+            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtHoraFin"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtValorKilometro"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtPrecioBase"]).ReadOnly = true;
+            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtDescripcion"]).ReadOnly = true;
+            ((CheckBox)(this.Controls["grupoDatosTurno"]).Controls["ccHabilitado"]).Enabled=false;
         }
     }
     
@@ -117,12 +151,24 @@ namespace UberFrba
         public override Boolean construite()
         {
             this.Controls["grupoDatosTurno"].Visible = false;
-            //construirComboMarca("grupoDatosAutomovil", "comboMarca");
+            construirBotonAccion();
             return true;
         }
 
-        public virtual void construirBotonAccion()
+        public override void construirBotonAccion()
         {
+            construirNombreBotonAceptar("Modificar Turno");
+            (this.Controls["grupoDatosTurno"]).Controls["btnAceptar"].Click += (sender, e) =>
+                SingletonDatosUsuario.Instance.rol.accionBotonTurno(
+                sender, e, this, "Modificar", "Turno",
+                obtenerGrupoControlesDelFormulario("grupoDatosTurno")
+            );
+        }
+
+        public override void accionesAdicionales()
+        {
+            this.Controls["grupoDatosTurno"].Visible = true;
+            this.Controls["grupoDatosTurno"].Enabled = true;
         }
     }
 }

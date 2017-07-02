@@ -227,9 +227,9 @@ namespace UberFrba
         void agregarAutomovil(String rol);
         void eliminarAutomovil(String rol);
         void modificarAutomovil(String rol);
-        void agregarRol(String rol);
-        void eliminarRol(String rol);
-        void modificarRol(String rol);
+        void agregarTurno(String rol);
+        void eliminarTurno(String rol);
+        void modificarTurno(String rol);
         void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
     }
@@ -276,9 +276,9 @@ namespace UberFrba
         public abstract void agregarAutomovil(String rol);
         public abstract void eliminarAutomovil(String rol);
         public abstract void modificarAutomovil(String rol);
-        public abstract void agregarRol(String rol);
-        public abstract void eliminarRol(String rol);
-        public abstract void modificarRol(String rol);
+        public abstract void agregarTurno(String rol);
+        public abstract void eliminarTurno(String rol);
+        public abstract void modificarTurno(String rol);
         public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         public abstract void completarConfiguracion
@@ -351,11 +351,7 @@ namespace UberFrba
 
         public override void agregarAutomovil(String rol)
         {
-            frmAutomovilAgregar frmAutomovil = new frmAutomovilAgregar();
-            if (frmAutomovil.construite())
-            {
-                frmAutomovil.Show();
-            }
+            construirFormularioAutomovil(new frmAutomovilAgregar());
         }
         public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol, object datos)
         {
@@ -393,7 +389,11 @@ namespace UberFrba
 
         public override void eliminarAutomovil(String rol)
         {
-            frmAutomovilEliminar frmAutomovil = new frmAutomovilEliminar();
+            construirFormularioAutomovil(new frmAutomovilEliminar());
+        }
+
+        private static void construirFormularioAutomovil(frmAutomovil frmAutomovil)
+        {
             if (frmAutomovil.construite())
             {
                 frmAutomovil.Show();
@@ -402,11 +402,7 @@ namespace UberFrba
 
         public override void modificarAutomovil(String rol)
         {
-            frmAutomovilModificar frmAutomovil = new frmAutomovilModificar();
-            if (frmAutomovil.construite())
-            {
-                frmAutomovil.Show();
-            }
+            construirFormularioAutomovil(new frmAutomovilModificar());
         }
 
         private void armarFormulario(String rol, Action<object, EventArgs, frmABM, string, string> metodo, String funcion)
@@ -600,6 +596,56 @@ namespace UberFrba
             }
         }
 
+        public void agregarTurnoEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.agregarTurno
+                            (Convert.ToInt16(c["txtHoraInicio"].Text),
+                            Convert.ToInt16(c["txtHoraFin"].Text),
+                            c["txtDescripcion"].Text,
+                            Convert.ToDecimal(c["txtValorKilometro"].Text),
+                            Convert.ToDecimal(c["txtPrecioBase"].Text),
+                            Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
+
+        public void eliminarTurnoEnBD(int idTurno, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.eliminarTurno
+                            (idTurno);
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
+
+        public void modificarTurnoEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.modificarTurno
+                            (Convert.ToInt32(c["lblIdTurno"].Text),
+                            Convert.ToInt16(c["txtHoraInicio"].Text),
+                            Convert.ToInt16(c["txtHoraFin"].Text),
+                            c["txtDescripcion"].Text,
+                            Convert.ToDecimal(c["txtValorKilometro"].Text),
+                            Convert.ToDecimal(c["txtPrecioBase"].Text),
+                            Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
+
         public frmABM parametrizarFormulario(String funcion, String rol)
         {
             frmABM frmAltaCliente = new frmABM();
@@ -628,16 +674,27 @@ namespace UberFrba
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public override void agregarRol(String rol)
+        public override void agregarTurno(String rol)
         {
-            frmTurnoAgregar frmTurno = new frmTurnoAgregar();
+            construirFormularioTurno(new frmTurnoAgregar());
+        }
+
+        private static void construirFormularioTurno(frmABMTurno frmTurno)
+        {
             if (frmTurno.construite())
             {
                 frmTurno.Show();
             }
         }
-        public override void eliminarRol(String rol) { }
-        public override void modificarRol(String rol) { }
+        public override void eliminarTurno(String rol)
+        {
+            construirFormularioTurno(new frmTurnoEliminar()); 
+        }
+
+        public override void modificarTurno(String rol)
+        {
+            construirFormularioTurno(new frmTurnoModificar()); 
+        }
     }
 
     public class RolGenerico : FuncionalidadSegunRol
@@ -651,9 +708,9 @@ namespace UberFrba
             mensajeFuncionNoValidaParaElRol(rol);
         }
 
-        public override void agregarRol(String rol) { }
-        public override void eliminarRol(String rol) { }
-        public override void modificarRol(String rol) { }
+        public override void agregarTurno(String rol) { }
+        public override void eliminarTurno(String rol) { }
+        public override void modificarTurno(String rol) { }
         public override void agregarAutomovil(String rol) { }
         public override void eliminarAutomovil(String rol) { }
         public override void modificarAutomovil(String rol) { }

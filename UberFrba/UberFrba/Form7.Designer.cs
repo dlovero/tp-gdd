@@ -46,12 +46,14 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.lblBuscarDNI = new System.Windows.Forms.Label();
             this.txtBusquedaDescripcion = new System.Windows.Forms.TextBox();
+            this.lblIdTurno = new System.Windows.Forms.Label();
             this.grupoDatosTurno.SuspendLayout();
             this.grupoBusquedaTurno.SuspendLayout();
             this.SuspendLayout();
             // 
             // grupoDatosTurno
             // 
+            this.grupoDatosTurno.Controls.Add(this.lblIdTurno);
             this.grupoDatosTurno.Controls.Add(this.ccHabilitado);
             this.grupoDatosTurno.Controls.Add(this.txtHoraInicio);
             this.grupoDatosTurno.Controls.Add(this.txtHoraFin);
@@ -117,6 +119,7 @@
             this.btnCancelar.TabIndex = 42;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -216,6 +219,15 @@
             this.txtBusquedaDescripcion.Size = new System.Drawing.Size(174, 20);
             this.txtBusquedaDescripcion.TabIndex = 25;
             // 
+            // lblIdTurno
+            // 
+            this.lblIdTurno.AutoSize = true;
+            this.lblIdTurno.Location = new System.Drawing.Point(383, 108);
+            this.lblIdTurno.Name = "lblIdTurno";
+            this.lblIdTurno.Size = new System.Drawing.Size(0, 13);
+            this.lblIdTurno.TabIndex = 52;
+            this.lblIdTurno.Visible = false;
+            // 
             // frmABMTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,5 +265,6 @@
         private System.Windows.Forms.TextBox txtHoraFin;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtPrecioBase;
+        private System.Windows.Forms.Label lblIdTurno;
     }
 }
