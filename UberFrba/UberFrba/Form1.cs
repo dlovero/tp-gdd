@@ -1015,7 +1015,7 @@ namespace UberFrba
     {
         public static Boolean validarCampoAlfanumericoConVacio(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z][a-zA-Z0-9]*$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z][a-zA-Z0-9\s]*$");
         }
 
         public static Boolean validarCampoAlfanumerico(String cadenaAValidar)
@@ -1050,7 +1050,7 @@ namespace UberFrba
 
         public static Boolean validarCodigoPostal(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"[a-zA-Z][0-9]{4}[a-zA-Z]{3}");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z][0-9]{4}[a-zA-Z]{3}$");
         }
 
         public static Boolean validarCorreoElectronico(String correoElectronico)
@@ -1075,17 +1075,17 @@ namespace UberFrba
 
         public static Boolean validarPatente(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}|[a-zA-Z]{3}[0-9]{3}");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}|[a-zA-Z]{3}[0-9]{3}$");
         }
 
         public static Boolean validarCampoHorario(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"([01][0-9]|2[0-3]):[0-5][0-9]");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^([01][0-9]|2[0-3]):[0-5][0-9]$");
         }
 
         public static Boolean validarCampoMonetario(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"[0-9]+\.[0-9]{1,2}");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[0-9]+\.[0-9]{1,2}$");
         }
 
         private static bool evaluarCadenaConExpresion(String cadenaAValidar, String expresionRegular)
