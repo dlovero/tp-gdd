@@ -1543,17 +1543,34 @@ SET @ESTADO_NUEVO = (SELECT Cliente_Habilitado FROM INSERTED)
 END
 GO
 
--- Test the trigger.
-/*
-SELECT * FROM DESCONOCIDOS4.CLIENTE
 
-UPDATE DESCONOCIDOS4.CLIENTE
-SET Cliente_Habilitado = 0
-WHERE Cliente_Id = 1;
+--BUSCAR MIS DATOS CLIENTE
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CLI', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CLI;
 GO
-*/
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CLI
+@PerId int
+AS
+BEGIN
 
-
+	 SELECT 
+	   Persona_Dni
+      ,Persona_Nombre
+      ,Persona_Apellido
+      ,Persona_Direccion
+      ,Persona_Piso
+      ,Persona_Departamento
+      ,Persona_Localidad
+      ,Persona_Cod_Postal
+      ,Persona_Telefono
+      ,Persona_Mail
+      ,Persona_Fecha_Nac
+	  ,Cliente_Id [idTipoRol]
+	  ,Cliente_Habilitado [habilitado]
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
+	  WHERE   P.Persona_Id=@PerId	
+END
+GO
 
 /*------------------------------------------ABM CHOFER----------------------------------------------------*/
 -- ALTA DE CHOFER
@@ -1798,6 +1815,32 @@ WHERE [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(CH.Chofer_Id)='NO'
 COMMIT
 GO
 
+--BUSCAR MIS DATOS CHOFER
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CHO', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CHO;
+GO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CHO
+@PerId int
+AS
+BEGIN
+	 SELECT 
+	   Persona_Dni
+      ,Persona_Nombre
+      ,Persona_Apellido
+      ,Persona_Direccion
+      ,Persona_Piso
+      ,Persona_Departamento
+      ,Persona_Localidad
+      ,Persona_Cod_Postal
+      ,Persona_Telefono
+      ,Persona_Mail
+      ,Persona_Fecha_Nac
+	  ,Chofer_Id [idTipoRol]
+	  ,Chofer_Habilitado [habilitado]
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
+	  WHERE   P.Persona_Id=@PerId	
+END
+GO
 
 /*------------------------------------------REGISTRAR VIAJE----------------------------------------------------*/
  -- REGISTRO VIAJES
