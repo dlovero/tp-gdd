@@ -220,5 +220,10 @@ namespace UberFrba
             frmABM frmAltaCliente = new frmABM();
             frmAltaCliente.Show();
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

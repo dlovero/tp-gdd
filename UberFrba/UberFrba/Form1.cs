@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Net.Mail;
 
 namespace UberFrba
 {
@@ -353,6 +354,7 @@ namespace UberFrba
         {
             construirFormularioAutomovil(new frmAutomovilAgregar());
         }
+
         public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol, object datos)
         {
             if (MetodosGlobales.verificarDatosNoSeanNulos(formulario, MetodosGlobales.Mensajes.mensajeDatosNulos,
@@ -826,6 +828,22 @@ namespace UberFrba
 
     public static class MetodosGlobales
     {
+        public static void validaCorreoElectronico(String correoElectronico)
+        {
+            try
+            {
+                if (correoElectronico.Length > 0)
+                {
+                    String address = new MailAddress(correoElectronico).Address;
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("La direccion de correo electronico no es valida.", "Error",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public static Boolean verificarDatosNoSeanNulos(Form formulario, String mensaje, String titulo)
         {
             Boolean resultado = true;

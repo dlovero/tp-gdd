@@ -24,3 +24,4 @@ C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.Properties.Resou
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.csproj.GenerateResource.Cache
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.pdb
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.csprojResolveAssemblyReference.cache

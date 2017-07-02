@@ -48,12 +48,10 @@
             this.etiCodigoPostal = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
-            this.txtDNI = new System.Windows.Forms.TextBox();
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
             this.txtCalle = new System.Windows.Forms.TextBox();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
-            this.txtCodigoPostal = new System.Windows.Forms.TextBox();
             this.txtPisoManzana = new System.Windows.Forms.TextBox();
             this.txtDeptoLote = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -62,6 +60,8 @@
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.grupoDatosPersona = new System.Windows.Forms.GroupBox();
             this.selectorFechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.txtDNI = new System.Windows.Forms.MaskedTextBox();
+            this.txtCodigoPostal = new System.Windows.Forms.MaskedTextBox();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosPersona.SuspendLayout();
             this.SuspendLayout();
@@ -242,13 +242,6 @@
             this.txtApellido.Size = new System.Drawing.Size(174, 20);
             this.txtApellido.TabIndex = 12;
             // 
-            // txtDNI
-            // 
-            this.txtDNI.Location = new System.Drawing.Point(124, 71);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(174, 20);
-            this.txtDNI.TabIndex = 13;
-            // 
             // txtCorreo
             // 
             this.txtCorreo.Location = new System.Drawing.Point(434, 10);
@@ -277,13 +270,6 @@
             this.txtLocalidad.Size = new System.Drawing.Size(174, 20);
             this.txtLocalidad.TabIndex = 20;
             // 
-            // txtCodigoPostal
-            // 
-            this.txtCodigoPostal.Location = new System.Drawing.Point(434, 170);
-            this.txtCodigoPostal.Name = "txtCodigoPostal";
-            this.txtCodigoPostal.Size = new System.Drawing.Size(174, 20);
-            this.txtCodigoPostal.TabIndex = 23;
-            // 
             // txtPisoManzana
             // 
             this.txtPisoManzana.Location = new System.Drawing.Point(434, 137);
@@ -308,6 +294,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(391, 212);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(131, 29);
@@ -337,6 +324,8 @@
             // 
             // grupoDatosPersona
             // 
+            this.grupoDatosPersona.Controls.Add(this.txtCodigoPostal);
+            this.grupoDatosPersona.Controls.Add(this.txtDNI);
             this.grupoDatosPersona.Controls.Add(this.selectorFechaNacimiento);
             this.grupoDatosPersona.Controls.Add(this.ccHabilitado);
             this.grupoDatosPersona.Controls.Add(this.lblFechaNacimiento);
@@ -344,12 +333,10 @@
             this.grupoDatosPersona.Controls.Add(this.btnAceptar);
             this.grupoDatosPersona.Controls.Add(this.txtDeptoLote);
             this.grupoDatosPersona.Controls.Add(this.txtPisoManzana);
-            this.grupoDatosPersona.Controls.Add(this.txtCodigoPostal);
             this.grupoDatosPersona.Controls.Add(this.txtLocalidad);
             this.grupoDatosPersona.Controls.Add(this.txtCalle);
             this.grupoDatosPersona.Controls.Add(this.txtTelefono);
             this.grupoDatosPersona.Controls.Add(this.txtCorreo);
-            this.grupoDatosPersona.Controls.Add(this.txtDNI);
             this.grupoDatosPersona.Controls.Add(this.txtApellido);
             this.grupoDatosPersona.Controls.Add(this.txtNombre);
             this.grupoDatosPersona.Controls.Add(this.etiCodigoPostal);
@@ -378,11 +365,29 @@
             this.selectorFechaNacimiento.TabIndex = 34;
             this.selectorFechaNacimiento.Value = new System.DateTime(2017, 6, 29, 0, 0, 0, 0);
             // 
+            // txtDNI
+            // 
+            this.txtDNI.Location = new System.Drawing.Point(124, 71);
+            this.txtDNI.Mask = "99999999";
+            this.txtDNI.Name = "txtDNI";
+            this.txtDNI.Size = new System.Drawing.Size(174, 20);
+            this.txtDNI.TabIndex = 35;
+            // 
+            // txtCodigoPostal
+            // 
+            this.txtCodigoPostal.Location = new System.Drawing.Point(434, 173);
+            this.txtCodigoPostal.Mask = "99999999";
+            this.txtCodigoPostal.Name = "txtCodigoPostal";
+            this.txtCodigoPostal.Size = new System.Drawing.Size(174, 20);
+            this.txtCodigoPostal.TabIndex = 36;
+            // 
             // frmABM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(638, 355);
+            this.ControlBox = false;
             this.Controls.Add(this.grupoBusquedaABM);
             this.Controls.Add(this.grupoDatosPersona);
             this.Name = "frmABM";
@@ -417,12 +422,10 @@
         private System.Windows.Forms.Label etiCodigoPostal;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApellido;
-        private System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.TextBox txtLocalidad;
-        private System.Windows.Forms.TextBox txtCodigoPostal;
         private System.Windows.Forms.TextBox txtPisoManzana;
         private System.Windows.Forms.TextBox txtDeptoLote;
         private System.Windows.Forms.Button btnAceptar;
@@ -431,6 +434,8 @@
         private System.Windows.Forms.CheckBox ccHabilitado;
         private System.Windows.Forms.GroupBox grupoDatosPersona;
         private System.Windows.Forms.DateTimePicker selectorFechaNacimiento;
+        private System.Windows.Forms.MaskedTextBox txtDNI;
+        private System.Windows.Forms.MaskedTextBox txtCodigoPostal;
 
     }
 }

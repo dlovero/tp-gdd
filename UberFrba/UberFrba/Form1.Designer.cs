@@ -31,16 +31,16 @@
             this.btnIngresar = new System.Windows.Forms.Button();
             this.usuario = new System.Windows.Forms.Label();
             this.clave = new System.Windows.Forms.Label();
-            this.textoUsuario = new System.Windows.Forms.TextBox();
             this.textoClave = new System.Windows.Forms.TextBox();
+            this.textoUsuario = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // btnIngresar
             // 
-            this.btnIngresar.Location = new System.Drawing.Point(128, 133);
+            this.btnIngresar.Location = new System.Drawing.Point(69, 119);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(96, 30);
-            this.btnIngresar.TabIndex = 1;
+            this.btnIngresar.TabIndex = 3;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
@@ -52,7 +52,7 @@
             this.usuario.Location = new System.Drawing.Point(7, 27);
             this.usuario.Name = "usuario";
             this.usuario.Size = new System.Drawing.Size(68, 20);
-            this.usuario.TabIndex = 2;
+            this.usuario.TabIndex = 4;
             this.usuario.Text = "Usuario:";
             // 
             // clave
@@ -62,35 +62,41 @@
             this.clave.Location = new System.Drawing.Point(23, 73);
             this.clave.Name = "clave";
             this.clave.Size = new System.Drawing.Size(52, 20);
-            this.clave.TabIndex = 3;
+            this.clave.TabIndex = 5;
             this.clave.Text = "Clave:";
-            // 
-            // textoUsuario
-            // 
-            this.textoUsuario.Location = new System.Drawing.Point(91, 27);
-            this.textoUsuario.Name = "textoUsuario";
-            this.textoUsuario.Size = new System.Drawing.Size(133, 20);
-            this.textoUsuario.TabIndex = 4;
             // 
             // textoClave
             // 
+            this.textoClave.AcceptsTab = true;
             this.textoClave.Location = new System.Drawing.Point(91, 73);
             this.textoClave.Name = "textoClave";
             this.textoClave.PasswordChar = '*';
             this.textoClave.Size = new System.Drawing.Size(133, 20);
-            this.textoClave.TabIndex = 5;
+            this.textoClave.TabIndex = 2;
+            // 
+            // textoUsuario
+            // 
+            this.textoUsuario.Location = new System.Drawing.Point(91, 29);
+            this.textoUsuario.Mask = "LLLLLLLLLLLLLLLL";
+            this.textoUsuario.Name = "textoUsuario";
+            this.textoUsuario.Size = new System.Drawing.Size(133, 20);
+            this.textoUsuario.TabIndex = 1;
             // 
             // frmIngreso
             // 
+            this.AcceptButton = this.btnIngresar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(240, 174);
-            this.Controls.Add(this.textoClave);
             this.Controls.Add(this.textoUsuario);
+            this.Controls.Add(this.textoClave);
             this.Controls.Add(this.clave);
             this.Controls.Add(this.usuario);
             this.Controls.Add(this.btnIngresar);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmIngreso";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingreso";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -102,8 +108,8 @@
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Label usuario;
         private System.Windows.Forms.Label clave;
-        private System.Windows.Forms.TextBox textoUsuario;
         private System.Windows.Forms.TextBox textoClave;
+        private System.Windows.Forms.MaskedTextBox textoUsuario;
 
     }
 }

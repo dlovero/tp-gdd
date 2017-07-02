@@ -2087,26 +2087,43 @@ GO
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_LISTADO_AUTOS_SIN_CONDI', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_LISTADO_AUTOS_SIN_CONDI;
 GO
-CREATE PROCEDURE [DESCONOCIDOS4].PRC_LISTADO_AUTOS_SIN_CONDI
-@Marca VARCHAR(255),
-@Modelo VARCHAR(255),
-@Patente VARCHAR(10),
-@NomCh VARCHAR(255),
-@ApeCh VARCHAR(255)
---@DniChofer INT
-AS
-BEGIN 
-	SELECT DISTINCT  A.Auto_Id,A.Auto_Patente,A.Auto_Detalle,A.Auto_Marca_Modelo,A.Auto_Habilitado
-	FROM [DESCONOCIDOS4].AUTO A  LEFT JOIN [DESCONOCIDOS4].MARCA_MODELO  MM  ON A.Auto_Marca_Modelo=MM.Marca_Modelo_Id
-	LEFT JOIN [DESCONOCIDOS4].MARCA MR ON MR.Marca_Id=MM.Marca_Modelo_Marca LEFT JOIN [DESCONOCIDOS4].MODELO MD ON MD.Modelo_Id=MM.Marca_Modelo_Modelo
-	LEFT JOIN [DESCONOCIDOS4].UNIDAD_DISPONIBLE  U ON Uni_Dis_Auto=A.Auto_Id LEFT JOIN [DESCONOCIDOS4].CHOFER CH ON CH.Chofer_Id=U.Uni_Dis_Chofer
-	LEFT JOIN [DESCONOCIDOS4].PERSONA P ON P.Persona_Id= CH.Chofer_Per_Id 
-	WHERE MR.Marca_Nombre LIKE ISNULL('%' + @Marca + '%', '%') AND 
-	MD.Modelo_Nombre LIKE ISNULL('%' + @Modelo + '%', '%') AND
-	A.Auto_Patente  LIKE ISNULL('%' + @Patente + '%', '%') AND
-	P.Persona_Nombre  LIKE ISNULL('%' + @NomCh + '%', '%')  AND
-	P.Persona_Apellido  LIKE ISNULL('%' + @ApeCh + '%', '%') --AND	
-	--convert(varchar(50),P.Persona_Dni)  LIKE ISNULL('%' + convert(varchar(50),@DniChofer) + '%', '%')
+	CREATE PROCEDURE [DESCONOCIDOS4].PRC_LISTADO_AUTOS_SIN_CONDI
+		@Marca VARCHAR(255),
+		@Modelo VARCHAR(255),
+		@Patente VARCHAR(10),
+		@NomCh VARCHAR(255),
+		@ApeCh VARCHAR(255)
+		--@DniChofer INT
+		AS
+		BEGIN 
+			SELECT DISTINCT  
+	
+	
+			MR.Marca_Nombre,
+			A.Auto_Id,
+			A.Auto_Detalle,
+			A.Auto_Patente,
+			A.Auto_Habilitado,
+			ch.Chofer_Id,
+			P.Persona_Nombre,
+			P.Persona_Apellido,
+			MD.Modelo_Nombre,	
+			TUR.Turno_Descripcion	
+
+			FROM [DESCONOCIDOS4].AUTO A  
+			LEFT JOIN [DESCONOCIDOS4].MARCA_MODELO  MM  ON A.Auto_Marca_Modelo=MM.Marca_Modelo_Id
+			LEFT JOIN [DESCONOCIDOS4].MARCA MR ON MR.Marca_Id=MM.Marca_Modelo_Marca 
+			LEFT JOIN [DESCONOCIDOS4].MODELO MD ON MD.Modelo_Id=MM.Marca_Modelo_Modelo
+			LEFT JOIN [DESCONOCIDOS4].UNIDAD_DISPONIBLE  U ON Uni_Dis_Auto=A.Auto_Id 
+			LEFT JOIN [DESCONOCIDOS4].CHOFER CH ON CH.Chofer_Id=U.Uni_Dis_Chofer
+			LEFT JOIN [DESCONOCIDOS4].PERSONA P ON P.Persona_Id= CH.Chofer_Per_Id 
+			LEFT JOIN [DESCONOCIDOS4].TURNO TUR ON TUR.Turno_Id = U.Uni_Dis_Turno
+			WHERE CH.Chofer_Habilitado=1 AND TUR.Turno_Habilitado=1 AND A.Auto_Habilitado=1 and
+			MR.Marca_Nombre LIKE ISNULL('%' + @Marca + '%', '%') AND 
+			MD.Modelo_Nombre LIKE ISNULL('%' + @Modelo + '%', '%') AND
+			A.Auto_Patente  LIKE ISNULL('%' + @Patente + '%', '%') AND
+			P.Persona_Nombre  LIKE ISNULL('%' + @NomCh + '%', '%')  AND
+			P.Persona_Apellido  LIKE ISNULL('%' + @ApeCh + '%', '%')
 	
 END
 GO
@@ -2185,7 +2202,7 @@ GO
 			LEFT JOIN [DESCONOCIDOS4].CHOFER CH ON CH.Chofer_Id=U.Uni_Dis_Chofer
 			LEFT JOIN [DESCONOCIDOS4].PERSONA P ON P.Persona_Id= CH.Chofer_Per_Id 
 			LEFT JOIN [DESCONOCIDOS4].TURNO TUR ON TUR.Turno_Id = U.Uni_Dis_Turno
-			WHERE CH.Chofer_Habilitado=1 AND TUR.Turno_Habilitado=1 AND
+			WHERE --CH.Chofer_Habilitado=1 AND TUR.Turno_Habilitado=1 AND
 			MR.Marca_Nombre LIKE ISNULL('%' + @Marca + '%', '%') AND 
 			MD.Modelo_Nombre LIKE ISNULL('%' + @Modelo + '%', '%') AND
 			A.Auto_Patente  LIKE ISNULL('%' + @Patente + '%', '%') AND

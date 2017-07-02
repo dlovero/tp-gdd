@@ -150,9 +150,8 @@ namespace UberFrba
         {
             GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_DISPONIBLESTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_DISPONIBLESTableAdapter();
-            DataTable tblListadoTurnos = adaptador.obtenerTurnosDisponibles(
+            return adaptador.obtenerTurnosDisponibles(
                 this.Controls["grupoBusquedaTurno"].Controls["txtBusquedaDescripcion"].Text);
-            return tblListadoTurnos;
         }
     }
     
@@ -185,9 +184,8 @@ namespace UberFrba
         {
             GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_COMPLETOTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_COMPLETOTableAdapter();
-            DataTable tblListadoTurnos = adaptador.obtenerListadoTurnosCompleto(
+            return adaptador.obtenerListadoTurnosCompleto(
                 this.Controls["grupoBusquedaTurno"].Controls["txtBusquedaDescripcion"].Text);
-            return tblListadoTurnos;
         }
     }
 }

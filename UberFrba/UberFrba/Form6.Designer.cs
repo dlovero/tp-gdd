@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.grupoBusquedaABM = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBusquedaApellidoChofer = new System.Windows.Forms.TextBox();
             this.comboMarcaBusqueda = new System.Windows.Forms.ComboBox();
             this.lblNombreChofer = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -52,8 +54,6 @@
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
-            this.txtBusquedaApellidoChofer = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosAutomovil.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +77,22 @@
             this.grupoBusquedaABM.TabIndex = 31;
             this.grupoBusquedaABM.TabStop = false;
             this.grupoBusquedaABM.Text = "Busqueda";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(469, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 13);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Chofer Apellido";
+            // 
+            // txtBusquedaApellidoChofer
+            // 
+            this.txtBusquedaApellidoChofer.Location = new System.Drawing.Point(427, 68);
+            this.txtBusquedaApellidoChofer.Name = "txtBusquedaApellidoChofer";
+            this.txtBusquedaApellidoChofer.Size = new System.Drawing.Size(156, 20);
+            this.txtBusquedaApellidoChofer.TabIndex = 33;
             // 
             // comboMarcaBusqueda
             // 
@@ -270,6 +286,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(440, 88);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(131, 29);
@@ -286,27 +303,13 @@
             this.btnAceptar.TabIndex = 33;
             this.btnAceptar.UseVisualStyleBackColor = true;
             // 
-            // txtBusquedaApellidoChofer
-            // 
-            this.txtBusquedaApellidoChofer.Location = new System.Drawing.Point(427, 68);
-            this.txtBusquedaApellidoChofer.Name = "txtBusquedaApellidoChofer";
-            this.txtBusquedaApellidoChofer.Size = new System.Drawing.Size(156, 20);
-            this.txtBusquedaApellidoChofer.TabIndex = 33;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(469, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 13);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "Chofer Apellido";
-            // 
             // frmAutomovil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(646, 261);
+            this.ControlBox = false;
             this.Controls.Add(this.grupoDatosAutomovil);
             this.Controls.Add(this.grupoBusquedaABM);
             this.Name = "frmAutomovil";

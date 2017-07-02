@@ -63,13 +63,17 @@
             // 
             // frmRoles
             // 
+            this.AcceptButton = this.btnIniciar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(163, 105);
             this.Controls.Add(this.btnIniciar);
             this.Controls.Add(this.comboRol);
             this.Controls.Add(this.lblSeleccionRol);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmRoles";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rol";
             this.ResumeLayout(false);
             this.PerformLayout();

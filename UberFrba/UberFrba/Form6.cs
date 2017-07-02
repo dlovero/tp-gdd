@@ -145,16 +145,7 @@ namespace UberFrba
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONTableAdapter adaptador =
-                new GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONTableAdapter();
-            DataTable tblListadoAutomoviles = adaptador.obtenerListadoAutosSegunDatosBusqueda(
-                 this.Controls["grupoBusquedaABM"].Controls["comboMarcaBusqueda"].Text
-                ,this.Controls["grupoBusquedaABM"].Controls["txtBusquedaModelo"].Text
-                ,this.Controls["grupoBusquedaABM"].Controls["txtBusquedaPatente"].Text
-                ,this.Controls["grupoBusquedaABM"].Controls["txtBusquedaNombreChofer"].Text
-                ,this.Controls["grupoBusquedaABM"].Controls["txtBusquedaApellidoChofer"].Text);
-
-
+            DataTable tblListadoAutomoviles = obtenerTablaDeDatos();
             if (tblListadoAutomoviles != null && tblListadoAutomoviles.Rows.Count > 0)
             {
                 frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
@@ -172,6 +163,12 @@ namespace UberFrba
                     "Automovil No Encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        public virtual DataTable obtenerTablaDeDatos()
+        {
+            return new DataTable();
+        }
+
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
@@ -252,6 +249,18 @@ namespace UberFrba
             (this.Controls["grupoDatosAutomovil"].Controls["txtPatente"]).Enabled = false;
             (this.Controls["grupoDatosAutomovil"].Controls["ccHabilitado"]).Enabled = false;
         }
+
+        public override DataTable obtenerTablaDeDatos()
+        {
+            GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDITableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDITableAdapter();
+            return adaptador.obtenerListadoAutos(
+                 this.Controls["grupoBusquedaABM"].Controls["comboMarcaBusqueda"].Text
+                , this.Controls["grupoBusquedaABM"].Controls["txtBusquedaModelo"].Text
+                , this.Controls["grupoBusquedaABM"].Controls["txtBusquedaPatente"].Text
+                , this.Controls["grupoBusquedaABM"].Controls["txtBusquedaNombreChofer"].Text
+                , this.Controls["grupoBusquedaABM"].Controls["txtBusquedaApellidoChofer"].Text);
+        }
     }
 
     public partial class frmAutomovilAgregar:frmAutomovil
@@ -278,7 +287,6 @@ namespace UberFrba
                 SingletonDatosUsuario.Instance.rol.accionBotonAutomovil(sender, e, this, "Agregar", "Automovil",
                 obtenerGrupoControlesDeDatosDeAutomovil("grupoDatosAutomovil"));
         }
-
     }
 
     public partial class frmAutomovilModificar:frmAutomovil
@@ -306,6 +314,18 @@ namespace UberFrba
                 sender, e, this, "Modificar", "Automovil",
                 obtenerGrupoControlesDeDatosDeAutomovil("grupoDatosAutomovil")
                 );
+        }
+
+        public override DataTable obtenerTablaDeDatos()
+        {
+            GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONTableAdapter();
+            return adaptador.obtenerListadoAutosSegunDatosBusqueda(
+                 this.Controls["grupoBusquedaABM"].Controls["comboMarcaBusqueda"].Text
+                , this.Controls["grupoBusquedaABM"].Controls["txtBusquedaModelo"].Text
+                , this.Controls["grupoBusquedaABM"].Controls["txtBusquedaPatente"].Text
+                , this.Controls["grupoBusquedaABM"].Controls["txtBusquedaNombreChofer"].Text
+                , this.Controls["grupoBusquedaABM"].Controls["txtBusquedaApellidoChofer"].Text);
         }
 
         public override void configurarEstadoFormulario()

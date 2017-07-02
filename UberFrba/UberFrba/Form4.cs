@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -96,6 +97,11 @@ namespace UberFrba
             ((CheckBox)(formulario.Controls["grupoDatosPersona"]).Controls["ccHabilitado"]).Checked = (Boolean)filadeDatos.Row["habilitado"];
             ((frmABM)formulario).idTipoRol = (int)filadeDatos.Row["idTipoRol"];
             ((frmABM)formulario).idPersona = (int)filadeDatos.Row["Persona_Id"];
+        }
+
+        private void txtCorreo_LostFocus(object sender, EventArgs e)
+        {
+            
         }
     }
 }
