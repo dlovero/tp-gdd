@@ -192,16 +192,17 @@ namespace UberFrba
             }
             else
             {
-                prepararRolGenerico();
+                prepararRolGenerico(textoTipo);
             }
             this.Text = textoFuncion + " " + textoTipo;
             ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Focus();
             ((Button)(this.Controls["grupoDatosPersona"]).Controls["btnAceptar"]).Text = textoFuncion + " " + textoTipo;
         }
 
-        protected void prepararRolGenerico()
+        protected void prepararRolGenerico(String tipoRol)
         {
             this.Controls["grupoBusquedaABM"].Visible = false;
+            //cargarDatosEnFormulario();
         }
 
         protected void prepararRolAdministrador(String textoTipo, String textoFuncion)
@@ -229,7 +230,7 @@ namespace UberFrba
             return (GroupBox)this.Controls[nombreGrupo];
         }
 
-        public bool verificarDatosDeFormulario()
+        public virtual bool verificarDatosDeFormulario()
         {
             return 
             Validaciones.validarCampoAlfabeticoConVacio(this.Controls["grupoDatosPersona"].Controls["txtNombre"].Text) &&
@@ -309,6 +310,11 @@ namespace UberFrba
                 sender, e, this, "Eliminar", rolParaAlta,
                 this.idPersona
             );
+        }
+
+        public override bool verificarDatosDeFormulario()
+        {
+            return true;
         }
 
         public override void accionesAdicionales()
