@@ -51,9 +51,9 @@ namespace UberFrba
             return (resultado == DialogResult.Yes);
         }
 
-        public Control.ControlCollection obtenerGrupoControlesDeDatosDeAutomovil(frmAutomovil formulario, String nombreGrupoDeControles)
+        public Control.ControlCollection obtenerGrupoControlesDeDatosDeAutomovil(String nombreGrupoDeControles)
         {
-            return (formulario.Controls[nombreGrupoDeControles]).Controls;
+            return (Controls[nombreGrupoDeControles]).Controls;
         }
 
         public virtual Boolean construite()
@@ -209,6 +209,7 @@ namespace UberFrba
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
+            construirComboChofer();
             habilitarGrupoDatosAutomovil();
             construirComboTurno();
             construirComboMarca("grupoDatosAutomovil", "comboMarca");
@@ -217,7 +218,7 @@ namespace UberFrba
             construirBotonAccion();
             
             poblarDatosDelFormulario(filaDeDatos);
-            this.configurarEstadoFormulario();
+            configurarEstadoFormulario();
         }
 
         public virtual void construirBotonAccion()
@@ -275,7 +276,10 @@ namespace UberFrba
         {
             construirNombreBotonAceptar("Eliminar Automovil");
             (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
-                SingletonDatosUsuario.Instance.rol.accionBotonEliminarAutomovil(sender, e, this, "Eliminar", "Automovil");
+               SingletonDatosUsuario.Instance.rol.accionBotonAutomovil(sender, e, this, "Eliminar", "Automovil",
+               this.idAutomovil);
+            //(this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
+            //    SingletonDatosUsuario.Instance.rol.accionBotonEliminarAutomovil(sender, e, this, "Eliminar", "Automovil");
         }
 
         public override void configurarEstadoFormulario()
@@ -310,7 +314,10 @@ namespace UberFrba
         {
             construirNombreBotonAceptar("Agregar Automovil");
             (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
-                SingletonDatosUsuario.Instance.rol.accionBotonAgregarAutomovil(sender, e, this, "Agregar", "Automovil");
+                SingletonDatosUsuario.Instance.rol.accionBotonAutomovil(sender, e, this, "Agregar", "Automovil",
+                obtenerGrupoControlesDeDatosDeAutomovil("grupoDatosAutomovil"));
+            //(this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
+            //    SingletonDatosUsuario.Instance.rol.accionBotonAgregarAutomovil(sender, e, this, "Agregar", "Automovil");
         }
 
     }
@@ -336,7 +343,10 @@ namespace UberFrba
         {
             construirNombreBotonAceptar("Modificar Automovil");
             (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
-                SingletonDatosUsuario.Instance.rol.accionBotonModificarAutomovil(sender, e, this, "Modificar", "Automovil");
+                SingletonDatosUsuario.Instance.rol.accionBotonAutomovil(
+                sender, e, this, "Modificar", "Automovil",
+                obtenerGrupoControlesDeDatosDeAutomovil("grupoDatosAutomovil")
+                );
         }
 
         public override void configurarEstadoFormulario()
