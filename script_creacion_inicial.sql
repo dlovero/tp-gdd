@@ -1943,7 +1943,7 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_LISTADO_TURNOS_COMPLETO
 @Desc  VARCHAR(255) 
 AS
 BEGIN 
-	SELECT Turno_Id,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base
+	SELECT Turno_Id,Turno_Hora_Inicio,Turno_Hora_Fin,Turno_Descripcion,Turno_Valor_Kilometro,Turno_Precio_Base,Turno_Habilitado
 	FROM [DESCONOCIDOS4].TURNO WHERE Turno_Descripcion LIKE ISNULL('%' + @Desc + '%', '%') 
 END
 GO

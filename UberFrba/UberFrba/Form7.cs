@@ -22,10 +22,7 @@ namespace UberFrba
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_DISPONIBLESTableAdapter adaptador =
-                new GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_DISPONIBLESTableAdapter();
-            DataTable tblListadoTurnos = adaptador.obtenerTurnosDisponibles(
-                this.Controls["grupoBusquedaTurno"].Controls["txtBusquedaDescripcion"].Text);
+            DataTable tblListadoTurnos = obtenerTablaDeDatos();
 
             if (tblListadoTurnos != null && tblListadoTurnos.Rows.Count > 0)
             {
@@ -43,6 +40,11 @@ namespace UberFrba
                 MessageBox.Show("No Existe Turno habilitado, coincidente con los parametros de busqueda.",
                     "Automovil No Encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        public virtual DataTable obtenerTablaDeDatos()
+        {
+            return new DataTable();
         }
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
@@ -95,7 +97,6 @@ namespace UberFrba
         {
             this.Controls["grupoBusquedaTurno"].Visible = false;
             construirBotonAccion();
-            //construirComboMarca("grupoDatosAutomovil", "comboMarca");
             return true;
         }
 
@@ -144,6 +145,15 @@ namespace UberFrba
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtDescripcion"]).ReadOnly = true;
             ((CheckBox)(this.Controls["grupoDatosTurno"]).Controls["ccHabilitado"]).Enabled=false;
         }
+
+        public override DataTable obtenerTablaDeDatos()
+        {
+            GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_DISPONIBLESTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_DISPONIBLESTableAdapter();
+            DataTable tblListadoTurnos = adaptador.obtenerTurnosDisponibles(
+                this.Controls["grupoBusquedaTurno"].Controls["txtBusquedaDescripcion"].Text);
+            return tblListadoTurnos;
+        }
     }
     
     public partial class frmTurnoModificar : frmABMTurno
@@ -169,6 +179,15 @@ namespace UberFrba
         {
             this.Controls["grupoDatosTurno"].Visible = true;
             this.Controls["grupoDatosTurno"].Enabled = true;
+        }
+        
+        public override DataTable obtenerTablaDeDatos()
+        {
+            GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_COMPLETOTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.PRC_LISTADO_TURNOS_COMPLETOTableAdapter();
+            DataTable tblListadoTurnos = adaptador.obtenerListadoTurnosCompleto(
+                this.Controls["grupoBusquedaTurno"].Controls["txtBusquedaDescripcion"].Text);
+            return tblListadoTurnos;
         }
     }
 }
