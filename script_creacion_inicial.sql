@@ -1591,6 +1591,63 @@ BEGIN
 END
 GO
 
+
+--BUSCAR CLIENTE HABILITADO 
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO;
+GO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO
+@Nom VARCHAR(255),
+@Ape VARCHAR(255),
+@DNI NUMERIC(18,0)
+AS
+BEGIN
+	IF (@DNI IS NOT NULL)
+	BEGIN
+	 SELECT 
+	   Persona_Id
+	  ,Persona_Dni
+      ,Persona_Nombre
+      ,Persona_Apellido
+      ,Persona_Direccion
+      ,Persona_Piso
+      ,Persona_Departamento
+      ,Persona_Localidad
+      ,Persona_Cod_Postal
+      ,Persona_Telefono
+      ,Persona_Mail
+      ,Persona_Fecha_Nac
+	  ,Cliente_Id [idTipoRol]
+	  ,Cliente_Habilitado [habilitado]
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
+	  WHERE C.Cliente_Habilitado=1  AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
+              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
+	END
+	ELSE
+	BEGIN
+	SELECT 
+	   Persona_Id
+	  ,Persona_Dni
+      ,Persona_Nombre
+      ,Persona_Apellido
+      ,Persona_Direccion
+      ,Persona_Piso
+      ,Persona_Departamento
+      ,Persona_Localidad
+      ,Persona_Cod_Postal
+      ,Persona_Telefono
+      ,Persona_Mail
+      ,Persona_Fecha_Nac
+	  ,Cliente_Id [idTipoRol]
+	  ,Cliente_Habilitado [habilitado]
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
+	  WHERE   C.Cliente_Habilitado=1 AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
+	END
+END
+GO
+
 /*------------------------------------------ABM CHOFER----------------------------------------------------*/
 -- ALTA DE CHOFER
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ALTA_CHOFER', N'P') IS NOT NULL
@@ -1862,6 +1919,63 @@ BEGIN
 END
 GO
 
+
+--BUSCAR CHOFER HABILITADO
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO;
+GO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO
+@Nom VARCHAR(255),
+@Ape VARCHAR(255),
+@DNI NUMERIC(18,0)
+AS
+BEGIN
+	IF (@DNI IS NOT NULL)
+	BEGIN
+	 SELECT 
+	   Persona_Id
+	  ,Persona_Dni
+      ,Persona_Nombre
+      ,Persona_Apellido
+      ,Persona_Direccion
+      ,Persona_Piso
+      ,Persona_Departamento
+      ,Persona_Localidad
+      ,Persona_Cod_Postal
+      ,Persona_Telefono
+      ,Persona_Mail
+      ,Persona_Fecha_Nac
+	  ,Chofer_Id [idTipoRol]
+	  ,Chofer_Habilitado [habilitado]
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
+	  WHERE  C.Chofer_Habilitado=1 AND P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
+			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
+	END
+	ELSE
+	BEGIN
+		SELECT 
+	   Persona_Id
+	  ,Persona_Dni
+      ,Persona_Nombre
+      ,Persona_Apellido
+      ,Persona_Direccion
+      ,Persona_Piso
+      ,Persona_Departamento
+      ,Persona_Localidad
+      ,Persona_Cod_Postal
+      ,Persona_Telefono
+      ,Persona_Mail
+      ,Persona_Fecha_Nac
+	  ,Chofer_Id [idTipoRol]
+	  ,Chofer_Habilitado [habilitado]
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
+	  WHERE C.Chofer_Habilitado=1 AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
+	END
+END
+GO
+
 /*------------------------------------------REGISTRAR VIAJE----------------------------------------------------*/
  -- REGISTRO VIAJES
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_REGISTRO_VIAJE', N'P') IS NOT NULL
@@ -2038,6 +2152,9 @@ BEGIN
 	SELECT Uni_Dis_Auto,Uni_Dis_Chofer,Uni_Dis_Turno FROM [DESCONOCIDOS4].UNIDAD_DISPONIBLE WHERE Uni_Dis_Turno=@TURNO
 END
 GO
+
+
+
 
 
 /*--------------------------------------------ABM AUTOMOVIL --------------------------------*/
@@ -2275,6 +2392,34 @@ GO
 	
 		END
 		GO
+
+
+-- LISTAR AUTOS Y TURNOS DE UNIDAD DISPOBLE INGRESANDO POR CHOFER.
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_LISTADO_UNI_DISPONIBLE_X_CHO', N'P') IS NOT NULL
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_LISTADO_UNI_DISPONIBLE_X_CHO;
+GO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_LISTADO_UNI_DISPONIBLE_X_CHO
+ @ChoferID INT 
+AS
+BEGIN 
+	SELECT
+	 A.Auto_Id,
+	 A.Auto_Detalle,
+	 A.Auto_Patente,
+	 T.Turno_Id,
+	 T.Turno_Descripcion,
+	 T.Turno_Hora_Inicio,
+	 T.Turno_Hora_Fin,
+	 T.Turno_Precio_Base,
+	 T.Turno_Valor_Kilometro
+	 FROM [DESCONOCIDOS4].UNIDAD_DISPONIBLE U INNER JOIN [DESCONOCIDOS4].AUTO A ON A.Auto_Id=Uni_Dis_Auto
+	 INNER JOIN [DESCONOCIDOS4].TURNO T ON T.Turno_Id=U.Uni_Dis_Turno
+	 WHERE U.Uni_Dis_Chofer=@ChoferID
+END
+GO
+
+
+
 /*------------------------- SP Y FUNCIONES PARA LOGIN --------------------------------------------------*/
 
 
