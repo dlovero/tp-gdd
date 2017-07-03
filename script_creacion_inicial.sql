@@ -1554,7 +1554,8 @@ AS
 BEGIN
 
 	 SELECT 
-	   Persona_Dni
+	   Persona_Id
+	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
       ,Persona_Direccion
@@ -1824,7 +1825,8 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CHO
 AS
 BEGIN
 	 SELECT 
-	   Persona_Dni
+	   Persona_Id
+	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
       ,Persona_Direccion
@@ -2366,7 +2368,7 @@ BEGIN
       SELECT @Usu_Id = Usu_Id
 		FROM [DESCONOCIDOS4].Usuario WHERE Usu_Nombre_Usuario = @Usuario
 
-	  SELECT @NombreUsuario = Persona_Nombre, @ApellidoUsuario = Persona_Apellido
+	  SELECT @NombreUsuario = Persona_Nombre, @ApellidoUsuario = Persona_Apellido, @PersonaId=P.Persona_Id
       FROM [DESCONOCIDOS4].Usuario U JOIN [DESCONOCIDOS4].PERSONA P ON U.Usu_Per_Id = P.Persona_Id WHERE U.Usu_Id = @Usu_Id 
 
       IF @Usu_Id IS NOT NULL

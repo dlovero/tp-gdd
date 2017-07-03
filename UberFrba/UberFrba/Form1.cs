@@ -70,6 +70,7 @@ namespace UberFrba
                 DataTable tblUsuarioYRoles = adaptador.validarUsuario(textoUsuario.Text, sha256(textoClave.Text));
                 List<Tuple<String, String>> roles = new List<Tuple<string, string>>();
 
+                
                 int codigoUsuario = tblUsuarioYRoles.Rows[0].Field<int>("UserId");
                 String nombreUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Nombre");
                 String apellidoUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Apellido");
@@ -318,6 +319,7 @@ namespace UberFrba
                             datos
                             ,obtenerAdaptadorBD() });
                     formulario.Close();
+                    mensajeAutoeliminacion();
                 }
             }
             else
@@ -326,6 +328,10 @@ namespace UberFrba
                      MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
                      MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        protected virtual void mensajeAutoeliminacion()
+        {
         }
 
         public void eliminarClienteEnBD(int idTipoRol, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
@@ -431,6 +437,7 @@ namespace UberFrba
         { }
 
         public override Boolean soyAdministrador() { return true; }
+
         public override void agregarClienteChofer(String rol)
         {
             construirFormularioClienteChofer(new frmClienteChoferAgregar(), rol);
@@ -671,6 +678,11 @@ namespace UberFrba
             : base(idRol, idUsuario, nombreRol)
         { }
         public override Boolean soyAdministrador() { return false; }
+
+        protected override void mensajeAutoeliminacion()
+        {
+            frmABM.mensajeAutoEliminacionYSalidaDeAplicacion();
+        }
 
         public override void agregarClienteChofer(String rol){ mensajeFuncionNoValidaParaElRol(rol); }
         public override void agregarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }

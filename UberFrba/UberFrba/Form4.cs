@@ -80,14 +80,15 @@ namespace UberFrba
                 && Validaciones.validarCampoAlfabeticoConVacio(txtBusquedaApellido.Text);
         }
 
-        public static void mensajeAutoEliminacionYSalidaDeAplicacion(String funcion, String usuario)
+        public static void mensajeAutoEliminacionYSalidaDeAplicacion()
         {
-            DialogResult resultado = MessageBox.Show("¿Esta segura/o de " + funcion + " esta/e nueva/o " + usuario, funcion + " " + usuario,
+            DialogResult resultado = MessageBox.Show("¿Esta segura/o de eliminar este rol?", "Eliminar Rol",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (resultado == DialogResult.Yes)
             {
-                MessageBox.Show("La aplicacion se cerrara, debido a que usted dio de baja su rol de " + usuario +
-                " si posee otro rol, debera iniciar e ingresar nuevamente al sistema con otro rol.", "Salida de la aplicacion",
+                MessageBox.Show(
+                    "La aplicacion se cerrara, debido a que usted dio de baja su rol si posee otro rol,"
+                    +" debera iniciar e ingresar nuevamente al sistema con otro rol.", "Salida de la aplicacion",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Application.Exit();
             }
@@ -202,7 +203,22 @@ namespace UberFrba
         protected void prepararRolGenerico(String tipoRol)
         {
             this.Controls["grupoBusquedaABM"].Visible = false;
-            //cargarDatosEnFormulario();
+            cargarDatosEnFormulario(tipoRol);
+        }
+
+        private void cargarDatosEnFormulario(String tipoRol)
+        {
+            completarFormularioConDatosDeUsuarioSeleccionado(buscarDatos(tipoRol));
+        }
+
+        private DataRowView buscarDatos(String tipoRol)
+        {
+            GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFERTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFERTableAdapter();
+            return (tipoRol.ToLower().Equals("chofer")) ? adaptador.buscarDatosDeChofer(
+                SingletonDatosUsuario.Instance.obtenerIdPersona()).DefaultView[0]
+                : adaptador.buscarDatosDeCliente(
+                SingletonDatosUsuario.Instance.obtenerIdPersona()).DefaultView[0];
         }
 
         protected void prepararRolAdministrador(String textoTipo, String textoFuncion)
