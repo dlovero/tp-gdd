@@ -794,7 +794,23 @@ namespace UberFrba
 
     public static class MetodosGlobales
     {
-     
+        public static Boolean armarComboChofer(DataTable tablaDatos, ComboBox comboChofer)
+        {
+            if (tablaDatos.Rows.Count > 0)
+            {
+                var diccionarioDatosChofer = new Dictionary<int, String>();
+                foreach (DataRow fila in tablaDatos.Rows)
+                {
+                    diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_NOMBRE"]));
+                }
+
+                comboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);
+                comboChofer.DisplayMember = "Value";
+                comboChofer.ValueMember = "Key";
+            }
+            return tablaDatos.Rows.Count > 0;
+        }
+
         public static Boolean mensajeAlertaAntesDeAccion(String rol, String funcion)
         {
             DialogResult resultado = MessageBox.Show(Mensajes.mensajeAlertaAntesDeAccionInicio + funcion

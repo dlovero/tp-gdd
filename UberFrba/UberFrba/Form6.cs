@@ -108,29 +108,53 @@ namespace UberFrba
             GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter();
             DataTable tblChofer = adaptador.obtenerChoferesHabilitados();
-            if (tblChofer.Rows.Count > 0)
+            ComboBox frmAutomovilComboChofer = (ComboBox)this.Controls["grupoDatosAutomovil"].Controls["comboChofer"];
+            if (!MetodosGlobales.armarComboChofer(tblChofer, frmAutomovilComboChofer))
             {
-                ComboBox frmAutomovilComboChofer = (ComboBox)this.Controls["grupoDatosAutomovil"].Controls["comboChofer"];
-                var diccionarioDatosChofer = new Dictionary<int, String>();
-                foreach (DataRow fila in tblChofer.Rows)
-                {
-                    diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_NOMBRE"]));
-                }
-
-                frmAutomovilComboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);
-                frmAutomovilComboChofer.DisplayMember = "Value";
-                frmAutomovilComboChofer.ValueMember = "Key";
-            } else {
                 dispararMensajeYCancelarAccion();
+                this.Close();
+                return false;
             }
-            return tblChofer.Rows.Count > 0;
+            return true;
+            //if (tblChofer.Rows.Count > 0)
+            //{
+            //    ComboBox frmAutomovilComboChofer = (ComboBox)this.Controls["grupoDatosAutomovil"].Controls["comboChofer"];
+            //    var diccionarioDatosChofer = new Dictionary<int, String>();
+            //    foreach (DataRow fila in tblChofer.Rows)
+            //    {
+            //        diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_NOMBRE"]));
+            //    }
+
+            //    frmAutomovilComboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);
+            //    frmAutomovilComboChofer.DisplayMember = "Value";
+            //    frmAutomovilComboChofer.ValueMember = "Key";
+            //} else {
+            //    dispararMensajeYCancelarAccion();
+            //}
+            //return tblChofer.Rows.Count > 0;
         }
 
-        protected void dispararMensajeYCancelarAccion()
+        //public static Boolean armarComboChofer(DataTable tablaDatos, ComboBox comboChofer)
+        //{
+        //    if (tablaDatos.Rows.Count > 0)
+        //    {
+        //        var diccionarioDatosChofer = new Dictionary<int, String>();
+        //        foreach (DataRow fila in tablaDatos.Rows)
+        //        {
+        //            diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_NOMBRE"]));
+        //        }
+
+        //        comboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);
+        //        comboChofer.DisplayMember = "Value";
+        //        comboChofer.ValueMember = "Key";
+        //    }
+        //    return tablaDatos.Rows.Count > 0;
+        //}
+
+        public void dispararMensajeYCancelarAccion()
         {           
             DialogResult resultado = MessageBox.Show("No hay choferes disponibles para asociar.", "Agregar Automovil",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
         }
 
         protected void comboMarcaSelectedIndexChanged(object sender, EventArgs e)
