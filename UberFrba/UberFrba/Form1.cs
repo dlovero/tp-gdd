@@ -1007,7 +1007,8 @@ namespace UberFrba
 
         public static Boolean validarCampoHorario(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^([01][0-9]|2[0-3]):[0-5][0-9]$");
+            //return evaluarCadenaConExpresion(cadenaAValidar, @"^([01][0-9]|2[0-3]):[0-5][0-9]$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"([0-1][0-9]|2[0-3])[0-5][0-9]|[0-1][0-9]|2[0-3]$");
         }
 
         public static Boolean validarCampoMonetario(String cadenaAValidar)
