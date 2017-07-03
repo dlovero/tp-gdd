@@ -17,20 +17,20 @@ namespace UberFrba
             InitializeComponent();
         }
 
-        public override Boolean construite()
-        {
-            Boolean continua = construirComboChofer();
-            if (continua)
-            {
-                desabilitarGrupoControlesDeBusqueda();
-                construirComboTurno();
-                construirComboMarca("grupoDatosAutomovil", "comboMarca");
-                construirComboModelo();
-                asociarModeloASeleccionDeMarca();
-                construirBotonAccion();
-            }
-            return continua;
-        }
+        //public Boolean construite()
+        //{
+        //    Boolean continua = construirComboChofer();
+        //    if (continua)
+        //    {
+        //        desabilitarGrupoControlesDeBusqueda();
+        //        construirComboTurno();
+        //        construirComboMarca("grupoDatosAutomovil", "comboMarca");
+        //        construirComboModelo();
+        //        asociarModeloASeleccionDeMarca();
+        //        construirBotonAccion();
+        //    }
+        //    return continua;
+        //}
 
         protected Boolean construirComboChofer()
         {

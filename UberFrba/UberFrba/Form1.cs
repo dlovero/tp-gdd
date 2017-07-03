@@ -565,9 +565,9 @@ namespace UberFrba
             try
             {
                 adaptador.agregarCliente
-                            (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                            (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
+                            , Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
             }
             catch (SqlException e)
             {
@@ -581,9 +581,9 @@ namespace UberFrba
             try
             {
                 adaptador.agregarChofer
-                            (Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                            (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
+                            , Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
             }
             catch (SqlException e)
             {
@@ -956,9 +956,9 @@ namespace UberFrba
 
     public static class Validaciones
     {
-        public static Boolean validarCampoAlfanumericoConVacio(String cadenaAValidar)
+        public static Boolean validarCampoAlfanumericoConEspacio(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z][a-zA-Z0-9\s]*$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z0-9][a-zA-Z0-9\s]*$");
         }
 
         public static Boolean validarCampoAlfanumerico(String cadenaAValidar)
@@ -981,9 +981,14 @@ namespace UberFrba
             return evaluarCadenaConExpresion(cadenaAValidar, @"^[0-9]+$");
         }
 
-        public static Boolean validarCampoAlfabeticoConVacio(String cadenaAValidar)
+        public static Boolean validarCampoAlfabeticoPermiteVacio(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z]*$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z\s]*$");
+        }
+
+        public static Boolean validarCampoAlfabeticoConEspacio(String cadenaAValidar)
+        {
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z][a-zA-Z\s]*$");
         }
 
         public static Boolean validarCampoAlfabetico(String cadenaAValidar)
@@ -1029,7 +1034,7 @@ namespace UberFrba
 
         public static Boolean validarCampoMonetario(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[0-9]+\.[0-9]{1,2}$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"\d+(?:.\d{1,2}?");
         }
 
         private static bool evaluarCadenaConExpresion(String cadenaAValidar, String expresionRegular)

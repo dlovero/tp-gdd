@@ -95,7 +95,7 @@ namespace UberFrba
             Validaciones.validarCampoHorario(this.Controls["grupoDatosTurno"].Controls["txtHoraFin"].Text) &&
             Validaciones.validarCampoMonetario(this.Controls["grupoDatosTurno"].Controls["txtValorKilometro"].Text) &&
             Validaciones.validarCampoMonetario(this.Controls["grupoDatosTurno"].Controls["txtPrecioBase"].Text) &&
-            Validaciones.validarCampoAlfanumericoConVacio(this.Controls["grupoDatosTurno"].Controls["txtDescripcion"].Text);
+            Validaciones.validarCampoAlfanumericoConEspacio(this.Controls["grupoDatosTurno"].Controls["txtDescripcion"].Text);
         }
 
         private void txtBusquedaDescripcion_KeyPress(object sender, KeyPressEventArgs e)

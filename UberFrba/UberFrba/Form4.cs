@@ -75,9 +75,9 @@ namespace UberFrba
 
         private Boolean validarDatosParaBusqueda()
         {
-            return (Validaciones.validarCampoAlfabeticoConVacio(txtBusquedaNombre.Text)
+            return (Validaciones.validarCampoAlfabeticoPermiteVacio(txtBusquedaNombre.Text)
                 && Validaciones.validarCampoNumericoConVacio(txtBusquedaDNI.Text))
-                && Validaciones.validarCampoAlfabeticoConVacio(txtBusquedaApellido.Text);
+                && Validaciones.validarCampoAlfabeticoPermiteVacio(txtBusquedaApellido.Text);
         }
 
         public static void mensajeAutoEliminacionYSalidaDeAplicacion()
@@ -249,14 +249,14 @@ namespace UberFrba
         public virtual bool verificarDatosDeFormulario()
         {
             return 
-            Validaciones.validarCampoAlfabeticoConVacio(this.Controls["grupoDatosPersona"].Controls["txtNombre"].Text) &&
-            Validaciones.validarCampoAlfabeticoConVacio(this.Controls["grupoDatosPersona"].Controls["txtApellido"].Text) &&
+            Validaciones.validarCampoAlfabeticoConEspacio(this.Controls["grupoDatosPersona"].Controls["txtNombre"].Text) &&
+            Validaciones.validarCampoAlfabeticoConEspacio(this.Controls["grupoDatosPersona"].Controls["txtApellido"].Text) &&
             Validaciones.validarCampoNumerico(this.Controls["grupoDatosPersona"].Controls["txtDNI"].Text) &&
             Validaciones.validarCorreoElectronico(this.Controls["grupoDatosPersona"].Controls["txtCorreo"].Text) &&
             Validaciones.validarCampoNumerico(this.Controls["grupoDatosPersona"].Controls["txtTelefono"].Text) &&
-            Validaciones.validarCampoAlfanumericoConVacio(this.Controls["grupoDatosPersona"].Controls["txtLocalidad"].Text) &&
+            Validaciones.validarCampoAlfanumericoConEspacio(this.Controls["grupoDatosPersona"].Controls["txtLocalidad"].Text) &&
             Validaciones.validarCodigoPostal(this.Controls["grupoDatosPersona"].Controls["txtCodigoPostal"].Text) &&
-            Validaciones.validarCampoAlfanumericoConVacio(this.Controls["grupoDatosPersona"].Controls["txtCalle"].Text) &&
+            Validaciones.validarCampoAlfanumericoConEspacio(this.Controls["grupoDatosPersona"].Controls["txtCalle"].Text) &&
             Validaciones.validarCampoAlfanumerico(this.Controls["grupoDatosPersona"].Controls["txtDeptoLote"].Text) &&
             Validaciones.validarCampoAlfanumerico(this.Controls["grupoDatosPersona"].Controls["txtPisoManzana"].Text);
         }
