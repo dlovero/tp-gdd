@@ -50,6 +50,10 @@ namespace UberFrba {
         
         private PRC_LISTADO_AUTOS_SIN_CONDIDataTable tablePRC_LISTADO_AUTOS_SIN_CONDI;
         
+        private PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO;
+        
+        private PRC_BUSCAR_CHOFER_HABILITADODataTable tablePRC_BUSCAR_CHOFER_HABILITADO;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -116,6 +120,12 @@ namespace UberFrba {
                 }
                 if ((ds.Tables["PRC_LISTADO_AUTOS_SIN_CONDI"] != null)) {
                     base.Tables.Add(new PRC_LISTADO_AUTOS_SIN_CONDIDataTable(ds.Tables["PRC_LISTADO_AUTOS_SIN_CONDI"]));
+                }
+                if ((ds.Tables["PRC_LISTADO_UNI_DISPONIBLE_X_CHO"] != null)) {
+                    base.Tables.Add(new PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable(ds.Tables["PRC_LISTADO_UNI_DISPONIBLE_X_CHO"]));
+                }
+                if ((ds.Tables["PRC_BUSCAR_CHOFER_HABILITADO"] != null)) {
+                    base.Tables.Add(new PRC_BUSCAR_CHOFER_HABILITADODataTable(ds.Tables["PRC_BUSCAR_CHOFER_HABILITADO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -267,6 +277,26 @@ namespace UberFrba {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable PRC_LISTADO_UNI_DISPONIBLE_X_CHO {
+            get {
+                return this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public PRC_BUSCAR_CHOFER_HABILITADODataTable PRC_BUSCAR_CHOFER_HABILITADO {
+            get {
+                return this.tablePRC_BUSCAR_CHOFER_HABILITADO;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -370,6 +400,12 @@ namespace UberFrba {
                 }
                 if ((ds.Tables["PRC_LISTADO_AUTOS_SIN_CONDI"] != null)) {
                     base.Tables.Add(new PRC_LISTADO_AUTOS_SIN_CONDIDataTable(ds.Tables["PRC_LISTADO_AUTOS_SIN_CONDI"]));
+                }
+                if ((ds.Tables["PRC_LISTADO_UNI_DISPONIBLE_X_CHO"] != null)) {
+                    base.Tables.Add(new PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable(ds.Tables["PRC_LISTADO_UNI_DISPONIBLE_X_CHO"]));
+                }
+                if ((ds.Tables["PRC_BUSCAR_CHOFER_HABILITADO"] != null)) {
+                    base.Tables.Add(new PRC_BUSCAR_CHOFER_HABILITADODataTable(ds.Tables["PRC_BUSCAR_CHOFER_HABILITADO"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -482,6 +518,18 @@ namespace UberFrba {
                     this.tablePRC_LISTADO_AUTOS_SIN_CONDI.InitVars();
                 }
             }
+            this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO = ((PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable)(base.Tables["PRC_LISTADO_UNI_DISPONIBLE_X_CHO"]));
+            if ((initTable == true)) {
+                if ((this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO != null)) {
+                    this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.InitVars();
+                }
+            }
+            this.tablePRC_BUSCAR_CHOFER_HABILITADO = ((PRC_BUSCAR_CHOFER_HABILITADODataTable)(base.Tables["PRC_BUSCAR_CHOFER_HABILITADO"]));
+            if ((initTable == true)) {
+                if ((this.tablePRC_BUSCAR_CHOFER_HABILITADO != null)) {
+                    this.tablePRC_BUSCAR_CHOFER_HABILITADO.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -518,6 +566,10 @@ namespace UberFrba {
             base.Tables.Add(this.tablePRC_LISTADO_TURNOS_COMPLETO);
             this.tablePRC_LISTADO_AUTOS_SIN_CONDI = new PRC_LISTADO_AUTOS_SIN_CONDIDataTable();
             base.Tables.Add(this.tablePRC_LISTADO_AUTOS_SIN_CONDI);
+            this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO = new PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable();
+            base.Tables.Add(this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO);
+            this.tablePRC_BUSCAR_CHOFER_HABILITADO = new PRC_BUSCAR_CHOFER_HABILITADODataTable();
+            base.Tables.Add(this.tablePRC_BUSCAR_CHOFER_HABILITADO);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -595,6 +647,18 @@ namespace UberFrba {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializePRC_LISTADO_AUTOS_SIN_CONDI() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializePRC_LISTADO_UNI_DISPONIBLE_X_CHO() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializePRC_BUSCAR_CHOFER_HABILITADO() {
             return false;
         }
         
@@ -691,6 +755,12 @@ namespace UberFrba {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void PRC_LISTADO_AUTOS_SIN_CONDIRowChangeEventHandler(object sender, PRC_LISTADO_AUTOS_SIN_CONDIRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEventHandler(object sender, PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void PRC_BUSCAR_CHOFER_HABILITADORowChangeEventHandler(object sender, PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5152,6 +5222,712 @@ namespace UberFrba {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable : global::System.Data.TypedTableBase<PRC_LISTADO_UNI_DISPONIBLE_X_CHORow> {
+            
+            private global::System.Data.DataColumn columnAuto_Id;
+            
+            private global::System.Data.DataColumn columnAuto_Detalle;
+            
+            private global::System.Data.DataColumn columnAuto_Patente;
+            
+            private global::System.Data.DataColumn columnTurno_Id;
+            
+            private global::System.Data.DataColumn columnTurno_Descripcion;
+            
+            private global::System.Data.DataColumn columnTurno_Hora_Inicio;
+            
+            private global::System.Data.DataColumn columnTurno_Hora_Fin;
+            
+            private global::System.Data.DataColumn columnTurno_Precio_Base;
+            
+            private global::System.Data.DataColumn columnTurno_Valor_Kilometro;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable() {
+                this.TableName = "PRC_LISTADO_UNI_DISPONIBLE_X_CHO";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Auto_IdColumn {
+                get {
+                    return this.columnAuto_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Auto_DetalleColumn {
+                get {
+                    return this.columnAuto_Detalle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Auto_PatenteColumn {
+                get {
+                    return this.columnAuto_Patente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Turno_IdColumn {
+                get {
+                    return this.columnTurno_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Turno_DescripcionColumn {
+                get {
+                    return this.columnTurno_Descripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Turno_Hora_InicioColumn {
+                get {
+                    return this.columnTurno_Hora_Inicio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Turno_Hora_FinColumn {
+                get {
+                    return this.columnTurno_Hora_Fin;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Turno_Precio_BaseColumn {
+                get {
+                    return this.columnTurno_Precio_Base;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Turno_Valor_KilometroColumn {
+                get {
+                    return this.columnTurno_Valor_Kilometro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_LISTADO_UNI_DISPONIBLE_X_CHORow this[int index] {
+                get {
+                    return ((PRC_LISTADO_UNI_DISPONIBLE_X_CHORow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEventHandler PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEventHandler PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEventHandler PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEventHandler PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddPRC_LISTADO_UNI_DISPONIBLE_X_CHORow(PRC_LISTADO_UNI_DISPONIBLE_X_CHORow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_LISTADO_UNI_DISPONIBLE_X_CHORow AddPRC_LISTADO_UNI_DISPONIBLE_X_CHORow(string Auto_Detalle, string Auto_Patente, string Turno_Descripcion, decimal Turno_Hora_Inicio, decimal Turno_Hora_Fin, decimal Turno_Precio_Base, decimal Turno_Valor_Kilometro) {
+                PRC_LISTADO_UNI_DISPONIBLE_X_CHORow rowPRC_LISTADO_UNI_DISPONIBLE_X_CHORow = ((PRC_LISTADO_UNI_DISPONIBLE_X_CHORow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Auto_Detalle,
+                        Auto_Patente,
+                        null,
+                        Turno_Descripcion,
+                        Turno_Hora_Inicio,
+                        Turno_Hora_Fin,
+                        Turno_Precio_Base,
+                        Turno_Valor_Kilometro};
+                rowPRC_LISTADO_UNI_DISPONIBLE_X_CHORow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowPRC_LISTADO_UNI_DISPONIBLE_X_CHORow);
+                return rowPRC_LISTADO_UNI_DISPONIBLE_X_CHORow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable cln = ((PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnAuto_Id = base.Columns["Auto_Id"];
+                this.columnAuto_Detalle = base.Columns["Auto_Detalle"];
+                this.columnAuto_Patente = base.Columns["Auto_Patente"];
+                this.columnTurno_Id = base.Columns["Turno_Id"];
+                this.columnTurno_Descripcion = base.Columns["Turno_Descripcion"];
+                this.columnTurno_Hora_Inicio = base.Columns["Turno_Hora_Inicio"];
+                this.columnTurno_Hora_Fin = base.Columns["Turno_Hora_Fin"];
+                this.columnTurno_Precio_Base = base.Columns["Turno_Precio_Base"];
+                this.columnTurno_Valor_Kilometro = base.Columns["Turno_Valor_Kilometro"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnAuto_Id = new global::System.Data.DataColumn("Auto_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAuto_Id);
+                this.columnAuto_Detalle = new global::System.Data.DataColumn("Auto_Detalle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAuto_Detalle);
+                this.columnAuto_Patente = new global::System.Data.DataColumn("Auto_Patente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAuto_Patente);
+                this.columnTurno_Id = new global::System.Data.DataColumn("Turno_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTurno_Id);
+                this.columnTurno_Descripcion = new global::System.Data.DataColumn("Turno_Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTurno_Descripcion);
+                this.columnTurno_Hora_Inicio = new global::System.Data.DataColumn("Turno_Hora_Inicio", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTurno_Hora_Inicio);
+                this.columnTurno_Hora_Fin = new global::System.Data.DataColumn("Turno_Hora_Fin", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTurno_Hora_Fin);
+                this.columnTurno_Precio_Base = new global::System.Data.DataColumn("Turno_Precio_Base", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTurno_Precio_Base);
+                this.columnTurno_Valor_Kilometro = new global::System.Data.DataColumn("Turno_Valor_Kilometro", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTurno_Valor_Kilometro);
+                this.columnAuto_Id.AutoIncrement = true;
+                this.columnAuto_Id.AutoIncrementSeed = -1;
+                this.columnAuto_Id.AutoIncrementStep = -1;
+                this.columnAuto_Id.AllowDBNull = false;
+                this.columnAuto_Id.ReadOnly = true;
+                this.columnAuto_Detalle.MaxLength = 26;
+                this.columnAuto_Patente.AllowDBNull = false;
+                this.columnAuto_Patente.MaxLength = 10;
+                this.columnTurno_Id.AutoIncrement = true;
+                this.columnTurno_Id.AutoIncrementSeed = -1;
+                this.columnTurno_Id.AutoIncrementStep = -1;
+                this.columnTurno_Id.AllowDBNull = false;
+                this.columnTurno_Id.ReadOnly = true;
+                this.columnTurno_Descripcion.AllowDBNull = false;
+                this.columnTurno_Descripcion.MaxLength = 255;
+                this.columnTurno_Hora_Inicio.AllowDBNull = false;
+                this.columnTurno_Hora_Fin.AllowDBNull = false;
+                this.columnTurno_Precio_Base.AllowDBNull = false;
+                this.columnTurno_Valor_Kilometro.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_LISTADO_UNI_DISPONIBLE_X_CHORow NewPRC_LISTADO_UNI_DISPONIBLE_X_CHORow() {
+                return ((PRC_LISTADO_UNI_DISPONIBLE_X_CHORow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new PRC_LISTADO_UNI_DISPONIBLE_X_CHORow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(PRC_LISTADO_UNI_DISPONIBLE_X_CHORow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanged != null)) {
+                    this.PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanged(this, new PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent(((PRC_LISTADO_UNI_DISPONIBLE_X_CHORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanging != null)) {
+                    this.PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanging(this, new PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent(((PRC_LISTADO_UNI_DISPONIBLE_X_CHORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleted != null)) {
+                    this.PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleted(this, new PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent(((PRC_LISTADO_UNI_DISPONIBLE_X_CHORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleting != null)) {
+                    this.PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleting(this, new PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent(((PRC_LISTADO_UNI_DISPONIBLE_X_CHORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovePRC_LISTADO_UNI_DISPONIBLE_X_CHORow(PRC_LISTADO_UNI_DISPONIBLE_X_CHORow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GD1C2017DataSet ds = new GD1C2017DataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class PRC_BUSCAR_CHOFER_HABILITADODataTable : global::System.Data.TypedTableBase<PRC_BUSCAR_CHOFER_HABILITADORow> {
+            
+            private global::System.Data.DataColumn columnPersona_Id;
+            
+            private global::System.Data.DataColumn columnCHOFER_NOMBRE;
+            
+            private global::System.Data.DataColumn columnCHOFER_APELLIDO;
+            
+            private global::System.Data.DataColumn columnCHOFER_ID;
+            
+            private global::System.Data.DataColumn columnhabilitado;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_BUSCAR_CHOFER_HABILITADODataTable() {
+                this.TableName = "PRC_BUSCAR_CHOFER_HABILITADO";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal PRC_BUSCAR_CHOFER_HABILITADODataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected PRC_BUSCAR_CHOFER_HABILITADODataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Persona_IdColumn {
+                get {
+                    return this.columnPersona_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHOFER_NOMBREColumn {
+                get {
+                    return this.columnCHOFER_NOMBRE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHOFER_APELLIDOColumn {
+                get {
+                    return this.columnCHOFER_APELLIDO;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CHOFER_IDColumn {
+                get {
+                    return this.columnCHOFER_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn habilitadoColumn {
+                get {
+                    return this.columnhabilitado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_BUSCAR_CHOFER_HABILITADORow this[int index] {
+                get {
+                    return ((PRC_BUSCAR_CHOFER_HABILITADORow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_BUSCAR_CHOFER_HABILITADORowChangeEventHandler PRC_BUSCAR_CHOFER_HABILITADORowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_BUSCAR_CHOFER_HABILITADORowChangeEventHandler PRC_BUSCAR_CHOFER_HABILITADORowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_BUSCAR_CHOFER_HABILITADORowChangeEventHandler PRC_BUSCAR_CHOFER_HABILITADORowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event PRC_BUSCAR_CHOFER_HABILITADORowChangeEventHandler PRC_BUSCAR_CHOFER_HABILITADORowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddPRC_BUSCAR_CHOFER_HABILITADORow(PRC_BUSCAR_CHOFER_HABILITADORow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_BUSCAR_CHOFER_HABILITADORow AddPRC_BUSCAR_CHOFER_HABILITADORow(string CHOFER_NOMBRE, string CHOFER_APELLIDO, bool habilitado) {
+                PRC_BUSCAR_CHOFER_HABILITADORow rowPRC_BUSCAR_CHOFER_HABILITADORow = ((PRC_BUSCAR_CHOFER_HABILITADORow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        CHOFER_NOMBRE,
+                        CHOFER_APELLIDO,
+                        null,
+                        habilitado};
+                rowPRC_BUSCAR_CHOFER_HABILITADORow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowPRC_BUSCAR_CHOFER_HABILITADORow);
+                return rowPRC_BUSCAR_CHOFER_HABILITADORow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_BUSCAR_CHOFER_HABILITADORow FindByPersona_IdCHOFER_ID(int Persona_Id, int CHOFER_ID) {
+                return ((PRC_BUSCAR_CHOFER_HABILITADORow)(this.Rows.Find(new object[] {
+                            Persona_Id,
+                            CHOFER_ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                PRC_BUSCAR_CHOFER_HABILITADODataTable cln = ((PRC_BUSCAR_CHOFER_HABILITADODataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new PRC_BUSCAR_CHOFER_HABILITADODataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnPersona_Id = base.Columns["Persona_Id"];
+                this.columnCHOFER_NOMBRE = base.Columns["CHOFER_NOMBRE"];
+                this.columnCHOFER_APELLIDO = base.Columns["CHOFER_APELLIDO"];
+                this.columnCHOFER_ID = base.Columns["CHOFER_ID"];
+                this.columnhabilitado = base.Columns["habilitado"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnPersona_Id = new global::System.Data.DataColumn("Persona_Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPersona_Id);
+                this.columnCHOFER_NOMBRE = new global::System.Data.DataColumn("CHOFER_NOMBRE", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHOFER_NOMBRE);
+                this.columnCHOFER_APELLIDO = new global::System.Data.DataColumn("CHOFER_APELLIDO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHOFER_APELLIDO);
+                this.columnCHOFER_ID = new global::System.Data.DataColumn("CHOFER_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCHOFER_ID);
+                this.columnhabilitado = new global::System.Data.DataColumn("habilitado", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhabilitado);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnPersona_Id,
+                                this.columnCHOFER_ID}, true));
+                this.columnPersona_Id.AutoIncrement = true;
+                this.columnPersona_Id.AutoIncrementSeed = -1;
+                this.columnPersona_Id.AutoIncrementStep = -1;
+                this.columnPersona_Id.AllowDBNull = false;
+                this.columnPersona_Id.ReadOnly = true;
+                this.columnCHOFER_NOMBRE.AllowDBNull = false;
+                this.columnCHOFER_NOMBRE.MaxLength = 255;
+                this.columnCHOFER_APELLIDO.AllowDBNull = false;
+                this.columnCHOFER_APELLIDO.MaxLength = 255;
+                this.columnCHOFER_ID.AutoIncrement = true;
+                this.columnCHOFER_ID.AutoIncrementSeed = -1;
+                this.columnCHOFER_ID.AutoIncrementStep = -1;
+                this.columnCHOFER_ID.AllowDBNull = false;
+                this.columnCHOFER_ID.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_BUSCAR_CHOFER_HABILITADORow NewPRC_BUSCAR_CHOFER_HABILITADORow() {
+                return ((PRC_BUSCAR_CHOFER_HABILITADORow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new PRC_BUSCAR_CHOFER_HABILITADORow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(PRC_BUSCAR_CHOFER_HABILITADORow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.PRC_BUSCAR_CHOFER_HABILITADORowChanged != null)) {
+                    this.PRC_BUSCAR_CHOFER_HABILITADORowChanged(this, new PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent(((PRC_BUSCAR_CHOFER_HABILITADORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.PRC_BUSCAR_CHOFER_HABILITADORowChanging != null)) {
+                    this.PRC_BUSCAR_CHOFER_HABILITADORowChanging(this, new PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent(((PRC_BUSCAR_CHOFER_HABILITADORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.PRC_BUSCAR_CHOFER_HABILITADORowDeleted != null)) {
+                    this.PRC_BUSCAR_CHOFER_HABILITADORowDeleted(this, new PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent(((PRC_BUSCAR_CHOFER_HABILITADORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.PRC_BUSCAR_CHOFER_HABILITADORowDeleting != null)) {
+                    this.PRC_BUSCAR_CHOFER_HABILITADORowDeleting(this, new PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent(((PRC_BUSCAR_CHOFER_HABILITADORow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovePRC_BUSCAR_CHOFER_HABILITADORow(PRC_BUSCAR_CHOFER_HABILITADORow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                GD1C2017DataSet ds = new GD1C2017DataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "PRC_BUSCAR_CHOFER_HABILITADODataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class PRC_OBTENER_MENU_X_ROLRow : global::System.Data.DataRow {
@@ -6985,6 +7761,226 @@ namespace UberFrba {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class PRC_LISTADO_UNI_DISPONIBLE_X_CHORow : global::System.Data.DataRow {
+            
+            private PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal PRC_LISTADO_UNI_DISPONIBLE_X_CHORow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO = ((PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Auto_Id {
+                get {
+                    return ((int)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Auto_IdColumn]));
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Auto_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Auto_Detalle {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Auto_DetalleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Auto_Detalle\' de la tabla \'PRC_LISTADO_UNI_DISPONIBLE_X_C" +
+                                "HO\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Auto_DetalleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Auto_Patente {
+                get {
+                    return ((string)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Auto_PatenteColumn]));
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Auto_PatenteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Turno_Id {
+                get {
+                    return ((int)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_IdColumn]));
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Turno_Descripcion {
+                get {
+                    return ((string)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_DescripcionColumn]));
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_DescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Turno_Hora_Inicio {
+                get {
+                    return ((decimal)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_Hora_InicioColumn]));
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_Hora_InicioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Turno_Hora_Fin {
+                get {
+                    return ((decimal)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_Hora_FinColumn]));
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_Hora_FinColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Turno_Precio_Base {
+                get {
+                    return ((decimal)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_Precio_BaseColumn]));
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_Precio_BaseColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Turno_Valor_Kilometro {
+                get {
+                    return ((decimal)(this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_Valor_KilometroColumn]));
+                }
+                set {
+                    this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Turno_Valor_KilometroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAuto_DetalleNull() {
+                return this.IsNull(this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Auto_DetalleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAuto_DetalleNull() {
+                this[this.tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO.Auto_DetalleColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class PRC_BUSCAR_CHOFER_HABILITADORow : global::System.Data.DataRow {
+            
+            private PRC_BUSCAR_CHOFER_HABILITADODataTable tablePRC_BUSCAR_CHOFER_HABILITADO;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal PRC_BUSCAR_CHOFER_HABILITADORow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablePRC_BUSCAR_CHOFER_HABILITADO = ((PRC_BUSCAR_CHOFER_HABILITADODataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Persona_Id {
+                get {
+                    return ((int)(this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.Persona_IdColumn]));
+                }
+                set {
+                    this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.Persona_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHOFER_NOMBRE {
+                get {
+                    return ((string)(this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.CHOFER_NOMBREColumn]));
+                }
+                set {
+                    this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.CHOFER_NOMBREColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CHOFER_APELLIDO {
+                get {
+                    return ((string)(this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.CHOFER_APELLIDOColumn]));
+                }
+                set {
+                    this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.CHOFER_APELLIDOColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CHOFER_ID {
+                get {
+                    return ((int)(this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.CHOFER_IDColumn]));
+                }
+                set {
+                    this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.CHOFER_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool habilitado {
+                get {
+                    try {
+                        return ((bool)(this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.habilitadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'habilitado\' de la tabla \'PRC_BUSCAR_CHOFER_HABILITADO\' es" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.habilitadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IshabilitadoNull() {
+                return this.IsNull(this.tablePRC_BUSCAR_CHOFER_HABILITADO.habilitadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SethabilitadoNull() {
+                this[this.tablePRC_BUSCAR_CHOFER_HABILITADO.habilitadoColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -7412,6 +8408,74 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PRC_LISTADO_AUTOS_SIN_CONDIRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent : global::System.EventArgs {
+            
+            private PRC_LISTADO_UNI_DISPONIBLE_X_CHORow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent(PRC_LISTADO_UNI_DISPONIBLE_X_CHORow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_LISTADO_UNI_DISPONIBLE_X_CHORow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent : global::System.EventArgs {
+            
+            private PRC_BUSCAR_CHOFER_HABILITADORow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent(PRC_BUSCAR_CHOFER_HABILITADORow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PRC_BUSCAR_CHOFER_HABILITADORow Row {
                 get {
                     return this.eventRow;
                 }
@@ -10529,6 +11593,335 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
                 this.Adapter.SelectCommand.Parameters[5].Value = ((string)(ApeCh));
             }
             GD1C2017DataSet.PRC_LISTADO_AUTOS_SIN_CONDIDataTable dataTable = new GD1C2017DataSet.PRC_LISTADO_AUTOS_SIN_CONDIDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class PRC_LISTADO_UNI_DISPONIBLE_X_CHOTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public PRC_LISTADO_UNI_DISPONIBLE_X_CHOTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "PRC_LISTADO_UNI_DISPONIBLE_X_CHO";
+            tableMapping.ColumnMappings.Add("Auto_Id", "Auto_Id");
+            tableMapping.ColumnMappings.Add("Auto_Detalle", "Auto_Detalle");
+            tableMapping.ColumnMappings.Add("Auto_Patente", "Auto_Patente");
+            tableMapping.ColumnMappings.Add("Turno_Id", "Turno_Id");
+            tableMapping.ColumnMappings.Add("Turno_Descripcion", "Turno_Descripcion");
+            tableMapping.ColumnMappings.Add("Turno_Hora_Inicio", "Turno_Hora_Inicio");
+            tableMapping.ColumnMappings.Add("Turno_Hora_Fin", "Turno_Hora_Fin");
+            tableMapping.ColumnMappings.Add("Turno_Precio_Base", "Turno_Precio_Base");
+            tableMapping.ColumnMappings.Add("Turno_Valor_Kilometro", "Turno_Valor_Kilometro");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "DESCONOCIDOS4.PRC_LISTADO_UNI_DISPONIBLE_X_CHO";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ChoferID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GD1C2017DataSet.PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable obtenerListadoTurnosYAutomovilesSegunChofer(global::System.Nullable<int> ChoferID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((ChoferID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ChoferID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            GD1C2017DataSet.PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable dataTable = new GD1C2017DataSet.PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class PRC_BUSCAR_CHOFER_HABILITADOTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public PRC_BUSCAR_CHOFER_HABILITADOTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "PRC_BUSCAR_CHOFER_HABILITADO";
+            tableMapping.ColumnMappings.Add("Persona_Id", "Persona_Id");
+            tableMapping.ColumnMappings.Add("CHOFER_NOMBRE", "CHOFER_NOMBRE");
+            tableMapping.ColumnMappings.Add("CHOFER_APELLIDO", "CHOFER_APELLIDO");
+            tableMapping.ColumnMappings.Add("CHOFER_ID", "CHOFER_ID");
+            tableMapping.ColumnMappings.Add("habilitado", "habilitado");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "DESCONOCIDOS4.PRC_BUSCAR_CHOFER_HABILITADO";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GD1C2017DataSet.PRC_BUSCAR_CHOFER_HABILITADODataTable obtenerListadoChoferesHabilitados() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            GD1C2017DataSet.PRC_BUSCAR_CHOFER_HABILITADODataTable dataTable = new GD1C2017DataSet.PRC_BUSCAR_CHOFER_HABILITADODataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

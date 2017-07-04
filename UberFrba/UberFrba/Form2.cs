@@ -219,8 +219,7 @@ namespace UberFrba
         private void registroViajes(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.registrarViaje();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

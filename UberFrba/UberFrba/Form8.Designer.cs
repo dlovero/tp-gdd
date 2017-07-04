@@ -66,6 +66,7 @@
             // 
             // comboCliente
             // 
+            this.comboCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCliente.FormattingEnabled = true;
             this.comboCliente.Location = new System.Drawing.Point(234, 82);
             this.comboCliente.Name = "comboCliente";
@@ -86,6 +87,7 @@
             this.txtAutomovil.Location = new System.Drawing.Point(234, 39);
             this.txtAutomovil.MaxLength = 7;
             this.txtAutomovil.Name = "txtAutomovil";
+            this.txtAutomovil.ReadOnly = true;
             this.txtAutomovil.Size = new System.Drawing.Size(174, 20);
             this.txtAutomovil.TabIndex = 59;
             // 
@@ -110,6 +112,7 @@
             // 
             // comboChofer
             // 
+            this.comboChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboChofer.FormattingEnabled = true;
             this.comboChofer.Location = new System.Drawing.Point(36, 38);
             this.comboChofer.Name = "comboChofer";
@@ -127,11 +130,13 @@
             // 
             // comboTurno
             // 
+            this.comboTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTurno.FormattingEnabled = true;
             this.comboTurno.Location = new System.Drawing.Point(37, 82);
             this.comboTurno.Name = "comboTurno";
             this.comboTurno.Size = new System.Drawing.Size(174, 21);
             this.comboTurno.TabIndex = 55;
+            this.comboTurno.SelectedIndexChanged += new System.EventHandler(this.comboTurno_SelectedIndexChanged);
             // 
             // lblTurno
             // 

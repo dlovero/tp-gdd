@@ -97,6 +97,7 @@
             // 
             // comboMarcaBusqueda
             // 
+            this.comboMarcaBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboMarcaBusqueda.FormattingEnabled = true;
             this.comboMarcaBusqueda.Location = new System.Drawing.Point(33, 26);
             this.comboMarcaBusqueda.Name = "comboMarcaBusqueda";
@@ -175,6 +176,7 @@
             // 
             // comboMarca
             // 
+            this.comboMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboMarca.FormattingEnabled = true;
             this.comboMarca.Location = new System.Drawing.Point(31, 16);
             this.comboMarca.Name = "comboMarca";
@@ -228,6 +230,7 @@
             // 
             // comboTurno
             // 
+            this.comboTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTurno.FormattingEnabled = true;
             this.comboTurno.Location = new System.Drawing.Point(245, 60);
             this.comboTurno.Name = "comboTurno";
@@ -236,6 +239,7 @@
             // 
             // comboChofer
             // 
+            this.comboChofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboChofer.FormattingEnabled = true;
             this.comboChofer.Location = new System.Drawing.Point(31, 106);
             this.comboChofer.Name = "comboChofer";
@@ -274,6 +278,7 @@
             // 
             // comboModelo
             // 
+            this.comboModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboModelo.FormattingEnabled = true;
             this.comboModelo.Location = new System.Drawing.Point(31, 60);
             this.comboModelo.Name = "comboModelo";

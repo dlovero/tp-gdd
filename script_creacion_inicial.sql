@@ -1597,13 +1597,13 @@ IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO', N'P') IS NOT NUL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO;
 GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO
-@Nom VARCHAR(255),
-@Ape VARCHAR(255),
-@DNI NUMERIC(18,0)
+--@Nom VARCHAR(255),
+--@Ape VARCHAR(255),
+--@DNI NUMERIC(18,0)
 AS
 BEGIN
-	IF (@DNI IS NOT NULL)
-	BEGIN
+	--IF (@DNI IS NOT NULL)
+	--BEGIN
 	 SELECT 
 	   Persona_Id
 	  ,Persona_Dni
@@ -1620,14 +1620,14 @@ BEGIN
 	  ,Cliente_Id [idTipoRol]
 	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE C.Cliente_Habilitado=1  AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
+	  WHERE C.Cliente_Habilitado=1 -- AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+            --  AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
+            --  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
 	END
-	ELSE
-	BEGIN
-	SELECT 
-	   Persona_Id
+--	ELSE
+--	BEGIN
+--	SELECT 
+/*	   Persona_Id
 	  ,Persona_Dni
       ,Persona_Nombre
       ,Persona_Apellido
@@ -1642,10 +1642,10 @@ BEGIN
 	  ,Cliente_Id [idTipoRol]
 	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE   C.Cliente_Habilitado=1 AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
-	END
-END
+	  WHERE   C.Cliente_Habilitado=1-- AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+            --  AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
+	END*/
+--END
 GO
 
 /*------------------------------------------ABM CHOFER----------------------------------------------------*/
@@ -1925,33 +1925,33 @@ IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO;
 GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO
-@Nom VARCHAR(255),
-@Ape VARCHAR(255),
-@DNI NUMERIC(18,0)
+--@Nom VARCHAR(255),
+--@Ape VARCHAR(255),
+--@DNI NUMERIC(18,0)
 AS
 BEGIN
-	IF (@DNI IS NOT NULL)
-	BEGIN
+--	IF (@DNI IS NOT NULL)
+--	BEGIN
 	 SELECT 
 	   Persona_Id
-	  ,Persona_Dni
-      ,Persona_Nombre
-      ,Persona_Apellido
-      ,Persona_Direccion
-      ,Persona_Piso
-      ,Persona_Departamento
-      ,Persona_Localidad
-      ,Persona_Cod_Postal
-      ,Persona_Telefono
-      ,Persona_Mail
-      ,Persona_Fecha_Nac
-	  ,Chofer_Id [idTipoRol]
+	--  ,Persona_Dni
+      ,Persona_Nombre [CHOFER_NOMBRE]
+      ,Persona_Apellido [CHOFER_APELLIDO]
+  --    ,Persona_Direccion
+  --    ,Persona_Piso
+   --   ,Persona_Departamento
+   --   ,Persona_Localidad
+  --    ,Persona_Cod_Postal
+  ---    ,Persona_Telefono
+ --     ,Persona_Mail
+ --     ,Persona_Fecha_Nac
+	  ,Chofer_Id [CHOFER_ID]
 	  ,Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
-	  WHERE  C.Chofer_Habilitado=1 AND P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
-	END
+	  WHERE  C.Chofer_Habilitado=1 --AND P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+             -- AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
+		--	  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
+/*	END
 	ELSE
 	BEGIN
 		SELECT 
@@ -1972,7 +1972,7 @@ BEGIN
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE C.Chofer_Habilitado=1 AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
-	END
+	END*/
 END
 GO
 

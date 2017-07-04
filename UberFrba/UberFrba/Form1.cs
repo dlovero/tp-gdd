@@ -248,6 +248,7 @@ namespace UberFrba
         void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
+        void registrarViaje();
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -296,6 +297,7 @@ namespace UberFrba
         public abstract void modificarTurno(String rol);
         public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
+        public abstract void registrarViaje();
 
         public void eliminarClienteChofer(String rol)
         {
@@ -437,6 +439,15 @@ namespace UberFrba
         { }
 
         public override Boolean soyAdministrador() { return true; }
+        
+        public override void registrarViaje()
+        {
+            frmRegistroViaje formularioRegistroViaje = new frmRegistroViaje();
+            if (formularioRegistroViaje.construite())
+            {
+                formularioRegistroViaje.Show();
+            }
+        }
 
         public override void agregarClienteChofer(String rol)
         {
@@ -693,6 +704,9 @@ namespace UberFrba
         public override void modificarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
         public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos){}
         public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos){}
+        public override void registrarViaje()
+        {
+        }
         //public override void eliminarClienteChofer(String rol)
         //{
         //    String funcion = "Eliminar";
