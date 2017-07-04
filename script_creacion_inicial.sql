@@ -1597,13 +1597,9 @@ IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO', N'P') IS NOT NUL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO;
 GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO
---@Nom VARCHAR(255),
---@Ape VARCHAR(255),
---@DNI NUMERIC(18,0)
 AS
 BEGIN
-	--IF (@DNI IS NOT NULL)
-	--BEGIN
+	
 	 SELECT 
 	   Persona_Id
 	  ,Persona_Dni
@@ -1620,32 +1616,8 @@ BEGIN
 	  ,Cliente_Id [idTipoRol]
 	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE C.Cliente_Habilitado=1 -- AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-            --  AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-            --  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
-	END
---	ELSE
---	BEGIN
---	SELECT 
-/*	   Persona_Id
-	  ,Persona_Dni
-      ,Persona_Nombre
-      ,Persona_Apellido
-      ,Persona_Direccion
-      ,Persona_Piso
-      ,Persona_Departamento
-      ,Persona_Localidad
-      ,Persona_Cod_Postal
-      ,Persona_Telefono
-      ,Persona_Mail
-      ,Persona_Fecha_Nac
-	  ,Cliente_Id [idTipoRol]
-	  ,Cliente_Habilitado [habilitado]
-	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE   C.Cliente_Habilitado=1-- AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-            --  AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
-	END*/
---END
+	  WHERE C.Cliente_Habilitado=1 
+END
 GO
 
 /*------------------------------------------ABM CHOFER----------------------------------------------------*/
@@ -1939,7 +1911,33 @@ BEGIN
 	  WHERE  C.Chofer_Habilitado=1 
 END
 GO
+/*----------------------------------------ROLES POR USUARIO -----------------------------------*/
 
+IF OBJECT_ID (N'[DESCONOCIDOS4].TR_INSERTA_ROL_CLIENTE', N'TR') IS NOT NULL
+		DROP TRIGGER  [DESCONOCIDOS4].TR_INSERTA_ROL_CLIENTE;
+GO
+CREATE TRIGGER  [DESCONOCIDOS4].TR_INSERTA_ROL_CLIENTE ON [DESCONOCIDOS4].CLIENTE
+FOR INSERT
+AS
+BEGIN 
+	INSERT INTO [DESCONOCIDOS4].USUARIO_ROL(UsuRol_Usu_Id,UsuRol_Rol_Id)
+	SELECT [DESCONOCIDOS4].FN_USU_X_DNI([DESCONOCIDOS4].DAME_DNI_CLIENTE(I.Cliente_Id)),Rol_Id FROM [DESCONOCIDOS4].ROL, INSERTED I
+	WHERE Rol_Nombre='CLIENTE'		
+	
+END
+
+IF OBJECT_ID (N'[DESCONOCIDOS4].TR_INSERTA_ROL_CHOFER', N'TR') IS NOT NULL
+		DROP TRIGGER  [DESCONOCIDOS4].TR_INSERTA_ROL_CHOFER;
+GO
+CREATE TRIGGER  [DESCONOCIDOS4].TR_INSERTA_ROL_CHOFER ON [DESCONOCIDOS4].CHOFER
+FOR INSERT
+AS
+BEGIN 
+	INSERT INTO [DESCONOCIDOS4].USUARIO_ROL(UsuRol_Usu_Id,UsuRol_Rol_Id)
+	SELECT [DESCONOCIDOS4].FN_USU_X_DNI([DESCONOCIDOS4].DAME_DNI_CHOFER(I.Chofer_Id)),Rol_Id FROM [DESCONOCIDOS4].ROL,INSERTED I
+	WHERE Rol_Nombre='CHOFER'
+END
+GO
 /*------------------------------------------REGISTRAR VIAJE----------------------------------------------------*/
  -- REGISTRO VIAJES
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_REGISTRO_VIAJE', N'P') IS NOT NULL
