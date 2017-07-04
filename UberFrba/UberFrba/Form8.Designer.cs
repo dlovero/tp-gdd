@@ -100,6 +100,7 @@
             this.btnCancelar.TabIndex = 58;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnAceptar
             // 
@@ -109,6 +110,7 @@
             this.btnAceptar.TabIndex = 50;
             this.btnAceptar.Text = "Cargar Viaje";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // comboChofer
             // 
@@ -158,11 +160,12 @@
             // 
             // txtCantidadKilometros
             // 
-            this.txtCantidadKilometros.Location = new System.Drawing.Point(135, 124);
+            this.txtCantidadKilometros.Location = new System.Drawing.Point(176, 125);
             this.txtCantidadKilometros.MaxLength = 7;
             this.txtCantidadKilometros.Name = "txtCantidadKilometros";
-            this.txtCantidadKilometros.Size = new System.Drawing.Size(174, 20);
+            this.txtCantidadKilometros.Size = new System.Drawing.Size(85, 20);
             this.txtCantidadKilometros.TabIndex = 52;
+            this.txtCantidadKilometros.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidadKilometros_KeyPress);
             // 
             // label3
             // 
@@ -175,20 +178,26 @@
             // 
             // selectorDiaHoraInicio
             // 
-            this.selectorDiaHoraInicio.Location = new System.Drawing.Point(37, 166);
+            this.selectorDiaHoraInicio.CustomFormat = "HH:mm";
+            this.selectorDiaHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.selectorDiaHoraInicio.Location = new System.Drawing.Point(89, 166);
             this.selectorDiaHoraInicio.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.selectorDiaHoraInicio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.selectorDiaHoraInicio.Name = "selectorDiaHoraInicio";
-            this.selectorDiaHoraInicio.Size = new System.Drawing.Size(173, 20);
+            this.selectorDiaHoraInicio.ShowUpDown = true;
+            this.selectorDiaHoraInicio.Size = new System.Drawing.Size(57, 20);
             this.selectorDiaHoraInicio.TabIndex = 66;
             // 
             // selectorDiaHoraFin
             // 
-            this.selectorDiaHoraFin.Location = new System.Drawing.Point(235, 166);
+            this.selectorDiaHoraFin.CustomFormat = "HH:mm";
+            this.selectorDiaHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.selectorDiaHoraFin.Location = new System.Drawing.Point(289, 166);
             this.selectorDiaHoraFin.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.selectorDiaHoraFin.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.selectorDiaHoraFin.Name = "selectorDiaHoraFin";
-            this.selectorDiaHoraFin.Size = new System.Drawing.Size(173, 20);
+            this.selectorDiaHoraFin.ShowUpDown = true;
+            this.selectorDiaHoraFin.Size = new System.Drawing.Size(57, 20);
             this.selectorDiaHoraFin.TabIndex = 67;
             // 
             // frmRegistroViaje

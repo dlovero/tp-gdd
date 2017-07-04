@@ -59,10 +59,10 @@
             this.lblFechaNacimiento = new System.Windows.Forms.Label();
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.grupoDatosPersona = new System.Windows.Forms.GroupBox();
+            this.lblIdPersona = new System.Windows.Forms.Label();
             this.txtCodigoPostal = new System.Windows.Forms.TextBox();
             this.txtDNI = new System.Windows.Forms.TextBox();
             this.selectorFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.lblIdPersona = new System.Windows.Forms.Label();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosPersona.SuspendLayout();
             this.SuspendLayout();
@@ -379,6 +379,15 @@
             this.grupoDatosPersona.TabIndex = 34;
             this.grupoDatosPersona.TabStop = false;
             // 
+            // lblIdPersona
+            // 
+            this.lblIdPersona.AutoSize = true;
+            this.lblIdPersona.Location = new System.Drawing.Point(559, 220);
+            this.lblIdPersona.Name = "lblIdPersona";
+            this.lblIdPersona.Size = new System.Drawing.Size(0, 13);
+            this.lblIdPersona.TabIndex = 39;
+            this.lblIdPersona.Visible = false;
+            // 
             // txtCodigoPostal
             // 
             this.txtCodigoPostal.Location = new System.Drawing.Point(434, 170);
@@ -399,22 +408,14 @@
             // 
             // selectorFechaNacimiento
             // 
+            this.selectorFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.selectorFechaNacimiento.Location = new System.Drawing.Point(434, 71);
             this.selectorFechaNacimiento.MaxDate = new System.DateTime(2017, 6, 29, 0, 0, 0, 0);
             this.selectorFechaNacimiento.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.selectorFechaNacimiento.Name = "selectorFechaNacimiento";
-            this.selectorFechaNacimiento.Size = new System.Drawing.Size(174, 20);
+            this.selectorFechaNacimiento.Size = new System.Drawing.Size(103, 20);
             this.selectorFechaNacimiento.TabIndex = 34;
             this.selectorFechaNacimiento.Value = new System.DateTime(2017, 6, 29, 0, 0, 0, 0);
-            // 
-            // lblIdPersona
-            // 
-            this.lblIdPersona.AutoSize = true;
-            this.lblIdPersona.Location = new System.Drawing.Point(559, 220);
-            this.lblIdPersona.Name = "lblIdPersona";
-            this.lblIdPersona.Size = new System.Drawing.Size(0, 13);
-            this.lblIdPersona.TabIndex = 39;
-            this.lblIdPersona.Visible = false;
             // 
             // frmABM
             // 

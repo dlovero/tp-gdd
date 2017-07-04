@@ -93,8 +93,8 @@ namespace UberFrba
             return
             Validaciones.validarCampoHorario(this.Controls["grupoDatosTurno"].Controls["txtHoraInicio"].Text) &&
             Validaciones.validarCampoHorario(this.Controls["grupoDatosTurno"].Controls["txtHoraFin"].Text) &&
-            Validaciones.validarCampoMonetario(this.Controls["grupoDatosTurno"].Controls["txtValorKilometro"].Text) &&
-            Validaciones.validarCampoMonetario(this.Controls["grupoDatosTurno"].Controls["txtPrecioBase"].Text) &&
+            Validaciones.validarCampoNumericoCon2Decimales(this.Controls["grupoDatosTurno"].Controls["txtValorKilometro"].Text) &&
+            Validaciones.validarCampoNumericoCon2Decimales(this.Controls["grupoDatosTurno"].Controls["txtPrecioBase"].Text) &&
             Validaciones.validarCampoAlfanumericoConEspacio(this.Controls["grupoDatosTurno"].Controls["txtDescripcion"].Text);
         }
 
@@ -120,12 +120,12 @@ namespace UberFrba
 
         private void txtValorKilometro_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MetodosGlobales.permitirSoloIngresoMoneda(e);
+            MetodosGlobales.permitirSoloIngresoCon2Decimales(e);
         }
 
         private void txtPrecioBase_KeyPress(object sender, KeyPressEventArgs e)
         {
-            MetodosGlobales.permitirSoloIngresoMoneda(e);
+            MetodosGlobales.permitirSoloIngresoCon2Decimales(e);
         }
     }
 

@@ -109,7 +109,7 @@ namespace UberFrba
                     = new GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter();
             DataTable tblChofer = adaptador.obtenerChoferesHabilitados();
             ComboBox frmAutomovilComboChofer = (ComboBox)this.Controls["grupoDatosAutomovil"].Controls["comboChofer"];
-            if (!MetodosGlobales.armarComboChofer(tblChofer, frmAutomovilComboChofer))
+            if (!MetodosGlobales.armarComboSeleccionSegunRol(tblChofer, frmAutomovilComboChofer))
             {
                 dispararMensajeYCancelarAccion();
                 this.Close();

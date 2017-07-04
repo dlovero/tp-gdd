@@ -808,14 +808,14 @@ namespace UberFrba
 
     public static class MetodosGlobales
     {
-        public static Boolean armarComboChofer(DataTable tablaDatos, ComboBox comboChofer)
+        public static Boolean armarComboSeleccionSegunRol(DataTable tablaDatos, ComboBox comboChofer)
         {
             if (tablaDatos.Rows.Count > 0)
             {
                 var diccionarioDatosChofer = new Dictionary<int, String>();
                 foreach (DataRow fila in tablaDatos.Rows)
                 {
-                    diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_NOMBRE"]));
+                    diccionarioDatosChofer.Add((int)fila["idEnTablaSegunRol"], ((string)fila["apellido"]) + " " + ((string)fila["nombre"]));
                 }
 
                 comboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);
@@ -911,7 +911,7 @@ namespace UberFrba
             return (new KeysConverter()).ConvertToString(caracter).Equals(":");
         }
 
-        public static void permitirSoloIngresoMoneda(KeyPressEventArgs e)
+        public static void permitirSoloIngresoCon2Decimales(KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && !esPuntoDecimalPermitido(e.KeyChar))
             {
@@ -921,7 +921,7 @@ namespace UberFrba
 
         private static bool esPuntoDecimalPermitido(char caracter)
         {
-            return (new KeysConverter()).ConvertToString(caracter).Equals(".");
+            return (new KeysConverter()).ConvertToString(caracter).Equals(",");
         }
 
         public static class Mensajes
@@ -1046,9 +1046,9 @@ namespace UberFrba
             return evaluarCadenaConExpresion(cadenaAValidar, @"([0-1][0-9]|2[0-3])[0-5][0-9]|[0-1][0-9]|2[0-3]$");
         }
 
-        public static Boolean validarCampoMonetario(String cadenaAValidar)
+        public static Boolean validarCampoNumericoCon2Decimales(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"\d+(?:.\d{1,2}?");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"\d+(?:,\d{1,2}?");
         }
 
         private static bool evaluarCadenaConExpresion(String cadenaAValidar, String expresionRegular)
