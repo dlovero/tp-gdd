@@ -1925,54 +1925,18 @@ IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO;
 GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CHOFER_HABILITADO
---@Nom VARCHAR(255),
---@Ape VARCHAR(255),
---@DNI NUMERIC(18,0)
 AS
 BEGIN
---	IF (@DNI IS NOT NULL)
---	BEGIN
+
 	 SELECT 
 	   Persona_Id
-	--  ,Persona_Dni
       ,Persona_Nombre [CHOFER_NOMBRE]
-      ,Persona_Apellido [CHOFER_APELLIDO]
-  --    ,Persona_Direccion
-  --    ,Persona_Piso
-   --   ,Persona_Departamento
-   --   ,Persona_Localidad
-  --    ,Persona_Cod_Postal
-  ---    ,Persona_Telefono
- --     ,Persona_Mail
- --     ,Persona_Fecha_Nac
+      ,Persona_Apellido [CHOFER_APELLIDO]  
 	  ,Chofer_Id [CHOFER_ID]
 	  ,Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
-	  WHERE  C.Chofer_Habilitado=1 --AND P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-             -- AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
-		--	  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
-/*	END
-	ELSE
-	BEGIN
-		SELECT 
-	   Persona_Id
-	  ,Persona_Dni
-      ,Persona_Nombre
-      ,Persona_Apellido
-      ,Persona_Direccion
-      ,Persona_Piso
-      ,Persona_Departamento
-      ,Persona_Localidad
-      ,Persona_Cod_Postal
-      ,Persona_Telefono
-      ,Persona_Mail
-      ,Persona_Fecha_Nac
-	  ,Chofer_Id [idTipoRol]
-	  ,Chofer_Habilitado [habilitado]
-	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
-	  WHERE C.Chofer_Habilitado=1 AND  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
-	END*/
+	  INNER JOIN DESCONOCIDOS4.UNIDAD_DISPONIBLE U ON  U.Uni_Dis_Chofer=C.Chofer_Id
+	  WHERE  C.Chofer_Habilitado=1 
 END
 GO
 
