@@ -321,7 +321,7 @@ namespace UberFrba
                             datos
                             ,obtenerAdaptadorBD() });
                     formulario.Close();
-                    mensajeAutoeliminacion();
+                    mensajeAutoeliminacion(formulario);
                 }
             }
             else
@@ -332,7 +332,7 @@ namespace UberFrba
             }
         }
 
-        protected virtual void mensajeAutoeliminacion()
+        protected virtual void mensajeAutoeliminacion(frmABM formulario)
         {
         }
 
@@ -690,9 +690,9 @@ namespace UberFrba
         { }
         public override Boolean soyAdministrador() { return false; }
 
-        protected override void mensajeAutoeliminacion()
+        protected override void mensajeAutoeliminacion(frmABM formulario)
         {
-            frmABM.mensajeAutoEliminacionYSalidaDeAplicacion();
+            formulario.mensajeAutoEliminacionYSalidaDeAplicacion();
         }
 
         public override void agregarClienteChofer(String rol){ mensajeFuncionNoValidaParaElRol(rol); }

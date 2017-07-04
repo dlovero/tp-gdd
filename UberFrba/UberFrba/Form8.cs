@@ -127,7 +127,7 @@ namespace UberFrba
             DataTable tblTurnosDisponibles = adaptador.registrarViaje(
                 (int)this.comboChofer.SelectedValue, (int)this.comboCliente.SelectedValue,
                     Convert.ToInt32(this.idAuto), (int)this.comboTurno.SelectedValue,
-                    float.Parse(this.txtCantidadKilometros.Text), this.selectorDiaHoraInicio.Value,
+                    Convert.ToDecimal(this.txtCantidadKilometros.Text), this.selectorDiaHoraInicio.Value,
                     this.selectorDiaHoraInicio.Value
                 );
             this.Close();

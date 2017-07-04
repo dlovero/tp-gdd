@@ -80,18 +80,8 @@ namespace UberFrba
                 && Validaciones.validarCampoAlfabeticoPermiteVacio(txtBusquedaApellido.Text);
         }
 
-        public static void mensajeAutoEliminacionYSalidaDeAplicacion()
+        public virtual void mensajeAutoEliminacionYSalidaDeAplicacion()
         {
-            DialogResult resultado = MessageBox.Show("¿Esta segura/o de eliminar este rol?", "Eliminar Rol",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (resultado == DialogResult.Yes)
-            {
-                MessageBox.Show(
-                    "La aplicacion se cerrara, debido a que usted dio de baja su rol si posee otro rol,"
-                    +" debera iniciar e ingresar nuevamente al sistema con otro rol.", "Salida de la aplicacion",
-                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                Application.Exit();
-            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -283,6 +273,11 @@ namespace UberFrba
                 obtenerGrupoControlesDelFormulario("grupoDatosPersona")
             );
         }
+
+        public override void mensajeAutoEliminacionYSalidaDeAplicacion()
+        {
+            
+        }
     }
 
     public partial class frmClienteChoferModificar : frmABM
@@ -353,6 +348,20 @@ namespace UberFrba
             ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtCodigoPostal"]).ReadOnly = true;
             ((DateTimePicker)(this.Controls["grupoDatosPersona"]).Controls["selectorFechaNacimiento"]).Enabled = false; 
             ((CheckBox)(this.Controls["grupoDatosPersona"]).Controls["ccHabilitado"]).Enabled = false;
+        }
+
+        public override void mensajeAutoEliminacionYSalidaDeAplicacion()
+        {
+            DialogResult resultado = MessageBox.Show("¿Esta segura/o de eliminar este rol?", "Eliminar Rol",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (resultado == DialogResult.Yes)
+            {
+                MessageBox.Show(
+                    "La aplicacion se cerrara, debido a que usted dio de baja su rol si posee otro rol,"
+                    + " debera iniciar e ingresar nuevamente al sistema con otro rol.", "Salida de la aplicacion",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Application.Exit();
+            }
         }
     }
 }
