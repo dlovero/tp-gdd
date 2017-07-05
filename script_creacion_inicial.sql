@@ -2291,35 +2291,24 @@ COMMIT;
 GO
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_CARGAR_USUARIO_ROL', N'P') IS NOT NULL
-
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_CARGAR_USUARIO_ROL;
-
 GO
 
 -- Se puebla la tabla USUARIO_ROL
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_CARGAR_USUARIO_ROL
-
 AS
-
 BEGIN TRANSACTION
-
 	INSERT INTO [DESCONOCIDOS4].USUARIO_ROL(UsuRol_Usu_Id,UsuRol_Rol_Id)
-
 	SELECT [DESCONOCIDOS4].FN_USU_X_DNI([DESCONOCIDOS4].DAME_DNI_CLIENTE(Cliente_Id)),Rol_Id FROM [DESCONOCIDOS4].ROL, [DESCONOCIDOS4].CLIENTE
-
 	 WHERE Rol_Nombre='CLIENTE'		
 
 	INSERT INTO [DESCONOCIDOS4].USUARIO_ROL(UsuRol_Usu_Id,UsuRol_Rol_Id)
-
 	SELECT [DESCONOCIDOS4].FN_USU_X_DNI([DESCONOCIDOS4].DAME_DNI_CHOFER(Chofer_Id)),Rol_Id FROM [DESCONOCIDOS4].ROL,[DESCONOCIDOS4].CHOFER 
-
 	WHERE Rol_Nombre='CHOFER'
 
 	INSERT INTO [DESCONOCIDOS4].USUARIO_ROL(UsuRol_Usu_Id,UsuRol_Rol_Id)
-
 	SELECT Usu_Id,Rol_Id FROM [DESCONOCIDOS4].ROL,[DESCONOCIDOS4].USUARIO 
-
 	WHERE Rol_Nombre='ADMINISTRATIVO' AND Usu_Nombre_Usuario='admin'
 
 COMMIT;
@@ -2331,247 +2320,153 @@ GO
 
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_FACTURA', N'P') IS NOT NULL
-
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_FACTURA;
-
 GO
 
 -- Se actualiza el importe total de la factura 
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_FACTURA
-
 AS
-
 BEGIN TRAN
-
 	UPDATE [DESCONOCIDOS4].CABECERO_FACTURA SET Cab_Fac_Total_Fac= [DESCONOCIDOS4].FN_TOTAL_FACT(Cab_Fac_Nro)
-
 COMMIT;
-
 GO
 
 
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_RENDICION', N'P') IS NOT NULL
-
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_RENDICION;
-
 GO
 
 -- Se actualiza el importe total de la rendicion
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_RENDICION
-
 AS
-
 BEGIN TRAN
-
 	UPDATE [DESCONOCIDOS4].CABECERO_RENDICION SET Cab_Rend_Importe= [DESCONOCIDOS4].FN_TOTAL_REND(Cab_Rend_Nro)
-
 COMMIT;
-
 GO
 
-
-
 IF OBJECT_ID ('[DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU', 'P') IS NOT NULL
-
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU;
-
 GO
 
 --Se pueba la tabla  RAMA_MENU
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU 
-
 AS
-
 BEGIN TRANSACTION
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('ABM')
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('Facturacion y Rendicion')
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('Listados')
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('Registros')
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Cliente',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Chofer',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Rol',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Automovil',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Chofer',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados'))
-
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Cliente',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados'))
-
 COMMIT;
-
 GO
 
 
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU', N'P') IS NOT NULL
-
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU;
-
 GO
-
 --Se pueba la tabla  HOJA_MENU
-
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU 
-
 AS
-
 BEGIN TRANSACTION
-
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarCliente'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente' and
-
 	 Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarCliente'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente' 
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarCliente'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente' 
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarChofer'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer' 
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarChofer')
-
 	,(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarChofer'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarAutomovil')
-
 	,(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Automovil'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarAutomovil')
-
 	,(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Automovil'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarAutomovil'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Automovil'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarRol'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Rol'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarRol'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Rol'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarRol'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Rol'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Facturar a Cliente',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='facturarCliente'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Facturacion y Rendicion'))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Rendicion a Chofer',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='rendicionChofer'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Facturacion y Rendicion'))
-
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Mayor Recaudacion',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='choferMayorRecaudacion'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Viaje mas largo',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='choferViajeMasLargo'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Mayor Recaudacion',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='clienteMayorConsumo'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Viaje mas largo',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='clienteMismoMovil'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente'
-
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Viajes',
-
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='registroViajes'),
-
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Registros'))
 
 COMMIT;
