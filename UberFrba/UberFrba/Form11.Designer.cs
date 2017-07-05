@@ -32,10 +32,10 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.comboListados = new System.Windows.Forms.ComboBox();
             this.lblSeleccionListado = new System.Windows.Forms.Label();
-            this.selectorDiaHoraInicio = new System.Windows.Forms.DateTimePicker();
+            this.selectorAnio = new System.Windows.Forms.DateTimePicker();
             this.lblAnio = new System.Windows.Forms.Label();
-            this.selectorTrimestre = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lblTrimestre = new System.Windows.Forms.Label();
+            this.selectorTrimestre = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // btnAceptar
@@ -45,13 +45,14 @@
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(131, 29);
             this.btnAceptar.TabIndex = 24;
-            this.btnAceptar.Text = "Listar";
+            this.btnAceptar.Text = "Generar Listado";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(254, 92);
+            this.btnCancelar.Location = new System.Drawing.Point(254, 68);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(131, 29);
             this.btnCancelar.TabIndex = 25;
@@ -77,58 +78,58 @@
             this.lblSeleccionListado.TabIndex = 62;
             this.lblSeleccionListado.Text = "Seleccionar Listado";
             // 
-            // selectorDiaHoraInicio
+            // selectorAnio
             // 
-            this.selectorDiaHoraInicio.CustomFormat = "yyyy";
-            this.selectorDiaHoraInicio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.selectorDiaHoraInicio.Location = new System.Drawing.Point(24, 80);
-            this.selectorDiaHoraInicio.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.selectorDiaHoraInicio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.selectorDiaHoraInicio.Name = "selectorDiaHoraInicio";
-            this.selectorDiaHoraInicio.ShowUpDown = true;
-            this.selectorDiaHoraInicio.Size = new System.Drawing.Size(57, 20);
-            this.selectorDiaHoraInicio.TabIndex = 67;
+            this.selectorAnio.CustomFormat = "yyyy";
+            this.selectorAnio.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.selectorAnio.Location = new System.Drawing.Point(41, 73);
+            this.selectorAnio.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.selectorAnio.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.selectorAnio.Name = "selectorAnio";
+            this.selectorAnio.ShowUpDown = true;
+            this.selectorAnio.Size = new System.Drawing.Size(57, 20);
+            this.selectorAnio.TabIndex = 67;
             // 
             // lblAnio
             // 
             this.lblAnio.AutoSize = true;
-            this.lblAnio.Location = new System.Drawing.Point(39, 64);
+            this.lblAnio.Location = new System.Drawing.Point(56, 57);
             this.lblAnio.Name = "lblAnio";
             this.lblAnio.Size = new System.Drawing.Size(26, 13);
             this.lblAnio.TabIndex = 68;
             this.lblAnio.Text = "Año";
             // 
+            // lblTrimestre
+            // 
+            this.lblTrimestre.Location = new System.Drawing.Point(136, 55);
+            this.lblTrimestre.Name = "lblTrimestre";
+            this.lblTrimestre.Size = new System.Drawing.Size(63, 24);
+            this.lblTrimestre.TabIndex = 70;
+            this.lblTrimestre.Text = "Trimestre";
+            // 
             // selectorTrimestre
             // 
-            this.selectorTrimestre.Location = new System.Drawing.Point(119, 62);
+            this.selectorTrimestre.CustomFormat = "d";
+            this.selectorTrimestre.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.selectorTrimestre.Location = new System.Drawing.Point(133, 73);
+            this.selectorTrimestre.MaxDate = new System.DateTime(2003, 5, 4, 0, 0, 0, 0);
+            this.selectorTrimestre.MinDate = new System.DateTime(2003, 5, 1, 0, 0, 0, 0);
             this.selectorTrimestre.Name = "selectorTrimestre";
-            this.selectorTrimestre.Size = new System.Drawing.Size(63, 24);
-            this.selectorTrimestre.TabIndex = 70;
-            this.selectorTrimestre.Text = "Trimestre";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "d";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(116, 80);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2003, 5, 4, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(2003, 5, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(57, 20);
-            this.dateTimePicker1.TabIndex = 69;
-            this.dateTimePicker1.Value = new System.DateTime(2003, 5, 4, 0, 0, 0, 0);
+            this.selectorTrimestre.ShowUpDown = true;
+            this.selectorTrimestre.Size = new System.Drawing.Size(57, 20);
+            this.selectorTrimestre.TabIndex = 69;
+            this.selectorTrimestre.Value = new System.DateTime(2003, 5, 4, 0, 0, 0, 0);
             // 
             // frmListados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(404, 136);
-            this.Controls.Add(this.dateTimePicker1);
+            this.ClientSize = new System.Drawing.Size(404, 114);
             this.Controls.Add(this.selectorTrimestre);
+            this.Controls.Add(this.lblTrimestre);
             this.Controls.Add(this.lblAnio);
-            this.Controls.Add(this.selectorDiaHoraInicio);
+            this.Controls.Add(this.selectorAnio);
             this.Controls.Add(this.comboListados);
             this.Controls.Add(this.lblSeleccionListado);
             this.Controls.Add(this.btnCancelar);
@@ -148,9 +149,9 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox comboListados;
         private System.Windows.Forms.Label lblSeleccionListado;
-        private System.Windows.Forms.DateTimePicker selectorDiaHoraInicio;
+        private System.Windows.Forms.DateTimePicker selectorAnio;
         private System.Windows.Forms.Label lblAnio;
-        private System.Windows.Forms.Label selectorTrimestre;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lblTrimestre;
+        private System.Windows.Forms.DateTimePicker selectorTrimestre;
     }
 }

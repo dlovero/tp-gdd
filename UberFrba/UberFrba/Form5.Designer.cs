@@ -38,6 +38,8 @@
             // 
             this.grillaDatosResultadoBusqueda.AllowUserToAddRows = false;
             this.grillaDatosResultadoBusqueda.AllowUserToDeleteRows = false;
+            this.grillaDatosResultadoBusqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.grillaDatosResultadoBusqueda.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
             this.grillaDatosResultadoBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grillaDatosResultadoBusqueda.Location = new System.Drawing.Point(6, 9);
             this.grillaDatosResultadoBusqueda.MultiSelect = false;
@@ -80,6 +82,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grillaDatosResultadoBusqueda);
             this.Name = "frmResultadoBusquedaUsuarioABM";
+            this.Load += new System.EventHandler(this.frmResultadoBusquedaUsuarioABM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaDatosResultadoBusqueda)).EndInit();
             this.ResumeLayout(false);
 

@@ -66,6 +66,16 @@ namespace UberFrba
         {
             completarFormularioABMConDatosDeUsuarioSeleccionado();
         }
+
+        private void frmResultadoBusquedaUsuarioABM_Load(object sender, EventArgs e)
+        {
+            this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
+            //this.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Width,
+              //  Screen.PrimaryScreen.Bounds.Height,
+                //(int)System.Windows.SystemParameters.PrimatyScreenHeight);
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+        }
         //public void armarGrillaListadoChoferesMayorRecaudacion()
         //{
         //    GD1C2017DataSetTableAdapters.CHOFERES_MAYOR_RECAUDACIONTableAdapter adaptador

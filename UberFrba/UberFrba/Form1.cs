@@ -245,6 +245,9 @@ namespace UberFrba
         void agregarTurno(String rol);
         void eliminarTurno(String rol);
         void modificarTurno(String rol);
+        void agregarRol(String rol);
+        void eliminarRol(String rol);
+        void modificarRol(String rol);
         void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
@@ -297,6 +300,9 @@ namespace UberFrba
         public abstract void agregarTurno(String rol);
         public abstract void eliminarTurno(String rol);
         public abstract void modificarTurno(String rol);
+        public abstract void agregarRol(String rol);
+        public abstract void eliminarRol(String rol);
+        public abstract void modificarRol(String rol);
         public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         public abstract void registrarViaje();
@@ -525,7 +531,6 @@ namespace UberFrba
             }
         }
 
-        
 
         public override void eliminarAutomovil(String rol)
         {
@@ -694,6 +699,7 @@ namespace UberFrba
                 frmTurno.Show();
             }
         }
+
         public override void eliminarTurno(String rol)
         {
             construirFormularioTurno(new frmTurnoEliminar()); 
@@ -702,6 +708,45 @@ namespace UberFrba
         public override void modificarTurno(String rol)
         {
             construirFormularioTurno(new frmTurnoModificar()); 
+        }
+
+        public override void agregarRol(String rol)
+        {
+            construirFormularioRol(new frmRolAgregar());
+        }
+
+        private static void construirFormularioRol(frmRolAgregar frmRol)
+        {
+            if (frmRol.construite())
+            {
+                frmRol.Show();
+            }
+        }
+
+        public override void eliminarRol(String rol)
+        {
+            construirFormularioRol(new frmRolEliminar());
+        }
+
+        private static void construirFormularioRol(frmRolEliminar frmRol)
+        {
+            if (frmRol.construite())
+            {
+                frmRol.Show();
+            }
+        }
+
+        public override void modificarRol(String rol)
+        {
+            construirFormularioRol(new frmRolModificar());
+        }
+
+        private static void construirFormularioRol(frmRolModificar frmRol)
+        {
+            if (frmRol.construite())
+            {
+                frmRol.Show();
+            }
         }
     }
 
@@ -719,6 +764,9 @@ namespace UberFrba
 
         public override void agregarClienteChofer(String rol){ mensajeFuncionNoValidaParaElRol(rol); }
         public override void agregarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        public override void agregarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        public override void modificarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        public override void eliminarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
         public override void agregarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
         public override void eliminarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
         public override void eliminarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
@@ -726,14 +774,9 @@ namespace UberFrba
         public override void modificarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
         public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos){}
         public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos){}
-        public override void registrarViaje()
-        {
-        }
-        public override void rendicionAChofer()
-        {
-        }
-        public override void facturarACliente()
-        { }
+        public override void registrarViaje()  { mensajeFuncionNoValidaParaElRol(""); }
+        public override void rendicionAChofer()  { mensajeFuncionNoValidaParaElRol(""); }
+        public override void facturarACliente() { mensajeFuncionNoValidaParaElRol(""); }
 
         //public override void eliminarClienteChofer(String rol)
         //{
