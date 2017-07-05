@@ -133,6 +133,7 @@ namespace UberFrba
     {
         public override Boolean construite()
         {
+            this.Text = "Agregar Turno";
             this.Controls["grupoBusquedaTurno"].Visible = false;
             construirBotonAccion();
             return true;
@@ -153,6 +154,7 @@ namespace UberFrba
     {
         public override Boolean construite()
         {
+            this.Text = "Eliminar Turno";
             this.Controls["grupoDatosTurno"].Visible = false;
             construirBotonAccion();
             return true;
@@ -202,6 +204,7 @@ namespace UberFrba
     {
         public override Boolean construite()
         {
+            this.Text = "Modificar Turno";
             this.Controls["grupoDatosTurno"].Visible = false;
             construirBotonAccion();
             return true;

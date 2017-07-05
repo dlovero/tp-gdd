@@ -250,6 +250,7 @@ namespace UberFrba
         void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
         void registrarViaje();
         void rendicionAChofer();
+        void facturarACliente();
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -300,6 +301,7 @@ namespace UberFrba
         public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         public abstract void registrarViaje();
         public abstract void rendicionAChofer();
+        public abstract void facturarACliente();
 
         public void eliminarClienteChofer(String rol)
         {
@@ -457,6 +459,15 @@ namespace UberFrba
             if (formularioRendirViaje.construite())
             {
                 formularioRendirViaje.Show();
+            }
+        }
+
+         public override void facturarACliente()
+        {
+            frmFacturarViaje formularioFacturarViaje = new frmFacturarViaje();
+            if (formularioFacturarViaje.construite())
+            {
+                formularioFacturarViaje.Show();
             }
         }
 
@@ -721,6 +732,9 @@ namespace UberFrba
         public override void rendicionAChofer()
         {
         }
+        public override void facturarACliente()
+        { }
+
         //public override void eliminarClienteChofer(String rol)
         //{
         //    String funcion = "Eliminar";

@@ -183,8 +183,7 @@ namespace UberFrba
         private void facturarCliente(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.facturarACliente();
         }
         private void rendicionChofer(object sender, EventArgs e)
         {

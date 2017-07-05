@@ -42,7 +42,7 @@
             // 
             this.selectorDiaRendicionAChofer.CustomFormat = "dd/MM/yyyy";
             this.selectorDiaRendicionAChofer.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.selectorDiaRendicionAChofer.Location = new System.Drawing.Point(183, 100);
+            this.selectorDiaRendicionAChofer.Location = new System.Drawing.Point(183, 101);
             this.selectorDiaRendicionAChofer.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.selectorDiaRendicionAChofer.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.selectorDiaRendicionAChofer.Name = "selectorDiaRendicionAChofer";

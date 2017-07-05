@@ -241,12 +241,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(636, 261);
-            this.ControlBox = false;
             this.Controls.Add(this.grupoDatosTurno);
             this.Controls.Add(this.grupoBusquedaTurno);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmABMTurno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form7";
             this.grupoDatosTurno.ResumeLayout(false);
             this.grupoDatosTurno.PerformLayout();
             this.grupoBusquedaTurno.ResumeLayout(false);
