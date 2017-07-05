@@ -189,8 +189,7 @@ namespace UberFrba
         private void rendicionChofer(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            SingletonDatosUsuario.Instance.rol.rendicionAChofer();
         }
         private void choferMayorRecaudacion(object sender, EventArgs e)
         {

@@ -1,4 +1,4 @@
-USE [GD1C2017]
+﻿USE [GD1C2017]
 
 IF NOT EXISTS (
 SELECT schema_name
