@@ -2244,13 +2244,13 @@ BEGIN TRANSACTION
 
 	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('rendicionChofer','Rendicion a Chofer')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('choferMayorRecaudacion','Listado Chofer con Mayor Recaudacion')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('listados','Listados del sistema.')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('choferViajeMasLargo','Listado de Viaje mas largo')
+--	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('choferViajeMasLargo','Listado de Viaje mas largo')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('clienteMayorConsumo','Listado Cliente con Mayor Consumo')
+--	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('clienteMayorConsumo','Listado Cliente con Mayor Consumo')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('clienteMismoMovil','Listado Cliente con Movil utilizado mas veces en viajes')
+--	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('clienteMismoMovil','Listado Cliente con Movil utilizado mas veces en viajes')
 
 	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('registroViajes','Registro de viajes')
 
@@ -2369,9 +2369,10 @@ INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre) VALUES('Registros')
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Cliente',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Chofer',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Rol',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
+INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Turno',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
 INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Automovil',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM'))
-INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Chofer',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados'))
-INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Cliente',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados'))
+--INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Chofer',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados'))
+--INSERT [DESCONOCIDOS4].RAMA_MENU (Rama_Menu_Nombre,Rama_Menu_Ascendente) VALUES('Cliente',(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados'))
 COMMIT;
 GO
 
@@ -2430,6 +2431,21 @@ INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_A
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarTurno'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Turno'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Eliminar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='eliminarTurno'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Turno'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Modificar',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='modificarTurno'),
+	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Turno'
+	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
+
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Agregar',
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='agregarRol'),
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Rol'
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='ABM')))
@@ -2451,7 +2467,7 @@ INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_A
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Rendicion a Chofer',
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='rendicionChofer'),
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Facturacion y Rendicion'))
-INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Mayor Recaudacion',
+/*INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Mayor Recaudacion',
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='choferMayorRecaudacion'),
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Chofer'
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
@@ -2470,6 +2486,11 @@ INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_A
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='clienteMismoMovil'),
 	(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Cliente'
 	and Rama_Menu_Ascendente=(SELECT Rama_Menu_Id FROM [DESCONOCIDOS4].RAMA_MENU WHERE Rama_Menu_Nombre='Listados')))
+	*/
+	
+INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Listados',
+	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='listados'),
+	NULL)
 
 INSERT [DESCONOCIDOS4].HOJA_MENU (Hoja_Menu_Nombre,Hoja_Menu_Funcion,Hoja_Menu_Ascendente) VALUES('Viajes',
 	(SELECT Func_Id FROM [DESCONOCIDOS4].FUNCIONALIDAD WHERE Func_Metodo='registroViajes'),
@@ -2488,29 +2509,58 @@ GO
 
 
 EXEC [DESCONOCIDOS4].PRC_MIGRA_PERSONA_CLIENTE
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_PERSONA_CHOFER
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_INSERTAR_ADMIN
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_MARCA
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_MODELO
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_MARCA_MODELO
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_AUTO
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_TURNO
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_UNIDAD_DISPONIBLE
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_CAB_FACTURA
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_VIAJE
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_VIAJE_REP
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_RENDICION_REP
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_FACTURA_REP
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_ITEM_FACTURA
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_CAB_RENDICION
+
 EXEC [DESCONOCIDOS4].PRC_MIGRA_ITEM_RENDICION
+
 EXEC [DESCONOCIDOS4].PRC_CARGAR_ROLES
+
 EXEC [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADES 
+
 EXEC [DESCONOCIDOS4].PRC_CARGAR_FUNCIONALIDADXROL 
+
 EXEC [DESCONOCIDOS4].PRC_CARGAR_USUARIO_ROL
+
 EXEC [DESCONOCIDOS4].PRC_ACTUALIZAR_TOTAL_FACTURA
+
 EXEC [DESCONOCIDOS4].PRC_CARGAR_RAMA_MENU
+
 EXEC [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU
+
+
+
+
+
+
 
 -- FIN MIGRACION
 
@@ -2529,222 +2579,457 @@ EXEC [DESCONOCIDOS4].PRC_CARGAR_HOJA_MENU
 -- ALTA DE CLIENTE
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ALTA_CLIENTE', N'P') IS NOT NULL
+
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_ALTA_CLIENTE;
+
 GO
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_ALTA_CLIENTE
+
 @DNI NUMERIC(18,0),
+
 @Nom VARCHAR(255),
+
 @Ape VARCHAR(255),
+
 @Dir_calle VARCHAR(255),
+
 @Dir_nro_piso SMALLINT,
+
 @Dir_depto VARCHAR(255),
+
 @localidad VARCHAR(255),
+
 @Cod_Pos VARCHAR(255),
+
 @Tel NUMERIC(18,0), --  verifica que no este repetido la restriccion UNIQUE HACER TRY AND CATCH EN LA APP
+
 @Mail VARCHAR(255),
+
 @Fec_nac DATETIME
+
 AS 
+
 BEGIN TRANSACTION 
+
  INSERT INTO  [DESCONOCIDOS4].PERSONA VALUES (
+
 		@DNI,
+
 		@Nom,
+
 		@Ape,
+
 		@Dir_calle,
+
 		@Dir_nro_piso,
+
 		@Dir_depto,
+
 		@localidad,
+
 		@Cod_Pos,
+
 		@Tel,
+
 		@Mail,
+
 		@Fec_nac)
+
  INSERT INTO [DESCONOCIDOS4].CLIENTE VALUES(SCOPE_IDENTITY(),1)
+
+
+
  DECLARE @PERSONA_ID INT
+
  SET @PERSONA_ID = (SELECT TOP 1 Persona_Id FROM DESCONOCIDOS4.PERSONA ORDER BY Persona_Id DESC)
- SELECT  Usu_Nombre_Usuario AS NOM_USUARIO, Usu_Password AS PASS_USUARIO FROM DESCONOCIDOS4.USUARIO WHERE Usu_Per_Id = @PERSONA_ID
- COMMIT;
- GO
+
  
 
+ 
+
+ SELECT  Usu_Nombre_Usuario AS NOM_USUARIO, Usu_Password AS PASS_USUARIO FROM DESCONOCIDOS4.USUARIO WHERE Usu_Per_Id = @PERSONA_ID
+
+ COMMIT;
+
+ GO
+
+
+
+
+
  --BAJA CLIENTE  
+
  IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BAJA_CLIENTE', N'P') IS NOT NULL
+
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BAJA_CLIENTE;
+
 GO
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BAJA_CLIENTE
+
 @ID_CLI INT
+
 AS
+
 BEGIN TRANSACTION 
+
   UPDATE [DESCONOCIDOS4].CLIENTE SET Cliente_Habilitado=0 WHERE Cliente_Id=@ID_CLI
+
 COMMIT;
+
 GO
 
+
+
 -- MODIFICACION CLIENTE
+
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_MODIFICACION_CLIENTE', N'P') IS NOT NULL
+
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_MODIFICACION_CLIENTE;
+
 GO
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_MODIFICACION_CLIENTE
+
 @PERS_ID INT,-- Debe ser introducido por la app es devuelta por el listado de busqueda
+
 @DNI NUMERIC(18,0),
+
 @Nom VARCHAR(255),
+
 @Ape VARCHAR(255),
+
 @Dir_calle VARCHAR(255),
+
 @Dir_nro_piso SMALLINT,
+
 @Dir_depto VARCHAR(255),
+
 @localidad VARCHAR(255),
+
 @Cod_Pos VARCHAR(255),
+
 @Tel NUMERIC(18,0), -- verifica que no este repetido la restriccion UNIQUE HACER TRY AND CATCH EN LA APP
+
 @Mail VARCHAR(255),
+
 @Fec_nac DATETIME,
+
 @Habilitar BIT
+
 AS 
+
 BEGIN TRANSACTION 	
+
+	
+
 	UPDATE [DESCONOCIDOS4].PERSONA SET  Persona_Dni = @DNI,Persona_Nombre=@Nom,Persona_Apellido=@Ape,Persona_Direccion=@Dir_calle,Persona_Piso=@Dir_nro_piso,
+
 	Persona_Departamento=@Dir_depto,Persona_Localidad=@localidad,Persona_Cod_Postal=@Cod_Pos,Persona_Telefono=@Tel,Persona_Mail=@Mail,Persona_Fecha_Nac=@Fec_nac
+
 	WHERE PERSONA.Persona_Id=@PERS_ID
+
 	UPDATE [DESCONOCIDOS4].CLIENTE SET Cliente_Habilitado=@Habilitar
+
 	WHERE Cliente_Per_ID=@PERS_ID
+
 COMMIT;
+
 GO
+
+
 
 --BUSCAR CLIENTES EXISTENTES
 
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CLIENTES', N'P') IS NOT NULL
+
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CLIENTES;
+
 GO
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CLIENTES
+
 @Nom VARCHAR(255),
+
 @Ape VARCHAR(255),
+
 @DNI NUMERIC(18,0)
+
 AS
+
 BEGIN
+
 	IF (@DNI IS NOT NULL)
+
 	BEGIN
+
 	 SELECT 
+
 	   Persona_Id
+
 	  ,Persona_Dni
+
       ,Persona_Nombre
+
       ,Persona_Apellido
+
       ,Persona_Direccion
+
       ,Persona_Piso
+
       ,Persona_Departamento
+
       ,Persona_Localidad
+
       ,Persona_Cod_Postal
+
       ,Persona_Telefono
+
       ,Persona_Mail
+
       ,Persona_Fecha_Nac
+
 	  ,Cliente_Id [idTipoRol]
+
 	  ,Cliente_Habilitado [habilitado]
-	   FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')  
-              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
-	END
-	ELSE
-	BEGIN
-	SELECT 
-	   Persona_Id
-	  ,Persona_Dni
-      ,Persona_Nombre
-      ,Persona_Apellido
-      ,Persona_Direccion
-      ,Persona_Piso
-      ,Persona_Departamento
-      ,Persona_Localidad
-      ,Persona_Cod_Postal
-      ,Persona_Telefono
-      ,Persona_Mail
-      ,Persona_Fecha_Nac
-	  ,Cliente_Id [idTipoRol]
-	  ,Cliente_Habilitado [habilitado]
+
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
+
 	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
+
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')         
+
+              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
+
 	END
+
+	ELSE
+
+	BEGIN
+
+	SELECT 
+
+	   Persona_Id
+
+	  ,Persona_Dni
+
+      ,Persona_Nombre
+
+      ,Persona_Apellido
+
+      ,Persona_Direccion
+
+      ,Persona_Piso
+
+      ,Persona_Departamento
+
+      ,Persona_Localidad
+
+      ,Persona_Cod_Postal
+
+      ,Persona_Telefono
+
+      ,Persona_Mail
+
+      ,Persona_Fecha_Nac
+
+	  ,Cliente_Id [idTipoRol]
+
+	  ,Cliente_Habilitado [habilitado]
+
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
+
+	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
+
+	END
+
 END
+
 GO
 
+
+
 -- DAR DE ALTA CLIENTE SIENDO CHOFER
+
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ALTA_CLI_DESDE_CHOFER', N'P') IS NOT NULL
+
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_ALTA_CLI_DESDE_CHOFER;
+
 GO
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_ALTA_CLI_DESDE_CHOFER
+
  @Per_id INT -- Se obtiene cuando se busca al cliente chofer para modificar es el campo 1
+
 AS
+
 BEGIN TRANSACTION
+
             INSERT INTO [DESCONOCIDOS4].CLIENTE (Cliente_Per_ID) VALUES(@Per_id);
+
  COMMIT;
+
  GO
 
+
+
+
+
  --FACTURAR A CLIENTE CUANDO SE DA DE BAJA
+
  IF OBJECT_ID (N'[DESCONOCIDOS4].TR_FACTURAR_BAJA_CLIENTE', N'TR') IS NOT NULL
+
 		DROP TRIGGER  [DESCONOCIDOS4].TR_FACTURAR_BAJA_CLIENTE;
+
 GO
+
+
+
 CREATE TRIGGER  [DESCONOCIDOS4].TR_FACTURAR_BAJA_CLIENTE ON [DESCONOCIDOS4].CLIENTE
+
 FOR UPDATE
+
 AS
+
 BEGIN 
+
 DECLARE @ESTADO_VIEJO INT
+
 SET @ESTADO_VIEJO = (SELECT Cliente_Habilitado FROM DELETED)
+
+
+
 DECLARE @CLIENTE INT
+
 SET @CLIENTE = (SELECT Cliente_Id FROM DELETED)
+
+
+
 DECLARE @FECHA_HASTA DATE
+
 SET @FECHA_HASTA = GETDATE()
+
+
+
 DECLARE @ESTADO_NUEVO INT
+
 SET @ESTADO_NUEVO = (SELECT Cliente_Habilitado FROM INSERTED)	
+
+	
+
 	IF(@ESTADO_VIEJO = 1 AND @ESTADO_NUEVO=0)
+
+		
+
+		
+
 		EXECUTE [DESCONOCIDOS4].PRC_INSERTAR_FACTURA @CLIENTE, @FECHA_HASTA 
 
+	
+
 END
+
 GO
+
+
+
+
 
 --BUSCAR MIS DATOS CLIENTE
+
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CLI', N'P') IS NOT NULL
+
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CLI;
-GO
-CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CLI
-@PerId int
-AS
-BEGIN
-	 SELECT 
-	   Persona_Id
-	  ,Persona_Dni
-      ,Persona_Nombre
-      ,Persona_Apellido
-      ,Persona_Direccion
-      ,Persona_Piso
-      ,Persona_Departamento
-      ,Persona_Localidad
-      ,Persona_Cod_Postal
-      ,Persona_Telefono
-      ,Persona_Mail
-      ,Persona_Fecha_Nac
-	  ,Cliente_Id [idTipoRol]
-	  ,Cliente_Habilitado [habilitado]
-	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE   P.Persona_Id=@PerId	
-END
+
 GO
 
---BUSCAR CLIENTE HABILITADO 
-IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO', N'P') IS NOT NULL
-		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO;
-GO
-CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CLI
+
+@PerId int
+
 AS
+
 BEGIN
+
+
+
 	 SELECT 
-	   Persona_Id [idPersona]
-      ,Persona_Nombre  [nombre]
-      ,Persona_Apellido  [apellido]
-	  ,Cliente_Id [idEnTablaSegunRol]
+
+	   Persona_Id
+
+	  ,Persona_Dni
+
+      ,Persona_Nombre
+
+      ,Persona_Apellido
+
+      ,Persona_Direccion
+
+      ,Persona_Piso
+
+      ,Persona_Departamento
+
+      ,Persona_Localidad
+
+      ,Persona_Cod_Postal
+
+      ,Persona_Telefono
+
+      ,Persona_Mail
+
+      ,Persona_Fecha_Nac
+
+	  ,Cliente_Id [idTipoRol]
+
 	  ,Cliente_Habilitado [habilitado]
+
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
+
+	  WHERE   P.Persona_Id=@PerId	
+
+END
+
+GO
+
+
+
+
+
+--BUSCAR CLIENTE HABILITADO 
+
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO', N'P') IS NOT NULL
+
+		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO;
+
+GO
+
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CLIENTE_HABILITADO
+
+AS
+
+BEGIN
+
+	 SELECT 
+
+	   Persona_Id [idPersona]
+
+      ,Persona_Nombre  [nombre]
+
+      ,Persona_Apellido  [apellido]
+
+	  ,Cliente_Id [idEnTablaSegunRol]
+
+	  ,Cliente_Habilitado [habilitado]
+
+	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
+
 	  WHERE C.Cliente_Habilitado=1
+
 	END
+
 GO
 
 
