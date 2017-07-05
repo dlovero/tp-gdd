@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="UberFrba.exe" size="316928">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="UberFrba.exe" size="328704">
       <assemblyIdentity name="UberFrba" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>FyWirDyaCCq3+nF7vsyq0xEvTAU+JjbJDnck2UwBFng=</dsig:DigestValue>
+        <dsig:DigestValue>OrAcOCpVsuCJmO5vh5CGxrH/BriZ9zS2Nj5bimniWow=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

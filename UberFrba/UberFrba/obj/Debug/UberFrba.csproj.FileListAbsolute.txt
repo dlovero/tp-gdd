@@ -31,3 +31,5 @@ C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.exe.manifest
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.application
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.pdb
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmListados.resources
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.csprojResolveAssemblyReference.cache

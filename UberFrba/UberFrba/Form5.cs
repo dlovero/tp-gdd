@@ -66,5 +66,24 @@ namespace UberFrba
         {
             completarFormularioABMConDatosDeUsuarioSeleccionado();
         }
+        //public void armarGrillaListadoChoferesMayorRecaudacion()
+        //{
+        //    GD1C2017DataSetTableAdapters.CHOFERES_MAYOR_RECAUDACIONTableAdapter adaptador
+        //    = new GD1C2017DataSetTableAdapters.CHOFERES_MAYOR_RECAUDACIONTableAdapter();
+        //    DataTable tblListadoChoferesConMayorRecaudacion = adaptador.listadoChoferesConMayorRecaudacion();
+        //    enlazarGrillaConDatos(tblListadoChoferesConMayorRecaudacion);
+        //}
+
+        //private void enlazarGrillaConDatos(DataTable tblListadoChoferesConMayorRecaudacion)
+        //{
+
+        //    this.grillaDatosResultadoBusqueda.DataSource = tblListadoChoferesConMayorRecaudacion;
+        //    this.grillaDatosResultadoBusqueda.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        //    this.grillaDatosResultadoBusqueda.AutoGenerateColumns = true;
+        //    //this.grillaDatosResultadoBusqueda.formularioABM = this;
+        //    this.grillaDatosResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar " + this.tipoUsuario;
+        //    this.grillaDatosResultadoBusqueda.Show();
+        //}
+
     }
 }

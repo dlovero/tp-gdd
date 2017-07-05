@@ -168,14 +168,29 @@ namespace UberFrba
         private void agregarRol(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregarTurno("Rol");
+            //SingletonDatosUsuario.Instance.rol.agregarRol("Rol");
         }
         private void eliminarRol(object sender, EventArgs e)
         {
             this.Hide();
-            SingletonDatosUsuario.Instance.rol.eliminarTurno("Rol");
+            //SingletonDatosUsuario.Instance.rol.eliminarRol("Rol");
         }
         private void modificarRol(object sender, EventArgs e)
+        {
+            this.Hide();
+            //SingletonDatosUsuario.Instance.rol.modificarRol("Rol");
+        }
+        private void agregarTurno(object sender, EventArgs e)
+        {
+            this.Hide();
+            SingletonDatosUsuario.Instance.rol.agregarTurno("Rol");
+        }
+        private void eliminarTurno(object sender, EventArgs e)
+        {
+            this.Hide();
+            SingletonDatosUsuario.Instance.rol.eliminarTurno("Rol");
+        }
+        private void modificarTurno(object sender, EventArgs e)
         {
             this.Hide();
             SingletonDatosUsuario.Instance.rol.modificarTurno("Rol");
@@ -190,30 +205,30 @@ namespace UberFrba
             this.Hide();
             SingletonDatosUsuario.Instance.rol.rendicionAChofer();
         }
-        private void choferMayorRecaudacion(object sender, EventArgs e)
+        private void listados(object sender, EventArgs e)
         {
             this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
+            frmListados formularioListados = new frmListados();
+            formularioListados.construite();
         }
-        private void choferViajeMasLargo(object sender, EventArgs e)
-        {
-            this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
-        }
-        private void clienteMayorConsumo(object sender, EventArgs e)
-        {
-            this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
-        }
-        private void clienteMismoMovil(object sender, EventArgs e)
-        {
-            this.Hide();
-            frmABM frmAltaCliente = new frmABM();
-            frmAltaCliente.Show();
-        }
+        //private void choferViajeMasLargo(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    frmABM frmAltaCliente = new frmABM();
+        //    frmAltaCliente.Show();
+        //}
+        //private void clienteMayorConsumo(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    frmABM frmAltaCliente = new frmABM();
+        //    frmAltaCliente.Show();
+        //}
+        //private void clienteMismoMovil(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    frmABM frmAltaCliente = new frmABM();
+        //    frmAltaCliente.Show();
+        //}
         private void registroViajes(object sender, EventArgs e)
         {
             this.Hide();
