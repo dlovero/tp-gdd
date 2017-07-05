@@ -249,6 +249,7 @@ namespace UberFrba
         void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
         void registrarViaje();
+        void rendicionAChofer();
     }
 
     public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
@@ -298,6 +299,7 @@ namespace UberFrba
         public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         public abstract void registrarViaje();
+        public abstract void rendicionAChofer();
 
         public void eliminarClienteChofer(String rol)
         {
@@ -446,6 +448,15 @@ namespace UberFrba
             if (formularioRegistroViaje.construite())
             {
                 formularioRegistroViaje.Show();
+            }
+        }
+
+        public override void rendicionAChofer()
+        {
+            frmRendirViaje formularioRendirViaje = new frmRendirViaje();
+            if (formularioRendirViaje.construite())
+            {
+                formularioRendirViaje.Show();
             }
         }
 
@@ -707,6 +718,9 @@ namespace UberFrba
         public override void registrarViaje()
         {
         }
+        public override void rendicionAChofer()
+        {
+        }
         //public override void eliminarClienteChofer(String rol)
         //{
         //    String funcion = "Eliminar";
@@ -905,6 +919,29 @@ namespace UberFrba
                 e.Handled = true;
             }
         }
+
+        public static Boolean construirComboChofer(Form formulario, String tipo, String titulo)
+        {
+            GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFER_HABILITADOTableAdapter adaptador
+                    = new GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFER_HABILITADOTableAdapter();
+            DataTable tblChofer = adaptador.obtenerListadoChoferesHabilitados();
+            ComboBox frmRendirViajeComboChofer = (ComboBox)formulario.Controls["comboChofer"];
+            if (!MetodosGlobales.armarComboSeleccionSegunRol(tblChofer, frmRendirViajeComboChofer))
+            {
+                dispararMensajeYCancelarAccion(tipo, titulo);
+                formulario.Close();
+                return false;
+            }
+            return true;
+        }
+
+        public static void dispararMensajeYCancelarAccion(String Tipo, String titulo)
+        {
+            DialogResult resultado = MessageBox.Show("No hay " + Tipo + " habilitados.", titulo,
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        
 
         private static bool esSeparadorPermitido(char caracter)
         {

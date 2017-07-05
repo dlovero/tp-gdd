@@ -18,10 +18,15 @@ C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmResultadoBusq
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmAutomovil.resources
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmABMTurno.resources
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmRegistroViaje.resources
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.frmRendirViaje.resources
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.Properties.Resources.resources
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.csproj.GenerateResource.Cache
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.exe.config
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.exe.manifest
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.application
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\bin\Debug\UberFrba.pdb
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.exe.manifest
+C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.application
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.pdb

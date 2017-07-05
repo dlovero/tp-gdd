@@ -22,14 +22,12 @@ namespace UberFrba
 
         public Boolean construite()
         {
-            Boolean continua = construirComboChofer() && construirComboCliente();
+            Boolean continua = MetodosGlobales.construirComboChofer(this, "Choferes", "Registrar Viaje") && construirComboCliente();
             if (continua)
             {
                 construirComboTurno();
-                ((ComboBox)this.Controls["comboChofer"]).SelectedIndexChanged += (sender, e) => 
+                ((ComboBox)this.Controls["comboChofer"]).SelectedIndexChanged += (sender, e) =>
                 comboChoferModificacionEnSeleccion(sender, e);
-                //asociarModeloASeleccionDeMarca();
-                //construirBotonAccion();
             }
             return continua;
         }
@@ -42,39 +40,36 @@ namespace UberFrba
             ComboBox frmRendirViajeComboCliente = (ComboBox)this.Controls["comboCliente"];
             if (!MetodosGlobales.armarComboSeleccionSegunRol(tblCliente, frmRendirViajeComboCliente))
             {
-                dispararMensajeYCancelarAccion("Cliente");
+                MetodosGlobales.dispararMensajeYCancelarAccion("Clientes", "Registrar Viaje");
                 this.Close();
                 return false;
             }
             return true;
         }
 
-        protected Boolean construirComboChofer()
-        {
-            GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFER_HABILITADOTableAdapter adaptador
-                    = new GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFER_HABILITADOTableAdapter();
-            DataTable tblChofer = adaptador.obtenerListadoChoferesHabilitados();
-            ComboBox frmRendirViajeComboChofer = (ComboBox)this.Controls["comboChofer"];
-            if (!MetodosGlobales.armarComboSeleccionSegunRol(tblChofer, frmRendirViajeComboChofer))
-            {
-                dispararMensajeYCancelarAccion("Chofer");
-                this.Close();
-                return false;
-            }
-            return true;
-        }
+        //protected Boolean construirComboChofer()
+        //{
+        //    GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFER_HABILITADOTableAdapter adaptador
+        //            = new GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFER_HABILITADOTableAdapter();
+        //    DataTable tblChofer = adaptador.obtenerListadoChoferesHabilitados();
+        //    ComboBox frmRendirViajeComboChofer = (ComboBox)this.Controls["comboChofer"];
+        //    if (!MetodosGlobales.armarComboSeleccionSegunRol(tblChofer, frmRendirViajeComboChofer))
+        //    {
+        //        dispararMensajeYCancelarAccion("Chofer");
+        //        this.Close();
+        //        return false;
+        //    }
+        //    return true;
+        //}
 
-        public void dispararMensajeYCancelarAccion(String Tipo)
-        {
-            DialogResult resultado = MessageBox.Show("No hay " + Tipo + " habilitados.", "Registrar Viaje",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        //public void dispararMensajeYCancelarAccion(String Tipo)
+        //{
+        //    DialogResult resultado = MessageBox.Show("No hay " + Tipo + " habilitados.", "Registrar Viaje",
+        //        MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //}
 
-        //private void comboChofer_SelectedIndexChanged(object sender, EventArgs e)
         private void comboChoferModificacionEnSeleccion(object sender, EventArgs e)
         {
-            //this.Controls["comboTurno"].Enabled = true;
-            //construirComboTurno();
             GD1C2017DataSetTableAdapters.PRC_LISTADO_UNI_DISPONIBLE_X_CHOTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_LISTADO_UNI_DISPONIBLE_X_CHOTableAdapter();
             DataTable tblTurnosDisponibles = adaptador.obtenerListadoTurnosYAutomovilesSegunChofer((int)((ComboBox)this.Controls["comboChofer"]).SelectedValue);
@@ -95,6 +90,12 @@ namespace UberFrba
                         , MessageBoxIcon.Information);
             }
         }
+
+        //public void accionesComplementarias()
+        //{
+        //    this.Controls["txtAutomovil"].Text = Convert.ToString(((DataRowView)this.comboTurno.SelectedItem)["Auto_Detalle"]);
+        //    this.idAuto = Convert.ToString(((DataRowView)this.comboTurno.SelectedItem)["Auto_Id"]);
+        //}
 
         private void construirComboTurno()
         {
@@ -133,15 +134,15 @@ namespace UberFrba
             this.Close();
         }
 
-        private void txtCantidadKilometros_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MetodosGlobales.permitirSoloIngresoCon2Decimales(e);
-        }
-
         public virtual bool verificarDatosDeFormulario()
         {
             return
-            Validaciones.validarCampoNumericoCon2Decimales(this.txtCantidadKilometros.Text);
+            Validaciones.validarCampoNumerico(this.txtCantidadKilometros.Text);
+        }
+
+        private void txtCantidadKilometros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoNumerico(e);
         }
 
         
