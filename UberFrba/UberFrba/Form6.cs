@@ -116,40 +116,7 @@ namespace UberFrba
                 return false;
             }
             return true;
-            //if (tblChofer.Rows.Count > 0)
-            //{
-            //    ComboBox frmAutomovilComboChofer = (ComboBox)this.Controls["grupoDatosAutomovil"].Controls["comboChofer"];
-            //    var diccionarioDatosChofer = new Dictionary<int, String>();
-            //    foreach (DataRow fila in tblChofer.Rows)
-            //    {
-            //        diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_NOMBRE"]));
-            //    }
-
-            //    frmAutomovilComboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);
-            //    frmAutomovilComboChofer.DisplayMember = "Value";
-            //    frmAutomovilComboChofer.ValueMember = "Key";
-            //} else {
-            //    dispararMensajeYCancelarAccion();
-            //}
-            //return tblChofer.Rows.Count > 0;
         }
-
-        //public static Boolean armarComboChofer(DataTable tablaDatos, ComboBox comboChofer)
-        //{
-        //    if (tablaDatos.Rows.Count > 0)
-        //    {
-        //        var diccionarioDatosChofer = new Dictionary<int, String>();
-        //        foreach (DataRow fila in tablaDatos.Rows)
-        //        {
-        //            diccionarioDatosChofer.Add((int)fila["CHOFER_ID"], ((string)fila["CHOFER_APELLIDO"]) + " " + ((string)fila["CHOFER_NOMBRE"]));
-        //        }
-
-        //        comboChofer.DataSource = new BindingSource(diccionarioDatosChofer, null);
-        //        comboChofer.DisplayMember = "Value";
-        //        comboChofer.ValueMember = "Key";
-        //    }
-        //    return tablaDatos.Rows.Count > 0;
-        //}
 
         public void dispararMensajeYCancelarAccion()
         {           
@@ -203,7 +170,6 @@ namespace UberFrba
             construirComboModelo();
             asociarModeloASeleccionDeMarca();
             construirBotonAccion();
-            
             poblarDatosDelFormulario(filaDeDatos);
             configurarEstadoFormulario();
         }
@@ -268,6 +234,7 @@ namespace UberFrba
 
         public override Boolean construite()
         {
+            this.Text = "Eliminar Automovil";
             try
             {
                 actualizarEstadoHabilitacionGrupoDatosAutomovil(false);
@@ -322,6 +289,7 @@ namespace UberFrba
     {
         public override Boolean construite()
         {
+            this.Text = "Agregar Automovil";
             Boolean continua = construirComboChofer();
             if (continua)
             {
@@ -348,6 +316,7 @@ namespace UberFrba
     {
         public override Boolean construite()
         {
+            this.Text = "Modificar Automovil";
             try
             {
                 actualizarEstadoHabilitacionGrupoDatosAutomovil(false);

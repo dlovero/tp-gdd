@@ -2199,6 +2199,12 @@ BEGIN TRANSACTION
 
 	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarAutomovil','Dar de modificar un Automovil')
 
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarTurno','Dar de alta un Turno')
+
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarTurno','Dar de modificar un Turno')
+
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarTurno','Dar de modificar un Turno')
+	
 	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarRol','Dar de alta un Rol')
 
 	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarRol','Dar de modificar un Rol')

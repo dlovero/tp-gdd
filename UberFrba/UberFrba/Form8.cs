@@ -47,27 +47,7 @@ namespace UberFrba
             return true;
         }
 
-        //protected Boolean construirComboChofer()
-        //{
-        //    GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFER_HABILITADOTableAdapter adaptador
-        //            = new GD1C2017DataSetTableAdapters.PRC_BUSCAR_CHOFER_HABILITADOTableAdapter();
-        //    DataTable tblChofer = adaptador.obtenerListadoChoferesHabilitados();
-        //    ComboBox frmRendirViajeComboChofer = (ComboBox)this.Controls["comboChofer"];
-        //    if (!MetodosGlobales.armarComboSeleccionSegunRol(tblChofer, frmRendirViajeComboChofer))
-        //    {
-        //        dispararMensajeYCancelarAccion("Chofer");
-        //        this.Close();
-        //        return false;
-        //    }
-        //    return true;
-        //}
-
-        //public void dispararMensajeYCancelarAccion(String Tipo)
-        //{
-        //    DialogResult resultado = MessageBox.Show("No hay " + Tipo + " habilitados.", "Registrar Viaje",
-        //        MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //}
-
+   
         private void comboChoferModificacionEnSeleccion(object sender, EventArgs e)
         {
             GD1C2017DataSetTableAdapters.PRC_LISTADO_UNI_DISPONIBLE_X_CHOTableAdapter adaptador
