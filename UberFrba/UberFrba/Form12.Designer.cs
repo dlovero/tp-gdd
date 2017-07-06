@@ -34,26 +34,26 @@
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.txtNombreRol = new System.Windows.Forms.TextBox();
             this.lblNombreRol = new System.Windows.Forms.Label();
             this.lblCajaFuncionesSegunRol = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblFunciones = new System.Windows.Forms.Label();
+            this.comboFunciones = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cajaListaFuncionesSegunRol
             // 
             this.cajaListaFuncionesSegunRol.FormattingEnabled = true;
-            this.cajaListaFuncionesSegunRol.Location = new System.Drawing.Point(364, 53);
+            this.cajaListaFuncionesSegunRol.Location = new System.Drawing.Point(364, 66);
             this.cajaListaFuncionesSegunRol.Name = "cajaListaFuncionesSegunRol";
-            this.cajaListaFuncionesSegunRol.Size = new System.Drawing.Size(221, 212);
+            this.cajaListaFuncionesSegunRol.Size = new System.Drawing.Size(221, 199);
             this.cajaListaFuncionesSegunRol.TabIndex = 0;
             // 
             // cajaListaFunciones
             // 
             this.cajaListaFunciones.FormattingEnabled = true;
-            this.cajaListaFunciones.Location = new System.Drawing.Point(12, 53);
+            this.cajaListaFunciones.Location = new System.Drawing.Point(12, 66);
             this.cajaListaFunciones.Name = "cajaListaFunciones";
-            this.cajaListaFunciones.Size = new System.Drawing.Size(221, 212);
+            this.cajaListaFunciones.Size = new System.Drawing.Size(221, 199);
             this.cajaListaFunciones.TabIndex = 1;
             // 
             // btnAgregar
@@ -94,13 +94,6 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // txtNombreRol
-            // 
-            this.txtNombreRol.Location = new System.Drawing.Point(200, 18);
-            this.txtNombreRol.Name = "txtNombreRol";
-            this.txtNombreRol.Size = new System.Drawing.Size(195, 20);
-            this.txtNombreRol.TabIndex = 6;
-            // 
             // lblNombreRol
             // 
             this.lblNombreRol.AutoSize = true;
@@ -113,20 +106,29 @@
             // lblCajaFuncionesSegunRol
             // 
             this.lblCajaFuncionesSegunRol.AutoSize = true;
-            this.lblCajaFuncionesSegunRol.Location = new System.Drawing.Point(421, 37);
+            this.lblCajaFuncionesSegunRol.Location = new System.Drawing.Point(421, 52);
             this.lblCajaFuncionesSegunRol.Name = "lblCajaFuncionesSegunRol";
             this.lblCajaFuncionesSegunRol.Size = new System.Drawing.Size(109, 13);
             this.lblCajaFuncionesSegunRol.TabIndex = 64;
             this.lblCajaFuncionesSegunRol.Text = "Funciones Segun Rol";
             // 
-            // label2
+            // lblFunciones
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(83, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 65;
-            this.label2.Text = "Funciones";
+            this.lblFunciones.AutoSize = true;
+            this.lblFunciones.Location = new System.Drawing.Point(85, 53);
+            this.lblFunciones.Name = "lblFunciones";
+            this.lblFunciones.Size = new System.Drawing.Size(56, 13);
+            this.lblFunciones.TabIndex = 65;
+            this.lblFunciones.Text = "Funciones";
+            // 
+            // comboFunciones
+            // 
+            this.comboFunciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboFunciones.FormattingEnabled = true;
+            this.comboFunciones.Location = new System.Drawing.Point(202, 18);
+            this.comboFunciones.Name = "comboFunciones";
+            this.comboFunciones.Size = new System.Drawing.Size(195, 21);
+            this.comboFunciones.TabIndex = 66;
             // 
             // frmRol
             // 
@@ -134,10 +136,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(601, 332);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboFunciones);
+            this.Controls.Add(this.lblFunciones);
             this.Controls.Add(this.lblCajaFuncionesSegunRol);
             this.Controls.Add(this.lblNombreRol);
-            this.Controls.Add(this.txtNombreRol);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.btnQuitar);
@@ -154,15 +156,15 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox cajaListaFuncionesSegunRol;
-        private System.Windows.Forms.ListBox cajaListaFunciones;
-        private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnQuitar;
-        private System.Windows.Forms.Button btnAceptar;
+        protected System.Windows.Forms.ListBox cajaListaFuncionesSegunRol;
+        protected System.Windows.Forms.ListBox cajaListaFunciones;
+        protected System.Windows.Forms.Button btnAgregar;
+        protected System.Windows.Forms.Button btnQuitar;
+        protected System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.TextBox txtNombreRol;
-        private System.Windows.Forms.Label lblNombreRol;
-        private System.Windows.Forms.Label lblCajaFuncionesSegunRol;
-        private System.Windows.Forms.Label label2;
+        protected System.Windows.Forms.Label lblNombreRol;
+        protected System.Windows.Forms.Label lblCajaFuncionesSegunRol;
+        protected System.Windows.Forms.Label lblFunciones;
+        protected System.Windows.Forms.ComboBox comboFunciones;
     }
 }
