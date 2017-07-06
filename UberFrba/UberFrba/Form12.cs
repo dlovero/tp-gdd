@@ -153,21 +153,30 @@ namespace UberFrba
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if(this.cajaListaFunciones.SelectedIndex != -1)
+            ListBox.SelectedObjectCollection lista = this.cajaListaFunciones.SelectedItems;
+            foreach (var item in lista)
             {
-                this.cajaListaFuncionesSegunRol.Items.Add(this.cajaListaFunciones.SelectedItem);
-                this.cajaListaFunciones.Items.Remove(this.cajaListaFunciones.SelectedItem);
+                this.cajaListaFuncionesSegunRol.Items.Add(item);
+                
+            }
+            while (lista.Count > 0)
+            {
+                this.cajaListaFunciones.Items.Remove(lista[0]);
             }
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            if (this.cajaListaFuncionesSegunRol.SelectedIndex != -1)
+            ListBox.SelectedObjectCollection lista = this.cajaListaFuncionesSegunRol.SelectedItems;
+            foreach (var item in lista)
             {
-                this.cajaListaFunciones.Items.Add(this.cajaListaFuncionesSegunRol.SelectedItem);
-                this.cajaListaFuncionesSegunRol.Items.Remove(this.cajaListaFuncionesSegunRol.SelectedItem);
-            }
+                this.cajaListaFunciones.Items.Add(item);
 
+            }
+            while (lista.Count > 0)
+            {
+                this.cajaListaFuncionesSegunRol.Items.Remove(lista[0]);
+            }
         }
 
         protected static string armarListaConItem(List<FuncionalidadSegunRol> lista)
@@ -277,6 +286,8 @@ namespace UberFrba
 
         protected override void prepararFormulario()
         {
+            this.cajaListaFunciones.SelectionMode = SelectionMode.MultiExtended;
+            this.cajaListaFuncionesSegunRol.SelectionMode = SelectionMode.MultiExtended;
             this.comboRol.DropDownStyle = ComboBoxStyle.Simple;
             this.ccHabilitado.Visible = false;
             agregarNombres("Agregar Rol");
@@ -334,6 +345,8 @@ namespace UberFrba
 
         protected override void prepararFormulario()
         {
+            this.cajaListaFunciones.SelectionMode = SelectionMode.MultiExtended;
+            this.cajaListaFuncionesSegunRol.SelectionMode = SelectionMode.MultiExtended;
             this.txtModificarNombre.Visible = true;
             this.lblModificarNombre.Visible = true;
             agregarNombres("Modificar Rol");
