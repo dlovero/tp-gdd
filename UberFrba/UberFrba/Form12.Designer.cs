@@ -38,6 +38,7 @@
             this.lblCajaFuncionesSegunRol = new System.Windows.Forms.Label();
             this.lblFunciones = new System.Windows.Forms.Label();
             this.comboRol = new System.Windows.Forms.ComboBox();
+            this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // cajaListaFuncionesSegunRol
@@ -131,6 +132,17 @@
             this.comboRol.Name = "comboRol";
             this.comboRol.Size = new System.Drawing.Size(195, 21);
             this.comboRol.TabIndex = 66;
+            this.comboRol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboRol_KeyPress);
+            // 
+            // ccHabilitado
+            // 
+            this.ccHabilitado.AutoSize = true;
+            this.ccHabilitado.Location = new System.Drawing.Point(457, 18);
+            this.ccHabilitado.Name = "ccHabilitado";
+            this.ccHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.ccHabilitado.TabIndex = 67;
+            this.ccHabilitado.Text = "Habilitado";
+            this.ccHabilitado.UseVisualStyleBackColor = true;
             // 
             // frmRol
             // 
@@ -138,6 +150,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(601, 332);
+            this.Controls.Add(this.ccHabilitado);
             this.Controls.Add(this.comboRol);
             this.Controls.Add(this.lblFunciones);
             this.Controls.Add(this.lblCajaFuncionesSegunRol);
@@ -168,5 +181,6 @@
         protected System.Windows.Forms.Label lblCajaFuncionesSegunRol;
         protected System.Windows.Forms.Label lblFunciones;
         protected System.Windows.Forms.ComboBox comboRol;
+        protected System.Windows.Forms.CheckBox ccHabilitado;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -47,7 +48,7 @@ namespace UberFrba
                 accionBotonAceptar(sender, e);
         }
 
-        protected abstract void accionBotonAceptar(object sender, EventArgs e);
+        //protected abstract void accionBotonAceptar(object sender, EventArgs e);
 
         protected void cargarListas()
         {
@@ -174,6 +175,49 @@ namespace UberFrba
                 listaFuncionalidades.Add(item.id);
             return string.Join(",", listaFuncionalidades.ToList());
         }
+
+        private void comboRol_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            verificarCaracterIngresado(e);
+        }
+
+        protected abstract void verificarCaracterIngresado(KeyPressEventArgs e);
+
+        protected void accionBotonAceptar(object sender, EventArgs e)
+        {
+            if (mensajeAlertaAntesDeAccion())
+            {
+                try
+                {
+                    ejecutarSegunAccion();
+                }
+                catch (SqlException ex)
+                {
+                    mensajeErrorEnDB();
+                }
+                mensajeConfirmaAccion();
+            }
+        }
+
+        protected abstract void mensajeConfirmaAccion();
+
+        protected void dispararMensajeConfirmaAccion(String funcion, String rol)
+        {
+            DialogResult resultado = MessageBox.Show("Se ha " + funcion + " el rol.", funcion + " " + rol,
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        protected abstract Boolean mensajeAlertaAntesDeAccion();
+
+        public void mensajeErrorEnDB()
+        {
+            MessageBox.Show("Error al operar en la BD", "ERROR",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        protected abstract void ejecutarSegunAccion();
+
+
     }
 
     public partial class frmRolAgregar : frmRol
@@ -192,12 +236,20 @@ namespace UberFrba
         {
         }
 
-        protected override void accionBotonAceptar(object sender, EventArgs e)
+        protected override void ejecutarSegunAccion()
         {
-            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador = 
+            if (Validaciones.validarCampoAlfanumerico(this.comboRol.Text))
+            {
+                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            adaptador.agregarRol(this.comboRol.Text, armarCadenaConIdsFunciones());
-            this.Close();
+                adaptador.agregarRol(this.comboRol.Text, armarCadenaConIdsFunciones());
+                this.Close();
+            }
+            else
+            {
+                MetodosGlobales.mansajeErrorValidacion();
+            }
+
         }
 
         private string armarCadenaConIdsFunciones()
@@ -228,6 +280,20 @@ namespace UberFrba
             agregarNombres("Agregar Rol");
         }
 
+        protected override void verificarCaracterIngresado(KeyPressEventArgs e)
+        {
+            MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
+        }
+
+        protected override void mensajeConfirmaAccion()
+        {
+            dispararMensajeConfirmaAccion("Agregado", "Rol");
+        }
+        
+        protected override Boolean mensajeAlertaAntesDeAccion()
+        {
+            return MetodosGlobales.mensajeAlertaAntesDeAccion("Rol", "Agregar");
+        }
     }
 
     public partial class frmRolModificar : frmRol
@@ -263,10 +329,13 @@ namespace UberFrba
 
         protected override void prepararFormulario()
         {
+            //this.ccHabilitado.Checked;
             agregarNombres("Modificar Rol");
         }
 
-        protected override void accionBotonAceptar(object sender, EventArgs e)
+        
+
+        protected override void ejecutarSegunAccion()
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
@@ -278,9 +347,24 @@ namespace UberFrba
                 !listaNueva.Any(funcion => funcion.nombreFuncion.Equals(item.nombreFuncion))).ToList();
             adaptador.modificarRol(Convert.ToInt32(this.comboRol.SelectedValue),
                 this.comboRol.SelectedText,
-                1, armarListaConItem(listaConFuncionesParaAgregar),
+                Convert.ToInt16(this.ccHabilitado.Checked),
+                armarListaConItem(listaConFuncionesParaAgregar),
                 armarListaConItem(listaConFuncionesParaQuitar));
             this.Close();
+        }
+
+        protected override Boolean mensajeAlertaAntesDeAccion()
+        {
+            return MetodosGlobales.mensajeAlertaAntesDeAccion("Rol", "Modificar");
+        }
+
+        protected override void mensajeConfirmaAccion()
+        {
+            dispararMensajeConfirmaAccion("Modificado", "Rol");
+        }
+
+        protected override void verificarCaracterIngresado(KeyPressEventArgs e)
+        {
         }
     }
 
@@ -316,22 +400,37 @@ namespace UberFrba
 
         protected override void prepararFormulario()
         {
+            this.cajaListaFuncionesSegunRol.SelectionMode = SelectionMode.None;
+            this.ccHabilitado.Visible = false;
             this.cajaListaFunciones.Visible = false;
             this.btnAgregar.Visible = false;
             this.btnQuitar.Visible = false;
             this.lblFunciones.Visible = false;
             centrarControlHorizontal(this.lblCajaFuncionesSegunRol);
             centrarControlHorizontal(this.cajaListaFuncionesSegunRol);
-            cajaListaFuncionesSegunRol.Enabled = false;
             agregarNombres("Eliminar Rol");
         }
 
-        protected override void accionBotonAceptar(object sender, EventArgs e)
+        protected override void ejecutarSegunAccion()
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
             adaptador.eliminarRol(Convert.ToInt32(this.comboRol.SelectedValue));
             this.Close();
+        }
+
+        protected override Boolean mensajeAlertaAntesDeAccion()
+        {
+            return MetodosGlobales.mensajeAlertaAntesDeAccion("Rol", "Eliminar");
+        }
+
+        protected override void mensajeConfirmaAccion()
+        {
+            dispararMensajeConfirmaAccion("Eliminado", "Rol");
+        }
+
+        protected override void verificarCaracterIngresado(KeyPressEventArgs e)
+        {
         }
     }
 }
