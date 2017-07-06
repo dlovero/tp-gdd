@@ -21,6 +21,8 @@ namespace UberFrba
         {
             prepararFormulario();
             cargarDatosDeFormulario();
+            (this.comboRol).SelectedIndexChanged += (sender, e) =>
+                comboRolModificarEnSeleccion(sender, e);
             return true;
         }
 
@@ -37,28 +39,28 @@ namespace UberFrba
         
         protected void armarListaFunciones()
         {
-            this.cajaListaFunciones.DataSource = obtenerListaFuncionesSegunAccion();
+            this.cajaListaFunciones.Items.AddRange(obtenerListaFuncionesSegunAccion().ToArray());
             this.cajaListaFunciones.DisplayMember = "nombreFuncion";
             this.cajaListaFunciones.ValueMember = "id";
         }
 
         protected void armarListaFuncionesAsociadas()
         {
-            this.cajaListaFunciones.DataSource = obtenerListaFuncionesAsociadasSegunAccion();
-            this.cajaListaFunciones.DisplayMember = "nombreFuncion";
-            this.cajaListaFunciones.ValueMember = "id";
+            this.cajaListaFuncionesSegunRol.Items.AddRange(obtenerListaFuncionesAsociadasSegunAccion().ToArray());
+            this.cajaListaFuncionesSegunRol.DisplayMember = "nombreFuncion";
+            this.cajaListaFuncionesSegunRol.ValueMember = "id";
         }
 
         private void construirComboRol()
         {
-            this.comboFunciones.DataSource = obtenerDatosParaComboRol();
-            this.comboFunciones.DisplayMember = "nombre";
-            this.comboFunciones.ValueMember = "id";
+            this.comboRol.DataSource = obtenerDatosParaComboRol();
+            this.comboRol.DisplayMember = "nombre";
+            this.comboRol.ValueMember = "id";
         }
 
         protected abstract DataTable obtenerDatosParaComboRol();
-
-        protected abstract object obtenerListaFuncionesSegunAccion();
+        protected abstract List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion();
+        protected abstract List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion();
         
         protected void cargarDatosEnCuadrosDeLista()
         {
@@ -87,7 +89,7 @@ namespace UberFrba
             GD1C2017DataSetTableAdapters.LISTAR_FUNC_X_ROL_HABITableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.LISTAR_FUNC_X_ROL_HABITableAdapter();
             return adaptador.listaDeFunciones(
-                Convert.ToInt32((this.comboFunciones.SelectedValue)))
+                Convert.ToInt32((this.comboRol.SelectedValue)))
                 .AsEnumerable().Select(
                 elemento => new FuncionalidadSegunRol()
                 {
@@ -101,15 +103,18 @@ namespace UberFrba
             this.Close();
         }
 
-        protected object obtenerListaFuncionesAsociadasSegunAccion()
-        {
-            return obtenerListaFuncionesAsociadas();
-        }
-
         protected class FuncionalidadSegunRol
         {
             public int id {set; get;}
             public String nombreFuncion {set; get;}
+            public FuncionalidadSegunRol()
+            {
+            }
+            public FuncionalidadSegunRol(int idFuncionalidad, String nombre)
+            {
+                this.id = idFuncionalidad;
+                this.nombreFuncion = nombre;
+            }
         }
 
         protected void centrarControlHorizontal(System.Windows.Forms.Control control)
@@ -123,15 +128,52 @@ namespace UberFrba
             this.Text = nombre;
             this.btnAceptar.Text = nombre;
         }
+
+        private void comboRolModificarEnSeleccion(object sender, EventArgs e)
+        {
+            this.cajaListaFunciones.Items.Clear();
+            this.cajaListaFuncionesSegunRol.Items.Clear();
+            modificarListas();
+        }
+
+        protected abstract void modificarListas();
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if(this.cajaListaFunciones.SelectedIndex != -1)
+            {
+                this.cajaListaFuncionesSegunRol.Items.Add(this.cajaListaFunciones.SelectedItem);
+                this.cajaListaFunciones.Items.Remove(this.cajaListaFunciones.SelectedItem);
+            }
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            if (this.cajaListaFuncionesSegunRol.SelectedIndex != -1)
+            {
+                this.cajaListaFunciones.Items.Add(this.cajaListaFuncionesSegunRol.SelectedItem);
+                this.cajaListaFuncionesSegunRol.Items.Remove(this.cajaListaFuncionesSegunRol.SelectedItem);
+            }
+
+        }
     }
 
     public partial class frmRolAgregar : frmRol
     {
-        protected override object obtenerListaFuncionesSegunAccion()
+        protected override List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion()
         {
-            return obtenerListaFunciones();
+            return obtenerListaFunciones().Except(obtenerListaFuncionesAsociadas()).ToList();
         }
 
+        protected override List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion()
+        {
+            return obtenerListaFuncionesAsociadas().Except(obtenerListaFunciones()).ToList(); ;
+        }
+
+        protected override void modificarListas()
+        {
+        }
+        
         protected override DataTable obtenerDatosParaComboRol()
         {
             return null;
@@ -139,27 +181,42 @@ namespace UberFrba
 
         protected override void armarListaFuncionesAsociadasARol()
         {
+            this.cajaListaFuncionesSegunRol.DisplayMember = "nombreFuncion";
+            this.cajaListaFuncionesSegunRol.ValueMember = "id";
         }
 
         protected override void prepararFormulario()
         {
-            this.comboFunciones.DropDownStyle = ComboBoxStyle.Simple;
+            this.comboRol.DropDownStyle = ComboBoxStyle.Simple;
             agregarNombres("Agregar Rol");
         }
+
     }
 
     public partial class frmRolModificar : frmRol
     {
-        protected override object obtenerListaFuncionesSegunAccion()
+        protected override List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion()
         {
             return obtenerListaFunciones().
                 Except(obtenerListaFuncionesAsociadas()).ToList();
+        }
+
+        protected override List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion()
+        {
+            return obtenerListaFuncionesAsociadas().
+                Except(obtenerListaFunciones()).ToList();
         }
 
         protected override DataTable obtenerDatosParaComboRol()
         {
             return (new GD1C2017DataSetTableAdapters.LISTAR_ROLES_SIN_CONDITableAdapter())
                 .listadoRoles();
+        }
+
+        protected override void modificarListas()
+        {
+            armarListaFuncionesAsociadas();
+            armarListaFunciones();
         }
 
         protected override void armarListaFuncionesAsociadasARol()
@@ -175,9 +232,20 @@ namespace UberFrba
 
     public partial class frmRolEliminar : frmRol
     {
-        protected override object obtenerListaFuncionesSegunAccion()
+        protected override List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion()
+        {
+            return obtenerListaFuncionesAsociadas();
+        }
+
+        protected override List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion()
         {
             return new List<FuncionalidadSegunRol>();
+        }
+
+        protected override void modificarListas()
+        {
+            armarListaFuncionesAsociadas();
+            armarListaFunciones();
         }
 
         protected override DataTable obtenerDatosParaComboRol()
@@ -198,9 +266,8 @@ namespace UberFrba
             this.btnQuitar.Visible = false;
             this.lblFunciones.Visible = false;
             centrarControlHorizontal(this.lblCajaFuncionesSegunRol);
-            this.comboFunciones.DropDownStyle = ComboBoxStyle.Simple;
-            this.comboFunciones.Enabled = false;
             centrarControlHorizontal(this.cajaListaFuncionesSegunRol);
+            cajaListaFuncionesSegunRol.Enabled = false;
             agregarNombres("Eliminar Rol");
         }
     }

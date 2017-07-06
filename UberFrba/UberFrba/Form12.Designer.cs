@@ -37,7 +37,7 @@
             this.lblNombreRol = new System.Windows.Forms.Label();
             this.lblCajaFuncionesSegunRol = new System.Windows.Forms.Label();
             this.lblFunciones = new System.Windows.Forms.Label();
-            this.comboFunciones = new System.Windows.Forms.ComboBox();
+            this.comboRol = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cajaListaFuncionesSegunRol
@@ -64,6 +64,7 @@
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.Text = ">";
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnQuitar
             // 
@@ -73,6 +74,7 @@
             this.btnQuitar.TabIndex = 3;
             this.btnQuitar.Text = "<";
             this.btnQuitar.UseVisualStyleBackColor = true;
+            this.btnQuitar.Click += new System.EventHandler(this.btnQuitar_Click);
             // 
             // btnAceptar
             // 
@@ -121,14 +123,14 @@
             this.lblFunciones.TabIndex = 65;
             this.lblFunciones.Text = "Funciones";
             // 
-            // comboFunciones
+            // comboRol
             // 
-            this.comboFunciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboFunciones.FormattingEnabled = true;
-            this.comboFunciones.Location = new System.Drawing.Point(202, 18);
-            this.comboFunciones.Name = "comboFunciones";
-            this.comboFunciones.Size = new System.Drawing.Size(195, 21);
-            this.comboFunciones.TabIndex = 66;
+            this.comboRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboRol.FormattingEnabled = true;
+            this.comboRol.Location = new System.Drawing.Point(202, 18);
+            this.comboRol.Name = "comboRol";
+            this.comboRol.Size = new System.Drawing.Size(195, 21);
+            this.comboRol.TabIndex = 66;
             // 
             // frmRol
             // 
@@ -136,7 +138,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(601, 332);
-            this.Controls.Add(this.comboFunciones);
+            this.Controls.Add(this.comboRol);
             this.Controls.Add(this.lblFunciones);
             this.Controls.Add(this.lblCajaFuncionesSegunRol);
             this.Controls.Add(this.lblNombreRol);
@@ -165,6 +167,6 @@
         protected System.Windows.Forms.Label lblNombreRol;
         protected System.Windows.Forms.Label lblCajaFuncionesSegunRol;
         protected System.Windows.Forms.Label lblFunciones;
-        protected System.Windows.Forms.ComboBox comboFunciones;
+        protected System.Windows.Forms.ComboBox comboRol;
     }
 }
