@@ -12,6 +12,10 @@ namespace UberFrba
 {
     public abstract partial class frmRol : Form
     {
+
+        protected List<FuncionalidadSegunRol> listaFunciones { set; get; }
+        protected List<FuncionalidadSegunRol> listaFuncionesSegunRol { set; get; }
+
         public frmRol()
         {
             InitializeComponent();
@@ -31,8 +35,24 @@ namespace UberFrba
         protected void cargarDatosDeFormulario()
         {
             construirComboRol();
+            cargarListas();
             armarListaFunciones();
             armarListaFuncionesAsociadasARol();
+            cargarAccionABoton();
+        }
+
+        protected void cargarAccionABoton()
+        {
+            (this.btnAceptar).Click += (sender, e) =>
+                accionBotonAceptar(sender, e);
+        }
+
+        protected abstract void accionBotonAceptar(object sender, EventArgs e);
+
+        protected void cargarListas()
+        {
+            this.listaFunciones = obtenerListaFunciones();
+            this.listaFuncionesSegunRol = obtenerListaFuncionesAsociadas();
         }
 
         protected abstract void armarListaFuncionesAsociadasARol();
@@ -162,18 +182,39 @@ namespace UberFrba
     {
         protected override List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion()
         {
-            return obtenerListaFunciones().Except(obtenerListaFuncionesAsociadas()).ToList();
+            return new List<FuncionalidadSegunRol>();
         }
 
         protected override List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion()
         {
-            return obtenerListaFuncionesAsociadas().Except(obtenerListaFunciones()).ToList(); ;
+            return this.listaFunciones;
         }
 
         protected override void modificarListas()
         {
         }
-        
+
+        protected override void accionBotonAceptar(object sender, EventArgs e)
+        {
+            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador = 
+                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+            adaptador.agregarRol(this.comboRol.Text, armarCadenaConIdsFunciones());
+            this.Close();
+        }
+
+        private string armarCadenaConIdsFunciones()
+        {
+            List<int> listaFuncionalidades = new List<int>();
+            (this.cajaListaFuncionesSegunRol.Items.Cast<FuncionalidadSegunRol>())
+                .Select(funcionalidad => funcionalidad.id).ToList();
+            List<FuncionalidadSegunRol> lista = (this.cajaListaFuncionesSegunRol.Items.Cast<FuncionalidadSegunRol>()).ToList();
+            foreach (var item in lista)
+                listaFuncionalidades.Add(item.id);
+            return string.Join(",", listaFuncionalidades.ToList());
+
+//var result = string.Join(";", data.Select(x => x.ToString()).ToArray()); //
+        }
+
         protected override DataTable obtenerDatosParaComboRol()
         {
             return null;
@@ -197,14 +238,13 @@ namespace UberFrba
     {
         protected override List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion()
         {
-            return obtenerListaFunciones().
-                Except(obtenerListaFuncionesAsociadas()).ToList();
+            return this.listaFuncionesSegunRol;
         }
 
         protected override List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion()
         {
-            return obtenerListaFuncionesAsociadas().
-                Except(obtenerListaFunciones()).ToList();
+            return this.listaFunciones.Where(item =>
+                !listaFuncionesSegunRol.Any(funcion => funcion.nombreFuncion.Equals(item.nombreFuncion))).ToList();
         }
 
         protected override DataTable obtenerDatosParaComboRol()
@@ -215,6 +255,7 @@ namespace UberFrba
 
         protected override void modificarListas()
         {
+            cargarListas();
             armarListaFuncionesAsociadas();
             armarListaFunciones();
         }
@@ -228,13 +269,21 @@ namespace UberFrba
         {
             agregarNombres("Modificar Rol");
         }
+
+        protected override void accionBotonAceptar(object sender, EventArgs e)
+        {
+            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+            //adaptador.modificarRol((int)this.comboRol.SelectedValue, this.comboRol.SelectedText,);
+            this.Close();
+        }
     }
 
     public partial class frmRolEliminar : frmRol
     {
         protected override List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion()
         {
-            return obtenerListaFuncionesAsociadas();
+            return this.listaFuncionesSegunRol;
         }
 
         protected override List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion()
@@ -244,6 +293,7 @@ namespace UberFrba
 
         protected override void modificarListas()
         {
+            cargarListas();
             armarListaFuncionesAsociadas();
             armarListaFunciones();
         }
@@ -269,6 +319,14 @@ namespace UberFrba
             centrarControlHorizontal(this.cajaListaFuncionesSegunRol);
             cajaListaFuncionesSegunRol.Enabled = false;
             agregarNombres("Eliminar Rol");
+        }
+
+        protected override void accionBotonAceptar(object sender, EventArgs e)
+        {
+            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+            adaptador.eliminarRol(Convert.ToInt32(this.comboRol.SelectedValue));
+            this.Close();
         }
     }
 }
