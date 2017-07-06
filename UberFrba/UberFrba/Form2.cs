@@ -168,17 +168,17 @@ namespace UberFrba
         private void agregarRol(object sender, EventArgs e)
         {
             this.Hide();
-            //SingletonDatosUsuario.Instance.rol.agregarRol("Rol");
+            SingletonDatosUsuario.Instance.rol.agregarRol("Rol");
         }
         private void eliminarRol(object sender, EventArgs e)
         {
             this.Hide();
-            //SingletonDatosUsuario.Instance.rol.eliminarRol("Rol");
+            SingletonDatosUsuario.Instance.rol.eliminarRol("Rol");
         }
         private void modificarRol(object sender, EventArgs e)
         {
             this.Hide();
-            //SingletonDatosUsuario.Instance.rol.modificarRol("Rol");
+            SingletonDatosUsuario.Instance.rol.modificarRol("Rol");
         }
         private void agregarTurno(object sender, EventArgs e)
         {
