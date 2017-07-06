@@ -82,16 +82,6 @@ namespace UberFrba
         protected abstract List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion();
         protected abstract List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion();
         
-        protected void cargarDatosEnCuadrosDeLista()
-        {
-            //this.cajaListaFunciones.DataSource = listaFuncionalidades();
-            //this.cajaListaFunciones.DataSource = listaFuncionalidades();
-
-            //List<DataRow> listaFuncionalidades = obtenerFuncionalidades();
-            //List<DataRow> listaFuncionalidadesSegunRol
-            //    = obtenerFuncionalidadesSegunRol(idRol);
-        }
-
         protected List<FuncionalidadSegunRol> obtenerListaFunciones()
         {
             GD1C2017DataSetTableAdapters.LISTAR_FUNCIONALIDADESTableAdapter adaptador =
@@ -176,6 +166,14 @@ namespace UberFrba
             }
 
         }
+
+        protected static string armarListaConItem(List<FuncionalidadSegunRol> lista)
+        {
+            List<int> listaFuncionalidades = new List<int>();
+            foreach (var item in lista)
+                listaFuncionalidades.Add(item.id);
+            return string.Join(",", listaFuncionalidades.ToList());
+        }
     }
 
     public partial class frmRolAgregar : frmRol
@@ -204,16 +202,14 @@ namespace UberFrba
 
         private string armarCadenaConIdsFunciones()
         {
-            List<int> listaFuncionalidades = new List<int>();
+            
             (this.cajaListaFuncionesSegunRol.Items.Cast<FuncionalidadSegunRol>())
                 .Select(funcionalidad => funcionalidad.id).ToList();
             List<FuncionalidadSegunRol> lista = (this.cajaListaFuncionesSegunRol.Items.Cast<FuncionalidadSegunRol>()).ToList();
-            foreach (var item in lista)
-                listaFuncionalidades.Add(item.id);
-            return string.Join(",", listaFuncionalidades.ToList());
-
-//var result = string.Join(";", data.Select(x => x.ToString()).ToArray()); //
+            return armarListaConItem(lista);
         }
+
+        
 
         protected override DataTable obtenerDatosParaComboRol()
         {
@@ -274,7 +270,16 @@ namespace UberFrba
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            //adaptador.modificarRol((int)this.comboRol.SelectedValue, this.comboRol.SelectedText,);
+            List<FuncionalidadSegunRol> listaNueva = this.cajaListaFuncionesSegunRol.Items
+                .Cast<FuncionalidadSegunRol>().ToList();
+            List<FuncionalidadSegunRol> listaConFuncionesParaAgregar = listaNueva.Where(item =>
+                !listaFuncionesSegunRol.Any(funcion => funcion.nombreFuncion.Equals(item.nombreFuncion))).ToList();
+            List<FuncionalidadSegunRol> listaConFuncionesParaQuitar = this.listaFuncionesSegunRol.Where(item =>
+                !listaNueva.Any(funcion => funcion.nombreFuncion.Equals(item.nombreFuncion))).ToList();
+            adaptador.modificarRol(Convert.ToInt32(this.comboRol.SelectedValue),
+                this.comboRol.SelectedText,
+                1, armarListaConItem(listaConFuncionesParaAgregar),
+                armarListaConItem(listaConFuncionesParaQuitar));
             this.Close();
         }
     }
