@@ -2853,7 +2853,8 @@ AS
 BEGIN
 	SELECT
 	Rol_Id [id],
-	Rol_Nombre [nombre]		
+	Rol_Nombre [nombre],
+	Rol_Habilitado	[Habilitado]
 	FROM DESCONOCIDOS4.ROL
 END
 GO
