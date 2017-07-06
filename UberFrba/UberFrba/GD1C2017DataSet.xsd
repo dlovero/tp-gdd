@@ -793,6 +793,7 @@
             <Mappings>
               <Mapping SourceColumn="id" DataSetColumn="id" />
               <Mapping SourceColumn="nombre" DataSetColumn="nombre" />
+              <Mapping SourceColumn="Habilitado" DataSetColumn="Habilitado" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1029,7 +1030,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_ALTA_TURNO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="agregarTurno" MethodsParameterType="CLR" Modifier="Public" Name="agregarTurno" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="agregarTurno">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_ALTA_TURNO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="agregarTurno" MethodsParameterType="CLR" Modifier="Public" Name="agregarTurno" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="agregarTurno">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_ALTA_TURNO</CommandText>
@@ -1045,7 +1046,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_BAJA_AUTO_DIS" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="eliminarAutomovil" MethodsParameterType="CLR" Modifier="Public" Name="eliminarAutomovil" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy15" UserSourceName="eliminarAutomovil">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_BAJA_AUTO_DIS" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="eliminarAutomovil" MethodsParameterType="CLR" Modifier="Public" Name="eliminarAutomovil" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy14" UserSourceName="eliminarAutomovil">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_BAJA_AUTO_DIS</CommandText>
@@ -1056,7 +1057,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_MODIFICACION_AUTO_DIS" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="modificarAutomovil" MethodsParameterType="CLR" Modifier="Public" Name="modificarAutomovil" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy16" UserSourceName="modificarAutomovil">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_MODIFICACION_AUTO_DIS" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="modificarAutomovil" MethodsParameterType="CLR" Modifier="Public" Name="modificarAutomovil" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy15" UserSourceName="modificarAutomovil">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_MODIFICACION_AUTO_DIS</CommandText>
@@ -1072,7 +1073,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_MODIFICACION_TURNO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="modificarTurno" MethodsParameterType="CLR" Modifier="Public" Name="modificarTurno" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy17" UserSourceName="modificarTurno">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_MODIFICACION_TURNO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="modificarTurno" MethodsParameterType="CLR" Modifier="Public" Name="modificarTurno" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy16" UserSourceName="modificarTurno">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_MODIFICACION_TURNO</CommandText>
@@ -1089,7 +1090,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_ALTA_AUTOMOVIL_UNI_DISPO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="agregarAutomovil" MethodsParameterType="CLR" Modifier="Public" Name="agregarAutomovil" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy18" UserSourceName="agregarAutomovil">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_ALTA_AUTOMOVIL_UNI_DISPO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="agregarAutomovil" MethodsParameterType="CLR" Modifier="Public" Name="agregarAutomovil" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy17" UserSourceName="agregarAutomovil">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_ALTA_AUTOMOVIL_UNI_DISPO</CommandText>
@@ -1104,7 +1105,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_BAJA_TURNO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="eliminarTurno" MethodsParameterType="CLR" Modifier="Public" Name="eliminarTurno" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy19" UserSourceName="eliminarTurno">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_BAJA_TURNO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="eliminarTurno" MethodsParameterType="CLR" Modifier="Public" Name="eliminarTurno" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy18" UserSourceName="eliminarTurno">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_BAJA_TURNO</CommandText>
@@ -1115,7 +1116,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_BUSCAR_MIS_DATOS_CHO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="PRC_BUSCAR_MIS_DATOS_CHO" MethodsParameterType="CLR" Modifier="Public" Name="PRC_BUSCAR_MIS_DATOS_CHO" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy20" UserSourceName="PRC_BUSCAR_MIS_DATOS_CHO">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_BUSCAR_MIS_DATOS_CHO" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="PRC_BUSCAR_MIS_DATOS_CHO" MethodsParameterType="CLR" Modifier="Public" Name="PRC_BUSCAR_MIS_DATOS_CHO" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy19" UserSourceName="PRC_BUSCAR_MIS_DATOS_CHO">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_BUSCAR_MIS_DATOS_CHO</CommandText>
@@ -1126,7 +1127,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_REGISTRO_VIAJE" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="PRC_REGISTRO_VIAJE" MethodsParameterType="CLR" Modifier="Public" Name="PRC_REGISTRO_VIAJE" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy21" UserSourceName="PRC_REGISTRO_VIAJE">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_REGISTRO_VIAJE" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="PRC_REGISTRO_VIAJE" MethodsParameterType="CLR" Modifier="Public" Name="PRC_REGISTRO_VIAJE" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy20" UserSourceName="PRC_REGISTRO_VIAJE">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_REGISTRO_VIAJE</CommandText>
@@ -1143,7 +1144,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_INSERTAR_FACTURA" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="PRC_INSERTAR_FACTURA" MethodsParameterType="CLR" Modifier="Public" Name="PRC_INSERTAR_FACTURA" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy22" UserSourceName="PRC_INSERTAR_FACTURA">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_INSERTAR_FACTURA" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="PRC_INSERTAR_FACTURA" MethodsParameterType="CLR" Modifier="Public" Name="PRC_INSERTAR_FACTURA" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy21" UserSourceName="PRC_INSERTAR_FACTURA">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_INSERTAR_FACTURA</CommandText>
@@ -1155,7 +1156,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_INSERTAR_RENDICION" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="PRC_INSERTAR_RENDICION" MethodsParameterType="CLR" Modifier="Public" Name="PRC_INSERTAR_RENDICION" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy23" UserSourceName="PRC_INSERTAR_RENDICION">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_INSERTAR_RENDICION" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="PRC_INSERTAR_RENDICION" MethodsParameterType="CLR" Modifier="Public" Name="PRC_INSERTAR_RENDICION" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy22" UserSourceName="PRC_INSERTAR_RENDICION">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_INSERTAR_RENDICION</CommandText>
@@ -1168,7 +1169,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_INSERTAR_RENDICION" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="insertarRendicion" MethodsParameterType="CLR" Modifier="Public" Name="insertarRendicion" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy24" UserSourceName="insertarRendicion">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_INSERTAR_RENDICION" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="insertarRendicion" MethodsParameterType="CLR" Modifier="Public" Name="insertarRendicion" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy23" UserSourceName="insertarRendicion">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_INSERTAR_RENDICION</CommandText>
@@ -1181,7 +1182,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_INSERTAR_FACTURA" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="insertarFactura" MethodsParameterType="CLR" Modifier="Public" Name="insertarFactura" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy25" UserSourceName="insertarFactura">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_INSERTAR_FACTURA" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="insertarFactura" MethodsParameterType="CLR" Modifier="Public" Name="insertarFactura" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy24" UserSourceName="insertarFactura">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_INSERTAR_FACTURA</CommandText>
@@ -1193,7 +1194,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_ALTA_ROL" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="agregarRol" MethodsParameterType="CLR" Modifier="Public" Name="agregarRol" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy26" UserSourceName="agregarRol">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_ALTA_ROL" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="agregarRol" MethodsParameterType="CLR" Modifier="Public" Name="agregarRol" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy25" UserSourceName="agregarRol">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_ALTA_ROL</CommandText>
@@ -1205,7 +1206,7 @@
               </DbCommand>
             </SelectCommand>
           </DbSource>
-          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_MODIFICA_ROL" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="modificarRol" MethodsParameterType="CLR" Modifier="Public" Name="modificarRol" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy13" UserSourceName="modificarRol">
+          <DbSource ConnectionRef="GD1C2017ConnectionString (Settings)" DbObjectName="GD1C2017.DESCONOCIDOS4.PRC_MODIFICA_ROL" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="modificarRol" MethodsParameterType="CLR" Modifier="Public" Name="modificarRol" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy26" UserSourceName="modificarRol">
             <SelectCommand>
               <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                 <CommandText>DESCONOCIDOS4.PRC_MODIFICA_ROL</CommandText>
@@ -1238,7 +1239,7 @@
   <xs:element name="GD1C2017DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GD1C2017DataSet" msprop:Generator_UserDSName="GD1C2017DataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="PRC_OBTENER_MENU_X_ROL" msprop:Generator_TableClassName="PRC_OBTENER_MENU_X_ROLDataTable" msprop:Generator_TableVarName="tablePRC_OBTENER_MENU_X_ROL" msprop:Generator_RowChangedName="PRC_OBTENER_MENU_X_ROLRowChanged" msprop:Generator_TablePropName="PRC_OBTENER_MENU_X_ROL" msprop:Generator_RowDeletingName="PRC_OBTENER_MENU_X_ROLRowDeleting" msprop:Generator_RowChangingName="PRC_OBTENER_MENU_X_ROLRowChanging" msprop:Generator_RowEvHandlerName="PRC_OBTENER_MENU_X_ROLRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_OBTENER_MENU_X_ROLRowDeleted" msprop:Generator_RowClassName="PRC_OBTENER_MENU_X_ROLRow" msprop:Generator_UserTableName="PRC_OBTENER_MENU_X_ROL" msprop:Generator_RowEvArgName="PRC_OBTENER_MENU_X_ROLRowChangeEvent">
+        <xs:element name="PRC_OBTENER_MENU_X_ROL" msprop:Generator_TableClassName="PRC_OBTENER_MENU_X_ROLDataTable" msprop:Generator_TableVarName="tablePRC_OBTENER_MENU_X_ROL" msprop:Generator_TablePropName="PRC_OBTENER_MENU_X_ROL" msprop:Generator_RowDeletingName="PRC_OBTENER_MENU_X_ROLRowDeleting" msprop:Generator_RowChangingName="PRC_OBTENER_MENU_X_ROLRowChanging" msprop:Generator_RowEvHandlerName="PRC_OBTENER_MENU_X_ROLRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_OBTENER_MENU_X_ROLRowDeleted" msprop:Generator_UserTableName="PRC_OBTENER_MENU_X_ROL" msprop:Generator_RowChangedName="PRC_OBTENER_MENU_X_ROLRowChanged" msprop:Generator_RowEvArgName="PRC_OBTENER_MENU_X_ROLRowChangeEvent" msprop:Generator_RowClassName="PRC_OBTENER_MENU_X_ROLRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Nombre" msprop:Generator_ColumnVarNameInTable="columnNombre" msprop:Generator_ColumnPropNameInRow="Nombre" msprop:Generator_ColumnPropNameInTable="NombreColumn" msprop:Generator_UserColumnName="Nombre" minOccurs="0">
@@ -1266,7 +1267,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_OBTENER_DATOS_USUARIOS" msprop:Generator_TableClassName="PRC_OBTENER_DATOS_USUARIOSDataTable" msprop:Generator_TableVarName="tablePRC_OBTENER_DATOS_USUARIOS" msprop:Generator_TablePropName="PRC_OBTENER_DATOS_USUARIOS" msprop:Generator_RowDeletingName="PRC_OBTENER_DATOS_USUARIOSRowDeleting" msprop:Generator_RowChangingName="PRC_OBTENER_DATOS_USUARIOSRowChanging" msprop:Generator_RowEvHandlerName="PRC_OBTENER_DATOS_USUARIOSRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_OBTENER_DATOS_USUARIOSRowDeleted" msprop:Generator_UserTableName="PRC_OBTENER_DATOS_USUARIOS" msprop:Generator_RowChangedName="PRC_OBTENER_DATOS_USUARIOSRowChanged" msprop:Generator_RowEvArgName="PRC_OBTENER_DATOS_USUARIOSRowChangeEvent" msprop:Generator_RowClassName="PRC_OBTENER_DATOS_USUARIOSRow">
+        <xs:element name="PRC_OBTENER_DATOS_USUARIOS" msprop:Generator_TableClassName="PRC_OBTENER_DATOS_USUARIOSDataTable" msprop:Generator_TableVarName="tablePRC_OBTENER_DATOS_USUARIOS" msprop:Generator_RowChangedName="PRC_OBTENER_DATOS_USUARIOSRowChanged" msprop:Generator_TablePropName="PRC_OBTENER_DATOS_USUARIOS" msprop:Generator_RowDeletingName="PRC_OBTENER_DATOS_USUARIOSRowDeleting" msprop:Generator_RowChangingName="PRC_OBTENER_DATOS_USUARIOSRowChanging" msprop:Generator_RowEvHandlerName="PRC_OBTENER_DATOS_USUARIOSRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_OBTENER_DATOS_USUARIOSRowDeleted" msprop:Generator_RowClassName="PRC_OBTENER_DATOS_USUARIOSRow" msprop:Generator_UserTableName="PRC_OBTENER_DATOS_USUARIOS" msprop:Generator_RowEvArgName="PRC_OBTENER_DATOS_USUARIOSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Persona_Dni" msprop:Generator_ColumnVarNameInTable="columnPersona_Dni" msprop:Generator_ColumnPropNameInRow="Persona_Dni" msprop:Generator_ColumnPropNameInTable="Persona_DniColumn" msprop:Generator_UserColumnName="Persona_Dni" type="xs:decimal" />
@@ -1328,7 +1329,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_VALIDAR_USUARIO" msprop:Generator_TableClassName="PRC_VALIDAR_USUARIODataTable" msprop:Generator_TableVarName="tablePRC_VALIDAR_USUARIO" msprop:Generator_RowChangedName="PRC_VALIDAR_USUARIORowChanged" msprop:Generator_TablePropName="PRC_VALIDAR_USUARIO" msprop:Generator_RowDeletingName="PRC_VALIDAR_USUARIORowDeleting" msprop:Generator_RowChangingName="PRC_VALIDAR_USUARIORowChanging" msprop:Generator_RowEvHandlerName="PRC_VALIDAR_USUARIORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_VALIDAR_USUARIORowDeleted" msprop:Generator_RowClassName="PRC_VALIDAR_USUARIORow" msprop:Generator_UserTableName="PRC_VALIDAR_USUARIO" msprop:Generator_RowEvArgName="PRC_VALIDAR_USUARIORowChangeEvent">
+        <xs:element name="PRC_VALIDAR_USUARIO" msprop:Generator_TableClassName="PRC_VALIDAR_USUARIODataTable" msprop:Generator_TableVarName="tablePRC_VALIDAR_USUARIO" msprop:Generator_TablePropName="PRC_VALIDAR_USUARIO" msprop:Generator_RowDeletingName="PRC_VALIDAR_USUARIORowDeleting" msprop:Generator_RowChangingName="PRC_VALIDAR_USUARIORowChanging" msprop:Generator_RowEvHandlerName="PRC_VALIDAR_USUARIORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_VALIDAR_USUARIORowDeleted" msprop:Generator_UserTableName="PRC_VALIDAR_USUARIO" msprop:Generator_RowChangedName="PRC_VALIDAR_USUARIORowChanged" msprop:Generator_RowEvArgName="PRC_VALIDAR_USUARIORowChangeEvent" msprop:Generator_RowClassName="PRC_VALIDAR_USUARIORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Rol_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnRol_Id" msprop:Generator_ColumnPropNameInRow="Rol_Id" msprop:Generator_ColumnPropNameInTable="Rol_IdColumn" msprop:Generator_UserColumnName="Rol_Id" type="xs:short" minOccurs="0" />
@@ -1358,14 +1359,14 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_OBTENER_ID_CLIENTE_O_CHOFER" msprop:Generator_TableClassName="PRC_OBTENER_ID_CLIENTE_O_CHOFERDataTable" msprop:Generator_TableVarName="tablePRC_OBTENER_ID_CLIENTE_O_CHOFER" msprop:Generator_RowChangedName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowChanged" msprop:Generator_TablePropName="PRC_OBTENER_ID_CLIENTE_O_CHOFER" msprop:Generator_RowDeletingName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowDeleting" msprop:Generator_RowChangingName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowChanging" msprop:Generator_RowEvHandlerName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowDeleted" msprop:Generator_RowClassName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRow" msprop:Generator_UserTableName="PRC_OBTENER_ID_CLIENTE_O_CHOFER" msprop:Generator_RowEvArgName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowChangeEvent">
+        <xs:element name="PRC_OBTENER_ID_CLIENTE_O_CHOFER" msprop:Generator_TableClassName="PRC_OBTENER_ID_CLIENTE_O_CHOFERDataTable" msprop:Generator_TableVarName="tablePRC_OBTENER_ID_CLIENTE_O_CHOFER" msprop:Generator_TablePropName="PRC_OBTENER_ID_CLIENTE_O_CHOFER" msprop:Generator_RowDeletingName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowDeleting" msprop:Generator_RowChangingName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowChanging" msprop:Generator_RowEvHandlerName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowDeleted" msprop:Generator_UserTableName="PRC_OBTENER_ID_CLIENTE_O_CHOFER" msprop:Generator_RowChangedName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowChanged" msprop:Generator_RowEvArgName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRowChangeEvent" msprop:Generator_RowClassName="PRC_OBTENER_ID_CLIENTE_O_CHOFERRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTADO_TURNOS_DISPONIBLES" msprop:Generator_TableClassName="PRC_LISTADO_TURNOS_DISPONIBLESDataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_TURNOS_DISPONIBLES" msprop:Generator_TablePropName="PRC_LISTADO_TURNOS_DISPONIBLES" msprop:Generator_RowDeletingName="PRC_LISTADO_TURNOS_DISPONIBLESRowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_TURNOS_DISPONIBLESRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_TURNOS_DISPONIBLESRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_TURNOS_DISPONIBLESRowDeleted" msprop:Generator_UserTableName="PRC_LISTADO_TURNOS_DISPONIBLES" msprop:Generator_RowChangedName="PRC_LISTADO_TURNOS_DISPONIBLESRowChanged" msprop:Generator_RowEvArgName="PRC_LISTADO_TURNOS_DISPONIBLESRowChangeEvent" msprop:Generator_RowClassName="PRC_LISTADO_TURNOS_DISPONIBLESRow">
+        <xs:element name="PRC_LISTADO_TURNOS_DISPONIBLES" msprop:Generator_TableClassName="PRC_LISTADO_TURNOS_DISPONIBLESDataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_TURNOS_DISPONIBLES" msprop:Generator_RowChangedName="PRC_LISTADO_TURNOS_DISPONIBLESRowChanged" msprop:Generator_TablePropName="PRC_LISTADO_TURNOS_DISPONIBLES" msprop:Generator_RowDeletingName="PRC_LISTADO_TURNOS_DISPONIBLESRowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_TURNOS_DISPONIBLESRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_TURNOS_DISPONIBLESRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_TURNOS_DISPONIBLESRowDeleted" msprop:Generator_RowClassName="PRC_LISTADO_TURNOS_DISPONIBLESRow" msprop:Generator_UserTableName="PRC_LISTADO_TURNOS_DISPONIBLES" msprop:Generator_RowEvArgName="PRC_LISTADO_TURNOS_DISPONIBLESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Turno_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnTurno_Id" msprop:Generator_ColumnPropNameInRow="Turno_Id" msprop:Generator_ColumnPropNameInTable="Turno_IdColumn" msprop:Generator_UserColumnName="Turno_Id" type="xs:int" />
@@ -1384,7 +1385,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTA_MARCA" msprop:Generator_TableClassName="PRC_LISTA_MARCADataTable" msprop:Generator_TableVarName="tablePRC_LISTA_MARCA" msprop:Generator_RowChangedName="PRC_LISTA_MARCARowChanged" msprop:Generator_TablePropName="PRC_LISTA_MARCA" msprop:Generator_RowDeletingName="PRC_LISTA_MARCARowDeleting" msprop:Generator_RowChangingName="PRC_LISTA_MARCARowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTA_MARCARowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTA_MARCARowDeleted" msprop:Generator_RowClassName="PRC_LISTA_MARCARow" msprop:Generator_UserTableName="PRC_LISTA_MARCA" msprop:Generator_RowEvArgName="PRC_LISTA_MARCARowChangeEvent">
+        <xs:element name="PRC_LISTA_MARCA" msprop:Generator_TableClassName="PRC_LISTA_MARCADataTable" msprop:Generator_TableVarName="tablePRC_LISTA_MARCA" msprop:Generator_TablePropName="PRC_LISTA_MARCA" msprop:Generator_RowDeletingName="PRC_LISTA_MARCARowDeleting" msprop:Generator_RowChangingName="PRC_LISTA_MARCARowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTA_MARCARowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTA_MARCARowDeleted" msprop:Generator_UserTableName="PRC_LISTA_MARCA" msprop:Generator_RowChangedName="PRC_LISTA_MARCARowChanged" msprop:Generator_RowEvArgName="PRC_LISTA_MARCARowChangeEvent" msprop:Generator_RowClassName="PRC_LISTA_MARCARow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Marca_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnMarca_Id" msprop:Generator_ColumnPropNameInRow="Marca_Id" msprop:Generator_ColumnPropNameInTable="Marca_IdColumn" msprop:Generator_UserColumnName="Marca_Id" type="xs:int" />
@@ -1398,7 +1399,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTA_MODELO_X_MARCA" msprop:Generator_TableClassName="PRC_LISTA_MODELO_X_MARCADataTable" msprop:Generator_TableVarName="tablePRC_LISTA_MODELO_X_MARCA" msprop:Generator_RowChangedName="PRC_LISTA_MODELO_X_MARCARowChanged" msprop:Generator_TablePropName="PRC_LISTA_MODELO_X_MARCA" msprop:Generator_RowDeletingName="PRC_LISTA_MODELO_X_MARCARowDeleting" msprop:Generator_RowChangingName="PRC_LISTA_MODELO_X_MARCARowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTA_MODELO_X_MARCARowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTA_MODELO_X_MARCARowDeleted" msprop:Generator_RowClassName="PRC_LISTA_MODELO_X_MARCARow" msprop:Generator_UserTableName="PRC_LISTA_MODELO_X_MARCA" msprop:Generator_RowEvArgName="PRC_LISTA_MODELO_X_MARCARowChangeEvent">
+        <xs:element name="PRC_LISTA_MODELO_X_MARCA" msprop:Generator_TableClassName="PRC_LISTA_MODELO_X_MARCADataTable" msprop:Generator_TableVarName="tablePRC_LISTA_MODELO_X_MARCA" msprop:Generator_TablePropName="PRC_LISTA_MODELO_X_MARCA" msprop:Generator_RowDeletingName="PRC_LISTA_MODELO_X_MARCARowDeleting" msprop:Generator_RowChangingName="PRC_LISTA_MODELO_X_MARCARowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTA_MODELO_X_MARCARowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTA_MODELO_X_MARCARowDeleted" msprop:Generator_UserTableName="PRC_LISTA_MODELO_X_MARCA" msprop:Generator_RowChangedName="PRC_LISTA_MODELO_X_MARCARowChanged" msprop:Generator_RowEvArgName="PRC_LISTA_MODELO_X_MARCARowChangeEvent" msprop:Generator_RowClassName="PRC_LISTA_MODELO_X_MARCARow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modelo_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnModelo_Id" msprop:Generator_ColumnPropNameInRow="Modelo_Id" msprop:Generator_ColumnPropNameInTable="Modelo_IdColumn" msprop:Generator_UserColumnName="Modelo_Id" type="xs:int" minOccurs="0" />
@@ -1412,7 +1413,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_BUSCAR_CHOFER" msprop:Generator_TableClassName="PRC_BUSCAR_CHOFERDataTable" msprop:Generator_TableVarName="tablePRC_BUSCAR_CHOFER" msprop:Generator_RowChangedName="PRC_BUSCAR_CHOFERRowChanged" msprop:Generator_TablePropName="PRC_BUSCAR_CHOFER" msprop:Generator_RowDeletingName="PRC_BUSCAR_CHOFERRowDeleting" msprop:Generator_RowChangingName="PRC_BUSCAR_CHOFERRowChanging" msprop:Generator_RowEvHandlerName="PRC_BUSCAR_CHOFERRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_BUSCAR_CHOFERRowDeleted" msprop:Generator_RowClassName="PRC_BUSCAR_CHOFERRow" msprop:Generator_UserTableName="PRC_BUSCAR_CHOFER" msprop:Generator_RowEvArgName="PRC_BUSCAR_CHOFERRowChangeEvent">
+        <xs:element name="PRC_BUSCAR_CHOFER" msprop:Generator_TableClassName="PRC_BUSCAR_CHOFERDataTable" msprop:Generator_TableVarName="tablePRC_BUSCAR_CHOFER" msprop:Generator_TablePropName="PRC_BUSCAR_CHOFER" msprop:Generator_RowDeletingName="PRC_BUSCAR_CHOFERRowDeleting" msprop:Generator_RowChangingName="PRC_BUSCAR_CHOFERRowChanging" msprop:Generator_RowEvHandlerName="PRC_BUSCAR_CHOFERRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_BUSCAR_CHOFERRowDeleted" msprop:Generator_UserTableName="PRC_BUSCAR_CHOFER" msprop:Generator_RowChangedName="PRC_BUSCAR_CHOFERRowChanged" msprop:Generator_RowEvArgName="PRC_BUSCAR_CHOFERRowChangeEvent" msprop:Generator_RowClassName="PRC_BUSCAR_CHOFERRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Persona_Dni" msprop:Generator_ColumnVarNameInTable="columnPersona_Dni" msprop:Generator_ColumnPropNameInRow="Persona_Dni" msprop:Generator_ColumnPropNameInTable="Persona_DniColumn" msprop:Generator_UserColumnName="Persona_Dni" type="xs:decimal" />
@@ -1474,7 +1475,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTA_CHOFERES_NO_ASIG" msprop:Generator_TableClassName="PRC_LISTA_CHOFERES_NO_ASIGDataTable" msprop:Generator_TableVarName="tablePRC_LISTA_CHOFERES_NO_ASIG" msprop:Generator_RowChangedName="PRC_LISTA_CHOFERES_NO_ASIGRowChanged" msprop:Generator_TablePropName="PRC_LISTA_CHOFERES_NO_ASIG" msprop:Generator_RowDeletingName="PRC_LISTA_CHOFERES_NO_ASIGRowDeleting" msprop:Generator_RowChangingName="PRC_LISTA_CHOFERES_NO_ASIGRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTA_CHOFERES_NO_ASIGRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTA_CHOFERES_NO_ASIGRowDeleted" msprop:Generator_RowClassName="PRC_LISTA_CHOFERES_NO_ASIGRow" msprop:Generator_UserTableName="PRC_LISTA_CHOFERES_NO_ASIG" msprop:Generator_RowEvArgName="PRC_LISTA_CHOFERES_NO_ASIGRowChangeEvent">
+        <xs:element name="PRC_LISTA_CHOFERES_NO_ASIG" msprop:Generator_TableClassName="PRC_LISTA_CHOFERES_NO_ASIGDataTable" msprop:Generator_TableVarName="tablePRC_LISTA_CHOFERES_NO_ASIG" msprop:Generator_TablePropName="PRC_LISTA_CHOFERES_NO_ASIG" msprop:Generator_RowDeletingName="PRC_LISTA_CHOFERES_NO_ASIGRowDeleting" msprop:Generator_RowChangingName="PRC_LISTA_CHOFERES_NO_ASIGRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTA_CHOFERES_NO_ASIGRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTA_CHOFERES_NO_ASIGRowDeleted" msprop:Generator_UserTableName="PRC_LISTA_CHOFERES_NO_ASIG" msprop:Generator_RowChangedName="PRC_LISTA_CHOFERES_NO_ASIGRowChanged" msprop:Generator_RowEvArgName="PRC_LISTA_CHOFERES_NO_ASIGRowChangeEvent" msprop:Generator_RowClassName="PRC_LISTA_CHOFERES_NO_ASIGRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CHOFER_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnCHOFER_ID" msprop:Generator_ColumnPropNameInRow="CHOFER_ID" msprop:Generator_ColumnPropNameInTable="CHOFER_IDColumn" msprop:Generator_UserColumnName="CHOFER_ID" type="xs:int" />
@@ -1496,7 +1497,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTADO_AUTOS_DISPONIBLES" msprop:Generator_TableClassName="PRC_LISTADO_AUTOS_DISPONIBLESDataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_AUTOS_DISPONIBLES" msprop:Generator_TablePropName="PRC_LISTADO_AUTOS_DISPONIBLES" msprop:Generator_RowDeletingName="PRC_LISTADO_AUTOS_DISPONIBLESRowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_AUTOS_DISPONIBLESRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_AUTOS_DISPONIBLESRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_AUTOS_DISPONIBLESRowDeleted" msprop:Generator_UserTableName="PRC_LISTADO_AUTOS_DISPONIBLES" msprop:Generator_RowChangedName="PRC_LISTADO_AUTOS_DISPONIBLESRowChanged" msprop:Generator_RowEvArgName="PRC_LISTADO_AUTOS_DISPONIBLESRowChangeEvent" msprop:Generator_RowClassName="PRC_LISTADO_AUTOS_DISPONIBLESRow">
+        <xs:element name="PRC_LISTADO_AUTOS_DISPONIBLES" msprop:Generator_TableClassName="PRC_LISTADO_AUTOS_DISPONIBLESDataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_AUTOS_DISPONIBLES" msprop:Generator_RowChangedName="PRC_LISTADO_AUTOS_DISPONIBLESRowChanged" msprop:Generator_TablePropName="PRC_LISTADO_AUTOS_DISPONIBLES" msprop:Generator_RowDeletingName="PRC_LISTADO_AUTOS_DISPONIBLESRowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_AUTOS_DISPONIBLESRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_AUTOS_DISPONIBLESRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_AUTOS_DISPONIBLESRowDeleted" msprop:Generator_RowClassName="PRC_LISTADO_AUTOS_DISPONIBLESRow" msprop:Generator_UserTableName="PRC_LISTADO_AUTOS_DISPONIBLES" msprop:Generator_RowEvArgName="PRC_LISTADO_AUTOS_DISPONIBLESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Auto_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnAuto_Id" msprop:Generator_ColumnPropNameInRow="Auto_Id" msprop:Generator_ColumnPropNameInTable="Auto_IdColumn" msprop:Generator_UserColumnName="Auto_Id" type="xs:int" />
@@ -1519,7 +1520,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" msprop:Generator_TableClassName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONDataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" msprop:Generator_TablePropName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" msprop:Generator_RowDeletingName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowDeleted" msprop:Generator_UserTableName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" msprop:Generator_RowChangedName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowChanged" msprop:Generator_RowEvArgName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowChangeEvent" msprop:Generator_RowClassName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow">
+        <xs:element name="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" msprop:Generator_TableClassName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONDataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" msprop:Generator_RowChangedName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowChanged" msprop:Generator_TablePropName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" msprop:Generator_RowDeletingName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowDeleted" msprop:Generator_RowClassName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRow" msprop:Generator_UserTableName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACION" msprop:Generator_RowEvArgName="PRC_LISTADO_AUTOS_SIN_CONDI_PARA_MODIFICACIONRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Marca_Nombre" msprop:Generator_ColumnVarNameInTable="columnMarca_Nombre" msprop:Generator_ColumnPropNameInRow="Marca_Nombre" msprop:Generator_ColumnPropNameInTable="Marca_NombreColumn" msprop:Generator_UserColumnName="Marca_Nombre" minOccurs="0">
@@ -1577,7 +1578,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTADO_TURNOS_COMPLETO" msprop:Generator_TableClassName="PRC_LISTADO_TURNOS_COMPLETODataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_TURNOS_COMPLETO" msprop:Generator_RowChangedName="PRC_LISTADO_TURNOS_COMPLETORowChanged" msprop:Generator_TablePropName="PRC_LISTADO_TURNOS_COMPLETO" msprop:Generator_RowDeletingName="PRC_LISTADO_TURNOS_COMPLETORowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_TURNOS_COMPLETORowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_TURNOS_COMPLETORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_TURNOS_COMPLETORowDeleted" msprop:Generator_RowClassName="PRC_LISTADO_TURNOS_COMPLETORow" msprop:Generator_UserTableName="PRC_LISTADO_TURNOS_COMPLETO" msprop:Generator_RowEvArgName="PRC_LISTADO_TURNOS_COMPLETORowChangeEvent">
+        <xs:element name="PRC_LISTADO_TURNOS_COMPLETO" msprop:Generator_TableClassName="PRC_LISTADO_TURNOS_COMPLETODataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_TURNOS_COMPLETO" msprop:Generator_TablePropName="PRC_LISTADO_TURNOS_COMPLETO" msprop:Generator_RowDeletingName="PRC_LISTADO_TURNOS_COMPLETORowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_TURNOS_COMPLETORowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_TURNOS_COMPLETORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_TURNOS_COMPLETORowDeleted" msprop:Generator_UserTableName="PRC_LISTADO_TURNOS_COMPLETO" msprop:Generator_RowChangedName="PRC_LISTADO_TURNOS_COMPLETORowChanged" msprop:Generator_RowEvArgName="PRC_LISTADO_TURNOS_COMPLETORowChangeEvent" msprop:Generator_RowClassName="PRC_LISTADO_TURNOS_COMPLETORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Turno_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnTurno_Id" msprop:Generator_ColumnPropNameInRow="Turno_Id" msprop:Generator_ColumnPropNameInTable="Turno_IdColumn" msprop:Generator_UserColumnName="Turno_Id" type="xs:int" />
@@ -1596,7 +1597,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTADO_AUTOS_SIN_CONDI" msprop:Generator_TableClassName="PRC_LISTADO_AUTOS_SIN_CONDIDataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_AUTOS_SIN_CONDI" msprop:Generator_RowChangedName="PRC_LISTADO_AUTOS_SIN_CONDIRowChanged" msprop:Generator_TablePropName="PRC_LISTADO_AUTOS_SIN_CONDI" msprop:Generator_RowDeletingName="PRC_LISTADO_AUTOS_SIN_CONDIRowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_AUTOS_SIN_CONDIRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_AUTOS_SIN_CONDIRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_AUTOS_SIN_CONDIRowDeleted" msprop:Generator_RowClassName="PRC_LISTADO_AUTOS_SIN_CONDIRow" msprop:Generator_UserTableName="PRC_LISTADO_AUTOS_SIN_CONDI" msprop:Generator_RowEvArgName="PRC_LISTADO_AUTOS_SIN_CONDIRowChangeEvent">
+        <xs:element name="PRC_LISTADO_AUTOS_SIN_CONDI" msprop:Generator_TableClassName="PRC_LISTADO_AUTOS_SIN_CONDIDataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_AUTOS_SIN_CONDI" msprop:Generator_TablePropName="PRC_LISTADO_AUTOS_SIN_CONDI" msprop:Generator_RowDeletingName="PRC_LISTADO_AUTOS_SIN_CONDIRowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_AUTOS_SIN_CONDIRowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_AUTOS_SIN_CONDIRowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_AUTOS_SIN_CONDIRowDeleted" msprop:Generator_UserTableName="PRC_LISTADO_AUTOS_SIN_CONDI" msprop:Generator_RowChangedName="PRC_LISTADO_AUTOS_SIN_CONDIRowChanged" msprop:Generator_RowEvArgName="PRC_LISTADO_AUTOS_SIN_CONDIRowChangeEvent" msprop:Generator_RowClassName="PRC_LISTADO_AUTOS_SIN_CONDIRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Marca_Nombre" msprop:Generator_ColumnVarNameInTable="columnMarca_Nombre" msprop:Generator_ColumnPropNameInRow="Marca_Nombre" msprop:Generator_ColumnPropNameInTable="Marca_NombreColumn" msprop:Generator_UserColumnName="Marca_Nombre" minOccurs="0">
@@ -1654,7 +1655,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_LISTADO_UNI_DISPONIBLE_X_CHO" msprop:Generator_TableClassName="PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO" msprop:Generator_RowChangedName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanged" msprop:Generator_TablePropName="PRC_LISTADO_UNI_DISPONIBLE_X_CHO" msprop:Generator_RowDeletingName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleted" msprop:Generator_RowClassName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORow" msprop:Generator_UserTableName="PRC_LISTADO_UNI_DISPONIBLE_X_CHO" msprop:Generator_RowEvArgName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent">
+        <xs:element name="PRC_LISTADO_UNI_DISPONIBLE_X_CHO" msprop:Generator_TableClassName="PRC_LISTADO_UNI_DISPONIBLE_X_CHODataTable" msprop:Generator_TableVarName="tablePRC_LISTADO_UNI_DISPONIBLE_X_CHO" msprop:Generator_TablePropName="PRC_LISTADO_UNI_DISPONIBLE_X_CHO" msprop:Generator_RowDeletingName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleting" msprop:Generator_RowChangingName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanging" msprop:Generator_RowEvHandlerName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowDeleted" msprop:Generator_UserTableName="PRC_LISTADO_UNI_DISPONIBLE_X_CHO" msprop:Generator_RowChangedName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChanged" msprop:Generator_RowEvArgName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORowChangeEvent" msprop:Generator_RowClassName="PRC_LISTADO_UNI_DISPONIBLE_X_CHORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Auto_Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnAuto_Id" msprop:Generator_ColumnPropNameInRow="Auto_Id" msprop:Generator_ColumnPropNameInTable="Auto_IdColumn" msprop:Generator_UserColumnName="Auto_Id" type="xs:int" />
@@ -1687,7 +1688,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_BUSCAR_CHOFER_HABILITADO" msprop:Generator_TableClassName="PRC_BUSCAR_CHOFER_HABILITADODataTable" msprop:Generator_TableVarName="tablePRC_BUSCAR_CHOFER_HABILITADO" msprop:Generator_TablePropName="PRC_BUSCAR_CHOFER_HABILITADO" msprop:Generator_RowDeletingName="PRC_BUSCAR_CHOFER_HABILITADORowDeleting" msprop:Generator_RowChangingName="PRC_BUSCAR_CHOFER_HABILITADORowChanging" msprop:Generator_RowEvHandlerName="PRC_BUSCAR_CHOFER_HABILITADORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_BUSCAR_CHOFER_HABILITADORowDeleted" msprop:Generator_UserTableName="PRC_BUSCAR_CHOFER_HABILITADO" msprop:Generator_RowChangedName="PRC_BUSCAR_CHOFER_HABILITADORowChanged" msprop:Generator_RowEvArgName="PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent" msprop:Generator_RowClassName="PRC_BUSCAR_CHOFER_HABILITADORow">
+        <xs:element name="PRC_BUSCAR_CHOFER_HABILITADO" msprop:Generator_TableClassName="PRC_BUSCAR_CHOFER_HABILITADODataTable" msprop:Generator_TableVarName="tablePRC_BUSCAR_CHOFER_HABILITADO" msprop:Generator_RowChangedName="PRC_BUSCAR_CHOFER_HABILITADORowChanged" msprop:Generator_TablePropName="PRC_BUSCAR_CHOFER_HABILITADO" msprop:Generator_RowDeletingName="PRC_BUSCAR_CHOFER_HABILITADORowDeleting" msprop:Generator_RowChangingName="PRC_BUSCAR_CHOFER_HABILITADORowChanging" msprop:Generator_RowEvHandlerName="PRC_BUSCAR_CHOFER_HABILITADORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_BUSCAR_CHOFER_HABILITADORowDeleted" msprop:Generator_RowClassName="PRC_BUSCAR_CHOFER_HABILITADORow" msprop:Generator_UserTableName="PRC_BUSCAR_CHOFER_HABILITADO" msprop:Generator_RowEvArgName="PRC_BUSCAR_CHOFER_HABILITADORowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="habilitado" msprop:Generator_ColumnVarNameInTable="columnhabilitado" msprop:Generator_ColumnPropNameInRow="habilitado" msprop:Generator_ColumnPropNameInTable="habilitadoColumn" msprop:Generator_UserColumnName="habilitado" type="xs:boolean" minOccurs="0" />
@@ -1710,7 +1711,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_BUSCAR_CLIENTE_HABILITADO" msprop:Generator_TableClassName="PRC_BUSCAR_CLIENTE_HABILITADODataTable" msprop:Generator_TableVarName="tablePRC_BUSCAR_CLIENTE_HABILITADO" msprop:Generator_TablePropName="PRC_BUSCAR_CLIENTE_HABILITADO" msprop:Generator_RowDeletingName="PRC_BUSCAR_CLIENTE_HABILITADORowDeleting" msprop:Generator_RowChangingName="PRC_BUSCAR_CLIENTE_HABILITADORowChanging" msprop:Generator_RowEvHandlerName="PRC_BUSCAR_CLIENTE_HABILITADORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_BUSCAR_CLIENTE_HABILITADORowDeleted" msprop:Generator_UserTableName="PRC_BUSCAR_CLIENTE_HABILITADO" msprop:Generator_RowChangedName="PRC_BUSCAR_CLIENTE_HABILITADORowChanged" msprop:Generator_RowEvArgName="PRC_BUSCAR_CLIENTE_HABILITADORowChangeEvent" msprop:Generator_RowClassName="PRC_BUSCAR_CLIENTE_HABILITADORow">
+        <xs:element name="PRC_BUSCAR_CLIENTE_HABILITADO" msprop:Generator_TableClassName="PRC_BUSCAR_CLIENTE_HABILITADODataTable" msprop:Generator_TableVarName="tablePRC_BUSCAR_CLIENTE_HABILITADO" msprop:Generator_RowChangedName="PRC_BUSCAR_CLIENTE_HABILITADORowChanged" msprop:Generator_TablePropName="PRC_BUSCAR_CLIENTE_HABILITADO" msprop:Generator_RowDeletingName="PRC_BUSCAR_CLIENTE_HABILITADORowDeleting" msprop:Generator_RowChangingName="PRC_BUSCAR_CLIENTE_HABILITADORowChanging" msprop:Generator_RowEvHandlerName="PRC_BUSCAR_CLIENTE_HABILITADORowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_BUSCAR_CLIENTE_HABILITADORowDeleted" msprop:Generator_RowClassName="PRC_BUSCAR_CLIENTE_HABILITADORow" msprop:Generator_UserTableName="PRC_BUSCAR_CLIENTE_HABILITADO" msprop:Generator_RowEvArgName="PRC_BUSCAR_CLIENTE_HABILITADORowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="habilitado" msprop:Generator_ColumnVarNameInTable="columnhabilitado" msprop:Generator_ColumnPropNameInRow="habilitado" msprop:Generator_ColumnPropNameInTable="habilitadoColumn" msprop:Generator_UserColumnName="habilitado" type="xs:boolean" minOccurs="0" />
@@ -1733,11 +1734,11 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PRC_REGISTRO_VIAJE" msprop:Generator_TableClassName="PRC_REGISTRO_VIAJEDataTable" msprop:Generator_TableVarName="tablePRC_REGISTRO_VIAJE" msprop:Generator_TablePropName="PRC_REGISTRO_VIAJE" msprop:Generator_RowDeletingName="PRC_REGISTRO_VIAJERowDeleting" msprop:Generator_RowChangingName="PRC_REGISTRO_VIAJERowChanging" msprop:Generator_RowEvHandlerName="PRC_REGISTRO_VIAJERowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_REGISTRO_VIAJERowDeleted" msprop:Generator_UserTableName="PRC_REGISTRO_VIAJE" msprop:Generator_RowChangedName="PRC_REGISTRO_VIAJERowChanged" msprop:Generator_RowEvArgName="PRC_REGISTRO_VIAJERowChangeEvent" msprop:Generator_RowClassName="PRC_REGISTRO_VIAJERow">
+        <xs:element name="PRC_REGISTRO_VIAJE" msprop:Generator_TableClassName="PRC_REGISTRO_VIAJEDataTable" msprop:Generator_TableVarName="tablePRC_REGISTRO_VIAJE" msprop:Generator_RowChangedName="PRC_REGISTRO_VIAJERowChanged" msprop:Generator_TablePropName="PRC_REGISTRO_VIAJE" msprop:Generator_RowDeletingName="PRC_REGISTRO_VIAJERowDeleting" msprop:Generator_RowChangingName="PRC_REGISTRO_VIAJERowChanging" msprop:Generator_RowEvHandlerName="PRC_REGISTRO_VIAJERowChangeEventHandler" msprop:Generator_RowDeletedName="PRC_REGISTRO_VIAJERowDeleted" msprop:Generator_RowClassName="PRC_REGISTRO_VIAJERow" msprop:Generator_UserTableName="PRC_REGISTRO_VIAJE" msprop:Generator_RowEvArgName="PRC_REGISTRO_VIAJERowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CHOFERES_MAYOR_RECAUDACION" msprop:Generator_TableClassName="CHOFERES_MAYOR_RECAUDACIONDataTable" msprop:Generator_TableVarName="tableCHOFERES_MAYOR_RECAUDACION" msprop:Generator_TablePropName="CHOFERES_MAYOR_RECAUDACION" msprop:Generator_RowDeletingName="CHOFERES_MAYOR_RECAUDACIONRowDeleting" msprop:Generator_RowChangingName="CHOFERES_MAYOR_RECAUDACIONRowChanging" msprop:Generator_RowEvHandlerName="CHOFERES_MAYOR_RECAUDACIONRowChangeEventHandler" msprop:Generator_RowDeletedName="CHOFERES_MAYOR_RECAUDACIONRowDeleted" msprop:Generator_UserTableName="CHOFERES_MAYOR_RECAUDACION" msprop:Generator_RowChangedName="CHOFERES_MAYOR_RECAUDACIONRowChanged" msprop:Generator_RowEvArgName="CHOFERES_MAYOR_RECAUDACIONRowChangeEvent" msprop:Generator_RowClassName="CHOFERES_MAYOR_RECAUDACIONRow">
+        <xs:element name="CHOFERES_MAYOR_RECAUDACION" msprop:Generator_TableClassName="CHOFERES_MAYOR_RECAUDACIONDataTable" msprop:Generator_TableVarName="tableCHOFERES_MAYOR_RECAUDACION" msprop:Generator_RowChangedName="CHOFERES_MAYOR_RECAUDACIONRowChanged" msprop:Generator_TablePropName="CHOFERES_MAYOR_RECAUDACION" msprop:Generator_RowDeletingName="CHOFERES_MAYOR_RECAUDACIONRowDeleting" msprop:Generator_RowChangingName="CHOFERES_MAYOR_RECAUDACIONRowChanging" msprop:Generator_RowEvHandlerName="CHOFERES_MAYOR_RECAUDACIONRowChangeEventHandler" msprop:Generator_RowDeletedName="CHOFERES_MAYOR_RECAUDACIONRowDeleted" msprop:Generator_RowClassName="CHOFERES_MAYOR_RECAUDACIONRow" msprop:Generator_UserTableName="CHOFERES_MAYOR_RECAUDACION" msprop:Generator_RowEvArgName="CHOFERES_MAYOR_RECAUDACIONRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CHOFER_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCHOFER_ID" msprop:Generator_ColumnPropNameInRow="CHOFER_ID" msprop:Generator_ColumnPropNameInTable="CHOFER_IDColumn" msprop:Generator_UserColumnName="CHOFER_ID" type="xs:int" />
@@ -1746,7 +1747,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CHOFERES_VIAJE_MAS_LARGO" msprop:Generator_TableClassName="CHOFERES_VIAJE_MAS_LARGODataTable" msprop:Generator_TableVarName="tableCHOFERES_VIAJE_MAS_LARGO" msprop:Generator_RowChangedName="CHOFERES_VIAJE_MAS_LARGORowChanged" msprop:Generator_TablePropName="CHOFERES_VIAJE_MAS_LARGO" msprop:Generator_RowDeletingName="CHOFERES_VIAJE_MAS_LARGORowDeleting" msprop:Generator_RowChangingName="CHOFERES_VIAJE_MAS_LARGORowChanging" msprop:Generator_RowEvHandlerName="CHOFERES_VIAJE_MAS_LARGORowChangeEventHandler" msprop:Generator_RowDeletedName="CHOFERES_VIAJE_MAS_LARGORowDeleted" msprop:Generator_RowClassName="CHOFERES_VIAJE_MAS_LARGORow" msprop:Generator_UserTableName="CHOFERES_VIAJE_MAS_LARGO" msprop:Generator_RowEvArgName="CHOFERES_VIAJE_MAS_LARGORowChangeEvent">
+        <xs:element name="CHOFERES_VIAJE_MAS_LARGO" msprop:Generator_TableClassName="CHOFERES_VIAJE_MAS_LARGODataTable" msprop:Generator_TableVarName="tableCHOFERES_VIAJE_MAS_LARGO" msprop:Generator_TablePropName="CHOFERES_VIAJE_MAS_LARGO" msprop:Generator_RowDeletingName="CHOFERES_VIAJE_MAS_LARGORowDeleting" msprop:Generator_RowChangingName="CHOFERES_VIAJE_MAS_LARGORowChanging" msprop:Generator_RowEvHandlerName="CHOFERES_VIAJE_MAS_LARGORowChangeEventHandler" msprop:Generator_RowDeletedName="CHOFERES_VIAJE_MAS_LARGORowDeleted" msprop:Generator_UserTableName="CHOFERES_VIAJE_MAS_LARGO" msprop:Generator_RowChangedName="CHOFERES_VIAJE_MAS_LARGORowChanged" msprop:Generator_RowEvArgName="CHOFERES_VIAJE_MAS_LARGORowChangeEvent" msprop:Generator_RowClassName="CHOFERES_VIAJE_MAS_LARGORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CHOFER" msprop:Generator_ColumnVarNameInTable="columnCHOFER" msprop:Generator_ColumnPropNameInRow="CHOFER" msprop:Generator_ColumnPropNameInTable="CHOFERColumn" msprop:Generator_UserColumnName="CHOFER" type="xs:int" />
@@ -1755,7 +1756,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CLIENTES_MAYOR_CONSUMO" msprop:Generator_TableClassName="CLIENTES_MAYOR_CONSUMODataTable" msprop:Generator_TableVarName="tableCLIENTES_MAYOR_CONSUMO" msprop:Generator_RowChangedName="CLIENTES_MAYOR_CONSUMORowChanged" msprop:Generator_TablePropName="CLIENTES_MAYOR_CONSUMO" msprop:Generator_RowDeletingName="CLIENTES_MAYOR_CONSUMORowDeleting" msprop:Generator_RowChangingName="CLIENTES_MAYOR_CONSUMORowChanging" msprop:Generator_RowEvHandlerName="CLIENTES_MAYOR_CONSUMORowChangeEventHandler" msprop:Generator_RowDeletedName="CLIENTES_MAYOR_CONSUMORowDeleted" msprop:Generator_RowClassName="CLIENTES_MAYOR_CONSUMORow" msprop:Generator_UserTableName="CLIENTES_MAYOR_CONSUMO" msprop:Generator_RowEvArgName="CLIENTES_MAYOR_CONSUMORowChangeEvent">
+        <xs:element name="CLIENTES_MAYOR_CONSUMO" msprop:Generator_TableClassName="CLIENTES_MAYOR_CONSUMODataTable" msprop:Generator_TableVarName="tableCLIENTES_MAYOR_CONSUMO" msprop:Generator_TablePropName="CLIENTES_MAYOR_CONSUMO" msprop:Generator_RowDeletingName="CLIENTES_MAYOR_CONSUMORowDeleting" msprop:Generator_RowChangingName="CLIENTES_MAYOR_CONSUMORowChanging" msprop:Generator_RowEvHandlerName="CLIENTES_MAYOR_CONSUMORowChangeEventHandler" msprop:Generator_RowDeletedName="CLIENTES_MAYOR_CONSUMORowDeleted" msprop:Generator_UserTableName="CLIENTES_MAYOR_CONSUMO" msprop:Generator_RowChangedName="CLIENTES_MAYOR_CONSUMORowChanged" msprop:Generator_RowEvArgName="CLIENTES_MAYOR_CONSUMORowChangeEvent" msprop:Generator_RowClassName="CLIENTES_MAYOR_CONSUMORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CLIENTE" msprop:Generator_ColumnVarNameInTable="columnCLIENTE" msprop:Generator_ColumnPropNameInRow="CLIENTE" msprop:Generator_ColumnPropNameInTable="CLIENTEColumn" msprop:Generator_UserColumnName="CLIENTE" type="xs:int" />
@@ -1763,7 +1764,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="CLIENTES_MAS_VECES_MISMO_AUTO" msprop:Generator_TableClassName="CLIENTES_MAS_VECES_MISMO_AUTODataTable" msprop:Generator_TableVarName="tableCLIENTES_MAS_VECES_MISMO_AUTO" msprop:Generator_RowChangedName="CLIENTES_MAS_VECES_MISMO_AUTORowChanged" msprop:Generator_TablePropName="CLIENTES_MAS_VECES_MISMO_AUTO" msprop:Generator_RowDeletingName="CLIENTES_MAS_VECES_MISMO_AUTORowDeleting" msprop:Generator_RowChangingName="CLIENTES_MAS_VECES_MISMO_AUTORowChanging" msprop:Generator_RowEvHandlerName="CLIENTES_MAS_VECES_MISMO_AUTORowChangeEventHandler" msprop:Generator_RowDeletedName="CLIENTES_MAS_VECES_MISMO_AUTORowDeleted" msprop:Generator_RowClassName="CLIENTES_MAS_VECES_MISMO_AUTORow" msprop:Generator_UserTableName="CLIENTES_MAS_VECES_MISMO_AUTO" msprop:Generator_RowEvArgName="CLIENTES_MAS_VECES_MISMO_AUTORowChangeEvent">
+        <xs:element name="CLIENTES_MAS_VECES_MISMO_AUTO" msprop:Generator_TableClassName="CLIENTES_MAS_VECES_MISMO_AUTODataTable" msprop:Generator_TableVarName="tableCLIENTES_MAS_VECES_MISMO_AUTO" msprop:Generator_TablePropName="CLIENTES_MAS_VECES_MISMO_AUTO" msprop:Generator_RowDeletingName="CLIENTES_MAS_VECES_MISMO_AUTORowDeleting" msprop:Generator_RowChangingName="CLIENTES_MAS_VECES_MISMO_AUTORowChanging" msprop:Generator_RowEvHandlerName="CLIENTES_MAS_VECES_MISMO_AUTORowChangeEventHandler" msprop:Generator_RowDeletedName="CLIENTES_MAS_VECES_MISMO_AUTORowDeleted" msprop:Generator_UserTableName="CLIENTES_MAS_VECES_MISMO_AUTO" msprop:Generator_RowChangedName="CLIENTES_MAS_VECES_MISMO_AUTORowChanged" msprop:Generator_RowEvArgName="CLIENTES_MAS_VECES_MISMO_AUTORowChangeEvent" msprop:Generator_RowClassName="CLIENTES_MAS_VECES_MISMO_AUTORow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CLIENTE" msprop:Generator_ColumnVarNameInTable="columnCLIENTE" msprop:Generator_ColumnPropNameInRow="CLIENTE" msprop:Generator_ColumnPropNameInTable="CLIENTEColumn" msprop:Generator_UserColumnName="CLIENTE" type="xs:int" />
@@ -1772,7 +1773,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LISTAR_FUNCIONALIDADES" msprop:Generator_TableClassName="LISTAR_FUNCIONALIDADESDataTable" msprop:Generator_TableVarName="tableLISTAR_FUNCIONALIDADES" msprop:Generator_RowChangedName="LISTAR_FUNCIONALIDADESRowChanged" msprop:Generator_TablePropName="LISTAR_FUNCIONALIDADES" msprop:Generator_RowDeletingName="LISTAR_FUNCIONALIDADESRowDeleting" msprop:Generator_RowChangingName="LISTAR_FUNCIONALIDADESRowChanging" msprop:Generator_RowEvHandlerName="LISTAR_FUNCIONALIDADESRowChangeEventHandler" msprop:Generator_RowDeletedName="LISTAR_FUNCIONALIDADESRowDeleted" msprop:Generator_RowClassName="LISTAR_FUNCIONALIDADESRow" msprop:Generator_UserTableName="LISTAR_FUNCIONALIDADES" msprop:Generator_RowEvArgName="LISTAR_FUNCIONALIDADESRowChangeEvent">
+        <xs:element name="LISTAR_FUNCIONALIDADES" msprop:Generator_TableClassName="LISTAR_FUNCIONALIDADESDataTable" msprop:Generator_TableVarName="tableLISTAR_FUNCIONALIDADES" msprop:Generator_TablePropName="LISTAR_FUNCIONALIDADES" msprop:Generator_RowDeletingName="LISTAR_FUNCIONALIDADESRowDeleting" msprop:Generator_RowChangingName="LISTAR_FUNCIONALIDADESRowChanging" msprop:Generator_RowEvHandlerName="LISTAR_FUNCIONALIDADESRowChangeEventHandler" msprop:Generator_RowDeletedName="LISTAR_FUNCIONALIDADESRowDeleted" msprop:Generator_UserTableName="LISTAR_FUNCIONALIDADES" msprop:Generator_RowChangedName="LISTAR_FUNCIONALIDADESRowChanged" msprop:Generator_RowEvArgName="LISTAR_FUNCIONALIDADESRowChangeEvent" msprop:Generator_RowClassName="LISTAR_FUNCIONALIDADESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -1786,7 +1787,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LISTAR_FUNC_X_ROL_HABI" msprop:Generator_TableClassName="LISTAR_FUNC_X_ROL_HABIDataTable" msprop:Generator_TableVarName="tableLISTAR_FUNC_X_ROL_HABI" msprop:Generator_RowChangedName="LISTAR_FUNC_X_ROL_HABIRowChanged" msprop:Generator_TablePropName="LISTAR_FUNC_X_ROL_HABI" msprop:Generator_RowDeletingName="LISTAR_FUNC_X_ROL_HABIRowDeleting" msprop:Generator_RowChangingName="LISTAR_FUNC_X_ROL_HABIRowChanging" msprop:Generator_RowEvHandlerName="LISTAR_FUNC_X_ROL_HABIRowChangeEventHandler" msprop:Generator_RowDeletedName="LISTAR_FUNC_X_ROL_HABIRowDeleted" msprop:Generator_RowClassName="LISTAR_FUNC_X_ROL_HABIRow" msprop:Generator_UserTableName="LISTAR_FUNC_X_ROL_HABI" msprop:Generator_RowEvArgName="LISTAR_FUNC_X_ROL_HABIRowChangeEvent">
+        <xs:element name="LISTAR_FUNC_X_ROL_HABI" msprop:Generator_TableClassName="LISTAR_FUNC_X_ROL_HABIDataTable" msprop:Generator_TableVarName="tableLISTAR_FUNC_X_ROL_HABI" msprop:Generator_TablePropName="LISTAR_FUNC_X_ROL_HABI" msprop:Generator_RowDeletingName="LISTAR_FUNC_X_ROL_HABIRowDeleting" msprop:Generator_RowChangingName="LISTAR_FUNC_X_ROL_HABIRowChanging" msprop:Generator_RowEvHandlerName="LISTAR_FUNC_X_ROL_HABIRowChangeEventHandler" msprop:Generator_RowDeletedName="LISTAR_FUNC_X_ROL_HABIRowDeleted" msprop:Generator_UserTableName="LISTAR_FUNC_X_ROL_HABI" msprop:Generator_RowChangedName="LISTAR_FUNC_X_ROL_HABIRowChanged" msprop:Generator_RowEvArgName="LISTAR_FUNC_X_ROL_HABIRowChangeEvent" msprop:Generator_RowClassName="LISTAR_FUNC_X_ROL_HABIRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" minOccurs="0" />
@@ -1800,7 +1801,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LISTAR_ROLES_HABI" msprop:Generator_TableClassName="LISTAR_ROLES_HABIDataTable" msprop:Generator_TableVarName="tableLISTAR_ROLES_HABI" msprop:Generator_RowChangedName="LISTAR_ROLES_HABIRowChanged" msprop:Generator_TablePropName="LISTAR_ROLES_HABI" msprop:Generator_RowDeletingName="LISTAR_ROLES_HABIRowDeleting" msprop:Generator_RowChangingName="LISTAR_ROLES_HABIRowChanging" msprop:Generator_RowEvHandlerName="LISTAR_ROLES_HABIRowChangeEventHandler" msprop:Generator_RowDeletedName="LISTAR_ROLES_HABIRowDeleted" msprop:Generator_RowClassName="LISTAR_ROLES_HABIRow" msprop:Generator_UserTableName="LISTAR_ROLES_HABI" msprop:Generator_RowEvArgName="LISTAR_ROLES_HABIRowChangeEvent">
+        <xs:element name="LISTAR_ROLES_HABI" msprop:Generator_TableClassName="LISTAR_ROLES_HABIDataTable" msprop:Generator_TableVarName="tableLISTAR_ROLES_HABI" msprop:Generator_TablePropName="LISTAR_ROLES_HABI" msprop:Generator_RowDeletingName="LISTAR_ROLES_HABIRowDeleting" msprop:Generator_RowChangingName="LISTAR_ROLES_HABIRowChanging" msprop:Generator_RowEvHandlerName="LISTAR_ROLES_HABIRowChangeEventHandler" msprop:Generator_RowDeletedName="LISTAR_ROLES_HABIRowDeleted" msprop:Generator_UserTableName="LISTAR_ROLES_HABI" msprop:Generator_RowChangedName="LISTAR_ROLES_HABIRowChanged" msprop:Generator_RowEvArgName="LISTAR_ROLES_HABIRowChangeEvent" msprop:Generator_RowClassName="LISTAR_ROLES_HABIRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:short" />
@@ -1814,7 +1815,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LISTAR_ROLES_SIN_CONDI" msprop:Generator_TableClassName="LISTAR_ROLES_SIN_CONDIDataTable" msprop:Generator_TableVarName="tableLISTAR_ROLES_SIN_CONDI" msprop:Generator_RowChangedName="LISTAR_ROLES_SIN_CONDIRowChanged" msprop:Generator_TablePropName="LISTAR_ROLES_SIN_CONDI" msprop:Generator_RowDeletingName="LISTAR_ROLES_SIN_CONDIRowDeleting" msprop:Generator_RowChangingName="LISTAR_ROLES_SIN_CONDIRowChanging" msprop:Generator_RowEvHandlerName="LISTAR_ROLES_SIN_CONDIRowChangeEventHandler" msprop:Generator_RowDeletedName="LISTAR_ROLES_SIN_CONDIRowDeleted" msprop:Generator_RowClassName="LISTAR_ROLES_SIN_CONDIRow" msprop:Generator_UserTableName="LISTAR_ROLES_SIN_CONDI" msprop:Generator_RowEvArgName="LISTAR_ROLES_SIN_CONDIRowChangeEvent">
+        <xs:element name="LISTAR_ROLES_SIN_CONDI" msprop:Generator_TableClassName="LISTAR_ROLES_SIN_CONDIDataTable" msprop:Generator_TableVarName="tableLISTAR_ROLES_SIN_CONDI" msprop:Generator_TablePropName="LISTAR_ROLES_SIN_CONDI" msprop:Generator_RowDeletingName="LISTAR_ROLES_SIN_CONDIRowDeleting" msprop:Generator_RowChangingName="LISTAR_ROLES_SIN_CONDIRowChanging" msprop:Generator_RowEvHandlerName="LISTAR_ROLES_SIN_CONDIRowChangeEventHandler" msprop:Generator_RowDeletedName="LISTAR_ROLES_SIN_CONDIRowDeleted" msprop:Generator_UserTableName="LISTAR_ROLES_SIN_CONDI" msprop:Generator_RowChangedName="LISTAR_ROLES_SIN_CONDIRowChanged" msprop:Generator_RowEvArgName="LISTAR_ROLES_SIN_CONDIRowChangeEvent" msprop:Generator_RowClassName="LISTAR_ROLES_SIN_CONDIRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:short" />
@@ -1825,6 +1826,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Habilitado" msprop:Generator_ColumnVarNameInTable="columnHabilitado" msprop:Generator_ColumnPropNameInRow="Habilitado" msprop:Generator_ColumnPropNameInTable="HabilitadoColumn" msprop:Generator_UserColumnName="Habilitado" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1892,6 +1894,10 @@
     </xs:unique>
     <xs:unique name="LISTAR_FUNCIONALIDADES_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:LISTAR_FUNCIONALIDADES" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="LISTAR_ROLES_SIN_CONDI_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:LISTAR_ROLES_SIN_CONDI" />
       <xs:field xpath="mstns:id" />
     </xs:unique>
   </xs:element>

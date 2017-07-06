@@ -38,6 +38,9 @@
             this.lblCajaFuncionesSegunRol = new System.Windows.Forms.Label();
             this.lblFunciones = new System.Windows.Forms.Label();
             this.comboRol = new System.Windows.Forms.ComboBox();
+            this.ccHabilitado = new System.Windows.Forms.CheckBox();
+            this.txtModificarNombre = new System.Windows.Forms.TextBox();
+            this.lblModificarNombre = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cajaListaFuncionesSegunRol
@@ -131,6 +134,36 @@
             this.comboRol.Name = "comboRol";
             this.comboRol.Size = new System.Drawing.Size(195, 21);
             this.comboRol.TabIndex = 66;
+            this.comboRol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboRol_KeyPress);
+            // 
+            // ccHabilitado
+            // 
+            this.ccHabilitado.AutoSize = true;
+            this.ccHabilitado.Location = new System.Drawing.Point(457, 18);
+            this.ccHabilitado.Name = "ccHabilitado";
+            this.ccHabilitado.Size = new System.Drawing.Size(73, 17);
+            this.ccHabilitado.TabIndex = 67;
+            this.ccHabilitado.Text = "Habilitado";
+            this.ccHabilitado.UseVisualStyleBackColor = true;
+            // 
+            // txtModificarNombre
+            // 
+            this.txtModificarNombre.Location = new System.Drawing.Point(12, 19);
+            this.txtModificarNombre.MaxLength = 255;
+            this.txtModificarNombre.Name = "txtModificarNombre";
+            this.txtModificarNombre.Size = new System.Drawing.Size(174, 20);
+            this.txtModificarNombre.TabIndex = 69;
+            this.txtModificarNombre.Visible = false;
+            // 
+            // lblModificarNombre
+            // 
+            this.lblModificarNombre.AutoSize = true;
+            this.lblModificarNombre.Location = new System.Drawing.Point(65, 2);
+            this.lblModificarNombre.Name = "lblModificarNombre";
+            this.lblModificarNombre.Size = new System.Drawing.Size(90, 13);
+            this.lblModificarNombre.TabIndex = 68;
+            this.lblModificarNombre.Text = "Modificar Nombre";
+            this.lblModificarNombre.Visible = false;
             // 
             // frmRol
             // 
@@ -138,6 +171,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(601, 332);
+            this.Controls.Add(this.txtModificarNombre);
+            this.Controls.Add(this.lblModificarNombre);
+            this.Controls.Add(this.ccHabilitado);
             this.Controls.Add(this.comboRol);
             this.Controls.Add(this.lblFunciones);
             this.Controls.Add(this.lblCajaFuncionesSegunRol);
@@ -168,5 +204,8 @@
         protected System.Windows.Forms.Label lblCajaFuncionesSegunRol;
         protected System.Windows.Forms.Label lblFunciones;
         protected System.Windows.Forms.ComboBox comboRol;
+        protected System.Windows.Forms.CheckBox ccHabilitado;
+        protected System.Windows.Forms.TextBox txtModificarNombre;
+        protected System.Windows.Forms.Label lblModificarNombre;
     }
 }
