@@ -8785,6 +8785,8 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnnombre;
             
+            private global::System.Data.DataColumn columnHabilitado;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public LISTAR_ROLES_SIN_CONDIDataTable() {
@@ -8836,6 +8838,14 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HabilitadoColumn {
+                get {
+                    return this.columnHabilitado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -8871,14 +8881,22 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public LISTAR_ROLES_SIN_CONDIRow AddLISTAR_ROLES_SIN_CONDIRow(string nombre) {
+            public LISTAR_ROLES_SIN_CONDIRow AddLISTAR_ROLES_SIN_CONDIRow(string nombre, bool Habilitado) {
                 LISTAR_ROLES_SIN_CONDIRow rowLISTAR_ROLES_SIN_CONDIRow = ((LISTAR_ROLES_SIN_CONDIRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        nombre};
+                        nombre,
+                        Habilitado};
                 rowLISTAR_ROLES_SIN_CONDIRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLISTAR_ROLES_SIN_CONDIRow);
                 return rowLISTAR_ROLES_SIN_CONDIRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public LISTAR_ROLES_SIN_CONDIRow FindByid(short id) {
+                return ((LISTAR_ROLES_SIN_CONDIRow)(this.Rows.Find(new object[] {
+                            id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8900,6 +8918,7 @@ namespace UberFrba {
             internal void InitVars() {
                 this.columnid = base.Columns["id"];
                 this.columnnombre = base.Columns["nombre"];
+                this.columnHabilitado = base.Columns["Habilitado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8909,11 +8928,16 @@ namespace UberFrba {
                 base.Columns.Add(this.columnid);
                 this.columnnombre = new global::System.Data.DataColumn("nombre", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnombre);
+                this.columnHabilitado = new global::System.Data.DataColumn("Habilitado", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHabilitado);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid}, true));
                 this.columnid.AutoIncrement = true;
                 this.columnid.AutoIncrementSeed = -1;
                 this.columnid.AutoIncrementStep = -1;
                 this.columnid.AllowDBNull = false;
                 this.columnid.ReadOnly = true;
+                this.columnid.Unique = true;
                 this.columnnombre.AllowDBNull = false;
                 this.columnnombre.MaxLength = 255;
             }
@@ -11649,6 +11673,35 @@ namespace UberFrba {
                 set {
                     this[this.tableLISTAR_ROLES_SIN_CONDI.nombreColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Habilitado {
+                get {
+                    try {
+                        return ((bool)(this[this.tableLISTAR_ROLES_SIN_CONDI.HabilitadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Habilitado\' de la tabla \'LISTAR_ROLES_SIN_CONDI\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableLISTAR_ROLES_SIN_CONDI.HabilitadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsHabilitadoNull() {
+                return this.IsNull(this.tableLISTAR_ROLES_SIN_CONDI.HabilitadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetHabilitadoNull() {
+                this[this.tableLISTAR_ROLES_SIN_CONDI.HabilitadoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -17607,6 +17660,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.DataSetTable = "LISTAR_ROLES_SIN_CONDI";
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("nombre", "nombre");
+            tableMapping.ColumnMappings.Add("Habilitado", "Habilitado");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

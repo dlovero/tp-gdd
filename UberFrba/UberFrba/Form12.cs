@@ -48,8 +48,6 @@ namespace UberFrba
                 accionBotonAceptar(sender, e);
         }
 
-        //protected abstract void accionBotonAceptar(object sender, EventArgs e);
-
         protected void cargarListas()
         {
             this.listaFunciones = obtenerListaFunciones();
@@ -74,11 +72,14 @@ namespace UberFrba
 
         private void construirComboRol()
         {
-            this.comboRol.DataSource = obtenerDatosParaComboRol();
+            DataTable tblRoles = obtenerDatosParaComboRol();
+            this.comboRol.DataSource = tblRoles;
             this.comboRol.DisplayMember = "nombre";
             this.comboRol.ValueMember = "id";
+            completarCCHabilitado();
         }
 
+        protected abstract void completarCCHabilitado();
         protected abstract DataTable obtenerDatosParaComboRol();
         protected abstract List<FuncionalidadSegunRol> obtenerListaFuncionesSegunAccion();
         protected abstract List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadasSegunAccion();
@@ -145,6 +146,7 @@ namespace UberFrba
             this.cajaListaFunciones.Items.Clear();
             this.cajaListaFuncionesSegunRol.Items.Clear();
             modificarListas();
+            completarCCHabilitado();
         }
 
         protected abstract void modificarListas();
@@ -195,7 +197,7 @@ namespace UberFrba
                 {
                     mensajeErrorEnDB();
                 }
-                mensajeConfirmaAccion();
+                
             }
         }
 
@@ -216,8 +218,6 @@ namespace UberFrba
         }
 
         protected abstract void ejecutarSegunAccion();
-
-
     }
 
     public partial class frmRolAgregar : frmRol
@@ -243,6 +243,7 @@ namespace UberFrba
                 GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
                 adaptador.agregarRol(this.comboRol.Text, armarCadenaConIdsFunciones());
+                mensajeConfirmaAccion();
                 this.Close();
             }
             else
@@ -277,6 +278,7 @@ namespace UberFrba
         protected override void prepararFormulario()
         {
             this.comboRol.DropDownStyle = ComboBoxStyle.Simple;
+            this.ccHabilitado.Visible = false;
             agregarNombres("Agregar Rol");
         }
 
@@ -294,6 +296,9 @@ namespace UberFrba
         {
             return MetodosGlobales.mensajeAlertaAntesDeAccion("Rol", "Agregar");
         }
+
+        protected override void completarCCHabilitado()
+        { }
     }
 
     public partial class frmRolModificar : frmRol
@@ -329,11 +334,10 @@ namespace UberFrba
 
         protected override void prepararFormulario()
         {
-            //this.ccHabilitado.Checked;
+            this.txtModificarNombre.Visible = true;
+            this.lblModificarNombre.Visible = true;
             agregarNombres("Modificar Rol");
         }
-
-        
 
         protected override void ejecutarSegunAccion()
         {
@@ -346,10 +350,12 @@ namespace UberFrba
             List<FuncionalidadSegunRol> listaConFuncionesParaQuitar = this.listaFuncionesSegunRol.Where(item =>
                 !listaNueva.Any(funcion => funcion.nombreFuncion.Equals(item.nombreFuncion))).ToList();
             adaptador.modificarRol(Convert.ToInt32(this.comboRol.SelectedValue),
-                this.comboRol.SelectedText,
+                this.txtModificarNombre.Text,
                 Convert.ToInt16(this.ccHabilitado.Checked),
                 armarListaConItem(listaConFuncionesParaAgregar),
                 armarListaConItem(listaConFuncionesParaQuitar));
+            //(((DataRowView)this.comboRol.SelectedItem).Row).ItemArray[1]
+            mensajeConfirmaAccion();
             this.Close();
         }
 
@@ -365,6 +371,35 @@ namespace UberFrba
 
         protected override void verificarCaracterIngresado(KeyPressEventArgs e)
         {
+        }
+
+        public static datosRol obtenerDatosDeRol(DataRowView itemRol)
+        {
+            return new datosRol(Convert.ToInt32(itemRol["id"]),
+                (String)itemRol["nombre"],
+                (Boolean)itemRol["habilitado"]);
+        }
+
+        public class datosRol
+        {
+            public int id { set; get; }
+            public String nombre { set; get; }
+            public Boolean habilitado { set; get; }
+
+            public datosRol(int id, String nombre, Boolean habilitado)
+            {
+                this.id = id;
+                this.nombre = nombre;
+                this.habilitado = habilitado;
+            }
+        }
+
+        protected override void completarCCHabilitado()
+        {
+            datosRol rol = (frmRolModificar.obtenerDatosDeRol(
+                (DataRowView)this.comboRol.SelectedItem));
+            this.ccHabilitado.Checked = rol.habilitado;
+            this.txtModificarNombre.Text = rol.nombre;
         }
     }
 
@@ -416,6 +451,7 @@ namespace UberFrba
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
             adaptador.eliminarRol(Convert.ToInt32(this.comboRol.SelectedValue));
+            mensajeConfirmaAccion();
             this.Close();
         }
 
@@ -432,5 +468,7 @@ namespace UberFrba
         protected override void verificarCaracterIngresado(KeyPressEventArgs e)
         {
         }
+        protected override void completarCCHabilitado()
+        { }
     }
 }
