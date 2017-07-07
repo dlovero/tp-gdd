@@ -174,8 +174,7 @@ namespace UberFrba
             MetodosGlobales.permitirSoloIngresoCorreoElectronico(e);
         }
 
-        protected void prepararFormularioSegunRol
-            (String textoFuncion, String textoTipo)
+        protected void prepararFormularioSegunRol(String textoFuncion, String textoTipo)
         {
             if (SingletonDatosUsuario.Instance.rol.soyAdministrador())
             {

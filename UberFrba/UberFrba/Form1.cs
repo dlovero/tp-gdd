@@ -177,7 +177,8 @@ namespace UberFrba
         public void configurarRol(int idRol, String nombreRol)
         {
             //TODO:MEJORAR para que no dependa del harcodeo por string "ADMINISTRATIVO"
-            rol = soyRolAdministrador(nombreRol) ? (IFuncionalidadRoles)new RolAdministrador(idRol, this.datosUsuario.IdUsuario, nombreRol) : (IFuncionalidadRoles)new RolGenerico(idRol, this.datosUsuario.IdUsuario, nombreRol);
+            //rol = soyRolAdministrador(nombreRol) ? (IFuncionalidadRoles)new RolAdministrador(idRol, this.datosUsuario.IdUsuario, nombreRol) : (IFuncionalidadRoles)new RolGenerico(idRol, this.datosUsuario.IdUsuario, nombreRol);
+            rol = new FuncionalidadSegunRol(idRol, this.datosUsuario.IdUsuario, nombreRol);
         }
 
         public bool soyRolAdministrador(string nombreRol)
@@ -235,7 +236,7 @@ namespace UberFrba
 
     public interface IFuncionalidadRoles
     {
-        Boolean soyAdministrador();
+       // Boolean soyAdministrador();
         void agregarClienteChofer(String rol);
         void eliminarClienteChofer(String rol);
         void modificarClienteChofer(String rol);
@@ -254,9 +255,12 @@ namespace UberFrba
         void registrarViaje();
         void rendicionAChofer();
         void facturarACliente();
+
+        void ejecutarFuncion(string nombreMetodo);
     }
 
-    public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
+    //public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
+    public class FuncionalidadSegunRol : IFuncionalidadRoles
     {
         public FuncionalidadSegunRol(int idRol, int idUsuario, String nombreRol)
         {
@@ -264,6 +268,7 @@ namespace UberFrba
             this.idTipoRol = obtenerIdTipoRol(idRol, idUsuario); ;
             this.nombreRol = nombreRol;
         }
+
 
         private int idRol;
         public int IdRol
@@ -292,22 +297,45 @@ namespace UberFrba
                 .obtenerIdEnTablaClienteOChofer(idUsuario, IdRol);
         }
 
-        public abstract Boolean soyAdministrador();
-        public abstract void agregarClienteChofer(String rol);
-        public abstract void agregarAutomovil(String rol);
-        public abstract void eliminarAutomovil(String rol);
-        public abstract void modificarAutomovil(String rol);
-        public abstract void agregarTurno(String rol);
-        public abstract void eliminarTurno(String rol);
-        public abstract void modificarTurno(String rol);
-        public abstract void agregarRol(String rol);
-        public abstract void eliminarRol(String rol);
-        public abstract void modificarRol(String rol);
-        public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
-        public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
-        public abstract void registrarViaje();
-        public abstract void rendicionAChofer();
-        public abstract void facturarACliente();
+        //public abstract Boolean soyAdministrador();
+        //public abstract void agregarClienteChofer(String rol);
+        //public abstract void agregarAutomovil(String rol);
+        //public abstract void eliminarAutomovil(String rol);
+        //public abstract void modificarAutomovil(String rol);
+        //public abstract void agregarTurno(String rol);
+        //public abstract void eliminarTurno(String rol);
+        //public abstract void modificarTurno(String rol);
+        //public abstract void agregarRol(String rol);
+        //public abstract void eliminarRol(String rol);
+        //public abstract void modificarRol(String rol);
+        //public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
+        //public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
+        //public abstract void registrarViaje();
+        //public abstract void rendicionAChofer();
+        //public abstract void facturarACliente();
+
+
+
+
+
+        public void ejecutarFuncion(string nombreMetodo)
+        {
+            MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo, 
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            methodInfo.Invoke(this, new object[]{});
+        }
+
+
+
+        /// <summary>
+        /// /////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="rol"></param>
+
+        public void agregarClienteChofer(String rol)
+        {
+            construirFormularioClienteChofer(new frmClienteChoferAgregar(), rol);
+        }
 
         public void eliminarClienteChofer(String rol)
         {
@@ -319,175 +347,20 @@ namespace UberFrba
             construirFormularioClienteChofer(new frmClienteChoferModificar(), rol);
         }
 
-        public void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos)
-        {
-            if (formulario.verificarDatosDeFormulario())
-            {
-                if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
-                {
-                    ejecutarMetodoDeAccionConParametros(
-                        obtenerNombreMetodo(funcion, rol),
-                        new object[] { 
-                            datos
-                            ,obtenerAdaptadorBD() });
-                    formulario.Close();
-                    mensajeAutoeliminacion(formulario);
-                }
-            }
-            else
-            {
-                MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
-                     MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
-                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
 
-        protected virtual void mensajeAutoeliminacion(frmABM formulario)
-        {
-        }
 
-        public void eliminarClienteEnBD(int idTipoRol, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
-        {
-            try
-            {
-                adaptador.eliminarCliente(idTipoRol);
-            }
-            catch (SqlException e)
-            {
-                mensajeErrorEnDB();
-            }
-        }
 
-        public void eliminarChoferEnBD(int idTipoRol, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
-        {
-            try
-            {
-                adaptador.eliminarChofer(idTipoRol);
-            }
-            catch (SqlException e)
-            {
-                mensajeErrorEnDB();
-            }
-        }
 
-        public void modificarClienteEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
-        {
-            try
-            {
-                adaptador.modificarCliente
-                            (Convert.ToInt32(c["lblIdPersona"].Text), Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
-                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value
-                            , Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
-            }
-            catch (SqlException e)
-            {
-                mensajeErrorEnDB();
-            }
-        }
 
-        public void modificarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador, int idPersona)
-        {
-            try
-            {
-                adaptador.modificarChofer
-                            (idPersona, Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
-                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value,
-                            Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
-            }
-            catch (SqlException e)
-            {
-                mensajeErrorEnDB();
-            }
-        }
 
-        protected void construirFormularioClienteChofer(frmABM frmClienteChofer, String rolParaAlta)
-        {
-            if (frmClienteChofer.construite(rolParaAlta))
-            {
-                frmClienteChofer.Show();
-            }
-        }
 
-        public void mensajeErrorEnDB()
-        {
-            MessageBox.Show("Error al operar en la BD", "ERROR",
-                MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
 
-        protected Control.ControlCollection obtenerGrupoControlesDeFormularioABM(frmABM formulario, String grupoControles)
-        {
-            return (formulario.Controls[grupoControles]).Controls;
-        }
-
-        protected GD1C2017DataSetTableAdapters.QueriesTableAdapter obtenerAdaptadorBD()
-        {
-            return new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-        }
-
-        protected void ejecutarMetodoDeAccionConParametros(MethodInfo methodInfo, object[] objParametros)
-        {
-            methodInfo.Invoke(this, objParametros);
-        }
-
-        protected MethodInfo obtenerNombreMetodo(string funcion, string rol)
-        {
-            return this.GetType().GetMethod(funcion.ToLower() + rol + "EnBD");
-        }
-    }
-
-    public class ArgumentosParaEventoBotonAgregar : EventArgs
-    {
-        public frmABM formulario { set; get; }
-    }
-    
-    public class RolAdministrador : FuncionalidadSegunRol
-    {
-        public RolAdministrador(int idRol, int idUsuario, String nombreRol)
-            : base(idRol, idUsuario, nombreRol)
-        { }
-
-        public override Boolean soyAdministrador() { return true; }
-        
-        public override void registrarViaje()
-        {
-            frmRegistroViaje formularioRegistroViaje = new frmRegistroViaje();
-            if (formularioRegistroViaje.construite())
-            {
-                formularioRegistroViaje.Show();
-            }
-        }
-
-        public override void rendicionAChofer()
-        {
-            frmRendirViaje formularioRendirViaje = new frmRendirViaje();
-            if (formularioRendirViaje.construite())
-            {
-                formularioRendirViaje.Show();
-            }
-        }
-
-         public override void facturarACliente()
-        {
-            frmFacturarViaje formularioFacturarViaje = new frmFacturarViaje();
-            if (formularioFacturarViaje.construite())
-            {
-                formularioFacturarViaje.Show();
-            }
-        }
-
-        public override void agregarClienteChofer(String rol)
-        {
-            construirFormularioClienteChofer(new frmClienteChoferAgregar(), rol);
-        }
-
-        public override void agregarAutomovil(String rol)
+        public void agregarAutomovil(String rol)
         {
             construirFormularioAutomovil(new frmAutomovilAgregar());
         }
 
-        public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol, object datos)
+        public void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol, object datos)
         {
             if (formulario.verificarDatosDeFormulario())
             {
@@ -509,7 +382,7 @@ namespace UberFrba
             }
         }
 
-        public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos)
+        public void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos)
         {
             if (formulario.verificarDatosDeFormulario())
             {
@@ -532,7 +405,7 @@ namespace UberFrba
         }
 
 
-        public override void eliminarAutomovil(String rol)
+        public void eliminarAutomovil(String rol)
         {
             construirFormularioAutomovil(new frmAutomovilEliminar());
         }
@@ -545,11 +418,11 @@ namespace UberFrba
             }
         }
 
-        public override void modificarAutomovil(String rol)
+        public void modificarAutomovil(String rol)
         {
             construirFormularioAutomovil(new frmAutomovilModificar());
         }
-       
+
         public void agregarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
         {
             try
@@ -683,11 +556,11 @@ namespace UberFrba
         public void mensajeCreacionDeUsuario(String nombre, String apellido)
         {
             //FIXME: evitar overflow al utilizar substring, agregar consulta a db para traer el nuevo usuario y mostrarlo. Acciona como validacion
-            MessageBox.Show("Se ha creado el usuario \"" + apellido.Substring(0, 4) + nombre.Substring(0, 3)+ "\" con clave \"Inicio2017\"", "Se ha creado Usuario",
+            MessageBox.Show("Se ha creado el usuario \"" + apellido.Substring(0, 4) + nombre.Substring(0, 3) + "\" con clave \"Inicio2017\"", "Se ha creado Usuario",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public override void agregarTurno(String rol)
+        public void agregarTurno(String rol)
         {
             construirFormularioTurno(new frmTurnoAgregar());
         }
@@ -700,17 +573,17 @@ namespace UberFrba
             }
         }
 
-        public override void eliminarTurno(String rol)
+        public void eliminarTurno(String rol)
         {
-            construirFormularioTurno(new frmTurnoEliminar()); 
+            construirFormularioTurno(new frmTurnoEliminar());
         }
 
-        public override void modificarTurno(String rol)
+        public void modificarTurno(String rol)
         {
-            construirFormularioTurno(new frmTurnoModificar()); 
+            construirFormularioTurno(new frmTurnoModificar());
         }
 
-        public override void agregarRol(String rol)
+        public void agregarRol(String rol)
         {
             construirFormularioRol(new frmRolAgregar());
         }
@@ -723,7 +596,7 @@ namespace UberFrba
             }
         }
 
-        public override void eliminarRol(String rol)
+        public void eliminarRol(String rol)
         {
             construirFormularioRol(new frmRolEliminar());
         }
@@ -736,7 +609,7 @@ namespace UberFrba
             }
         }
 
-        public override void modificarRol(String rol)
+        public void modificarRol(String rol)
         {
             construirFormularioRol(new frmRolModificar());
         }
@@ -748,6 +621,470 @@ namespace UberFrba
                 frmRol.Show();
             }
         }
+
+        public void registrarViaje()
+        {
+            frmRegistroViaje formularioRegistroViaje = new frmRegistroViaje();
+            if (formularioRegistroViaje.construite())
+            {
+                formularioRegistroViaje.Show();
+            }
+        }
+
+        public void rendicionAChofer()
+        {
+            frmRendirViaje formularioRendirViaje = new frmRendirViaje();
+            if (formularioRendirViaje.construite())
+            {
+                formularioRendirViaje.Show();
+            }
+        }
+
+        public void facturarACliente()
+        {
+            frmFacturarViaje formularioFacturarViaje = new frmFacturarViaje();
+            if (formularioFacturarViaje.construite())
+            {
+                formularioFacturarViaje.Show();
+            }
+        }
+        /// <summary>
+        /// /////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="rol"></param>
+
+
+
+        
+
+        public void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos)
+        {
+            if (formulario.verificarDatosDeFormulario())
+            {
+                if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+                {
+                    ejecutarMetodoDeAccionConParametros(
+                        obtenerNombreMetodo(funcion, rol),
+                        new object[] { 
+                            datos
+                            ,obtenerAdaptadorBD() });
+                    formulario.Close();
+                    mensajeAutoeliminacion(formulario);
+                }
+            }
+            else
+            {
+                MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
+                     MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
+                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        protected virtual void mensajeAutoeliminacion(frmABM formulario)
+        {
+        }
+
+        public void eliminarClienteEnBD(int idTipoRol, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.eliminarCliente(idTipoRol);
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
+
+        public void eliminarChoferEnBD(int idTipoRol, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.eliminarChofer(idTipoRol);
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
+
+        public void modificarClienteEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        {
+            try
+            {
+                adaptador.modificarCliente
+                            (Convert.ToInt32(c["lblIdPersona"].Text), Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value
+                            , Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
+
+        public void modificarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador, int idPersona)
+        {
+            try
+            {
+                adaptador.modificarChofer
+                            (idPersona, Convert.ToInt32(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
+                            , Convert.ToInt32(c["txtTelefono"].Text), c["txtCorreo"].Text, ((DateTimePicker)c["selectorFechaNacimiento"]).Value,
+                            Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+            }
+            catch (SqlException e)
+            {
+                mensajeErrorEnDB();
+            }
+        }
+
+        protected void construirFormularioClienteChofer(frmABM frmClienteChofer, String rolParaAlta)
+        {
+            if (frmClienteChofer.construite(rolParaAlta))
+            {
+                frmClienteChofer.Show();
+            }
+        }
+
+        public void mensajeErrorEnDB()
+        {
+            MessageBox.Show("Error al operar en la BD", "ERROR",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        protected Control.ControlCollection obtenerGrupoControlesDeFormularioABM(frmABM formulario, String grupoControles)
+        {
+            return (formulario.Controls[grupoControles]).Controls;
+        }
+
+        protected GD1C2017DataSetTableAdapters.QueriesTableAdapter obtenerAdaptadorBD()
+        {
+            return new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+        }
+
+        protected void ejecutarMetodoDeAccionConParametros(MethodInfo methodInfo, object[] objParametros)
+        {
+            methodInfo.Invoke(this, objParametros);
+        }
+
+        protected MethodInfo obtenerNombreMetodo(string funcion, string rol)
+        {
+            return this.GetType().GetMethod(funcion.ToLower() + rol + "EnBD");
+        }
+
+
+    }
+
+    public class ArgumentosParaEventoBotonAgregar : EventArgs
+    {
+        public frmABM formulario { set; get; }
+    }
+    
+    public class RolAdministrador : FuncionalidadSegunRol
+    {
+        public RolAdministrador(int idRol, int idUsuario, String nombreRol)
+            : base(idRol, idUsuario, nombreRol)
+        { }
+
+        public Boolean soyAdministrador() { return true; }
+        
+        //public override void registrarViaje()
+        //{
+        //    frmRegistroViaje formularioRegistroViaje = new frmRegistroViaje();
+        //    if (formularioRegistroViaje.construite())
+        //    {
+        //        formularioRegistroViaje.Show();
+        //    }
+        //}
+
+        //public override void rendicionAChofer()
+        //{
+        //    frmRendirViaje formularioRendirViaje = new frmRendirViaje();
+        //    if (formularioRendirViaje.construite())
+        //    {
+        //        formularioRendirViaje.Show();
+        //    }
+        //}
+
+        // public override void facturarACliente()
+        //{
+        //    frmFacturarViaje formularioFacturarViaje = new frmFacturarViaje();
+        //    if (formularioFacturarViaje.construite())
+        //    {
+        //        formularioFacturarViaje.Show();
+        //    }
+        //}
+
+        
+
+        //public override void agregarAutomovil(String rol)
+        //{
+        //    construirFormularioAutomovil(new frmAutomovilAgregar());
+        //}
+
+        //public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, string funcion, string rol, object datos)
+        //{
+        //    if (formulario.verificarDatosDeFormulario())
+        //    {
+        //        if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+        //        {
+        //            ejecutarMetodoDeAccionConParametros(
+        //                obtenerNombreMetodo(funcion, rol),
+        //                new object[] { 
+        //                    datos
+        //                    ,obtenerAdaptadorBD() });
+        //            formulario.Close();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
+        //             MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
+        //             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    }
+        //}
+
+        //public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos)
+        //{
+        //    if (formulario.verificarDatosDeFormulario())
+        //    {
+        //        if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+        //        {
+        //            ejecutarMetodoDeAccionConParametros(
+        //                obtenerNombreMetodo(funcion, rol),
+        //                new object[] { 
+        //                    datos
+        //                    ,obtenerAdaptadorBD() });
+        //            formulario.Close();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
+        //             MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
+        //             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    }
+        //}
+
+
+        //public override void eliminarAutomovil(String rol)
+        //{
+        //    construirFormularioAutomovil(new frmAutomovilEliminar());
+        //}
+
+        //private static void construirFormularioAutomovil(frmAutomovil frmAutomovil)
+        //{
+        //    if (frmAutomovil.construite())
+        //    {
+        //        frmAutomovil.Show();
+        //    }
+        //}
+
+        //public override void modificarAutomovil(String rol)
+        //{
+        //    construirFormularioAutomovil(new frmAutomovilModificar());
+        //}
+       
+        //public void agregarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        //{
+        //    try
+        //    {
+        //        adaptador.agregarAutomovil
+        //                    (Convert.ToInt32(((ComboBox)c["comboMarca"]).SelectedValue),
+        //                    Convert.ToInt32(((ComboBox)c["comboModelo"]).SelectedValue),
+        //                    c["txtPatente"].Text,
+        //                    Convert.ToInt32(((ComboBox)c["comboTurno"]).SelectedValue),
+        //                    Convert.ToInt32(((ComboBox)c["comboChofer"]).SelectedValue));
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        mensajeErrorEnDB();
+        //    }
+        //}
+
+        //public void eliminarAutomovilEnBD(int idAuto, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        //{
+        //    try
+        //    {
+        //        adaptador.eliminarAutomovil
+        //                    (idAuto);
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        mensajeErrorEnDB();
+        //    }
+        //}
+
+        //public void modificarAutomovilEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        //{
+        //    try
+        //    {
+        //        adaptador.modificarAutomovil
+        //                    (Convert.ToInt32(((ComboBox)c["comboMarca"]).SelectedValue),
+        //                    Convert.ToInt32(((ComboBox)c["comboModelo"]).SelectedValue),
+        //                    c["txtPatente"].Text,
+        //                    Convert.ToInt32(((ComboBox)c["comboTurno"]).SelectedValue),
+        //                    Convert.ToInt32(((ComboBox)c["comboChofer"]).SelectedValue),
+        //                    Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        mensajeErrorEnDB();
+        //    }
+        //}
+
+        //public void agregarClienteEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        //{
+        //    try
+        //    {
+        //        adaptador.agregarCliente
+        //                    (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+        //                    , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
+        //                    , Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        mensajeErrorEnDB();
+        //    }
+        //    mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
+        //}
+
+        //public void agregarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        //{
+        //    try
+        //    {
+        //        adaptador.agregarChofer
+        //                    (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
+        //                    , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
+        //                    , Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        mensajeErrorEnDB();
+        //    }
+        //    mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
+        //}
+
+        //public void agregarTurnoEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        //{
+        //    try
+        //    {
+        //        adaptador.agregarTurno
+        //                    (Convert.ToInt16(c["txtHoraInicio"].Text),
+        //                    Convert.ToInt16(c["txtHoraFin"].Text),
+        //                    c["txtDescripcion"].Text,
+        //                    Convert.ToDecimal(c["txtValorKilometro"].Text),
+        //                    Convert.ToDecimal(c["txtPrecioBase"].Text),
+        //                    Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        mensajeErrorEnDB();
+        //    }
+        //}
+
+        //public void eliminarTurnoEnBD(int idTurno, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        //{
+        //    try
+        //    {
+        //        adaptador.eliminarTurno
+        //                    (idTurno);
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        mensajeErrorEnDB();
+        //    }
+        //}
+
+        //public void modificarTurnoEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
+        //{
+        //    try
+        //    {
+        //        adaptador.modificarTurno
+        //                    (Convert.ToInt32(c["lblIdTurno"].Text),
+        //                    Convert.ToInt16(c["txtHoraInicio"].Text),
+        //                    Convert.ToInt16(c["txtHoraFin"].Text),
+        //                    c["txtDescripcion"].Text,
+        //                    Convert.ToDecimal(c["txtValorKilometro"].Text),
+        //                    Convert.ToDecimal(c["txtPrecioBase"].Text),
+        //                    Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        mensajeErrorEnDB();
+        //    }
+        //}
+
+        //public void mensajeCreacionDeUsuario(String nombre, String apellido)
+        //{
+        //    //FIXME: evitar overflow al utilizar substring, agregar consulta a db para traer el nuevo usuario y mostrarlo. Acciona como validacion
+        //    MessageBox.Show("Se ha creado el usuario \"" + apellido.Substring(0, 4) + nombre.Substring(0, 3)+ "\" con clave \"Inicio2017\"", "Se ha creado Usuario",
+        //        MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //}
+
+        //public override void agregarTurno(String rol)
+        //{
+        //    construirFormularioTurno(new frmTurnoAgregar());
+        //}
+
+        //private static void construirFormularioTurno(frmABMTurno frmTurno)
+        //{
+        //    if (frmTurno.construite())
+        //    {
+        //        frmTurno.Show();
+        //    }
+        //}
+
+        //public override void eliminarTurno(String rol)
+        //{
+        //    construirFormularioTurno(new frmTurnoEliminar()); 
+        //}
+
+        //public override void modificarTurno(String rol)
+        //{
+        //    construirFormularioTurno(new frmTurnoModificar()); 
+        //}
+
+        //public override void agregarRol(String rol)
+        //{
+        //    construirFormularioRol(new frmRolAgregar());
+        //}
+
+        //private static void construirFormularioRol(frmRolAgregar frmRol)
+        //{
+        //    if (frmRol.construite())
+        //    {
+        //        frmRol.Show();
+        //    }
+        //}
+
+        //public override void eliminarRol(String rol)
+        //{
+        //    construirFormularioRol(new frmRolEliminar());
+        //}
+
+        //private static void construirFormularioRol(frmRolEliminar frmRol)
+        //{
+        //    if (frmRol.construite())
+        //    {
+        //        frmRol.Show();
+        //    }
+        //}
+
+        //public override void modificarRol(String rol)
+        //{
+        //    construirFormularioRol(new frmRolModificar());
+        //}
+
+        //private static void construirFormularioRol(frmRolModificar frmRol)
+        //{
+        //    if (frmRol.construite())
+        //    {
+        //        frmRol.Show();
+        //    }
+        //}
     }
 
     public class RolGenerico : FuncionalidadSegunRol
@@ -755,28 +1092,28 @@ namespace UberFrba
         public RolGenerico(int idRol, int idUsuario, String nombreRol)
             : base(idRol, idUsuario, nombreRol)
         { }
-        public override Boolean soyAdministrador() { return false; }
+        //public override Boolean soyAdministrador() { return false; }
 
         protected override void mensajeAutoeliminacion(frmABM formulario)
         {
             formulario.mensajeAutoEliminacionYSalidaDeAplicacion();
         }
 
-        public override void agregarClienteChofer(String rol){ mensajeFuncionNoValidaParaElRol(rol); }
-        public override void agregarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void agregarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void modificarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void eliminarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void agregarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void eliminarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void eliminarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void modificarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void modificarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
-        public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos){}
-        public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos){}
-        public override void registrarViaje()  { mensajeFuncionNoValidaParaElRol(""); }
-        public override void rendicionAChofer()  { mensajeFuncionNoValidaParaElRol(""); }
-        public override void facturarACliente() { mensajeFuncionNoValidaParaElRol(""); }
+        //public override void agregarClienteChofer(String rol){ mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void agregarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void agregarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void modificarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void eliminarRol(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void agregarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void eliminarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void eliminarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void modificarAutomovil(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void modificarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
+        //public override void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos){}
+        //public override void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos){}
+        //public override void registrarViaje()  { mensajeFuncionNoValidaParaElRol(""); }
+        //public override void rendicionAChofer()  { mensajeFuncionNoValidaParaElRol(""); }
+        //public override void facturarACliente() { mensajeFuncionNoValidaParaElRol(""); }
         
         private void mensajeFuncionNoValidaParaElRol(String rol)
         {

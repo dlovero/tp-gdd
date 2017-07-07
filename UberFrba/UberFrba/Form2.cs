@@ -26,10 +26,17 @@ namespace UberFrba
 
         private ToolStripMenuItem dameUnItemDeFuncion(string nombre, string nombreMetodo)
         {
-            MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo, BindingFlags.NonPublic | BindingFlags.Instance);
-            EventHandler handler = (EventHandler)Delegate.CreateDelegate(
-              typeof(EventHandler), this, methodInfo);
+            EventHandler handler = (sender, e) => ejecutarFuncion(sender, e, nombreMetodo);
+            //MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo, BindingFlags.NonPublic | BindingFlags.Instance);
+            //EventHandler handler = (EventHandler)Delegate.CreateDelegate(
+            //  typeof(EventHandler), this, methodInfo);
             return new ToolStripMenuItem(nombre, null, handler, null);
+        }
+
+        private void ejecutarFuncion(object sender, EventArgs e, string nombreMetodo)
+        {
+            this.Hide();
+            SingletonDatosUsuario.Instance.rol.ejecutarFuncion(nombreMetodo);
         }
         
         private void button1_Click(object sender, EventArgs e)

@@ -1241,17 +1241,17 @@ BEGIN TRANSACTION
 
 	
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarCliente', 'Alta Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarClienteChofer', 'Alta Cliente')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarCliente','Baja Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarClienteChofer','Baja Cliente')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarCliente','Modificar Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarClienteChofer','Modificar Cliente')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarChofer','Alta Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarClienteChofer','Alta Chofer')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarChofer','Baja Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarClienteChofer','Baja Chofer')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarChofer','Modificar Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarClienteChofer','Modificar Chofer')
 
 	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarAutomovil','Alta Automovil')
 
