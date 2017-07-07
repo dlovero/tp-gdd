@@ -38,17 +38,38 @@ namespace UberFrba
             this.Hide();
             SingletonDatosUsuario.Instance.rol.ejecutarFuncion(nombreMetodo);
         }
-        
+        public class datosRol
+        {
+            public int id { set; get; }
+            public String nombre { set; get; }
+            public Boolean esAdmin { set; get; }
+
+            public datosRol(int id, String nombre, Boolean esAdmin)
+            {
+                this.id = id;
+                this.nombre = nombre;
+                this.esAdmin = esAdmin;
+            }
+        }
+
+        public static datosRol obtenerDatosDeRol(DataRowView itemRol)
+        {
+            return new datosRol(Convert.ToInt32(itemRol["Rol_Id"]),
+                (String)itemRol["Rol_Nombre"],
+                (Boolean)itemRol["esAdmin"]);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            SingletonDatosUsuario datosUsuario = SingletonDatosUsuario.Instance;
-            int rolId = Convert.ToInt16(comboRol.SelectedValue);
+            datosRol datosRol = obtenerDatosDeRol((DataRowView)this.comboRol.SelectedItem);
+            //SingletonDatosUsuario datosUsuario = SingletonDatosUsuario.Instance;
+          //  int rolId = Convert.ToInt16(comboRol.SelectedValue);
             this.Hide();
-            datosUsuario.configurarRol(rolId, comboRol.Text);
+            SingletonDatosUsuario.Instance.configurarRol(datosRol.id, datosRol.nombre, datosRol.esAdmin);
             
             GD1C2017DataSetTableAdapters.PRC_OBTENER_MENU_X_ROLTableAdapter adaptador
                     = new GD1C2017DataSetTableAdapters.PRC_OBTENER_MENU_X_ROLTableAdapter();
-            DataTable tblMenuSegunRol = adaptador.menuSegunRol(rolId);
+            DataTable tblMenuSegunRol = adaptador.menuSegunRol(datosRol.id);
 
             frmPrincipal fmPrincipal = new frmPrincipal();
             MenuStrip fmPrincipalMenu = (MenuStrip)fmPrincipal.Controls["mnuPrincipal"];
@@ -121,103 +142,103 @@ namespace UberFrba
             fmPrincipal.Show();
         }
 
-        private void agregarCliente(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregarClienteChofer("Cliente");
-        }
+        //private void agregarCliente(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.agregarClienteChofer("Cliente");
+        //}
         
-        private void eliminarCliente(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.eliminarClienteChofer("Cliente");
-        }
+        //private void eliminarCliente(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.eliminarClienteChofer("Cliente");
+        //}
 
-        private void modificarCliente(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.modificarClienteChofer("Cliente");
-        }
+        //private void modificarCliente(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.modificarClienteChofer("Cliente");
+        //}
 
-        private void agregarChofer(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregarClienteChofer("Chofer");
-        }
+        //private void agregarChofer(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.agregarClienteChofer("Chofer");
+        //}
 
-        private void eliminarChofer(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.eliminarClienteChofer("Chofer");
-        }
+        //private void eliminarChofer(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.eliminarClienteChofer("Chofer");
+        //}
 
-        private void modificarChofer(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.modificarClienteChofer("Chofer");
-        }
+        //private void modificarChofer(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.modificarClienteChofer("Chofer");
+        //}
 
-        private void agregarAutomovil(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregarAutomovil("Automovil");
-        }
-        private void eliminarAutomovil(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.eliminarAutomovil("Automovil");
-        }
-        private void modificarAutomovil(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.modificarAutomovil("Automovil");
-        }
-        private void agregarRol(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregarRol("Rol");
-        }
-        private void eliminarRol(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.eliminarRol("Rol");
-        }
-        private void modificarRol(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.modificarRol("Rol");
-        }
-        private void agregarTurno(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.agregarTurno("Rol");
-        }
-        private void eliminarTurno(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.eliminarTurno("Rol");
-        }
-        private void modificarTurno(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.modificarTurno("Rol");
-        }
-        private void facturarCliente(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.facturarACliente();
-        }
-        private void rendicionChofer(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.rendicionAChofer();
-        }
-        private void listados(object sender, EventArgs e)
-        {
-            this.Hide();
-            frmListados formularioListados = new frmListados();
-            formularioListados.construite();
-        }
+        //private void agregarAutomovil(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.agregarAutomovil("Automovil");
+        //}
+        //private void eliminarAutomovil(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.eliminarAutomovil("Automovil");
+        //}
+        //private void modificarAutomovil(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.modificarAutomovil("Automovil");
+        //}
+        //private void agregarRol(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.agregarRol("Rol");
+        //}
+        //private void eliminarRol(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.eliminarRol("Rol");
+        //}
+        //private void modificarRol(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.modificarRol("Rol");
+        //}
+        //private void agregarTurno(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.agregarTurno("Rol");
+        //}
+        //private void eliminarTurno(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.eliminarTurno("Rol");
+        //}
+        //private void modificarTurno(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.modificarTurno("Rol");
+        //}
+        //private void facturarCliente(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.facturarACliente();
+        //}
+        //private void rendicionChofer(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.rendicionAChofer();
+        //}
+        //private void listados(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    frmListados formularioListados = new frmListados();
+        //    formularioListados.construite();
+        //}
         //private void choferViajeMasLargo(object sender, EventArgs e)
         //{
         //    this.Hide();
@@ -236,11 +257,11 @@ namespace UberFrba
         //    frmABM frmAltaCliente = new frmABM();
         //    frmAltaCliente.Show();
         //}
-        private void registroViajes(object sender, EventArgs e)
-        {
-            this.Hide();
-            SingletonDatosUsuario.Instance.rol.registrarViaje();
-        }
+        //private void registroViajes(object sender, EventArgs e)
+        //{
+        //    this.Hide();
+        //    SingletonDatosUsuario.Instance.rol.registrarViaje();
+        //}
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {

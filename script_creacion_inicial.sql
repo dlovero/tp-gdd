@@ -183,6 +183,7 @@ Usu_Per_Id INT ,
 Usu_Nombre_Usuario VARCHAR (255) NOT NULL UNIQUE,
 Usu_Password VARCHAR(255) NOT NULL,
 Usu_cantIntentosLoginFallidos SMALLINT DEFAULT 0,
+Usu_Es_Admin BIT DEFAULT 0,
 Usu_Habilitado BIT DEFAULT 1,
 PRIMARY KEY (Usu_Id)
 );
@@ -429,7 +430,7 @@ GO
 CREATE TABLE [DESCONOCIDOS4].FUNCIONALIDAD(
 Func_Id INT IDENTITY(1,1),
 Func_Descripcion VARCHAR(255),
-Func_Metodo VARCHAR(255) UNIQUE,
+Func_Metodo VARCHAR(255),
 PRIMARY KEY(Func_Id)
 );
 GO
@@ -936,8 +937,8 @@ GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_INSERTAR_ADMIN
 AS
 BEGIN TRANSACTION
-	  INSERT INTO [DESCONOCIDOS4].USUARIO(Usu_Nombre_Usuario,Usu_Password) 
-	  VALUES ('admin',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'w23e'),2))
+	  INSERT INTO [DESCONOCIDOS4].USUARIO(Usu_Nombre_Usuario,Usu_Password,Usu_Es_Admin) 
+	  VALUES ('admin',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'w23e'),2),1)
 COMMIT
 GO
 
@@ -1242,17 +1243,17 @@ BEGIN TRANSACTION
 
 	
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarClienteChofer', 'Alta Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarCliente', 'Alta Cliente')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarClienteChofer','Baja Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarCliente','Baja Cliente')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarClienteChofer','Modificar Cliente')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarCliente','Modificar Cliente')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarClienteChofer','Alta Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarChofer','Alta Chofer')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarClienteChofer','Baja Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('eliminarChofer','Baja Chofer')
 
-	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarClienteChofer','Modificar Chofer')
+	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('modificarChofer','Modificar Chofer')
 
 	INSERT INTO [DESCONOCIDOS4].FUNCIONALIDAD (Func_Metodo,Func_Descripcion) VALUES ('agregarAutomovil','Alta Automovil')
 
@@ -2635,6 +2636,7 @@ BEGIN
       SET NOCOUNT ON;
 	  DECLARE @Habilitado BIT
 	  DECLARE @No_Habilitado BIT
+	  DECLARE @Es_Admin BIT
       DECLARE @Usu_Id INT
 	  DECLARE @Usuario_No_Existe INT
       DECLARE @Usuario_No_Habilitado INT
@@ -2647,7 +2649,7 @@ BEGIN
 	  SELECT @Usuario_Clave_Incorrecta = -3
 	  SELECT @Habilitado = 1
 	  SELECT @No_Habilitado = 0
-      SELECT @Usu_Id = Usu_Id
+      SELECT @Usu_Id = Usu_Id, @Es_Admin = Usu_Es_Admin
 		FROM [DESCONOCIDOS4].Usuario WHERE Usu_Nombre_Usuario = @Usuario
 	  SELECT @NombreUsuario = Persona_Nombre, @ApellidoUsuario = Persona_Apellido, @PersonaId=P.Persona_Id
       FROM [DESCONOCIDOS4].Usuario U JOIN [DESCONOCIDOS4].PERSONA P ON U.Usu_Per_Id = P.Persona_Id WHERE U.Usu_Id = @Usu_Id 
@@ -2668,13 +2670,13 @@ BEGIN
 						-- Actualiza Intentos Fallidos de ingreso, en caso que sea necesario
 						UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=0 WHERE Usu_Id=@Usu_Id
 					END
-					SELECT @Usu_Id [UserId], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, isnull(@PersonaId,0) idPersona FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
+					SELECT @Usu_Id [UserId], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, isnull(@PersonaId,0) idPersona, @Es_Admin esAdmin FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
                               WHERE Rol_Habilitado=@Habilitado and UsuRol_Usu_Id=@Usu_Id
 				END
 				ELSE
 				BEGIN
 					-- Usuario Existe, Clave Correcta y No Habilitado
-					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
+					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona, @Es_Admin esAdmin
 				END
             END
             ELSE
@@ -2684,14 +2686,14 @@ BEGIN
 				UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=
 													([DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO(@Usu_Id)) + 1
 												WHERE Usu_Id=@Usu_Id
-				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
+				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona, @Es_Admin esAdmin
             END
 
       END
       ELSE
       BEGIN
 		-- Usuario NO EXISTE
-        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
+        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona, @Es_Admin esAdmin
       END
 END
 go

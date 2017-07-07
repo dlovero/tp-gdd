@@ -104,6 +104,8 @@ namespace UberFrba
             }
         }
 
+        
+
         private bool validarDatosDelFormulario()
         {
             return (Validaciones.validarCampoAlfanumerico(textoUsuario.Text) 
@@ -174,16 +176,17 @@ namespace UberFrba
             instance = this;
         }
 
-        public void configurarRol(int idRol, String nombreRol)
+        public void configurarRol(int idRol, String nombreRol, Boolean esAdmin)
         {
             //TODO:MEJORAR para que no dependa del harcodeo por string "ADMINISTRATIVO"
             //rol = soyRolAdministrador(nombreRol) ? (IFuncionalidadRoles)new RolAdministrador(idRol, this.datosUsuario.IdUsuario, nombreRol) : (IFuncionalidadRoles)new RolGenerico(idRol, this.datosUsuario.IdUsuario, nombreRol);
-            rol = new FuncionalidadSegunRol(idRol, this.datosUsuario.IdUsuario, nombreRol);
+            rol = new FuncionalidadSegunRol(idRol, this.datosUsuario.IdUsuario, nombreRol, esAdmin);
         }
 
         public bool soyRolAdministrador(string nombreRol)
         {
-            return nombreRol.ToUpper().Equals(VariablesGlobales.NOMBRE_ROL_ADMINISTRADOR);
+            //return nombreRol.ToUpper().Equals(VariablesGlobales.NOMBRE_ROL_ADMINISTRADOR);
+            return this.rol.soyAdministrador();
         }
 
         public int obtenerIdUsuario()
@@ -236,23 +239,23 @@ namespace UberFrba
 
     public interface IFuncionalidadRoles
     {
-       // Boolean soyAdministrador();
-        void agregarClienteChofer(String rol);
-        void eliminarClienteChofer(String rol);
-        void modificarClienteChofer(String rol);
-        void agregarAutomovil(String rol);
-        void eliminarAutomovil(String rol);
-        void modificarAutomovil(String rol);
-        void agregarTurno(String rol);
-        void eliminarTurno(String rol);
-        void modificarTurno(String rol);
-        void agregarRol(String rol);
-        void eliminarRol(String rol);
-        void modificarRol(String rol);
+        Boolean soyAdministrador();
+        //void agregarClienteChofer();
+        //void eliminarClienteChofer();
+        //void modificarClienteChofer();
+        void agregarAutomovil();
+        void eliminarAutomovil();
+        void modificarAutomovil();
+        void agregarTurno();
+        void eliminarTurno();
+        void modificarTurno();
+        void agregarRol();
+        void eliminarRol();
+        void modificarRol();
         void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
         void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
         void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
-        void registrarViaje();
+        //void registrarViaje();
         void rendicionAChofer();
         void facturarACliente();
 
@@ -262,14 +265,33 @@ namespace UberFrba
     //public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
     public class FuncionalidadSegunRol : IFuncionalidadRoles
     {
-        public FuncionalidadSegunRol(int idRol, int idUsuario, String nombreRol)
+        public FuncionalidadSegunRol(int idRol, int idUsuario, String nombreRol, Boolean esAdmin)
         {
             this.idRol = idRol;
+            this.soyAdmin = esAdmin;
             this.idTipoRol = obtenerIdTipoRol(idRol, idUsuario); ;
             this.nombreRol = nombreRol;
+            this.listaFuncionesHabilitadasSegunRol();
         }
 
 
+
+        private void listaFuncionesHabilitadasSegunRol()
+        {
+            GD1C2017DataSetTableAdapters.LISTAR_FUNC_X_ROL_HABITableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.LISTAR_FUNC_X_ROL_HABITableAdapter();
+            this.listaFuncionalidades.AddRange(adaptador.listaDeFunciones(this.IdRol).AsEnumerable().Select(
+                elemento => elemento.Field<String>("nombreFuncion")
+                ).ToList());
+        }
+
+        private Boolean soyAdmin;
+        public Boolean SoyAdmin
+        {
+            get { return soyAdmin; }
+            set { soyAdmin = value; }
+        }
+        public List<String> listaFuncionalidades = new List<string>();
         private int idRol;
         public int IdRol
         {
@@ -297,7 +319,11 @@ namespace UberFrba
                 .obtenerIdEnTablaClienteOChofer(idUsuario, IdRol);
         }
 
-        //public abstract Boolean soyAdministrador();
+        public Boolean soyAdministrador()
+        {
+            return this.SoyAdmin;
+        }
+
         //public abstract void agregarClienteChofer(String rol);
         //public abstract void agregarAutomovil(String rol);
         //public abstract void eliminarAutomovil(String rol);
@@ -316,12 +342,43 @@ namespace UberFrba
 
 
 
+        public void agregarCliente()
+        {
+            agregarClienteChofer("Cliente");
+        }
+
+        public void eliminarCliente()
+        {
+            eliminarClienteChofer("Cliente");
+        }
+
+        public void modificarCliente()
+        {
+            modificarClienteChofer("Cliente");
+        }
+
+        public void agregarChofer()
+        {
+            agregarClienteChofer("Chofer");
+        }
+
+        public void eliminarChofer()
+        {
+            eliminarClienteChofer("Chofer");
+        }
+
+        public void modificarChofer()
+        {
+            modificarClienteChofer("Chofer");
+        }
+
+
 
 
         public void ejecutarFuncion(string nombreMetodo)
         {
-            MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo, 
-                BindingFlags.NonPublic | BindingFlags.Instance);
+            MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
+                //,BindingFlags.NonPublic | BindingFlags.Instance);
             methodInfo.Invoke(this, new object[]{});
         }
 
@@ -332,19 +389,48 @@ namespace UberFrba
         /// </summary>
         /// <param name="rol"></param>
 
-        public void agregarClienteChofer(String rol)
+        public void facturarCliente()
         {
-            construirFormularioClienteChofer(new frmClienteChoferAgregar(), rol);
+            facturarACliente();
+        }
+        public void rendicionChofer()
+        {
+            rendicionAChofer();
         }
 
-        public void eliminarClienteChofer(String rol)
+        public void listados()
         {
-            construirFormularioClienteChofer(new frmClienteChoferEliminar(), rol);
+            (new frmListados()).construite();
         }
 
-        public void modificarClienteChofer(String rol)
+        public void eliminarTurno()
         {
-            construirFormularioClienteChofer(new frmClienteChoferModificar(), rol);
+            construirFormularioTurno(new frmTurnoEliminar());
+        }
+
+        public void modificarTurno()
+        {
+            construirFormularioTurno(new frmTurnoModificar());
+        }
+
+        public void agregarRol()
+        {
+            construirFormularioRol(new frmRolAgregar());
+        }
+
+        public void agregarClienteChofer(String cadena)
+        {
+            construirFormularioClienteChofer(new frmClienteChoferAgregar(), cadena);
+        }
+
+        public void eliminarClienteChofer(String cadena)
+        {
+            construirFormularioClienteChofer(new frmClienteChoferEliminar(), cadena);
+        }
+
+        public void modificarClienteChofer(String cadena)
+        {
+            construirFormularioClienteChofer(new frmClienteChoferModificar(), cadena);
         }
 
 
@@ -355,7 +441,7 @@ namespace UberFrba
 
 
 
-        public void agregarAutomovil(String rol)
+        public void agregarAutomovil()
         {
             construirFormularioAutomovil(new frmAutomovilAgregar());
         }
@@ -405,7 +491,7 @@ namespace UberFrba
         }
 
 
-        public void eliminarAutomovil(String rol)
+        public void eliminarAutomovil()
         {
             construirFormularioAutomovil(new frmAutomovilEliminar());
         }
@@ -418,7 +504,7 @@ namespace UberFrba
             }
         }
 
-        public void modificarAutomovil(String rol)
+        public void modificarAutomovil()
         {
             construirFormularioAutomovil(new frmAutomovilModificar());
         }
@@ -560,7 +646,7 @@ namespace UberFrba
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        public void agregarTurno(String rol)
+        public void agregarTurno()
         {
             construirFormularioTurno(new frmTurnoAgregar());
         }
@@ -573,20 +659,7 @@ namespace UberFrba
             }
         }
 
-        public void eliminarTurno(String rol)
-        {
-            construirFormularioTurno(new frmTurnoEliminar());
-        }
-
-        public void modificarTurno(String rol)
-        {
-            construirFormularioTurno(new frmTurnoModificar());
-        }
-
-        public void agregarRol(String rol)
-        {
-            construirFormularioRol(new frmRolAgregar());
-        }
+        
 
         private static void construirFormularioRol(frmRolAgregar frmRol)
         {
@@ -596,7 +669,7 @@ namespace UberFrba
             }
         }
 
-        public void eliminarRol(String rol)
+        public void eliminarRol()
         {
             construirFormularioRol(new frmRolEliminar());
         }
@@ -609,7 +682,7 @@ namespace UberFrba
             }
         }
 
-        public void modificarRol(String rol)
+        public void modificarRol()
         {
             construirFormularioRol(new frmRolModificar());
         }
@@ -622,7 +695,7 @@ namespace UberFrba
             }
         }
 
-        public void registrarViaje()
+        public void registroViajes()
         {
             frmRegistroViaje formularioRegistroViaje = new frmRegistroViaje();
             if (formularioRegistroViaje.construite())
@@ -782,13 +855,13 @@ namespace UberFrba
         public frmABM formulario { set; get; }
     }
     
-    public class RolAdministrador : FuncionalidadSegunRol
-    {
-        public RolAdministrador(int idRol, int idUsuario, String nombreRol)
-            : base(idRol, idUsuario, nombreRol)
-        { }
+    //public class RolAdministrador : FuncionalidadSegunRol
+    //{
+    //    public RolAdministrador(int idRol, int idUsuario, String nombreRol)
+    //        : base(idRol, idUsuario, nombreRol)
+    //    { }
 
-        public Boolean soyAdministrador() { return true; }
+    //    public Boolean soyAdministrador() { return true; }
         
         //public override void registrarViaje()
         //{
@@ -1085,19 +1158,19 @@ namespace UberFrba
         //        frmRol.Show();
         //    }
         //}
-    }
+    //}
 
-    public class RolGenerico : FuncionalidadSegunRol
-    {
-        public RolGenerico(int idRol, int idUsuario, String nombreRol)
-            : base(idRol, idUsuario, nombreRol)
-        { }
-        //public override Boolean soyAdministrador() { return false; }
+    //public class RolGenerico : FuncionalidadSegunRol
+    //{
+    //    public RolGenerico(int idRol, int idUsuario, String nombreRol)
+    //        : base(idRol, idUsuario, nombreRol)
+    //    { }
+    //    //public override Boolean soyAdministrador() { return false; }
 
-        protected override void mensajeAutoeliminacion(frmABM formulario)
-        {
-            formulario.mensajeAutoEliminacionYSalidaDeAplicacion();
-        }
+    //    protected override void mensajeAutoeliminacion(frmABM formulario)
+    //    {
+        //    formulario.mensajeAutoEliminacionYSalidaDeAplicacion();
+        //}
 
         //public override void agregarClienteChofer(String rol){ mensajeFuncionNoValidaParaElRol(rol); }
         //public override void agregarTurno(String rol) { mensajeFuncionNoValidaParaElRol(rol); }
@@ -1115,12 +1188,12 @@ namespace UberFrba
         //public override void rendicionAChofer()  { mensajeFuncionNoValidaParaElRol(""); }
         //public override void facturarACliente() { mensajeFuncionNoValidaParaElRol(""); }
         
-        private void mensajeFuncionNoValidaParaElRol(String rol)
-        {
-            MessageBox.Show("Un " + NombreRol + " no puede agregar un "+rol, "Funcion no permitida para un " + NombreRol,
-                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-    }
+    //    private void mensajeFuncionNoValidaParaElRol(String rol)
+    //    {
+    //        MessageBox.Show("Un " + NombreRol + " no puede agregar un "+rol, "Funcion no permitida para un " + NombreRol,
+    //            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+    //    }
+    //}
     public static class VariablesGlobales
     {
         public const string NOMBRE_ROL_ADMINISTRADOR = "ADMINISTRATIVO";
