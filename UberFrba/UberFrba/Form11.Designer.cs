@@ -35,7 +35,8 @@
             this.selectorAnio = new System.Windows.Forms.DateTimePicker();
             this.lblAnio = new System.Windows.Forms.Label();
             this.lblTrimestre = new System.Windows.Forms.Label();
-            this.selectorTrimestre = new System.Windows.Forms.DateTimePicker();
+            this.selectorTrimestre = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.selectorTrimestre)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAceptar
@@ -109,16 +110,25 @@
             // 
             // selectorTrimestre
             // 
-            this.selectorTrimestre.CustomFormat = "d";
-            this.selectorTrimestre.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.selectorTrimestre.Location = new System.Drawing.Point(133, 73);
-            this.selectorTrimestre.MaxDate = new System.DateTime(2003, 5, 4, 0, 0, 0, 0);
-            this.selectorTrimestre.MinDate = new System.DateTime(2003, 5, 1, 0, 0, 0, 0);
+            this.selectorTrimestre.Location = new System.Drawing.Point(139, 73);
+            this.selectorTrimestre.Maximum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            this.selectorTrimestre.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.selectorTrimestre.Name = "selectorTrimestre";
-            this.selectorTrimestre.ShowUpDown = true;
-            this.selectorTrimestre.Size = new System.Drawing.Size(57, 20);
-            this.selectorTrimestre.TabIndex = 69;
-            this.selectorTrimestre.Value = new System.DateTime(2003, 5, 4, 0, 0, 0, 0);
+            this.selectorTrimestre.Size = new System.Drawing.Size(43, 20);
+            this.selectorTrimestre.TabIndex = 71;
+            this.selectorTrimestre.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // frmListados
             // 
@@ -138,6 +148,7 @@
             this.MinimizeBox = false;
             this.Name = "frmListados";
             this.Text = "Listados";
+            ((System.ComponentModel.ISupportInitialize)(this.selectorTrimestre)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,6 +163,6 @@
         private System.Windows.Forms.DateTimePicker selectorAnio;
         private System.Windows.Forms.Label lblAnio;
         private System.Windows.Forms.Label lblTrimestre;
-        private System.Windows.Forms.DateTimePicker selectorTrimestre;
+        private System.Windows.Forms.NumericUpDown selectorTrimestre;
     }
 }

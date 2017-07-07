@@ -58,7 +58,7 @@ namespace UberFrba
                 new GD1C2017DataSetTableAdapters.CHOFERES_MAYOR_RECAUDACIONTableAdapter();
             DataTable tblListadoChoferesMayorRecaudacion = 
                 adaptador.listadoChoferesConMayorRecaudacion(
-                (int)(this.selectorTrimestre.Value.Day),
+                (int)(this.selectorTrimestre.Value),
                 (int)this.selectorAnio.Value.Year);
 
             construirFormularioGrilla(tblListadoChoferesMayorRecaudacion);
@@ -86,7 +86,7 @@ namespace UberFrba
                 new GD1C2017DataSetTableAdapters.CHOFERES_VIAJE_MAS_LARGOTableAdapter();
             DataTable tblListadoChoferesConViajeMasLargo =
                 adaptador.listadoChoferesViajeMasLargo(
-                (int)(this.selectorTrimestre.Value.Day),
+                (int)(this.selectorTrimestre.Value),
                 (int)this.selectorAnio.Value.Year);
 
             construirFormularioGrilla(tblListadoChoferesConViajeMasLargo);
@@ -98,7 +98,7 @@ namespace UberFrba
                 new GD1C2017DataSetTableAdapters.CLIENTES_MAYOR_CONSUMOTableAdapter();
             DataTable tblListadoChoferesConViajeMasLargo =
                 adaptador.listadoClientesConMayorConsumo(
-                (int)(this.selectorTrimestre.Value.Day),
+                (int)(this.selectorTrimestre.Value),
                 (int)this.selectorAnio.Value.Year);
 
             construirFormularioGrilla(tblListadoChoferesConViajeMasLargo);
@@ -110,7 +110,7 @@ namespace UberFrba
                 new GD1C2017DataSetTableAdapters.CLIENTES_MAS_VECES_MISMO_AUTOTableAdapter();
             DataTable tblListadoChoferesMayorRecaudacion =
                 adaptador.listadoClienteConMayorCantidadDeVecesUtilizoMismaUnidad(
-                (int)(this.selectorTrimestre.Value.Day),
+                (int)(this.selectorTrimestre.Value),
                 (int)this.selectorAnio.Value.Year);
 
             construirFormularioGrilla(tblListadoChoferesMayorRecaudacion);
