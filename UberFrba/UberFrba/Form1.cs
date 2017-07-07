@@ -1151,8 +1151,7 @@ namespace UberFrba
         public static Boolean validarPatente(String cadenaAValidar)
         {
             return evaluarCadenaConExpresion(cadenaAValidar,
-                @"^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}|[a-zA-Z]{3}[0-9]{3}$")
-                && !MetodosGlobales.existePatente(cadenaAValidar);
+                @"^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}|[a-zA-Z]{3}[0-9]{3}$");
         }
 
         public static Boolean validarCampoHorario(String cadenaAValidar)

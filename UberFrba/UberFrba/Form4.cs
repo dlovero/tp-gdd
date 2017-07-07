@@ -76,9 +76,9 @@ namespace UberFrba
         private Boolean validarDatosParaBusqueda()
         {
             return (Validaciones.validarCampoAlfabeticoPermiteVacio(txtBusquedaNombre.Text)
-                && Validaciones.validarCampoDNI(txtBusquedaDNI.Text))
                 && Validaciones.validarCampoAlfabeticoPermiteVacio(txtBusquedaApellido.Text)
-                && Validaciones.validarCampoTelefono(txtTelefono.Text);
+                && Validaciones.validarCampoNumerico(txtTelefono.Text)
+                && Validaciones.validarCampoNumerico(txtBusquedaDNI.Text));
         }
 
         public virtual void mensajeAutoEliminacionYSalidaDeAplicacion()
@@ -241,14 +241,19 @@ namespace UberFrba
             return 
             Validaciones.validarCampoAlfabeticoConEspacio(this.Controls["grupoDatosPersona"].Controls["txtNombre"].Text) &&
             Validaciones.validarCampoAlfabeticoConEspacio(this.Controls["grupoDatosPersona"].Controls["txtApellido"].Text) &&
-            Validaciones.validarCampoNumerico(this.Controls["grupoDatosPersona"].Controls["txtDNI"].Text) &&
             Validaciones.validarCorreoElectronico(this.Controls["grupoDatosPersona"].Controls["txtCorreo"].Text) &&
-            Validaciones.validarCampoNumerico(this.Controls["grupoDatosPersona"].Controls["txtTelefono"].Text) &&
             Validaciones.validarCampoAlfanumericoConEspacio(this.Controls["grupoDatosPersona"].Controls["txtLocalidad"].Text) &&
             Validaciones.validarCodigoPostal(this.Controls["grupoDatosPersona"].Controls["txtCodigoPostal"].Text) &&
             Validaciones.validarCampoAlfanumericoConEspacio(this.Controls["grupoDatosPersona"].Controls["txtCalle"].Text) &&
             Validaciones.validarCampoAlfanumerico(this.Controls["grupoDatosPersona"].Controls["txtDeptoLote"].Text) &&
-            Validaciones.validarCampoAlfanumerico(this.Controls["grupoDatosPersona"].Controls["txtPisoManzana"].Text);
+            Validaciones.validarCampoAlfanumerico(this.Controls["grupoDatosPersona"].Controls["txtPisoManzana"].Text) &&
+            validacionesSegunFuncion();
+        }
+
+        protected virtual Boolean validacionesSegunFuncion()
+        {
+            return Validaciones.validarCampoNumerico(this.txtTelefono.Text) &&
+                    Validaciones.validarCampoNumerico(this.txtDNI.Text);
         }
     }
 
@@ -272,6 +277,12 @@ namespace UberFrba
                 sender, e, this, "Agregar", rolParaAlta,
                 obtenerGrupoControlesDelFormulario("grupoDatosPersona")
             );
+        }
+
+        protected override Boolean validacionesSegunFuncion()
+        {
+            return Validaciones.validarCampoDNI(this.txtDNI.Text)
+                && Validaciones.validarCampoTelefono(this.txtTelefono.Text);
         }
 
         public override void mensajeAutoEliminacionYSalidaDeAplicacion()
@@ -303,7 +314,9 @@ namespace UberFrba
         {
             this.Controls["grupoDatosPersona"].Visible = true;
         }
+
     }
+
     public partial class frmClienteChoferEliminar : frmABM
     {
         public override Boolean construite(String rolParaAlta)

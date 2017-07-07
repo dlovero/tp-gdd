@@ -200,7 +200,13 @@ namespace UberFrba
         public virtual bool verificarDatosDeFormulario()
         {
             return
-            Validaciones.validarPatente(this.Controls["grupoDatosAutomovil"].Controls["txtPatente"].Text);
+            Validaciones.validarPatente(this.Controls["grupoDatosAutomovil"].Controls["txtPatente"].Text)
+            && validacionesAdicionales();
+        }
+
+        protected virtual bool validacionesAdicionales()
+        {
+            return true;
         }
 
         private void txtBusquedaPatente_KeyPress(object sender, KeyPressEventArgs e)
@@ -309,6 +315,11 @@ namespace UberFrba
             (this.Controls["grupoDatosAutomovil"]).Controls["btnAceptar"].Click += (sender, e) =>
                 SingletonDatosUsuario.Instance.rol.accionBotonAutomovil(sender, e, this, "Agregar", "Automovil",
                 obtenerGrupoControlesDeDatosDeAutomovil("grupoDatosAutomovil"));
+        }
+
+        protected virtual bool validacionesAdicionales()
+        {
+            return !MetodosGlobales.existePatente(this.txtPatente.Text);
         }
     }
 

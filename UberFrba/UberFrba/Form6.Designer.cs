@@ -349,7 +349,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblPatente;
-        private System.Windows.Forms.TextBox txtPatente;
+        protected System.Windows.Forms.TextBox txtPatente;
         private System.Windows.Forms.Label lblTurno;
         private System.Windows.Forms.ComboBox comboTurno;
         private System.Windows.Forms.ComboBox comboChofer;

@@ -428,7 +428,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmABM";
-            this.Text = "Form4";
             this.grupoBusquedaABM.ResumeLayout(false);
             this.grupoBusquedaABM.PerformLayout();
             this.grupoDatosPersona.ResumeLayout(false);
@@ -460,7 +459,7 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtCorreo;
-        private System.Windows.Forms.TextBox txtTelefono;
+        protected System.Windows.Forms.TextBox txtTelefono;
         private System.Windows.Forms.TextBox txtCalle;
         private System.Windows.Forms.TextBox txtLocalidad;
         private System.Windows.Forms.TextBox txtPisoManzana;
@@ -471,7 +470,7 @@
         private System.Windows.Forms.CheckBox ccHabilitado;
         private System.Windows.Forms.GroupBox grupoDatosPersona;
         private System.Windows.Forms.DateTimePicker selectorFechaNacimiento;
-        private System.Windows.Forms.TextBox txtDNI;
+        protected System.Windows.Forms.TextBox txtDNI;
         private System.Windows.Forms.TextBox txtCodigoPostal;
         private System.Windows.Forms.Label lblIdPersona;
 
