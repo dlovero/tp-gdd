@@ -98,8 +98,8 @@ namespace UberFrba
 
         protected List<FuncionalidadSegunRol> obtenerListaFuncionesAsociadas()
         {
-            GD1C2017DataSetTableAdapters.LISTAR_FUNC_X_ROL_HABITableAdapter adaptador =
-                new GD1C2017DataSetTableAdapters.LISTAR_FUNC_X_ROL_HABITableAdapter();
+            GD1C2017DataSetTableAdapters.LISTAR_FUNC_X_ROLTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.LISTAR_FUNC_X_ROLTableAdapter();
             return adaptador.listaDeFunciones(
                 Convert.ToInt32((this.comboRol.SelectedValue)))
                 .AsEnumerable().Select(

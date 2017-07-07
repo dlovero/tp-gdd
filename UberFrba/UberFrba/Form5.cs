@@ -70,30 +70,8 @@ namespace UberFrba
         private void frmResultadoBusquedaUsuarioABM_Load(object sender, EventArgs e)
         {
             this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
-            //this.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Width,
-              //  Screen.PrimaryScreen.Bounds.Height,
-                //(int)System.Windows.SystemParameters.PrimatyScreenHeight);
             this.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
-        //public void armarGrillaListadoChoferesMayorRecaudacion()
-        //{
-        //    GD1C2017DataSetTableAdapters.CHOFERES_MAYOR_RECAUDACIONTableAdapter adaptador
-        //    = new GD1C2017DataSetTableAdapters.CHOFERES_MAYOR_RECAUDACIONTableAdapter();
-        //    DataTable tblListadoChoferesConMayorRecaudacion = adaptador.listadoChoferesConMayorRecaudacion();
-        //    enlazarGrillaConDatos(tblListadoChoferesConMayorRecaudacion);
-        //}
-
-        //private void enlazarGrillaConDatos(DataTable tblListadoChoferesConMayorRecaudacion)
-        //{
-
-        //    this.grillaDatosResultadoBusqueda.DataSource = tblListadoChoferesConMayorRecaudacion;
-        //    this.grillaDatosResultadoBusqueda.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        //    this.grillaDatosResultadoBusqueda.AutoGenerateColumns = true;
-        //    //this.grillaDatosResultadoBusqueda.formularioABM = this;
-        //    this.grillaDatosResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar " + this.tipoUsuario;
-        //    this.grillaDatosResultadoBusqueda.Show();
-        //}
-
     }
 }
