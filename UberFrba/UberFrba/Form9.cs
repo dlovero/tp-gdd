@@ -69,18 +69,32 @@ namespace UberFrba
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
-                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            object resultado = adaptador.insertarRendicion(
-                (int)this.comboChofer.SelectedValue, this.selectorDiaRendicionAChofer.Value,
-                (int)this.comboTurno.SelectedValue
-                );
-            this.Close();
+            GD1C2017DataSetTableAdapters.FN_VIAJES_A_RENDIRTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.FN_VIAJES_A_RENDIRTableAdapter();
+            DataTable tblViajesARendir = adaptador.viajesARendir((int)this.comboChofer.SelectedValue,
+                Convert.ToString(this.selectorDiaRendicionAChofer.Value.ToShortDateString()),
+                (int)this.comboTurno.SelectedValue);
+            frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
+            DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
+            grillaBusquedaUsuarios.DataSource = tblViajesARendir;
+            grillaBusquedaUsuarios.ReadOnly = true;
+            grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grillaBusquedaUsuarios.AutoGenerateColumns = true;
+            formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Rendir Viajes";
+            formularioResultadoBusqueda.Controls["btnSeleccionar"].Click += (senders, es) => 
+                rendirViajes(sender, e, formularioResultadoBusqueda);
+            formularioResultadoBusqueda.Show();
         }
 
-        public virtual bool verificarDatosDeFormulario()
+        private void rendirViajes(object sender, EventArgs e, frmResultadoBusquedaUsuarioABM formulario)
         {
-            return true;
+            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
+               new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+            object resultado = adaptador.insertarRendicion(
+                (int)this.comboChofer.SelectedValue, this.selectorDiaRendicionAChofer.Value,
+            (int)this.comboTurno.SelectedValue
+            );
+            formulario.Close();
         }
     }
 }
