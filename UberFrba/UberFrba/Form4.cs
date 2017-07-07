@@ -76,8 +76,9 @@ namespace UberFrba
         private Boolean validarDatosParaBusqueda()
         {
             return (Validaciones.validarCampoAlfabeticoPermiteVacio(txtBusquedaNombre.Text)
-                && Validaciones.validarCampoNumericoConVacio(txtBusquedaDNI.Text))
-                && Validaciones.validarCampoAlfabeticoPermiteVacio(txtBusquedaApellido.Text);
+                && Validaciones.validarCampoDNI(txtBusquedaDNI.Text))
+                && Validaciones.validarCampoAlfabeticoPermiteVacio(txtBusquedaApellido.Text)
+                && Validaciones.validarCampoTelefono(txtTelefono.Text);
         }
 
         public virtual void mensajeAutoEliminacionYSalidaDeAplicacion()
