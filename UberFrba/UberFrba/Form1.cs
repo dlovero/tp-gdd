@@ -1015,6 +1015,13 @@ namespace UberFrba
         {
             return (new KeysConverter()).ConvertToString(caracter).Equals(",");
         }
+        
+        public static Boolean esDuplicadoDNI(string cadenaDNI)
+        {
+            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+            return (Boolean)adaptador.existeDNI(Convert.ToDecimal(cadenaDNI));
+        }
 
         public static class Mensajes
         {
@@ -1058,6 +1065,20 @@ namespace UberFrba
             }
         }
 
+
+        public static bool esDuplicadoTelefono(string cadenaTelefono)
+        {
+            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+            return (Boolean)adaptador.existeTelefono(Convert.ToDecimal(cadenaTelefono));
+        }
+
+        internal static bool existePatente(string cadenaAValidar)
+        {
+            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+            return (Boolean)adaptador.existePatente(cadenaAValidar);
+        }
     }
 
     public static class Validaciones
@@ -1129,7 +1150,9 @@ namespace UberFrba
 
         public static Boolean validarPatente(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}|[a-zA-Z]{3}[0-9]{3}$");
+            return evaluarCadenaConExpresion(cadenaAValidar,
+                @"^[a-zA-Z]{2}[0-9]{3}[a-zA-Z]{2}|[a-zA-Z]{3}[0-9]{3}$")
+                && !MetodosGlobales.existePatente(cadenaAValidar);
         }
 
         public static Boolean validarCampoHorario(String cadenaAValidar)
@@ -1147,6 +1170,18 @@ namespace UberFrba
         {
             Match match = Regex.Match(cadenaAValidar, expresionRegular);
             return match.Success;
+        }
+
+        public static Boolean validarCampoDNI(string cadenaDNI)
+        {
+            return validarCampoNumerico(cadenaDNI) &&
+                !MetodosGlobales.esDuplicadoDNI(cadenaDNI);
+        }
+
+        internal static bool validarCampoTelefono(string cadenaTelefono)
+        {
+            return validarCampoNumerico(cadenaTelefono) &&
+                !MetodosGlobales.esDuplicadoTelefono(cadenaTelefono);
         }
     }
 }

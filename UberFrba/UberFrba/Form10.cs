@@ -26,12 +26,31 @@ namespace UberFrba
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+
+            GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
+            DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
+                Convert.ToString(this.selectorFechaFacturacionHasta.Value.ToShortDateString()));
+            frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
+            DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
+            grillaBusquedaUsuarios.DataSource = tblViajesAFacturar;
+            grillaBusquedaUsuarios.ReadOnly = true;
+            grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grillaBusquedaUsuarios.AutoGenerateColumns = true;
+            formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Facturar Viajes";
+            formularioResultadoBusqueda.Controls["btnSeleccionar"].Click += (senders, es) =>
+                facturarViajes(sender, e, formularioResultadoBusqueda);
+            formularioResultadoBusqueda.Show();
+        }
+
+        private void facturarViajes(object sender, EventArgs e, frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda)
+        {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
-                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+               new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
             adaptador.insertarFactura(
                 (int)this.comboCliente.SelectedValue,
                 this.selectorFechaFacturacionHasta.Value);
-            this.Close();
+            formularioResultadoBusqueda.Close();
         }
 
         private Boolean construirComboCliente()
