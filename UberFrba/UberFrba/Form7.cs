@@ -15,6 +15,8 @@ namespace UberFrba
         public frmABMTurno()
         {
             InitializeComponent();
+            this.selectorHoraFin.Value = 23;
+            this.selectorHoraInicio.Value = 0;
         }
 
         public virtual Boolean construite()
@@ -49,8 +51,9 @@ namespace UberFrba
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtHoraInicio"]).Text = filaDeDatos.Row["Turno_Hora_Inicio"].ToString();
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtHoraFin"]).Text = filaDeDatos.Row["Turno_Hora_Fin"].ToString();
+
+            this.selectorHoraInicio.Value = Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Inicio"].ToString());
+            this.selectorHoraFin.Value = Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Fin"].ToString());
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtValorKilometro"]).Text = filaDeDatos.Row["Turno_Valor_Kilometro"].ToString();
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtPrecioBase"]).Text = filaDeDatos.Row["Turno_Precio_Base"].ToString();
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtDescripcion"]).Text = filaDeDatos.Row["Turno_Descripcion"].ToString();
@@ -88,14 +91,21 @@ namespace UberFrba
             this.Close();
         }
 
-        public virtual bool verificarDatosDeFormulario()
+        public virtual Boolean verificarDatosDeFormulario()
         {
             return
-            Validaciones.validarCampoHorario(this.Controls["grupoDatosTurno"].Controls["txtHoraInicio"].Text) &&
-            Validaciones.validarCampoHorario(this.Controls["grupoDatosTurno"].Controls["txtHoraFin"].Text) &&
-            Validaciones.validarCampoNumericoCon2Decimales(this.Controls["grupoDatosTurno"].Controls["txtValorKilometro"].Text) &&
-            Validaciones.validarCampoNumericoCon2Decimales(this.Controls["grupoDatosTurno"].Controls["txtPrecioBase"].Text) &&
-            Validaciones.validarCampoAlfanumericoConEspacio(this.Controls["grupoDatosTurno"].Controls["txtDescripcion"].Text);
+            Validaciones.validarCampoNumericoCon2Decimales(this.txtValorKilometro.Text) &&
+            Validaciones.validarCampoNumericoCon2Decimales(this.txtPrecioBase.Text) &&
+            Validaciones.validarCampoAlfanumericoConEspacio(this.txtDescripcion.Text) &&
+            validacionesSegunFuncion();
+        }
+
+        protected virtual Boolean validacionesSegunFuncion()
+        {
+            return Validaciones.validarCampoHorario(Convert.ToString(this.selectorHoraInicio.Value)) &&
+            Validaciones.validarCampoHorario(Convert.ToString(this.selectorHoraFin.Value)) &&
+            Validaciones.validarRangoHorario(Convert.ToInt16(this.selectorHoraInicio.Value),
+                Convert.ToInt16(this.selectorHoraFin.Value));
         }
 
         private void txtBusquedaDescripcion_KeyPress(object sender, KeyPressEventArgs e)
@@ -127,6 +137,17 @@ namespace UberFrba
         {
             MetodosGlobales.permitirSoloIngresoCon2Decimales(e);
         }
+
+        private void selectorHoraInicio_ValueChanged(object sender, EventArgs e)
+        {
+            
+            if(this.selectorHoraInicio.Value != 23)
+            {
+                this.selectorHoraFin.Minimum = this.selectorHoraInicio.Value + 1;
+            } else {
+                this.selectorHoraFin.Maximum = 0;
+            }
+        }
     }
 
     public partial class frmTurnoAgregar : frmABMTurno
@@ -147,6 +168,13 @@ namespace UberFrba
                 sender, e, this, "Agregar", "Turno",
                 obtenerGrupoControlesDelFormulario("grupoDatosTurno")
             );
+        }
+
+        protected override Boolean validacionesSegunFuncion()
+        {
+            return MetodosGlobales.validarExistenciaDeRango(
+                Convert.ToInt16(this.selectorHoraInicio.Value), 
+                Convert.ToInt16(this.selectorHoraFin.Value));
         }
     }
 

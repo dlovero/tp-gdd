@@ -1023,6 +1023,15 @@ namespace UberFrba
             return (Boolean)adaptador.existeDNI(Convert.ToDecimal(cadenaDNI));
         }
 
+        public static bool validarExistenciaDeRango(int horarioInicio, int horarioFin)
+        {
+            GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+            return (Boolean)adaptador.existeRangoHorarioEnTurno(
+                horarioInicio,
+                horarioFin);
+        }
+
         public static class Mensajes
         {
             public static String mensajeDatosNulos{
@@ -1177,10 +1186,18 @@ namespace UberFrba
                 !MetodosGlobales.esDuplicadoDNI(cadenaDNI);
         }
 
-        internal static bool validarCampoTelefono(string cadenaTelefono)
+        public static bool validarCampoTelefono(string cadenaTelefono)
         {
             return validarCampoNumerico(cadenaTelefono) &&
                 !MetodosGlobales.esDuplicadoTelefono(cadenaTelefono);
+        }
+
+
+
+        public static bool validarRangoHorario(int horaInicio, int horaFin)
+        {
+            return (horaInicio != 23) ? horaInicio < horaFin: 
+                horaFin==0;
         }
     }
 }

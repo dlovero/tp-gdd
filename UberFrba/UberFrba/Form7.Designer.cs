@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.grupoDatosTurno = new System.Windows.Forms.GroupBox();
+            this.selectorHoraFin = new System.Windows.Forms.NumericUpDown();
+            this.selectorHoraInicio = new System.Windows.Forms.NumericUpDown();
             this.lblIdTurno = new System.Windows.Forms.Label();
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
-            this.txtHoraInicio = new System.Windows.Forms.TextBox();
-            this.txtHoraFin = new System.Windows.Forms.TextBox();
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtPrecioBase = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -48,15 +48,17 @@
             this.lblBuscarDNI = new System.Windows.Forms.Label();
             this.txtBusquedaDescripcion = new System.Windows.Forms.TextBox();
             this.grupoDatosTurno.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectorHoraFin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectorHoraInicio)).BeginInit();
             this.grupoBusquedaTurno.SuspendLayout();
             this.SuspendLayout();
             // 
             // grupoDatosTurno
             // 
+            this.grupoDatosTurno.Controls.Add(this.selectorHoraFin);
+            this.grupoDatosTurno.Controls.Add(this.selectorHoraInicio);
             this.grupoDatosTurno.Controls.Add(this.lblIdTurno);
             this.grupoDatosTurno.Controls.Add(this.ccHabilitado);
-            this.grupoDatosTurno.Controls.Add(this.txtHoraInicio);
-            this.grupoDatosTurno.Controls.Add(this.txtHoraFin);
             this.grupoDatosTurno.Controls.Add(this.txtDescripcion);
             this.grupoDatosTurno.Controls.Add(this.txtPrecioBase);
             this.grupoDatosTurno.Controls.Add(this.btnCancelar);
@@ -72,6 +74,31 @@
             this.grupoDatosTurno.Size = new System.Drawing.Size(612, 140);
             this.grupoDatosTurno.TabIndex = 44;
             this.grupoDatosTurno.TabStop = false;
+            // 
+            // selectorHoraFin
+            // 
+            this.selectorHoraFin.Location = new System.Drawing.Point(133, 60);
+            this.selectorHoraFin.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.selectorHoraFin.Name = "selectorHoraFin";
+            this.selectorHoraFin.Size = new System.Drawing.Size(45, 20);
+            this.selectorHoraFin.TabIndex = 53;
+            // 
+            // selectorHoraInicio
+            // 
+            this.selectorHoraInicio.Location = new System.Drawing.Point(133, 29);
+            this.selectorHoraInicio.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.selectorHoraInicio.Name = "selectorHoraInicio";
+            this.selectorHoraInicio.Size = new System.Drawing.Size(45, 20);
+            this.selectorHoraInicio.TabIndex = 45;
+            this.selectorHoraInicio.ValueChanged += new System.EventHandler(this.selectorHoraInicio_ValueChanged);
             // 
             // lblIdTurno
             // 
@@ -91,22 +118,6 @@
             this.ccHabilitado.TabIndex = 51;
             this.ccHabilitado.Text = "Habilitado";
             this.ccHabilitado.UseVisualStyleBackColor = true;
-            // 
-            // txtHoraInicio
-            // 
-            this.txtHoraInicio.Location = new System.Drawing.Point(47, 19);
-            this.txtHoraInicio.Name = "txtHoraInicio";
-            this.txtHoraInicio.Size = new System.Drawing.Size(174, 20);
-            this.txtHoraInicio.TabIndex = 50;
-            this.txtHoraInicio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHoraInicio_KeyPress);
-            // 
-            // txtHoraFin
-            // 
-            this.txtHoraFin.Location = new System.Drawing.Point(47, 64);
-            this.txtHoraFin.Name = "txtHoraFin";
-            this.txtHoraFin.Size = new System.Drawing.Size(174, 20);
-            this.txtHoraFin.TabIndex = 49;
-            this.txtHoraFin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHoraFin_KeyPress);
             // 
             // txtDescripcion
             // 
@@ -181,7 +192,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(88, 49);
+            this.label3.Location = new System.Drawing.Point(18, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 13);
             this.label3.TabIndex = 34;
@@ -190,7 +201,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(99, 2);
+            this.label2.Location = new System.Drawing.Point(18, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 33;
@@ -249,6 +260,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.grupoDatosTurno.ResumeLayout(false);
             this.grupoDatosTurno.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.selectorHoraFin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectorHoraInicio)).EndInit();
             this.grupoBusquedaTurno.ResumeLayout(false);
             this.grupoBusquedaTurno.PerformLayout();
             this.ResumeLayout(false);
@@ -271,10 +284,10 @@
         private System.Windows.Forms.Label lblBuscarDNI;
         private System.Windows.Forms.TextBox txtBusquedaDescripcion;
         private System.Windows.Forms.CheckBox ccHabilitado;
-        private System.Windows.Forms.TextBox txtHoraInicio;
-        private System.Windows.Forms.TextBox txtHoraFin;
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtPrecioBase;
         private System.Windows.Forms.Label lblIdTurno;
+        protected System.Windows.Forms.NumericUpDown selectorHoraFin;
+        protected System.Windows.Forms.NumericUpDown selectorHoraInicio;
     }
 }
