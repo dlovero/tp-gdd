@@ -71,12 +71,6 @@ namespace UberFrba
             }
         }
 
-        //public void accionesComplementarias()
-        //{
-        //    this.Controls["txtAutomovil"].Text = Convert.ToString(((DataRowView)this.comboTurno.SelectedItem)["Auto_Detalle"]);
-        //    this.idAuto = Convert.ToString(((DataRowView)this.comboTurno.SelectedItem)["Auto_Id"]);
-        //}
-
         private void construirComboTurno()
         {
             GD1C2017DataSetTableAdapters.PRC_LISTADO_UNI_DISPONIBLE_X_CHOTableAdapter adaptador

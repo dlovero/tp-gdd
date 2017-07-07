@@ -182,6 +182,7 @@ Usu_Per_Id INT ,
 Usu_Nombre_Usuario VARCHAR (255) NOT NULL UNIQUE,
 Usu_Password VARCHAR(255) NOT NULL,
 Usu_cantIntentosLoginFallidos SMALLINT DEFAULT 0,
+Usu_Es_Admin BIT DEFAULT 0,
 Usu_Habilitado BIT DEFAULT 1,
 );
 GO
@@ -1102,8 +1103,8 @@ GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_INSERTAR_ADMIN
 AS
 BEGIN TRANSACTION
-	  INSERT INTO [DESCONOCIDOS4].USUARIO(Usu_Nombre_Usuario,Usu_Password) 
-	  VALUES ('admin',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'w23e'),2))
+	  INSERT INTO [DESCONOCIDOS4].USUARIO(Usu_Nombre_Usuario,Usu_Password,Usu_Es_Admin) 
+	  VALUES ('admin',CONVERT(VARCHAR(256),HashBytes('SHA2_256', 'w23e'),2),1)
 COMMIT
 GO
 
@@ -2806,6 +2807,7 @@ BEGIN
       DECLARE @Usuario_No_Habilitado INT
 	  DECLARE @Usuario_Clave_Incorrecta INT
 	  DECLARE @NombreUsuario VARCHAR(50)
+	  DECLARE @Es_Admin BIT
 	  DECLARE @ApellidoUsuario VARCHAR(50)
 	  DECLARE @PersonaId INT
 	  SELECT @Usuario_No_Habilitado = -2
@@ -2813,7 +2815,7 @@ BEGIN
 	  SELECT @Usuario_Clave_Incorrecta = -3
 	  SELECT @Habilitado = 1
 	  SELECT @No_Habilitado = 0
-      SELECT @Usu_Id = Usu_Id
+      SELECT @Usu_Id = Usu_Id, @Es_Admin = Usu_Es_Admin
 		FROM [DESCONOCIDOS4].Usuario WHERE Usu_Nombre_Usuario = @Usuario
 	  SELECT @NombreUsuario = Persona_Nombre, @ApellidoUsuario = Persona_Apellido, @PersonaId=P.Persona_Id
       FROM [DESCONOCIDOS4].Usuario U JOIN [DESCONOCIDOS4].PERSONA P ON U.Usu_Per_Id = P.Persona_Id WHERE U.Usu_Id = @Usu_Id 
@@ -2834,13 +2836,13 @@ BEGIN
 						-- Actualiza Intentos Fallidos de ingreso, en caso que sea necesario
 						UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=0 WHERE Usu_Id=@Usu_Id
 					END
-					SELECT @Usu_Id [UserId], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, isnull(@PersonaId,0) idPersona FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
+					SELECT @Usu_Id [UserId], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, isnull(@PersonaId,0) idPersona, @Es_Admin esAdmin FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
                               WHERE Rol_Habilitado=@Habilitado and UsuRol_Usu_Id=@Usu_Id
 				END
 				ELSE
 				BEGIN
 					-- Usuario Existe, Clave Correcta y No Habilitado
-					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
+					SELECT @Usuario_No_Habilitado [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona, @Es_Admin esAdmin
 				END
             END
             ELSE
@@ -2850,14 +2852,14 @@ BEGIN
 				UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=
 													([DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO(@Usu_Id)) + 1
 												WHERE Usu_Id=@Usu_Id
-				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
+				SELECT @Usuario_Clave_Incorrecta [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona, @Es_Admin esAdmin
             END
 
       END
       ELSE
       BEGIN
 		-- Usuario NO EXISTE
-        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona
+        SELECT @Usuario_No_Existe [UserId], -1 Rol_Id, '' Rol_Nombre, NULL Nombre, NULL Apellido,0 idPersona, @Es_Admin esAdmin
       END
 END
 go
@@ -3006,7 +3008,8 @@ AS
 BEGIN
 	SELECT
 	Func_Id [id],
-	Func_Descripcion [nombreFuncion]	
+	Func_Descripcion [nombreFuncion],
+	Func_Metodo [metodo]
 	FROM DESCONOCIDOS4.FUNCIONALIDAD
 END
 GO
@@ -3051,7 +3054,8 @@ AS
 BEGIN
 	SELECT
 	Func_Id [id],
-	Func_Descripcion [nombreFuncion]		
+	Func_Descripcion [nombreFuncion],
+	Func_Metodo [metodo]
 	FROM DESCONOCIDOS4.ROL LEFT JOIN DESCONOCIDOS4.FUNCIONALIDADXROL  ON Rol_Id=FuncRol_Rol_Id 
 	LEFT JOIN DESCONOCIDOS4.FUNCIONALIDAD ON FunRol_Func_Id = Func_Id
 	WHERE  Rol_Id= @ID_ROL
