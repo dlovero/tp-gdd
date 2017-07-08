@@ -2271,10 +2271,39 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_REGISTRO_VIAJE
 @Auto INT,
 @Turno INT,
 @Cant_KM NUMERIC(18,0),
-@Fecha_hora_ini DATETIME,
-@Fecha_hora_fin DATETIME
+@Fecha_hora_ini_base DATETIME,
+@Fecha_hora_fin_base DATETIME
 AS 
 BEGIN TRANSACTION 
+			DECLARE @Iaño INT
+			DECLARE @Imes INT
+			DECLARE @Idia INT
+			DECLARE @Ihora INT
+			DECLARE @Imin INT
+
+			DECLARE @Faño INT
+			DECLARE @Fmes INT
+			DECLARE @Fdia INT
+			DECLARE @Fhora INT
+			DECLARE @Fmin INT
+			DECLARE @Fecha_hora_ini DATETIME
+			DECLARE @Fecha_hora_fin DATETIME
+
+			SET @Iaño= DATEPART(YEAR,@Fecha_hora_ini_base)
+			SET @Imes= DATEPART(MONTH,@Fecha_hora_ini_base)
+			SET @Idia= DATEPART(DAY,@Fecha_hora_ini_base)
+			SET @Ihora= DATEPART(HOUR,@Fecha_hora_ini_base)
+			SET @Imin= DATEPART(MINUTE,@Fecha_hora_ini_base)
+			
+			SET @Faño= DATEPART(YEAR,@Fecha_hora_fin_base)
+			SET @Fmes= DATEPART(MONTH,@Fecha_hora_fin_base)
+			SET @Fdia= DATEPART(DAY,@Fecha_hora_fin_base)
+			SET @Fhora= DATEPART(HOUR,@Fecha_hora_fin_base)
+			SET @Fmin= DATEPART(MINUTE,@Fecha_hora_fin_base)
+
+			SET @Fecha_hora_ini= CAST(concat(@Iaño,'-',@Imes,'-',@Idia,' ',@Ihora,':',@Imin) as DATETIME)
+			SET @Fecha_hora_fin= CAST(concat(@Faño,'-',@Fmes,'-',@Fdia,' ',@Fhora,':',@Fmin) AS DATETIME)
+			
  INSERT INTO  [DESCONOCIDOS4].VIAJE (Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Precio_Base,Viaje_Valor_km,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin) 
   VALUES (
 		@Chof,
