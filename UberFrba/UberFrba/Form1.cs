@@ -1020,14 +1020,14 @@ namespace UberFrba
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            return (Boolean)adaptador.existeDNI(Convert.ToDecimal(cadenaDNI));
+            return (Boolean)adaptador.existeDNI(Convert.ToInt64(cadenaDNI));
         }
 
         public static bool validarExistenciaDeRango(int horarioInicio, int horarioFin)
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            return (Boolean)adaptador.existeRangoHorarioEnTurno(
+            return (Boolean)adaptador.rangoInterceptaAlgunoExistente(
                 horarioInicio,
                 horarioFin);
         }
@@ -1171,7 +1171,7 @@ namespace UberFrba
 
         public static Boolean validarCampoNumericoCon2Decimales(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"\d+(?:,\d{1,2}?");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"\d+(?:.\d{1,2})?");
         }
 
         private static bool evaluarCadenaConExpresion(String cadenaAValidar, String expresionRegular)
