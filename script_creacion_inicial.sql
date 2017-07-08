@@ -862,9 +862,9 @@ BEGIN
   DECLARE @RESUL CHAR(2)	
   DECLARE @CONT INT	
   SET @CONT=0
-  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Hora_Inicio>=@Hini AND @Hini<=Turno_Hora_Fin)>0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Habilitado=1 AND Turno_Hora_Inicio>=@Hini AND @Hini<=Turno_Hora_Fin)>0
   SET @CONT=@CONT+1
-  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Hora_Inicio>=@Hfin AND @Hfin<=Turno_Hora_Fin)>0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Habilitado=1 AND Turno_Hora_Inicio>=@Hfin AND @Hfin<=Turno_Hora_Fin)>0
   SET @CONT=@CONT+1
   IF @CONT=0
   SET @RESUL='SI'
