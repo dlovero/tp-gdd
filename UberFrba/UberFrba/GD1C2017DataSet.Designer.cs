@@ -19763,29 +19763,25 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[27])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id_ROL", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[28] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[28])).Connection = new global::System.Data.SqlClient.SqlConnection(global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString);
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[28])).CommandText = "DESCONOCIDOS4.FN_EXISTE_DNI";
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[28])).CommandType = global::System.Data.CommandType.StoredProcedure;
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[28])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.ReturnValue, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[28])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DNI", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[28])).CommandText = "SELECT DESCONOCIDOS4.FN_EXISTE_DNI(@codigo)";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[28])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[28])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@codigo", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[29] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[29])).Connection = new global::System.Data.SqlClient.SqlConnection(global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString);
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[29])).CommandText = "DESCONOCIDOS4.FN_EXISTE_TEL";
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[29])).CommandType = global::System.Data.CommandType.StoredProcedure;
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[29])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.ReturnValue, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[29])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TEL", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[29])).CommandText = "SELECT        DESCONOCIDOS4.FN_EXISTE_TEL(@Telefono)";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[29])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[29])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Telefono", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[30] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[30])).Connection = new global::System.Data.SqlClient.SqlConnection(global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString);
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[30])).CommandText = "DESCONOCIDOS4.FN_EXISTE_PANTENTE";
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[30])).CommandType = global::System.Data.CommandType.StoredProcedure;
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[30])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.ReturnValue, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[30])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PATENTE", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[30])).CommandText = "SELECT DESCONOCIDOS4.FN_EXISTE_PATENTE(@PATENTE)\r\n";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[30])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[30])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PATENTE", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[31] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Connection = new global::System.Data.SqlClient.SqlConnection(global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString);
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).CommandText = "DESCONOCIDOS4.FN_TURNO_RANGO_OK";
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).CommandType = global::System.Data.CommandType.StoredProcedure;
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Char, 2, global::System.Data.ParameterDirection.ReturnValue, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Hini", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Hfin", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).CommandText = "SELECT DESCONOCIDOS4.FN_TURNO_RANGO_OK(@RInicio, @RFin)";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RInicio", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RFin", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21343,14 +21339,9 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object existeDNI(global::System.Nullable<decimal> DNI) {
+        public virtual object existeDNI(decimal codigo) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[28]));
-            if ((DNI.HasValue == true)) {
-                command.Parameters[1].Value = ((decimal)(DNI.Value));
-            }
-            else {
-                command.Parameters[1].Value = global::System.DBNull.Value;
-            }
+            command.Parameters[0].Value = ((decimal)(codigo));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21377,14 +21368,9 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object existeTelefono(global::System.Nullable<decimal> TEL) {
+        public virtual global::System.Nullable<bool> existeTelefono(decimal Telefono) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[29]));
-            if ((TEL.HasValue == true)) {
-                command.Parameters[1].Value = ((decimal)(TEL.Value));
-            }
-            else {
-                command.Parameters[1].Value = global::System.DBNull.Value;
-            }
+            command.Parameters[0].Value = ((decimal)(Telefono));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -21401,10 +21387,10 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             }
             if (((returnValue == null) 
                         || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return null;
+                return new global::System.Nullable<bool>();
             }
             else {
-                return ((object)(returnValue));
+                return new global::System.Nullable<bool>(((bool)(returnValue)));
             }
         }
         
@@ -21414,10 +21400,10 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         public virtual object existePatente(string PATENTE) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[30]));
             if ((PATENTE == null)) {
-                command.Parameters[1].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("PATENTE");
             }
             else {
-                command.Parameters[1].Value = ((string)(PATENTE));
+                command.Parameters[0].Value = ((string)(PATENTE));
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -21445,20 +21431,10 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual object existeRangoHorarioEnTurno(global::System.Nullable<int> Hini, global::System.Nullable<int> Hfin) {
+        public virtual object rangoInterceptaAlgunoExistente(int RInicio, int RFin) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[31]));
-            if ((Hini.HasValue == true)) {
-                command.Parameters[1].Value = ((int)(Hini.Value));
-            }
-            else {
-                command.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((Hfin.HasValue == true)) {
-                command.Parameters[2].Value = ((int)(Hfin.Value));
-            }
-            else {
-                command.Parameters[2].Value = global::System.DBNull.Value;
-            }
+            command.Parameters[0].Value = ((int)(RInicio));
+            command.Parameters[1].Value = ((int)(RFin));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
