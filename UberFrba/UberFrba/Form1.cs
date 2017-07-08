@@ -1013,7 +1013,7 @@ namespace UberFrba
 
         private static bool esPuntoDecimalPermitido(char caracter)
         {
-            return (new KeysConverter()).ConvertToString(caracter).Equals(",");
+            return (new KeysConverter()).ConvertToString(caracter).Equals(".");
         }
         
         public static Boolean esDuplicadoDNI(string cadenaDNI)
