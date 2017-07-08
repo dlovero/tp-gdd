@@ -281,8 +281,23 @@ namespace UberFrba
 
         protected override Boolean validacionesSegunFuncion()
         {
-            return Validaciones.validarCampoDNI(this.txtDNI.Text)
-                && Validaciones.validarCampoTelefono(this.txtTelefono.Text);
+            Boolean resultado = false;
+            try
+            {
+                resultado = Validaciones.validarCampoDNI(this.txtDNI.Text)
+                    && Validaciones.validarCampoTelefono(this.txtTelefono.Text);
+            }
+            catch (DNIDuplicadoException e)
+            {
+                MessageBox.Show("El DNI no puede ser duplicado.", "Error DNI Duplicado",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (TelefonoDuplicadoException e)
+            {
+                MessageBox.Show("El telefono no puede ser duplicado.", "Error Telefono Duplicado",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return resultado;
         }
 
         public override void mensajeAutoEliminacionYSalidaDeAplicacion()

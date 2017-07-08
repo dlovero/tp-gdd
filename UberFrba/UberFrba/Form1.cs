@@ -565,32 +565,36 @@ namespace UberFrba
         {
             try
             {
-                adaptador.agregarCliente
-                            (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
-                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
+                String Usu_Nombre_Usuario = Convert.ToString(adaptador.agregarCliente
+                            (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text,
+                            c["txtApellido"].Text, c["txtCalle"].Text,
+                            Convert.ToInt16(c["txtPisoManzana"].Text),
+                            c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text,
+                            Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text,
+                            Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value)));
+                mensajeCreacionDeUsuario(Usu_Nombre_Usuario);
             }
             catch (SqlException e)
             {
                 mensajeErrorEnDB();
             }
-            mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
         }
 
         public void agregarChoferEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
         {
             try
             {
-                adaptador.agregarChofer
+                String Usu_Nombre_Usuario = 
+                Convert.ToString(adaptador.agregarChofer
                             (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
                             , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value));
+                            , Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value)));
+                mensajeCreacionDeUsuario(Usu_Nombre_Usuario);
             }
             catch (SqlException e)
             {
                 mensajeErrorEnDB();
             }
-            mensajeCreacionDeUsuario(c["txtNombre"].Text, c["txtApellido"].Text);
         }
 
         public void agregarTurnoEnBD(Control.ControlCollection c, GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador)
@@ -643,10 +647,10 @@ namespace UberFrba
             }
         }
 
-        public void mensajeCreacionDeUsuario(String nombre, String apellido)
+        public void mensajeCreacionDeUsuario(String nombreUsuario)
         {
             //FIXME: evitar overflow al utilizar substring, agregar consulta a db para traer el nuevo usuario y mostrarlo. Acciona como validacion
-            MessageBox.Show("Se ha creado el usuario \"" + apellido.Substring(0, 4) + nombre.Substring(0, 3) + "\" con clave \"Inicio2017\"", "Se ha creado Usuario",
+            MessageBox.Show("Se ha creado el usuario \"" + nombreUsuario + "\" con clave \"Inicio2017\"", "Se ha creado Usuario",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1020,16 +1024,25 @@ namespace UberFrba
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            return (Boolean)adaptador.existeDNI(Convert.ToInt64(cadenaDNI));
+            if ((Boolean)adaptador.existeDNI(Convert.ToInt64(cadenaDNI)))
+            {
+                throw new DNIDuplicadoException();
+            }
+            return true;
         }
 
         public static bool validarExistenciaDeRango(int horarioInicio, int horarioFin)
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            return (Boolean)adaptador.rangoInterceptaAlgunoExistente(
+            Boolean resultado = (Boolean)adaptador.rangoInterceptaAlgunoExistente(
                 horarioInicio,
                 horarioFin);
+            if (resultado)
+            {
+                throw new RangoHorarioDuplicadoException();
+            }
+            return resultado;
         }
 
         public static class Mensajes
@@ -1086,7 +1099,12 @@ namespace UberFrba
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            return (Boolean)adaptador.existePatente(cadenaAValidar);
+            Boolean resultado = (Boolean)adaptador.existePatente(cadenaAValidar);
+            if (resultado)
+            {
+                throw new PatenteDuplicadoException();
+            }
+            return resultado;
         }
     }
 
@@ -1182,22 +1200,70 @@ namespace UberFrba
 
         public static Boolean validarCampoDNI(string cadenaDNI)
         {
-            return validarCampoNumerico(cadenaDNI) &&
-                !MetodosGlobales.esDuplicadoDNI(cadenaDNI);
+            Boolean resultado;
+            if(validarCampoNumerico(cadenaDNI))
+            {
+                if(!MetodosGlobales.esDuplicadoDNI(cadenaDNI))
+                {
+                    resultado = true;
+                }
+                else{
+                    throw new DNIDuplicadoException();
+                }
+            }
+            else{
+                resultado = true;
+            }
+            return resultado;
         }
 
         public static bool validarCampoTelefono(string cadenaTelefono)
         {
-            return validarCampoNumerico(cadenaTelefono) &&
-                !MetodosGlobales.esDuplicadoTelefono(cadenaTelefono);
+            Boolean resultado;
+            if (validarCampoNumerico(cadenaTelefono))
+            {
+                if (!MetodosGlobales.esDuplicadoTelefono(cadenaTelefono))
+                {
+                    resultado = true;
+                }
+                else
+                {
+                    throw new DNIDuplicadoException();
+                }
+            }
+            else
+            {
+                resultado = true;
+            }
+            return resultado;
         }
-
-
 
         public static bool validarRangoHorario(int horaInicio, int horaFin)
         {
             return (horaInicio != 23) ? horaInicio < horaFin: 
                 horaFin==0;
         }
+    }
+    public class DNIDuplicadoException : Exception
+    {
+        public DNIDuplicadoException()
+            : base(){}
+    }
+
+    public class TelefonoDuplicadoException : Exception
+    {
+        public TelefonoDuplicadoException()
+            : base() { }
+    }
+
+    public class PatenteDuplicadoException : Exception
+    {
+        public PatenteDuplicadoException()
+            : base() { }
+    }
+    public class RangoHorarioDuplicadoException : Exception
+    {
+        public RangoHorarioDuplicadoException()
+            : base() { }
     }
 }

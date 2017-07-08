@@ -317,9 +317,19 @@ namespace UberFrba
                 obtenerGrupoControlesDeDatosDeAutomovil("grupoDatosAutomovil"));
         }
 
-        protected virtual bool validacionesAdicionales()
+        protected override bool validacionesAdicionales()
         {
-            return !MetodosGlobales.existePatente(this.txtPatente.Text);
+           Boolean resultado = false;
+            try
+            {
+                resultado = !MetodosGlobales.existePatente(this.txtPatente.Text);
+            }
+            catch (PatenteDuplicadoException e)
+            {
+                MessageBox.Show("La Patente no puede ser duplicado.", "Error Patente Duplicado",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return resultado;
         }
     }
 

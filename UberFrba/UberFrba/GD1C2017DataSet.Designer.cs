@@ -20135,7 +20135,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int agregarCliente(global::System.Nullable<decimal> DNI, string Nom, string Ape, string Dir_calle, global::System.Nullable<short> Dir_nro_piso, string Dir_depto, string localidad, string Cod_Pos, global::System.Nullable<decimal> Tel, string Mail, global::System.Nullable<global::System.DateTime> Fec_nac) {
+        public virtual object agregarCliente(global::System.Nullable<decimal> DNI, string Nom, string Ape, string Dir_calle, global::System.Nullable<short> Dir_nro_piso, string Dir_depto, string localidad, string Cod_Pos, global::System.Nullable<decimal> Tel, string Mail, global::System.Nullable<global::System.DateTime> Fec_nac) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[6]));
             if ((DNI.HasValue == true)) {
                 command.Parameters[1].Value = ((decimal)(DNI.Value));
@@ -20208,16 +20208,22 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

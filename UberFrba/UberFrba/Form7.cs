@@ -172,9 +172,18 @@ namespace UberFrba
 
         protected override Boolean validacionesSegunFuncion()
         {
-            return MetodosGlobales.validarExistenciaDeRango(
-                Convert.ToInt16(this.selectorHoraInicio.Value), 
+            Boolean resultado = false;
+            try
+            {
+                resultado = MetodosGlobales.validarExistenciaDeRango(
+                Convert.ToInt16(this.selectorHoraInicio.Value),
                 Convert.ToInt16(this.selectorHoraFin.Value));
+            } catch (TelefonoDuplicadoException e)
+            {
+                MessageBox.Show("El Rango tiene coincidencias con los existentes.", "Error Rango",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return resultado;
         }
     }
 
@@ -211,8 +220,8 @@ namespace UberFrba
 
         private void inhabilitarControles()
         {
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtHoraInicio"]).ReadOnly=true;
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtHoraFin"]).ReadOnly = true;
+            ((NumericUpDown)(this.selectorHoraInicio)).ReadOnly = true;
+            ((NumericUpDown)(this.selectorHoraFin)).ReadOnly = true;
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtValorKilometro"]).ReadOnly = true;
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtPrecioBase"]).ReadOnly = true;
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtDescripcion"]).ReadOnly = true;
