@@ -53,6 +53,7 @@ namespace UberFrba
         {
 
             this.selectorHoraInicio.Value = Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Inicio"].ToString());
+            //this.selectorHoraFin.Value = convertirHorarioFinDia(Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Fin"].ToString()));
             this.selectorHoraFin.Value = Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Fin"].ToString());
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtValorKilometro"]).Text = filaDeDatos.Row["Turno_Valor_Kilometro"].ToString();
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtPrecioBase"]).Text = filaDeDatos.Row["Turno_Precio_Base"].ToString();
@@ -61,6 +62,11 @@ namespace UberFrba
             ((CheckBox)(this.Controls["grupoDatosTurno"]).Controls["ccHabilitado"]).Checked = (Boolean)filaDeDatos.Row["Turno_Habilitado"];
             accionesAdicionales();
         }
+
+        //protected virtual decimal convertirHorarioFinDia(short numero)
+        //{
+        //    return numero;
+        //}
 
         public virtual void construirBotonAccion()
         {
@@ -244,6 +250,7 @@ namespace UberFrba
         {
             this.Text = "Modificar Turno";
             this.Controls["grupoDatosTurno"].Visible = false;
+            this.selectorHoraFin.Maximum = 24;
             construirBotonAccion();
             return true;
         }
@@ -271,5 +278,10 @@ namespace UberFrba
             return adaptador.obtenerListadoTurnosCompleto(
                 this.Controls["grupoBusquedaTurno"].Controls["txtBusquedaDescripcion"].Text);
         }
+
+        //protected override decimal convertirHorarioFinDia(short numero)
+        //{
+        //    return (numero == 24) ? 0 :numero;
+        //}
     }
 }
