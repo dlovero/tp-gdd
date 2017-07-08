@@ -193,6 +193,7 @@ namespace UberFrba
         {
             this.Text = "Eliminar Turno";
             this.Controls["grupoDatosTurno"].Visible = false;
+            this.selectorHoraFin.Maximum = 24;
             construirBotonAccion();
             return true;
         }
