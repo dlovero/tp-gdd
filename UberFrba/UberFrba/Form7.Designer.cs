@@ -79,13 +79,24 @@
             // 
             this.selectorHoraFin.Location = new System.Drawing.Point(133, 60);
             this.selectorHoraFin.Maximum = new decimal(new int[] {
-            23,
+            24,
+            0,
+            0,
+            0});
+            this.selectorHoraFin.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.selectorHoraFin.Name = "selectorHoraFin";
             this.selectorHoraFin.Size = new System.Drawing.Size(45, 20);
             this.selectorHoraFin.TabIndex = 53;
+            this.selectorHoraFin.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.selectorHoraFin.ValueChanged += new System.EventHandler(this.selectorHoraFin_ValueChanged);
             // 
             // selectorHoraInicio
             // 

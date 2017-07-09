@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -97,15 +98,26 @@ namespace UberFrba
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            GD1C2017DataSetTableAdapters.PRC_REGISTRO_VIAJETableAdapter adaptador = 
-                new GD1C2017DataSetTableAdapters.PRC_REGISTRO_VIAJETableAdapter();
-            DataTable tblTurnosDisponibles = adaptador.registrarViaje(
-                (int)this.comboChofer.SelectedValue, (int)this.comboCliente.SelectedValue,
-                    Convert.ToInt32(this.idAuto), (int)this.comboTurno.SelectedValue,
-                    Convert.ToDecimal(this.txtCantidadKilometros.Text), this.selectorDiaHoraInicio.Value,
-                    this.selectorDiaHoraInicio.Value
-                );
-            this.Close();
+            try
+            {
+                GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
+                    new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
+                adaptador.registrarViaje(
+                    (int)this.comboChofer.SelectedValue, (int)this.comboCliente.SelectedValue,
+                        Convert.ToInt32(this.idAuto), (int)this.comboTurno.SelectedValue,
+                        Convert.ToDecimal(this.txtCantidadKilometros.Text), (DateTime)this.selectorDiaHoraInicio.Value,
+                        (DateTime)this.selectorDiaHoraFin.Value
+                    );
+                this.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error en la creacion del viaje. Probablemente este duplicado."
+                        , "Error Creacion de viaje"
+                        , MessageBoxButtons.OK
+                        , MessageBoxIcon.Error);
+            }
+
         }
 
         public virtual bool verificarDatosDeFormulario()

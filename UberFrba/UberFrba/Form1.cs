@@ -69,7 +69,6 @@ namespace UberFrba
                         = new GD1C2017DataSetTableAdapters.PRC_VALIDAR_USUARIOTableAdapter();
                 DataTable tblUsuarioYRoles = adaptador.validarUsuario(textoUsuario.Text, sha256(textoClave.Text));
                 List<Tuple<String, String>> roles = new List<Tuple<string, string>>();
-
                 
                 int codigoUsuario = tblUsuarioYRoles.Rows[0].Field<int>("UserId");
                 String nombreUsuario = tblUsuarioYRoles.Rows[0].Field<String>("Nombre");
@@ -162,7 +161,7 @@ namespace UberFrba
         }
         private static SingletonDatosUsuario instance;
         private DatosUsuario datosUsuario;
-        public IFuncionalidadRoles rol {set; get;}
+        public FuncionalidadSegunRol rol { set; get; }
 
         public SingletonDatosUsuario() { }
         public SingletonDatosUsuario(int id, String nombreUsuario, String nombre, String apellido, int idPersona)
@@ -234,33 +233,28 @@ namespace UberFrba
         }
     }
 
-    public interface IFuncionalidadRoles
-    {
-        Boolean soyAdministrador();
-        //void agregarClienteChofer();
-        //void eliminarClienteChofer();
-        //void modificarClienteChofer();
-        void agregarAutomovil();
-        void eliminarAutomovil();
-        void modificarAutomovil();
-        void agregarTurno();
-        void eliminarTurno();
-        void modificarTurno();
-        void agregarRol();
-        void eliminarRol();
-        void modificarRol();
-        void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
-        void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
-        void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
-        //void registrarViaje();
-        void rendicionAChofer();
-        void facturarACliente();
+    //public interface IFuncionalidadRoles
+    //{
+    //    Boolean soyAdministrador();
+    //    void agregarAutomovil();
+    //    void eliminarAutomovil();
+    //    void modificarAutomovil();
+    //    void agregarTurno();
+    //    void eliminarTurno();
+    //    void modificarTurno();
+    //    void agregarRol();
+    //    void eliminarRol();
+    //    void modificarRol();
+    //    void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
+    //    void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
+    //    void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
+    //    void rendicionAChofer();
+    //    void facturarACliente();
 
-        void ejecutarFuncion(string nombreMetodo);
-    }
+    //    void ejecutarFuncion(string nombreMetodo);
+    //}
 
-    //public abstract class FuncionalidadSegunRol : IFuncionalidadRoles
-    public class FuncionalidadSegunRol : IFuncionalidadRoles
+    public class FuncionalidadSegunRol //: IFuncionalidadRoles
     {
         public FuncionalidadSegunRol(int idRol, int idUsuario, String nombreRol, Boolean esAdmin)
         {
@@ -597,8 +591,8 @@ namespace UberFrba
             {
                 adaptador.modificarTurno
                             (Convert.ToInt32(c["lblIdTurno"].Text),
-                            Convert.ToInt16(c["txtHoraInicio"].Text),
-                            Convert.ToInt16(c["txtHoraFin"].Text),
+                            Convert.ToInt16(((NumericUpDown)c["selectorHoraInicio"]).Value),
+                            Convert.ToInt16(((NumericUpDown)c["selectorHoraFin"])   .Value),
                             c["txtDescripcion"].Text,
                             Convert.ToDecimal(c["txtValorKilometro"].Text),
                             Convert.ToDecimal(c["txtPrecioBase"].Text),
