@@ -2296,8 +2296,8 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_REGISTRO_VIAJE
 @Auto INT,
 @Turno INT,
 @Cant_KM NUMERIC(18,0),
-@Fecha_hora_ini_base DATETIME,
-@Fecha_hora_fin_base DATETIME
+@Fecha_hora_ini DATETIME,
+@Fecha_hora_fin DATETIME
 AS 
 BEGIN TRANSACTION 
 			DECLARE @Iaño INT
@@ -2311,23 +2311,23 @@ BEGIN TRANSACTION
 			DECLARE @Fdia INT
 			DECLARE @Fhora INT
 			DECLARE @Fmin INT
-			DECLARE @Fecha_hora_ini DATETIME
-			DECLARE @Fecha_hora_fin DATETIME
+			DECLARE @Fecha_hora_ini_corr DATETIME
+			DECLARE @Fecha_hora_fin_corr DATETIME
 
-			SET @Iaño= DATEPART(YEAR,@Fecha_hora_ini_base)
-			SET @Imes= DATEPART(MONTH,@Fecha_hora_ini_base)
-			SET @Idia= DATEPART(DAY,@Fecha_hora_ini_base)
-			SET @Ihora= DATEPART(HOUR,@Fecha_hora_ini_base)
-			SET @Imin= DATEPART(MINUTE,@Fecha_hora_ini_base)
+			SET @Iaño= DATEPART(YEAR,@Fecha_hora_ini)
+			SET @Imes= DATEPART(MONTH,@Fecha_hora_ini)
+			SET @Idia= DATEPART(DAY,@Fecha_hora_ini)
+			SET @Ihora= DATEPART(HOUR,@Fecha_hora_ini)
+			SET @Imin= DATEPART(MINUTE,@Fecha_hora_ini)
 			
-			SET @Faño= DATEPART(YEAR,@Fecha_hora_fin_base)
-			SET @Fmes= DATEPART(MONTH,@Fecha_hora_fin_base)
-			SET @Fdia= DATEPART(DAY,@Fecha_hora_fin_base)
-			SET @Fhora= DATEPART(HOUR,@Fecha_hora_fin_base)
-			SET @Fmin= DATEPART(MINUTE,@Fecha_hora_fin_base)
+			SET @Faño= DATEPART(YEAR,@Fecha_hora_fin)
+			SET @Fmes= DATEPART(MONTH,@Fecha_hora_fin)
+			SET @Fdia= DATEPART(DAY,@Fecha_hora_fin)
+			SET @Fhora= DATEPART(HOUR,@Fecha_hora_fin)
+			SET @Fmin= DATEPART(MINUTE,@Fecha_hora_fin)
 
-			SET @Fecha_hora_ini= CAST(concat(@Iaño,'-',@Imes,'-',@Idia,' ',@Ihora,':',@Imin) as DATETIME)
-			SET @Fecha_hora_fin= CAST(concat(@Faño,'-',@Fmes,'-',@Fdia,' ',@Fhora,':',@Fmin) AS DATETIME)
+			SET @Fecha_hora_ini_corr= CAST(concat(@Iaño,'-',@Imes,'-',@Idia,' ',@Ihora,':',@Imin) as DATETIME)
+			SET @Fecha_hora_fin_corr= CAST(concat(@Faño,'-',@Fmes,'-',@Fdia,' ',@Fhora,':',@Fmin) AS DATETIME)
 			
  INSERT INTO  [DESCONOCIDOS4].VIAJE (Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Precio_Base,Viaje_Valor_km,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin) 
   VALUES (
@@ -2339,8 +2339,8 @@ BEGIN TRANSACTION
 		(SELECT Turno_Valor_Kilometro FROM [DESCONOCIDOS4].TURNO WHERE Turno_Id=@Turno),
 		[DESCONOCIDOS4].FN_CALCULA_PRECIO_VIAJE(@Turno,@Cant_KM),
 		@Cant_KM,
-		@Fecha_hora_ini,
-		@Fecha_hora_fin 
+		@Fecha_hora_ini_corr,
+		@Fecha_hora_fin_corr 
 		)
  COMMIT;
  GO
@@ -3609,16 +3609,18 @@ CREATE PROCEDURE [DESCONOCIDOS4].CHOFERES_VIAJE_MAS_LARGO
 AS	
 BEGIN
 		SELECT
-		TOP 5
-			DESCONOCIDOS4.VIAJE.Viaje_Chofer			AS [Chofer],
-			DESCONOCIDOS4.VIAJE.Viaje_Nro				AS [Nro Viaje],
-			DESCONOCIDOS4.VIAJE.Viaje_Cantidad_Km		AS [Km Recorridos]
-		FROM DESCONOCIDOS4.VIAJE
-		WHERE DATEPART(QUARTER,DESCONOCIDOS4.VIAJE.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(DESCONOCIDOS4.VIAJE.Viaje_Fecha_Hora_Inicio) = @AÑO
-		ORDER BY DESCONOCIDOS4.VIAJE.Viaje_Cantidad_Km DESC
+		DISTINCT
+		TOP 5 
+			V1.Viaje_Chofer			AS [Chofer],
+			(SELECT TOP 1 Viaje_Nro FROM DESCONOCIDOS4.VIAJE V2 WHERE DATEPART(QUARTER,V2.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(V2.Viaje_Fecha_Hora_Inicio) = @AÑO AND V2.Viaje_Chofer=V1.Viaje_Chofer ORDER BY V2.Viaje_Cantidad_Km DESC )		AS [Nro Viaje],
+			MAX(V1.Viaje_Cantidad_Km)		AS [Km Recorridos]
+		FROM DESCONOCIDOS4.VIAJE V1
+		WHERE DATEPART(QUARTER,V1.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(V1.Viaje_Fecha_Hora_Inicio) = @AÑO
+		GROUP BY V1.Viaje_Chofer
+		ORDER BY MAX(V1.Viaje_Cantidad_Km) DESC
 END
-
 GO
+
 
 /* FIN TOP 5 Choferes con el viaje más largo realizado*/
 
