@@ -2296,8 +2296,8 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_REGISTRO_VIAJE
 @Auto INT,
 @Turno INT,
 @Cant_KM NUMERIC(18,0),
-@Fecha_hora_ini_base DATETIME,
-@Fecha_hora_fin_base DATETIME
+@Fecha_hora_ini DATETIME,
+@Fecha_hora_fin DATETIME
 AS 
 BEGIN TRANSACTION 
 			DECLARE @Iaño INT
@@ -2311,23 +2311,23 @@ BEGIN TRANSACTION
 			DECLARE @Fdia INT
 			DECLARE @Fhora INT
 			DECLARE @Fmin INT
-			DECLARE @Fecha_hora_ini DATETIME
-			DECLARE @Fecha_hora_fin DATETIME
+			DECLARE @Fecha_hora_ini_corr DATETIME
+			DECLARE @Fecha_hora_fin_corr DATETIME
 
-			SET @Iaño= DATEPART(YEAR,@Fecha_hora_ini_base)
-			SET @Imes= DATEPART(MONTH,@Fecha_hora_ini_base)
-			SET @Idia= DATEPART(DAY,@Fecha_hora_ini_base)
-			SET @Ihora= DATEPART(HOUR,@Fecha_hora_ini_base)
-			SET @Imin= DATEPART(MINUTE,@Fecha_hora_ini_base)
+			SET @Iaño= DATEPART(YEAR,@Fecha_hora_ini)
+			SET @Imes= DATEPART(MONTH,@Fecha_hora_ini)
+			SET @Idia= DATEPART(DAY,@Fecha_hora_ini)
+			SET @Ihora= DATEPART(HOUR,@Fecha_hora_ini)
+			SET @Imin= DATEPART(MINUTE,@Fecha_hora_ini)
 			
-			SET @Faño= DATEPART(YEAR,@Fecha_hora_fin_base)
-			SET @Fmes= DATEPART(MONTH,@Fecha_hora_fin_base)
-			SET @Fdia= DATEPART(DAY,@Fecha_hora_fin_base)
-			SET @Fhora= DATEPART(HOUR,@Fecha_hora_fin_base)
-			SET @Fmin= DATEPART(MINUTE,@Fecha_hora_fin_base)
+			SET @Faño= DATEPART(YEAR,@Fecha_hora_fin)
+			SET @Fmes= DATEPART(MONTH,@Fecha_hora_fin)
+			SET @Fdia= DATEPART(DAY,@Fecha_hora_fin)
+			SET @Fhora= DATEPART(HOUR,@Fecha_hora_fin)
+			SET @Fmin= DATEPART(MINUTE,@Fecha_hora_fin)
 
-			SET @Fecha_hora_ini= CAST(concat(@Iaño,'-',@Imes,'-',@Idia,' ',@Ihora,':',@Imin) as DATETIME)
-			SET @Fecha_hora_fin= CAST(concat(@Faño,'-',@Fmes,'-',@Fdia,' ',@Fhora,':',@Fmin) AS DATETIME)
+			SET @Fecha_hora_ini_corr= CAST(concat(@Iaño,'-',@Imes,'-',@Idia,' ',@Ihora,':',@Imin) as DATETIME)
+			SET @Fecha_hora_fin_corr= CAST(concat(@Faño,'-',@Fmes,'-',@Fdia,' ',@Fhora,':',@Fmin) AS DATETIME)
 			
  INSERT INTO  [DESCONOCIDOS4].VIAJE (Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Precio_Base,Viaje_Valor_km,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin) 
   VALUES (
@@ -2339,8 +2339,8 @@ BEGIN TRANSACTION
 		(SELECT Turno_Valor_Kilometro FROM [DESCONOCIDOS4].TURNO WHERE Turno_Id=@Turno),
 		[DESCONOCIDOS4].FN_CALCULA_PRECIO_VIAJE(@Turno,@Cant_KM),
 		@Cant_KM,
-		@Fecha_hora_ini,
-		@Fecha_hora_fin 
+		@Fecha_hora_ini_corr,
+		@Fecha_hora_fin_corr 
 		)
  COMMIT;
  GO
