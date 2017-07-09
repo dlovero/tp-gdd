@@ -3609,16 +3609,18 @@ CREATE PROCEDURE [DESCONOCIDOS4].CHOFERES_VIAJE_MAS_LARGO
 AS	
 BEGIN
 		SELECT
-		TOP 5
-			DESCONOCIDOS4.VIAJE.Viaje_Chofer			AS [Chofer],
-			DESCONOCIDOS4.VIAJE.Viaje_Nro				AS [Nro Viaje],
-			DESCONOCIDOS4.VIAJE.Viaje_Cantidad_Km		AS [Km Recorridos]
-		FROM DESCONOCIDOS4.VIAJE
-		WHERE DATEPART(QUARTER,DESCONOCIDOS4.VIAJE.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(DESCONOCIDOS4.VIAJE.Viaje_Fecha_Hora_Inicio) = @AÑO
-		ORDER BY DESCONOCIDOS4.VIAJE.Viaje_Cantidad_Km DESC
+		DISTINCT
+		TOP 5 
+			V1.Viaje_Chofer			AS [Chofer],
+			(SELECT TOP 1 Viaje_Nro FROM DESCONOCIDOS4.VIAJE V2 WHERE DATEPART(QUARTER,V2.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(V2.Viaje_Fecha_Hora_Inicio) = @AÑO AND V2.Viaje_Chofer=V1.Viaje_Chofer ORDER BY V2.Viaje_Cantidad_Km DESC )		AS [Nro Viaje],
+			MAX(V1.Viaje_Cantidad_Km)		AS [Km Recorridos]
+		FROM DESCONOCIDOS4.VIAJE V1
+		WHERE DATEPART(QUARTER,V1.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(V1.Viaje_Fecha_Hora_Inicio) = @AÑO
+		GROUP BY V1.Viaje_Chofer
+		ORDER BY MAX(V1.Viaje_Cantidad_Km) DESC
 END
-
 GO
+
 
 /* FIN TOP 5 Choferes con el viaje más largo realizado*/
 
