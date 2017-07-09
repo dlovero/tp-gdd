@@ -321,24 +321,6 @@ namespace UberFrba
             return this.SoyAdmin;
         }
 
-        //public abstract void agregarClienteChofer(String rol);
-        //public abstract void agregarAutomovil(String rol);
-        //public abstract void eliminarAutomovil(String rol);
-        //public abstract void modificarAutomovil(String rol);
-        //public abstract void agregarTurno(String rol);
-        //public abstract void eliminarTurno(String rol);
-        //public abstract void modificarTurno(String rol);
-        //public abstract void agregarRol(String rol);
-        //public abstract void eliminarRol(String rol);
-        //public abstract void modificarRol(String rol);
-        //public abstract void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
-        //public abstract void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
-        //public abstract void registrarViaje();
-        //public abstract void rendicionAChofer();
-        //public abstract void facturarACliente();
-
-
-
         public void agregarCliente()
         {
             agregarClienteChofer("Cliente");
@@ -369,15 +351,11 @@ namespace UberFrba
             modificarClienteChofer("Chofer");
         }
 
-
-
-
         public void ejecutarFuncion(string nombreMetodo)
         {
             if (this.listaFuncionalidades.Contains(nombreMetodo))
             {
                 MethodInfo methodInfo = this.GetType().GetMethod(nombreMetodo);
-                //,BindingFlags.NonPublic | BindingFlags.Instance);
                 methodInfo.Invoke(this, new object[] { });
             }
             else
@@ -385,13 +363,6 @@ namespace UberFrba
                 mensajeFuncionNoValidaParaElRol(this.NombreRol);
             }
         }
-
-
-
-        /// <summary>
-        /// /////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="rol"></param>
 
         public void facturarCliente()
         {
@@ -436,14 +407,6 @@ namespace UberFrba
         {
             construirFormularioClienteChofer(new frmClienteChoferModificar(), cadena);
         }
-
-
-
-
-
-
-
-
 
         public void agregarAutomovil()
         {
@@ -493,7 +456,6 @@ namespace UberFrba
                      MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
 
         public void eliminarAutomovil()
         {
@@ -584,11 +546,12 @@ namespace UberFrba
         {
             try
             {
-                String Usu_Nombre_Usuario = 
-                Convert.ToString(adaptador.agregarChofer
-                            (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text, c["txtCalle"].Text
-                            , Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text, c["txtLocalidad"].Text, c["txtCodigoPostal"].Text
-                            , Convert.ToInt64(c["txtTelefono"].Text), c["txtCorreo"].Text, Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value)));
+                String Usu_Nombre_Usuario = Convert.ToString(adaptador.agregarChofer
+                            (Convert.ToInt64(c["txtDNI"].Text), c["txtNombre"].Text, c["txtApellido"].Text,
+                            c["txtCalle"].Text, Convert.ToInt16(c["txtPisoManzana"].Text), c["txtDeptoLote"].Text,
+                            c["txtLocalidad"].Text, c["txtCodigoPostal"].Text, Convert.ToInt64(c["txtTelefono"].Text),
+                            c["txtCorreo"].Text,
+                            Convert.ToDateTime(((DateTimePicker)c["selectorFechaNacimiento"]).Value)));
                 mensajeCreacionDeUsuario(Usu_Nombre_Usuario);
             }
             catch (SqlException e)
@@ -667,8 +630,6 @@ namespace UberFrba
             }
         }
 
-        
-
         private static void construirFormularioRol(frmRolAgregar frmRol)
         {
             if (frmRol.construite())
@@ -729,35 +690,40 @@ namespace UberFrba
                 formularioFacturarViaje.Show();
             }
         }
-        /// <summary>
-        /// /////////////////////////////////////////////////
-        /// </summary>
-        /// <param name="rol"></param>
-
-
-
-        
 
         public void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos)
         {
-            if (formulario.verificarDatosDeFormulario())
+            try
             {
-                if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+                if (formulario.verificarDatosDeFormulario())
                 {
-                    ejecutarMetodoDeAccionConParametros(
-                        obtenerNombreMetodo(funcion, rol),
-                        new object[] { 
-                            datos
-                            ,obtenerAdaptadorBD() });
-                    formulario.Close();
-                    mensajeAutoeliminacion(formulario);
+                    if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+                    {
+                        ejecutarMetodoDeAccionConParametros(
+                            obtenerNombreMetodo(funcion, rol),
+                            new object[] { 
+                                datos
+                                ,obtenerAdaptadorBD() });
+                        formulario.Close();
+                        mensajeAutoeliminacion(formulario);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
+                         MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
+                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-            else
+            catch (DNIDuplicadoException ex)
             {
-                MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
-                     MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
-                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El DNI no puede ser duplicado.", "Error DNI Duplicado",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (TelefonoDuplicadoException ex)
+            {
+                MessageBox.Show("El telefono no puede ser duplicado.", "Error Telefono Duplicado",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -927,10 +893,16 @@ namespace UberFrba
 
         public static void permitirSoloIngresoAlfanumerico(KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && !esSimboloEspecial(e.KeyChar))
             {
                 e.Handled = true;
             }
+        }
+
+        private static bool esSimboloEspecial(char caracter)
+        {
+            return (new HashSet<string> { "'" })
+                .Any(v => (new KeysConverter()).ConvertToString(caracter).Equals(v));
         }
 
         public static void permitirSoloIngresoCorreoElectronico(KeyPressEventArgs e)
@@ -948,7 +920,7 @@ namespace UberFrba
 
         public static void permitirSoloIngresoAlfanumericoConBlancos(KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !esSimboloEspecial(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -1028,7 +1000,7 @@ namespace UberFrba
             {
                 throw new DNIDuplicadoException();
             }
-            return true;
+            return false;
         }
 
         public static bool validarExistenciaDeRango(int horarioInicio, int horarioFin)
@@ -1092,7 +1064,12 @@ namespace UberFrba
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
-            return (Boolean)adaptador.existeTelefono(Convert.ToDecimal(cadenaTelefono));
+            Boolean resultado = (Boolean)adaptador.existeTelefono(Convert.ToDecimal(cadenaTelefono));
+            if (resultado)
+            {
+                throw new TelefonoDuplicadoException();
+            }
+            return resultado;
         }
 
         internal static bool existePatente(string cadenaAValidar)
@@ -1112,12 +1089,12 @@ namespace UberFrba
     {
         public static Boolean validarCampoAlfanumericoConEspacio(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z0-9][a-zA-Z0-9\s]*$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[áéíóúÁÉÍÓÚÜüñÑa-zA-Z0-9][áéíóúÁÉÍÓÚÜüñÑ'a-zA-Z0-9\s]*$");
         }
 
         public static Boolean validarCampoAlfanumerico(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z0-9]+$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[áéíóúÁÉÍÓÚÜüñÑa-zA-Z0-9][áéíóúÁÉÍÓÚÜüñÑ'a-zA-Z0-9]*$");
         }
 
         public static Boolean validarCampoClave(String cadenaAValidar)
@@ -1137,17 +1114,17 @@ namespace UberFrba
 
         public static Boolean validarCampoAlfabeticoPermiteVacio(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z\s]*$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[áéíóúÁÉÍÓÚüÜñÑ'a-zA-Z0-9\s]*$");
         }
 
         public static Boolean validarCampoAlfabeticoConEspacio(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z][a-zA-Z\s]*$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[áéíóúÁÉÍÓÚÜüñÑa-zA-Z0-9][áéíóúÁÉÍÓÚüÜñÑ'a-zA-Z0-9\s]*$");
         }
 
         public static Boolean validarCampoAlfabetico(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"^[a-zA-Z]+$");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"^[áéíóúÁÉÍÓÚÜüñÑa-zA-Z0-9]+$");
         }
 
         public static Boolean validarCodigoPostal(String cadenaAValidar)
@@ -1169,8 +1146,6 @@ namespace UberFrba
             catch (FormatException)
             {
                 resultado = false;
-                //MessageBox.Show("La direccion de correo electronico no es valida.", "Error",
-                //MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return resultado;
         }
@@ -1183,7 +1158,6 @@ namespace UberFrba
 
         public static Boolean validarCampoHorario(String cadenaAValidar)
         {
-            //return evaluarCadenaConExpresion(cadenaAValidar, @"^([01][0-9]|2[0-3]):[0-5][0-9]$");
             return evaluarCadenaConExpresion(cadenaAValidar, @"([0-1][0-9]|2[0-3])[0-5][0-9]|[0-1][0-9]|2[0-3]$");
         }
 
@@ -1203,13 +1177,7 @@ namespace UberFrba
             Boolean resultado;
             if(validarCampoNumerico(cadenaDNI))
             {
-                if(!MetodosGlobales.esDuplicadoDNI(cadenaDNI))
-                {
-                    resultado = true;
-                }
-                else{
-                    throw new DNIDuplicadoException();
-                }
+                resultado = !MetodosGlobales.esDuplicadoDNI(cadenaDNI);
             }
             else{
                 resultado = true;
@@ -1219,23 +1187,24 @@ namespace UberFrba
 
         public static bool validarCampoTelefono(string cadenaTelefono)
         {
-            Boolean resultado;
-            if (validarCampoNumerico(cadenaTelefono))
-            {
-                if (!MetodosGlobales.esDuplicadoTelefono(cadenaTelefono))
-                {
-                    resultado = true;
-                }
-                else
-                {
-                    throw new DNIDuplicadoException();
-                }
-            }
-            else
-            {
-                resultado = true;
-            }
-            return resultado;
+            //Boolean resultado;
+            //if (validarCampoNumerico(cadenaTelefono))
+            //{
+            //    if (!MetodosGlobales.esDuplicadoTelefono(cadenaTelefono))
+            //    {
+            //        resultado = true;
+            //    }
+            //    else
+            //    {
+            //        throw new DNIDuplicadoException();
+            //    }
+            //}
+            //else
+            //{
+            //    resultado = true;
+            //}
+            //return resultado;
+            return validarCampoNumerico(cadenaTelefono) && !MetodosGlobales.esDuplicadoTelefono(cadenaTelefono);
         }
 
         public static bool validarRangoHorario(int horaInicio, int horaFin)

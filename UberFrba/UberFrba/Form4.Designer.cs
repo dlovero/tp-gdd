@@ -408,7 +408,8 @@
             // 
             // selectorFechaNacimiento
             // 
-            this.selectorFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.selectorFechaNacimiento.CustomFormat = "dd/MM/yyyy";
+            this.selectorFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.selectorFechaNacimiento.Location = new System.Drawing.Point(434, 71);
             this.selectorFechaNacimiento.MaxDate = new System.DateTime(2017, 6, 29, 0, 0, 0, 0);
             this.selectorFechaNacimiento.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
