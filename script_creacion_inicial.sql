@@ -2922,7 +2922,7 @@ BEGIN
 			-- Usuario Existe y Clave Correcta
             BEGIN
 
-                IF EXISTS(SELECT Usu_Id FROM [DESCONOCIDOS4].Usuario WHERE Usu_Id = @Usu_Id)
+                IF EXISTS(SELECT Usu_Id FROM [DESCONOCIDOS4].Usuario  LEFT JOIN DESCONOCIDOS4.USUARIO_ROL UR ON UR.UsuRol_Usu_Id=Usu_Id WHERE Usu_Id = @Usu_Id AND UsuRol_Habilitado=@Habilitado )
                 BEGIN
 				-- Usuario Existe, Clave Correcta y Habilitado
 					IF ([DESCONOCIDOS4].FN_OBTENER_CANTIDAD_INTENTOS_FALLIDOS_DE_INGRESO(@Usu_Id)) != 0
@@ -2931,7 +2931,7 @@ BEGIN
 						UPDATE [DESCONOCIDOS4].USUARIO SET Usu_cantIntentosLoginFallidos=0 WHERE Usu_Id=@Usu_Id
 					END
 					SELECT @Usu_Id [UserId], Rol_Id, Rol_Nombre,@NombreUsuario Nombre,@ApellidoUsuario Apellido, isnull(@PersonaId,0) idPersona, @Es_Admin esAdmin FROM [DESCONOCIDOS4].USUARIO_ROL left join [DESCONOCIDOS4].ROL on UsuRol_Rol_Id=Rol_Id
-                              WHERE Rol_Habilitado=@Habilitado and UsuRol_Usu_Id=@Usu_Id AND UsuRol_Habilitado=@Habilitado
+                              WHERE Rol_Habilitado=@Habilitado and UsuRol_Usu_Id=@Usu_Id 
 				END
 				ELSE
 				BEGIN
