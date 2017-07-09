@@ -56,8 +56,6 @@ namespace UberFrba {
         
         private PRC_BUSCAR_CLIENTE_HABILITADODataTable tablePRC_BUSCAR_CLIENTE_HABILITADO;
         
-        private PRC_REGISTRO_VIAJEDataTable tablePRC_REGISTRO_VIAJE;
-        
         private CHOFERES_MAYOR_RECAUDACIONDataTable tableCHOFERES_MAYOR_RECAUDACION;
         
         private CHOFERES_VIAJE_MAS_LARGODataTable tableCHOFERES_VIAJE_MAS_LARGO;
@@ -153,9 +151,6 @@ namespace UberFrba {
                 }
                 if ((ds.Tables["PRC_BUSCAR_CLIENTE_HABILITADO"] != null)) {
                     base.Tables.Add(new PRC_BUSCAR_CLIENTE_HABILITADODataTable(ds.Tables["PRC_BUSCAR_CLIENTE_HABILITADO"]));
-                }
-                if ((ds.Tables["PRC_REGISTRO_VIAJE"] != null)) {
-                    base.Tables.Add(new PRC_REGISTRO_VIAJEDataTable(ds.Tables["PRC_REGISTRO_VIAJE"]));
                 }
                 if ((ds.Tables["CHOFERES_MAYOR_RECAUDACION"] != null)) {
                     base.Tables.Add(new CHOFERES_MAYOR_RECAUDACIONDataTable(ds.Tables["CHOFERES_MAYOR_RECAUDACION"]));
@@ -362,16 +357,6 @@ namespace UberFrba {
         public PRC_BUSCAR_CLIENTE_HABILITADODataTable PRC_BUSCAR_CLIENTE_HABILITADO {
             get {
                 return this.tablePRC_BUSCAR_CLIENTE_HABILITADO;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public PRC_REGISTRO_VIAJEDataTable PRC_REGISTRO_VIAJE {
-            get {
-                return this.tablePRC_REGISTRO_VIAJE;
             }
         }
         
@@ -590,9 +575,6 @@ namespace UberFrba {
                 if ((ds.Tables["PRC_BUSCAR_CLIENTE_HABILITADO"] != null)) {
                     base.Tables.Add(new PRC_BUSCAR_CLIENTE_HABILITADODataTable(ds.Tables["PRC_BUSCAR_CLIENTE_HABILITADO"]));
                 }
-                if ((ds.Tables["PRC_REGISTRO_VIAJE"] != null)) {
-                    base.Tables.Add(new PRC_REGISTRO_VIAJEDataTable(ds.Tables["PRC_REGISTRO_VIAJE"]));
-                }
                 if ((ds.Tables["CHOFERES_MAYOR_RECAUDACION"] != null)) {
                     base.Tables.Add(new CHOFERES_MAYOR_RECAUDACIONDataTable(ds.Tables["CHOFERES_MAYOR_RECAUDACION"]));
                 }
@@ -752,12 +734,6 @@ namespace UberFrba {
                     this.tablePRC_BUSCAR_CLIENTE_HABILITADO.InitVars();
                 }
             }
-            this.tablePRC_REGISTRO_VIAJE = ((PRC_REGISTRO_VIAJEDataTable)(base.Tables["PRC_REGISTRO_VIAJE"]));
-            if ((initTable == true)) {
-                if ((this.tablePRC_REGISTRO_VIAJE != null)) {
-                    this.tablePRC_REGISTRO_VIAJE.InitVars();
-                }
-            }
             this.tableCHOFERES_MAYOR_RECAUDACION = ((CHOFERES_MAYOR_RECAUDACIONDataTable)(base.Tables["CHOFERES_MAYOR_RECAUDACION"]));
             if ((initTable == true)) {
                 if ((this.tableCHOFERES_MAYOR_RECAUDACION != null)) {
@@ -860,8 +836,6 @@ namespace UberFrba {
             base.Tables.Add(this.tablePRC_BUSCAR_CHOFER_HABILITADO);
             this.tablePRC_BUSCAR_CLIENTE_HABILITADO = new PRC_BUSCAR_CLIENTE_HABILITADODataTable();
             base.Tables.Add(this.tablePRC_BUSCAR_CLIENTE_HABILITADO);
-            this.tablePRC_REGISTRO_VIAJE = new PRC_REGISTRO_VIAJEDataTable();
-            base.Tables.Add(this.tablePRC_REGISTRO_VIAJE);
             this.tableCHOFERES_MAYOR_RECAUDACION = new CHOFERES_MAYOR_RECAUDACIONDataTable();
             base.Tables.Add(this.tableCHOFERES_MAYOR_RECAUDACION);
             this.tableCHOFERES_VIAJE_MAS_LARGO = new CHOFERES_VIAJE_MAS_LARGODataTable();
@@ -977,12 +951,6 @@ namespace UberFrba {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializePRC_BUSCAR_CLIENTE_HABILITADO() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializePRC_REGISTRO_VIAJE() {
             return false;
         }
         
@@ -1148,9 +1116,6 @@ namespace UberFrba {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void PRC_BUSCAR_CLIENTE_HABILITADORowChangeEventHandler(object sender, PRC_BUSCAR_CLIENTE_HABILITADORowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void PRC_REGISTRO_VIAJERowChangeEventHandler(object sender, PRC_REGISTRO_VIAJERowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void CHOFERES_MAYOR_RECAUDACIONRowChangeEventHandler(object sender, CHOFERES_MAYOR_RECAUDACIONRowChangeEvent e);
@@ -6695,246 +6660,13 @@ namespace UberFrba {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class PRC_REGISTRO_VIAJEDataTable : global::System.Data.TypedTableBase<PRC_REGISTRO_VIAJERow> {
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_REGISTRO_VIAJEDataTable() {
-                this.TableName = "PRC_REGISTRO_VIAJE";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal PRC_REGISTRO_VIAJEDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected PRC_REGISTRO_VIAJEDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_REGISTRO_VIAJERow this[int index] {
-                get {
-                    return ((PRC_REGISTRO_VIAJERow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event PRC_REGISTRO_VIAJERowChangeEventHandler PRC_REGISTRO_VIAJERowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event PRC_REGISTRO_VIAJERowChangeEventHandler PRC_REGISTRO_VIAJERowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event PRC_REGISTRO_VIAJERowChangeEventHandler PRC_REGISTRO_VIAJERowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event PRC_REGISTRO_VIAJERowChangeEventHandler PRC_REGISTRO_VIAJERowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddPRC_REGISTRO_VIAJERow(PRC_REGISTRO_VIAJERow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_REGISTRO_VIAJERow AddPRC_REGISTRO_VIAJERow() {
-                PRC_REGISTRO_VIAJERow rowPRC_REGISTRO_VIAJERow = ((PRC_REGISTRO_VIAJERow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
-                rowPRC_REGISTRO_VIAJERow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowPRC_REGISTRO_VIAJERow);
-                return rowPRC_REGISTRO_VIAJERow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                PRC_REGISTRO_VIAJEDataTable cln = ((PRC_REGISTRO_VIAJEDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new PRC_REGISTRO_VIAJEDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_REGISTRO_VIAJERow NewPRC_REGISTRO_VIAJERow() {
-                return ((PRC_REGISTRO_VIAJERow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new PRC_REGISTRO_VIAJERow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(PRC_REGISTRO_VIAJERow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.PRC_REGISTRO_VIAJERowChanged != null)) {
-                    this.PRC_REGISTRO_VIAJERowChanged(this, new PRC_REGISTRO_VIAJERowChangeEvent(((PRC_REGISTRO_VIAJERow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.PRC_REGISTRO_VIAJERowChanging != null)) {
-                    this.PRC_REGISTRO_VIAJERowChanging(this, new PRC_REGISTRO_VIAJERowChangeEvent(((PRC_REGISTRO_VIAJERow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.PRC_REGISTRO_VIAJERowDeleted != null)) {
-                    this.PRC_REGISTRO_VIAJERowDeleted(this, new PRC_REGISTRO_VIAJERowChangeEvent(((PRC_REGISTRO_VIAJERow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.PRC_REGISTRO_VIAJERowDeleting != null)) {
-                    this.PRC_REGISTRO_VIAJERowDeleting(this, new PRC_REGISTRO_VIAJERowChangeEvent(((PRC_REGISTRO_VIAJERow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovePRC_REGISTRO_VIAJERow(PRC_REGISTRO_VIAJERow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                GD1C2017DataSet ds = new GD1C2017DataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "PRC_REGISTRO_VIAJEDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class CHOFERES_MAYOR_RECAUDACIONDataTable : global::System.Data.TypedTableBase<CHOFERES_MAYOR_RECAUDACIONRow> {
             
-            private global::System.Data.DataColumn columnCHOFER_ID;
+            private global::System.Data.DataColumn columnId_Chofer;
             
-            private global::System.Data.DataColumn columnCHOFER_DNI;
+            private global::System.Data.DataColumn columnDni_Chofer;
             
-            private global::System.Data.DataColumn columnTOTAL_FACTURADO;
+            private global::System.Data.DataColumn columnTotal_Recaudacion;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -6971,25 +6703,25 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CHOFER_IDColumn {
+            public global::System.Data.DataColumn Id_ChoferColumn {
                 get {
-                    return this.columnCHOFER_ID;
+                    return this.columnId_Chofer;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CHOFER_DNIColumn {
+            public global::System.Data.DataColumn Dni_ChoferColumn {
                 get {
-                    return this.columnCHOFER_DNI;
+                    return this.columnDni_Chofer;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TOTAL_FACTURADOColumn {
+            public global::System.Data.DataColumn Total_RecaudacionColumn {
                 get {
-                    return this.columnTOTAL_FACTURADO;
+                    return this.columnTotal_Recaudacion;
                 }
             }
             
@@ -7030,12 +6762,12 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CHOFERES_MAYOR_RECAUDACIONRow AddCHOFERES_MAYOR_RECAUDACIONRow(decimal CHOFER_DNI, decimal TOTAL_FACTURADO) {
+            public CHOFERES_MAYOR_RECAUDACIONRow AddCHOFERES_MAYOR_RECAUDACIONRow(decimal Dni_Chofer, decimal Total_Recaudacion) {
                 CHOFERES_MAYOR_RECAUDACIONRow rowCHOFERES_MAYOR_RECAUDACIONRow = ((CHOFERES_MAYOR_RECAUDACIONRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        CHOFER_DNI,
-                        TOTAL_FACTURADO};
+                        Dni_Chofer,
+                        Total_Recaudacion};
                 rowCHOFERES_MAYOR_RECAUDACIONRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCHOFERES_MAYOR_RECAUDACIONRow);
                 return rowCHOFERES_MAYOR_RECAUDACIONRow;
@@ -7043,9 +6775,9 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CHOFERES_MAYOR_RECAUDACIONRow FindByCHOFER_ID(int CHOFER_ID) {
+            public CHOFERES_MAYOR_RECAUDACIONRow FindById_Chofer(int Id_Chofer) {
                 return ((CHOFERES_MAYOR_RECAUDACIONRow)(this.Rows.Find(new object[] {
-                            CHOFER_ID})));
+                            Id_Chofer})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7065,30 +6797,30 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnCHOFER_ID = base.Columns["CHOFER_ID"];
-                this.columnCHOFER_DNI = base.Columns["CHOFER_DNI"];
-                this.columnTOTAL_FACTURADO = base.Columns["TOTAL_FACTURADO"];
+                this.columnId_Chofer = base.Columns["Id Chofer"];
+                this.columnDni_Chofer = base.Columns["Dni Chofer"];
+                this.columnTotal_Recaudacion = base.Columns["Total Recaudacion"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnCHOFER_ID = new global::System.Data.DataColumn("CHOFER_ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCHOFER_ID);
-                this.columnCHOFER_DNI = new global::System.Data.DataColumn("CHOFER_DNI", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCHOFER_DNI);
-                this.columnTOTAL_FACTURADO = new global::System.Data.DataColumn("TOTAL_FACTURADO", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTOTAL_FACTURADO);
+                this.columnId_Chofer = new global::System.Data.DataColumn("Id Chofer", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId_Chofer);
+                this.columnDni_Chofer = new global::System.Data.DataColumn("Dni Chofer", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDni_Chofer);
+                this.columnTotal_Recaudacion = new global::System.Data.DataColumn("Total Recaudacion", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal_Recaudacion);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnCHOFER_ID}, true));
-                this.columnCHOFER_ID.AutoIncrement = true;
-                this.columnCHOFER_ID.AutoIncrementSeed = -1;
-                this.columnCHOFER_ID.AutoIncrementStep = -1;
-                this.columnCHOFER_ID.AllowDBNull = false;
-                this.columnCHOFER_ID.ReadOnly = true;
-                this.columnCHOFER_ID.Unique = true;
-                this.columnCHOFER_DNI.ReadOnly = true;
-                this.columnTOTAL_FACTURADO.ReadOnly = true;
+                                this.columnId_Chofer}, true));
+                this.columnId_Chofer.AutoIncrement = true;
+                this.columnId_Chofer.AutoIncrementSeed = -1;
+                this.columnId_Chofer.AutoIncrementStep = -1;
+                this.columnId_Chofer.AllowDBNull = false;
+                this.columnId_Chofer.ReadOnly = true;
+                this.columnId_Chofer.Unique = true;
+                this.columnDni_Chofer.ReadOnly = true;
+                this.columnTotal_Recaudacion.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7224,9 +6956,9 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnCHOFER;
             
-            private global::System.Data.DataColumn columnNUM_VIAJE;
+            private global::System.Data.DataColumn columnNro_Viaje;
             
-            private global::System.Data.DataColumn columnKM_RECORRIDOS;
+            private global::System.Data.DataColumn columnKm_Recorridos;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -7271,17 +7003,17 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NUM_VIAJEColumn {
+            public global::System.Data.DataColumn Nro_ViajeColumn {
                 get {
-                    return this.columnNUM_VIAJE;
+                    return this.columnNro_Viaje;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn KM_RECORRIDOSColumn {
+            public global::System.Data.DataColumn Km_RecorridosColumn {
                 get {
-                    return this.columnKM_RECORRIDOS;
+                    return this.columnKm_Recorridos;
                 }
             }
             
@@ -7322,12 +7054,12 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CHOFERES_VIAJE_MAS_LARGORow AddCHOFERES_VIAJE_MAS_LARGORow(int CHOFER, decimal KM_RECORRIDOS) {
+            public CHOFERES_VIAJE_MAS_LARGORow AddCHOFERES_VIAJE_MAS_LARGORow(int CHOFER, decimal Km_Recorridos) {
                 CHOFERES_VIAJE_MAS_LARGORow rowCHOFERES_VIAJE_MAS_LARGORow = ((CHOFERES_VIAJE_MAS_LARGORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CHOFER,
                         null,
-                        KM_RECORRIDOS};
+                        Km_Recorridos};
                 rowCHOFERES_VIAJE_MAS_LARGORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCHOFERES_VIAJE_MAS_LARGORow);
                 return rowCHOFERES_VIAJE_MAS_LARGORow;
@@ -7335,9 +7067,9 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CHOFERES_VIAJE_MAS_LARGORow FindByNUM_VIAJE(int NUM_VIAJE) {
+            public CHOFERES_VIAJE_MAS_LARGORow FindByNro_Viaje(int Nro_Viaje) {
                 return ((CHOFERES_VIAJE_MAS_LARGORow)(this.Rows.Find(new object[] {
-                            NUM_VIAJE})));
+                            Nro_Viaje})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7358,8 +7090,8 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnCHOFER = base.Columns["CHOFER"];
-                this.columnNUM_VIAJE = base.Columns["NUM_VIAJE"];
-                this.columnKM_RECORRIDOS = base.Columns["KM_RECORRIDOS"];
+                this.columnNro_Viaje = base.Columns["Nro Viaje"];
+                this.columnKm_Recorridos = base.Columns["Km Recorridos"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7367,20 +7099,20 @@ namespace UberFrba {
             private void InitClass() {
                 this.columnCHOFER = new global::System.Data.DataColumn("CHOFER", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCHOFER);
-                this.columnNUM_VIAJE = new global::System.Data.DataColumn("NUM_VIAJE", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNUM_VIAJE);
-                this.columnKM_RECORRIDOS = new global::System.Data.DataColumn("KM_RECORRIDOS", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnKM_RECORRIDOS);
+                this.columnNro_Viaje = new global::System.Data.DataColumn("Nro Viaje", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNro_Viaje);
+                this.columnKm_Recorridos = new global::System.Data.DataColumn("Km Recorridos", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKm_Recorridos);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnNUM_VIAJE}, true));
+                                this.columnNro_Viaje}, true));
                 this.columnCHOFER.AllowDBNull = false;
-                this.columnNUM_VIAJE.AutoIncrement = true;
-                this.columnNUM_VIAJE.AutoIncrementSeed = -1;
-                this.columnNUM_VIAJE.AutoIncrementStep = -1;
-                this.columnNUM_VIAJE.AllowDBNull = false;
-                this.columnNUM_VIAJE.ReadOnly = true;
-                this.columnNUM_VIAJE.Unique = true;
-                this.columnKM_RECORRIDOS.AllowDBNull = false;
+                this.columnNro_Viaje.AutoIncrement = true;
+                this.columnNro_Viaje.AutoIncrementSeed = -1;
+                this.columnNro_Viaje.AutoIncrementStep = -1;
+                this.columnNro_Viaje.AllowDBNull = false;
+                this.columnNro_Viaje.ReadOnly = true;
+                this.columnNro_Viaje.Unique = true;
+                this.columnKm_Recorridos.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7516,7 +7248,7 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnCLIENTE;
             
-            private global::System.Data.DataColumn columnTOTAL_FACTURADO;
+            private global::System.Data.DataColumn columnTotal_Facturado;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -7561,9 +7293,9 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn TOTAL_FACTURADOColumn {
+            public global::System.Data.DataColumn Total_FacturadoColumn {
                 get {
-                    return this.columnTOTAL_FACTURADO;
+                    return this.columnTotal_Facturado;
                 }
             }
             
@@ -7604,11 +7336,11 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENTES_MAYOR_CONSUMORow AddCLIENTES_MAYOR_CONSUMORow(int CLIENTE, decimal TOTAL_FACTURADO) {
+            public CLIENTES_MAYOR_CONSUMORow AddCLIENTES_MAYOR_CONSUMORow(int CLIENTE, decimal Total_Facturado) {
                 CLIENTES_MAYOR_CONSUMORow rowCLIENTES_MAYOR_CONSUMORow = ((CLIENTES_MAYOR_CONSUMORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CLIENTE,
-                        TOTAL_FACTURADO};
+                        Total_Facturado};
                 rowCLIENTES_MAYOR_CONSUMORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCLIENTES_MAYOR_CONSUMORow);
                 return rowCLIENTES_MAYOR_CONSUMORow;
@@ -7632,7 +7364,7 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnCLIENTE = base.Columns["CLIENTE"];
-                this.columnTOTAL_FACTURADO = base.Columns["TOTAL_FACTURADO"];
+                this.columnTotal_Facturado = base.Columns["Total Facturado"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7640,10 +7372,10 @@ namespace UberFrba {
             private void InitClass() {
                 this.columnCLIENTE = new global::System.Data.DataColumn("CLIENTE", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCLIENTE);
-                this.columnTOTAL_FACTURADO = new global::System.Data.DataColumn("TOTAL_FACTURADO", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTOTAL_FACTURADO);
+                this.columnTotal_Facturado = new global::System.Data.DataColumn("Total Facturado", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotal_Facturado);
                 this.columnCLIENTE.AllowDBNull = false;
-                this.columnTOTAL_FACTURADO.ReadOnly = true;
+                this.columnTotal_Facturado.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7781,7 +7513,7 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnAUTOMOVIL;
             
-            private global::System.Data.DataColumn columnCANT_VIAJES;
+            private global::System.Data.DataColumn columnCantidad_de_Viajes;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -7834,9 +7566,9 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CANT_VIAJESColumn {
+            public global::System.Data.DataColumn Cantidad_de_ViajesColumn {
                 get {
-                    return this.columnCANT_VIAJES;
+                    return this.columnCantidad_de_Viajes;
                 }
             }
             
@@ -7877,12 +7609,12 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENTES_MAS_VECES_MISMO_AUTORow AddCLIENTES_MAS_VECES_MISMO_AUTORow(int CLIENTE, int AUTOMOVIL, int CANT_VIAJES) {
+            public CLIENTES_MAS_VECES_MISMO_AUTORow AddCLIENTES_MAS_VECES_MISMO_AUTORow(int CLIENTE, int AUTOMOVIL, int Cantidad_de_Viajes) {
                 CLIENTES_MAS_VECES_MISMO_AUTORow rowCLIENTES_MAS_VECES_MISMO_AUTORow = ((CLIENTES_MAS_VECES_MISMO_AUTORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CLIENTE,
                         AUTOMOVIL,
-                        CANT_VIAJES};
+                        Cantidad_de_Viajes};
                 rowCLIENTES_MAS_VECES_MISMO_AUTORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCLIENTES_MAS_VECES_MISMO_AUTORow);
                 return rowCLIENTES_MAS_VECES_MISMO_AUTORow;
@@ -7907,7 +7639,7 @@ namespace UberFrba {
             internal void InitVars() {
                 this.columnCLIENTE = base.Columns["CLIENTE"];
                 this.columnAUTOMOVIL = base.Columns["AUTOMOVIL"];
-                this.columnCANT_VIAJES = base.Columns["CANT_VIAJES"];
+                this.columnCantidad_de_Viajes = base.Columns["Cantidad de Viajes"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7917,11 +7649,11 @@ namespace UberFrba {
                 base.Columns.Add(this.columnCLIENTE);
                 this.columnAUTOMOVIL = new global::System.Data.DataColumn("AUTOMOVIL", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAUTOMOVIL);
-                this.columnCANT_VIAJES = new global::System.Data.DataColumn("CANT_VIAJES", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCANT_VIAJES);
+                this.columnCantidad_de_Viajes = new global::System.Data.DataColumn("Cantidad de Viajes", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCantidad_de_Viajes);
                 this.columnCLIENTE.AllowDBNull = false;
                 this.columnAUTOMOVIL.AllowDBNull = false;
-                this.columnCANT_VIAJES.ReadOnly = true;
+                this.columnCantidad_de_Viajes.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9189,19 +8921,19 @@ namespace UberFrba {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class FN_VIAJES_A_RENDIRDataTable : global::System.Data.TypedTableBase<FN_VIAJES_A_RENDIRRow> {
             
-            private global::System.Data.DataColumn columnITEM;
-            
-            private global::System.Data.DataColumn columnID_VIAJE;
-            
             private global::System.Data.DataColumn columnCLIENTE;
             
-            private global::System.Data.DataColumn columnCANTIDAD_KM;
+            private global::System.Data.DataColumn columnNro_Rendicion;
             
-            private global::System.Data.DataColumn columnIMPORTE_TOTAL;
+            private global::System.Data.DataColumn columnId_Viaje;
             
-            private global::System.Data.DataColumn columnFECHA_HORA_INICIO;
+            private global::System.Data.DataColumn columnKm_Recorridos;
             
-            private global::System.Data.DataColumn columnFECHA_HORA_FIN;
+            private global::System.Data.DataColumn columnImporte_Total;
+            
+            private global::System.Data.DataColumn columnFecha_Hora_Inicio;
+            
+            private global::System.Data.DataColumn columnFecha_Hora_Fin;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -9238,22 +8970,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ITEMColumn {
-                get {
-                    return this.columnITEM;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ID_VIAJEColumn {
-                get {
-                    return this.columnID_VIAJE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CLIENTEColumn {
                 get {
                     return this.columnCLIENTE;
@@ -9262,33 +8978,49 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CANTIDAD_KMColumn {
+            public global::System.Data.DataColumn Nro_RendicionColumn {
                 get {
-                    return this.columnCANTIDAD_KM;
+                    return this.columnNro_Rendicion;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IMPORTE_TOTALColumn {
+            public global::System.Data.DataColumn Id_ViajeColumn {
                 get {
-                    return this.columnIMPORTE_TOTAL;
+                    return this.columnId_Viaje;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FECHA_HORA_INICIOColumn {
+            public global::System.Data.DataColumn Km_RecorridosColumn {
                 get {
-                    return this.columnFECHA_HORA_INICIO;
+                    return this.columnKm_Recorridos;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FECHA_HORA_FINColumn {
+            public global::System.Data.DataColumn Importe_TotalColumn {
                 get {
-                    return this.columnFECHA_HORA_FIN;
+                    return this.columnImporte_Total;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Fecha_Hora_InicioColumn {
+                get {
+                    return this.columnFecha_Hora_Inicio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Fecha_Hora_FinColumn {
+                get {
+                    return this.columnFecha_Hora_Fin;
                 }
             }
             
@@ -9329,16 +9061,16 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FN_VIAJES_A_RENDIRRow AddFN_VIAJES_A_RENDIRRow(int ITEM, int ID_VIAJE, int CLIENTE, decimal CANTIDAD_KM, decimal IMPORTE_TOTAL, System.DateTime FECHA_HORA_INICIO, System.DateTime FECHA_HORA_FIN) {
+            public FN_VIAJES_A_RENDIRRow AddFN_VIAJES_A_RENDIRRow(int CLIENTE, int Nro_Rendicion, int Id_Viaje, decimal Km_Recorridos, decimal Importe_Total, System.DateTime Fecha_Hora_Inicio, System.DateTime Fecha_Hora_Fin) {
                 FN_VIAJES_A_RENDIRRow rowFN_VIAJES_A_RENDIRRow = ((FN_VIAJES_A_RENDIRRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ITEM,
-                        ID_VIAJE,
                         CLIENTE,
-                        CANTIDAD_KM,
-                        IMPORTE_TOTAL,
-                        FECHA_HORA_INICIO,
-                        FECHA_HORA_FIN};
+                        Nro_Rendicion,
+                        Id_Viaje,
+                        Km_Recorridos,
+                        Importe_Total,
+                        Fecha_Hora_Inicio,
+                        Fecha_Hora_Fin};
                 rowFN_VIAJES_A_RENDIRRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFN_VIAJES_A_RENDIRRow);
                 return rowFN_VIAJES_A_RENDIRRow;
@@ -9361,32 +9093,32 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnITEM = base.Columns["ITEM"];
-                this.columnID_VIAJE = base.Columns["ID_VIAJE"];
                 this.columnCLIENTE = base.Columns["CLIENTE"];
-                this.columnCANTIDAD_KM = base.Columns["CANTIDAD_KM"];
-                this.columnIMPORTE_TOTAL = base.Columns["IMPORTE_TOTAL"];
-                this.columnFECHA_HORA_INICIO = base.Columns["FECHA_HORA_INICIO"];
-                this.columnFECHA_HORA_FIN = base.Columns["FECHA_HORA_FIN"];
+                this.columnNro_Rendicion = base.Columns["Nro Rendicion"];
+                this.columnId_Viaje = base.Columns["Id Viaje"];
+                this.columnKm_Recorridos = base.Columns["Km Recorridos"];
+                this.columnImporte_Total = base.Columns["Importe Total"];
+                this.columnFecha_Hora_Inicio = base.Columns["Fecha Hora Inicio"];
+                this.columnFecha_Hora_Fin = base.Columns["Fecha Hora Fin"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnITEM = new global::System.Data.DataColumn("ITEM", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnITEM);
-                this.columnID_VIAJE = new global::System.Data.DataColumn("ID_VIAJE", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID_VIAJE);
                 this.columnCLIENTE = new global::System.Data.DataColumn("CLIENTE", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCLIENTE);
-                this.columnCANTIDAD_KM = new global::System.Data.DataColumn("CANTIDAD_KM", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCANTIDAD_KM);
-                this.columnIMPORTE_TOTAL = new global::System.Data.DataColumn("IMPORTE_TOTAL", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIMPORTE_TOTAL);
-                this.columnFECHA_HORA_INICIO = new global::System.Data.DataColumn("FECHA_HORA_INICIO", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFECHA_HORA_INICIO);
-                this.columnFECHA_HORA_FIN = new global::System.Data.DataColumn("FECHA_HORA_FIN", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFECHA_HORA_FIN);
+                this.columnNro_Rendicion = new global::System.Data.DataColumn("Nro Rendicion", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNro_Rendicion);
+                this.columnId_Viaje = new global::System.Data.DataColumn("Id Viaje", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId_Viaje);
+                this.columnKm_Recorridos = new global::System.Data.DataColumn("Km Recorridos", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKm_Recorridos);
+                this.columnImporte_Total = new global::System.Data.DataColumn("Importe Total", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImporte_Total);
+                this.columnFecha_Hora_Inicio = new global::System.Data.DataColumn("Fecha Hora Inicio", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFecha_Hora_Inicio);
+                this.columnFecha_Hora_Fin = new global::System.Data.DataColumn("Fecha Hora Fin", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFecha_Hora_Fin);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9520,19 +9252,19 @@ namespace UberFrba {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class FN_VIAJES_A_FACTURARDataTable : global::System.Data.TypedTableBase<FN_VIAJES_A_FACTURARRow> {
             
-            private global::System.Data.DataColumn columnITEM;
-            
-            private global::System.Data.DataColumn columnID_VIAJE;
-            
             private global::System.Data.DataColumn columnCLIENTE;
             
-            private global::System.Data.DataColumn columnCANT_KM;
+            private global::System.Data.DataColumn columnNro_Viaje;
             
-            private global::System.Data.DataColumn columnIMPORTE_TOTAL;
+            private global::System.Data.DataColumn columnId_Viaje;
             
-            private global::System.Data.DataColumn columnFECHA_HORA_INICIO;
+            private global::System.Data.DataColumn columnKm_Recorridos;
             
-            private global::System.Data.DataColumn columnFECHA_HORA_FIN;
+            private global::System.Data.DataColumn columnImporte_Total;
+            
+            private global::System.Data.DataColumn columnFecha_Hora_Inicio;
+            
+            private global::System.Data.DataColumn columnFecha_Hora_Fin;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -9569,22 +9301,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ITEMColumn {
-                get {
-                    return this.columnITEM;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ID_VIAJEColumn {
-                get {
-                    return this.columnID_VIAJE;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CLIENTEColumn {
                 get {
                     return this.columnCLIENTE;
@@ -9593,33 +9309,49 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CANT_KMColumn {
+            public global::System.Data.DataColumn Nro_ViajeColumn {
                 get {
-                    return this.columnCANT_KM;
+                    return this.columnNro_Viaje;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn IMPORTE_TOTALColumn {
+            public global::System.Data.DataColumn Id_ViajeColumn {
                 get {
-                    return this.columnIMPORTE_TOTAL;
+                    return this.columnId_Viaje;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FECHA_HORA_INICIOColumn {
+            public global::System.Data.DataColumn Km_RecorridosColumn {
                 get {
-                    return this.columnFECHA_HORA_INICIO;
+                    return this.columnKm_Recorridos;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn FECHA_HORA_FINColumn {
+            public global::System.Data.DataColumn Importe_TotalColumn {
                 get {
-                    return this.columnFECHA_HORA_FIN;
+                    return this.columnImporte_Total;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Fecha_Hora_InicioColumn {
+                get {
+                    return this.columnFecha_Hora_Inicio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Fecha_Hora_FinColumn {
+                get {
+                    return this.columnFecha_Hora_Fin;
                 }
             }
             
@@ -9660,16 +9392,16 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public FN_VIAJES_A_FACTURARRow AddFN_VIAJES_A_FACTURARRow(int ITEM, int ID_VIAJE, int CLIENTE, decimal CANT_KM, decimal IMPORTE_TOTAL, System.DateTime FECHA_HORA_INICIO, System.DateTime FECHA_HORA_FIN) {
+            public FN_VIAJES_A_FACTURARRow AddFN_VIAJES_A_FACTURARRow(int CLIENTE, int Nro_Viaje, int Id_Viaje, decimal Km_Recorridos, decimal Importe_Total, System.DateTime Fecha_Hora_Inicio, System.DateTime Fecha_Hora_Fin) {
                 FN_VIAJES_A_FACTURARRow rowFN_VIAJES_A_FACTURARRow = ((FN_VIAJES_A_FACTURARRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ITEM,
-                        ID_VIAJE,
                         CLIENTE,
-                        CANT_KM,
-                        IMPORTE_TOTAL,
-                        FECHA_HORA_INICIO,
-                        FECHA_HORA_FIN};
+                        Nro_Viaje,
+                        Id_Viaje,
+                        Km_Recorridos,
+                        Importe_Total,
+                        Fecha_Hora_Inicio,
+                        Fecha_Hora_Fin};
                 rowFN_VIAJES_A_FACTURARRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowFN_VIAJES_A_FACTURARRow);
                 return rowFN_VIAJES_A_FACTURARRow;
@@ -9692,32 +9424,32 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnITEM = base.Columns["ITEM"];
-                this.columnID_VIAJE = base.Columns["ID_VIAJE"];
                 this.columnCLIENTE = base.Columns["CLIENTE"];
-                this.columnCANT_KM = base.Columns["CANT_KM"];
-                this.columnIMPORTE_TOTAL = base.Columns["IMPORTE_TOTAL"];
-                this.columnFECHA_HORA_INICIO = base.Columns["FECHA_HORA_INICIO"];
-                this.columnFECHA_HORA_FIN = base.Columns["FECHA_HORA_FIN"];
+                this.columnNro_Viaje = base.Columns["Nro Viaje"];
+                this.columnId_Viaje = base.Columns["Id Viaje"];
+                this.columnKm_Recorridos = base.Columns["Km Recorridos"];
+                this.columnImporte_Total = base.Columns["Importe Total"];
+                this.columnFecha_Hora_Inicio = base.Columns["Fecha Hora Inicio"];
+                this.columnFecha_Hora_Fin = base.Columns["Fecha Hora Fin"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnITEM = new global::System.Data.DataColumn("ITEM", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnITEM);
-                this.columnID_VIAJE = new global::System.Data.DataColumn("ID_VIAJE", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID_VIAJE);
                 this.columnCLIENTE = new global::System.Data.DataColumn("CLIENTE", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCLIENTE);
-                this.columnCANT_KM = new global::System.Data.DataColumn("CANT_KM", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCANT_KM);
-                this.columnIMPORTE_TOTAL = new global::System.Data.DataColumn("IMPORTE_TOTAL", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIMPORTE_TOTAL);
-                this.columnFECHA_HORA_INICIO = new global::System.Data.DataColumn("FECHA_HORA_INICIO", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFECHA_HORA_INICIO);
-                this.columnFECHA_HORA_FIN = new global::System.Data.DataColumn("FECHA_HORA_FIN", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFECHA_HORA_FIN);
+                this.columnNro_Viaje = new global::System.Data.DataColumn("Nro Viaje", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNro_Viaje);
+                this.columnId_Viaje = new global::System.Data.DataColumn("Id Viaje", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId_Viaje);
+                this.columnKm_Recorridos = new global::System.Data.DataColumn("Km Recorridos", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKm_Recorridos);
+                this.columnImporte_Total = new global::System.Data.DataColumn("Importe Total", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnImporte_Total);
+                this.columnFecha_Hora_Inicio = new global::System.Data.DataColumn("Fecha Hora Inicio", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFecha_Hora_Inicio);
+                this.columnFecha_Hora_Fin = new global::System.Data.DataColumn("Fecha Hora Fin", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFecha_Hora_Fin);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12016,21 +11748,6 @@ namespace UberFrba {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class PRC_REGISTRO_VIAJERow : global::System.Data.DataRow {
-            
-            private PRC_REGISTRO_VIAJEDataTable tablePRC_REGISTRO_VIAJE;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal PRC_REGISTRO_VIAJERow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablePRC_REGISTRO_VIAJE = ((PRC_REGISTRO_VIAJEDataTable)(this.Table));
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class CHOFERES_MAYOR_RECAUDACIONRow : global::System.Data.DataRow {
             
             private CHOFERES_MAYOR_RECAUDACIONDataTable tableCHOFERES_MAYOR_RECAUDACION;
@@ -12044,71 +11761,71 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int CHOFER_ID {
+            public int Id_Chofer {
                 get {
-                    return ((int)(this[this.tableCHOFERES_MAYOR_RECAUDACION.CHOFER_IDColumn]));
+                    return ((int)(this[this.tableCHOFERES_MAYOR_RECAUDACION.Id_ChoferColumn]));
                 }
                 set {
-                    this[this.tableCHOFERES_MAYOR_RECAUDACION.CHOFER_IDColumn] = value;
+                    this[this.tableCHOFERES_MAYOR_RECAUDACION.Id_ChoferColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal CHOFER_DNI {
+            public decimal Dni_Chofer {
                 get {
                     try {
-                        return ((decimal)(this[this.tableCHOFERES_MAYOR_RECAUDACION.CHOFER_DNIColumn]));
+                        return ((decimal)(this[this.tableCHOFERES_MAYOR_RECAUDACION.Dni_ChoferColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CHOFER_DNI\' de la tabla \'CHOFERES_MAYOR_RECAUDACION\' es D" +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Dni Chofer\' de la tabla \'CHOFERES_MAYOR_RECAUDACION\' es D" +
                                 "BNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCHOFERES_MAYOR_RECAUDACION.CHOFER_DNIColumn] = value;
+                    this[this.tableCHOFERES_MAYOR_RECAUDACION.Dni_ChoferColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal TOTAL_FACTURADO {
+            public decimal Total_Recaudacion {
                 get {
                     try {
-                        return ((decimal)(this[this.tableCHOFERES_MAYOR_RECAUDACION.TOTAL_FACTURADOColumn]));
+                        return ((decimal)(this[this.tableCHOFERES_MAYOR_RECAUDACION.Total_RecaudacionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TOTAL_FACTURADO\' de la tabla \'CHOFERES_MAYOR_RECAUDACION\'" +
-                                " es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Total Recaudacion\' de la tabla \'CHOFERES_MAYOR_RECAUDACIO" +
+                                "N\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCHOFERES_MAYOR_RECAUDACION.TOTAL_FACTURADOColumn] = value;
+                    this[this.tableCHOFERES_MAYOR_RECAUDACION.Total_RecaudacionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCHOFER_DNINull() {
-                return this.IsNull(this.tableCHOFERES_MAYOR_RECAUDACION.CHOFER_DNIColumn);
+            public bool IsDni_ChoferNull() {
+                return this.IsNull(this.tableCHOFERES_MAYOR_RECAUDACION.Dni_ChoferColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCHOFER_DNINull() {
-                this[this.tableCHOFERES_MAYOR_RECAUDACION.CHOFER_DNIColumn] = global::System.Convert.DBNull;
+            public void SetDni_ChoferNull() {
+                this[this.tableCHOFERES_MAYOR_RECAUDACION.Dni_ChoferColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTOTAL_FACTURADONull() {
-                return this.IsNull(this.tableCHOFERES_MAYOR_RECAUDACION.TOTAL_FACTURADOColumn);
+            public bool IsTotal_RecaudacionNull() {
+                return this.IsNull(this.tableCHOFERES_MAYOR_RECAUDACION.Total_RecaudacionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTOTAL_FACTURADONull() {
-                this[this.tableCHOFERES_MAYOR_RECAUDACION.TOTAL_FACTURADOColumn] = global::System.Convert.DBNull;
+            public void SetTotal_RecaudacionNull() {
+                this[this.tableCHOFERES_MAYOR_RECAUDACION.Total_RecaudacionColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12139,23 +11856,23 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int NUM_VIAJE {
+            public int Nro_Viaje {
                 get {
-                    return ((int)(this[this.tableCHOFERES_VIAJE_MAS_LARGO.NUM_VIAJEColumn]));
+                    return ((int)(this[this.tableCHOFERES_VIAJE_MAS_LARGO.Nro_ViajeColumn]));
                 }
                 set {
-                    this[this.tableCHOFERES_VIAJE_MAS_LARGO.NUM_VIAJEColumn] = value;
+                    this[this.tableCHOFERES_VIAJE_MAS_LARGO.Nro_ViajeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal KM_RECORRIDOS {
+            public decimal Km_Recorridos {
                 get {
-                    return ((decimal)(this[this.tableCHOFERES_VIAJE_MAS_LARGO.KM_RECORRIDOSColumn]));
+                    return ((decimal)(this[this.tableCHOFERES_VIAJE_MAS_LARGO.Km_RecorridosColumn]));
                 }
                 set {
-                    this[this.tableCHOFERES_VIAJE_MAS_LARGO.KM_RECORRIDOSColumn] = value;
+                    this[this.tableCHOFERES_VIAJE_MAS_LARGO.Km_RecorridosColumn] = value;
                 }
             }
         }
@@ -12187,31 +11904,31 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal TOTAL_FACTURADO {
+            public decimal Total_Facturado {
                 get {
                     try {
-                        return ((decimal)(this[this.tableCLIENTES_MAYOR_CONSUMO.TOTAL_FACTURADOColumn]));
+                        return ((decimal)(this[this.tableCLIENTES_MAYOR_CONSUMO.Total_FacturadoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TOTAL_FACTURADO\' de la tabla \'CLIENTES_MAYOR_CONSUMO\' es " +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Total Facturado\' de la tabla \'CLIENTES_MAYOR_CONSUMO\' es " +
                                 "DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCLIENTES_MAYOR_CONSUMO.TOTAL_FACTURADOColumn] = value;
+                    this[this.tableCLIENTES_MAYOR_CONSUMO.Total_FacturadoColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTOTAL_FACTURADONull() {
-                return this.IsNull(this.tableCLIENTES_MAYOR_CONSUMO.TOTAL_FACTURADOColumn);
+            public bool IsTotal_FacturadoNull() {
+                return this.IsNull(this.tableCLIENTES_MAYOR_CONSUMO.Total_FacturadoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTOTAL_FACTURADONull() {
-                this[this.tableCLIENTES_MAYOR_CONSUMO.TOTAL_FACTURADOColumn] = global::System.Convert.DBNull;
+            public void SetTotal_FacturadoNull() {
+                this[this.tableCLIENTES_MAYOR_CONSUMO.Total_FacturadoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12253,31 +11970,31 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int CANT_VIAJES {
+            public int Cantidad_de_Viajes {
                 get {
                     try {
-                        return ((int)(this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.CANT_VIAJESColumn]));
+                        return ((int)(this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Cantidad_de_ViajesColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CANT_VIAJES\' de la tabla \'CLIENTES_MAS_VECES_MISMO_AUTO\' " +
-                                "es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cantidad de Viajes\' de la tabla \'CLIENTES_MAS_VECES_MISMO" +
+                                "_AUTO\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.CANT_VIAJESColumn] = value;
+                    this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Cantidad_de_ViajesColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCANT_VIAJESNull() {
-                return this.IsNull(this.tableCLIENTES_MAS_VECES_MISMO_AUTO.CANT_VIAJESColumn);
+            public bool IsCantidad_de_ViajesNull() {
+                return this.IsNull(this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Cantidad_de_ViajesColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCANT_VIAJESNull() {
-                this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.CANT_VIAJESColumn] = global::System.Convert.DBNull;
+            public void SetCantidad_de_ViajesNull() {
+                this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Cantidad_de_ViajesColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12583,38 +12300,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ITEM {
-                get {
-                    try {
-                        return ((int)(this[this.tableFN_VIAJES_A_RENDIR.ITEMColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ITEM\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFN_VIAJES_A_RENDIR.ITEMColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ID_VIAJE {
-                get {
-                    try {
-                        return ((int)(this[this.tableFN_VIAJES_A_RENDIR.ID_VIAJEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ID_VIAJE\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFN_VIAJES_A_RENDIR.ID_VIAJEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int CLIENTE {
                 get {
                     try {
@@ -12631,93 +12316,103 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal CANTIDAD_KM {
+            public int Nro_Rendicion {
                 get {
                     try {
-                        return ((decimal)(this[this.tableFN_VIAJES_A_RENDIR.CANTIDAD_KMColumn]));
+                        return ((int)(this[this.tableFN_VIAJES_A_RENDIR.Nro_RendicionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CANTIDAD_KM\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFN_VIAJES_A_RENDIR.CANTIDAD_KMColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal IMPORTE_TOTAL {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableFN_VIAJES_A_RENDIR.IMPORTE_TOTALColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IMPORTE_TOTAL\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNull" +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nro Rendicion\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNull" +
                                 ".", e);
                     }
                 }
                 set {
-                    this[this.tableFN_VIAJES_A_RENDIR.IMPORTE_TOTALColumn] = value;
+                    this[this.tableFN_VIAJES_A_RENDIR.Nro_RendicionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime FECHA_HORA_INICIO {
+            public int Id_Viaje {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableFN_VIAJES_A_RENDIR.FECHA_HORA_INICIOColumn]));
+                        return ((int)(this[this.tableFN_VIAJES_A_RENDIR.Id_ViajeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHA_HORA_INICIO\' de la tabla \'FN_VIAJES_A_RENDIR\' es DB" +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Id Viaje\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFN_VIAJES_A_RENDIR.Id_ViajeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Km_Recorridos {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableFN_VIAJES_A_RENDIR.Km_RecorridosColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Km Recorridos\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableFN_VIAJES_A_RENDIR.Km_RecorridosColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Importe_Total {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableFN_VIAJES_A_RENDIR.Importe_TotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Importe Total\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableFN_VIAJES_A_RENDIR.Importe_TotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime Fecha_Hora_Inicio {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableFN_VIAJES_A_RENDIR.Fecha_Hora_InicioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Fecha Hora Inicio\' de la tabla \'FN_VIAJES_A_RENDIR\' es DB" +
                                 "Null.", e);
                     }
                 }
                 set {
-                    this[this.tableFN_VIAJES_A_RENDIR.FECHA_HORA_INICIOColumn] = value;
+                    this[this.tableFN_VIAJES_A_RENDIR.Fecha_Hora_InicioColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime FECHA_HORA_FIN {
+            public System.DateTime Fecha_Hora_Fin {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableFN_VIAJES_A_RENDIR.FECHA_HORA_FINColumn]));
+                        return ((global::System.DateTime)(this[this.tableFN_VIAJES_A_RENDIR.Fecha_Hora_FinColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHA_HORA_FIN\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNul" +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Fecha Hora Fin\' de la tabla \'FN_VIAJES_A_RENDIR\' es DBNul" +
                                 "l.", e);
                     }
                 }
                 set {
-                    this[this.tableFN_VIAJES_A_RENDIR.FECHA_HORA_FINColumn] = value;
+                    this[this.tableFN_VIAJES_A_RENDIR.Fecha_Hora_FinColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsITEMNull() {
-                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.ITEMColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetITEMNull() {
-                this[this.tableFN_VIAJES_A_RENDIR.ITEMColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsID_VIAJENull() {
-                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.ID_VIAJEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetID_VIAJENull() {
-                this[this.tableFN_VIAJES_A_RENDIR.ID_VIAJEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12734,50 +12429,74 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCANTIDAD_KMNull() {
-                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.CANTIDAD_KMColumn);
+            public bool IsNro_RendicionNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.Nro_RendicionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCANTIDAD_KMNull() {
-                this[this.tableFN_VIAJES_A_RENDIR.CANTIDAD_KMColumn] = global::System.Convert.DBNull;
+            public void SetNro_RendicionNull() {
+                this[this.tableFN_VIAJES_A_RENDIR.Nro_RendicionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIMPORTE_TOTALNull() {
-                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.IMPORTE_TOTALColumn);
+            public bool IsId_ViajeNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.Id_ViajeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIMPORTE_TOTALNull() {
-                this[this.tableFN_VIAJES_A_RENDIR.IMPORTE_TOTALColumn] = global::System.Convert.DBNull;
+            public void SetId_ViajeNull() {
+                this[this.tableFN_VIAJES_A_RENDIR.Id_ViajeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFECHA_HORA_INICIONull() {
-                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.FECHA_HORA_INICIOColumn);
+            public bool IsKm_RecorridosNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.Km_RecorridosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFECHA_HORA_INICIONull() {
-                this[this.tableFN_VIAJES_A_RENDIR.FECHA_HORA_INICIOColumn] = global::System.Convert.DBNull;
+            public void SetKm_RecorridosNull() {
+                this[this.tableFN_VIAJES_A_RENDIR.Km_RecorridosColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFECHA_HORA_FINNull() {
-                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.FECHA_HORA_FINColumn);
+            public bool IsImporte_TotalNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.Importe_TotalColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFECHA_HORA_FINNull() {
-                this[this.tableFN_VIAJES_A_RENDIR.FECHA_HORA_FINColumn] = global::System.Convert.DBNull;
+            public void SetImporte_TotalNull() {
+                this[this.tableFN_VIAJES_A_RENDIR.Importe_TotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFecha_Hora_InicioNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.Fecha_Hora_InicioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFecha_Hora_InicioNull() {
+                this[this.tableFN_VIAJES_A_RENDIR.Fecha_Hora_InicioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFecha_Hora_FinNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_RENDIR.Fecha_Hora_FinColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFecha_Hora_FinNull() {
+                this[this.tableFN_VIAJES_A_RENDIR.Fecha_Hora_FinColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12793,38 +12512,6 @@ namespace UberFrba {
             internal FN_VIAJES_A_FACTURARRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableFN_VIAJES_A_FACTURAR = ((FN_VIAJES_A_FACTURARDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ITEM {
-                get {
-                    try {
-                        return ((int)(this[this.tableFN_VIAJES_A_FACTURAR.ITEMColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ITEM\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFN_VIAJES_A_FACTURAR.ITEMColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ID_VIAJE {
-                get {
-                    try {
-                        return ((int)(this[this.tableFN_VIAJES_A_FACTURAR.ID_VIAJEColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ID_VIAJE\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableFN_VIAJES_A_FACTURAR.ID_VIAJEColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12845,93 +12532,102 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal CANT_KM {
+            public int Nro_Viaje {
                 get {
                     try {
-                        return ((decimal)(this[this.tableFN_VIAJES_A_FACTURAR.CANT_KMColumn]));
+                        return ((int)(this[this.tableFN_VIAJES_A_FACTURAR.Nro_ViajeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CANT_KM\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nro Viaje\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFN_VIAJES_A_FACTURAR.CANT_KMColumn] = value;
+                    this[this.tableFN_VIAJES_A_FACTURAR.Nro_ViajeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public decimal IMPORTE_TOTAL {
+            public int Id_Viaje {
                 get {
                     try {
-                        return ((decimal)(this[this.tableFN_VIAJES_A_FACTURAR.IMPORTE_TOTALColumn]));
+                        return ((int)(this[this.tableFN_VIAJES_A_FACTURAR.Id_ViajeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IMPORTE_TOTAL\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBNu" +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Id Viaje\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableFN_VIAJES_A_FACTURAR.Id_ViajeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal Km_Recorridos {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableFN_VIAJES_A_FACTURAR.Km_RecorridosColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Km Recorridos\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBNu" +
                                 "ll.", e);
                     }
                 }
                 set {
-                    this[this.tableFN_VIAJES_A_FACTURAR.IMPORTE_TOTALColumn] = value;
+                    this[this.tableFN_VIAJES_A_FACTURAR.Km_RecorridosColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime FECHA_HORA_INICIO {
+            public decimal Importe_Total {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableFN_VIAJES_A_FACTURAR.FECHA_HORA_INICIOColumn]));
+                        return ((decimal)(this[this.tableFN_VIAJES_A_FACTURAR.Importe_TotalColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHA_HORA_INICIO\' de la tabla \'FN_VIAJES_A_FACTURAR\' es " +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Importe Total\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableFN_VIAJES_A_FACTURAR.Importe_TotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime Fecha_Hora_Inicio {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableFN_VIAJES_A_FACTURAR.Fecha_Hora_InicioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Fecha Hora Inicio\' de la tabla \'FN_VIAJES_A_FACTURAR\' es " +
                                 "DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableFN_VIAJES_A_FACTURAR.FECHA_HORA_INICIOColumn] = value;
+                    this[this.tableFN_VIAJES_A_FACTURAR.Fecha_Hora_InicioColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime FECHA_HORA_FIN {
+            public System.DateTime Fecha_Hora_Fin {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableFN_VIAJES_A_FACTURAR.FECHA_HORA_FINColumn]));
+                        return ((global::System.DateTime)(this[this.tableFN_VIAJES_A_FACTURAR.Fecha_Hora_FinColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FECHA_HORA_FIN\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBN" +
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Fecha Hora Fin\' de la tabla \'FN_VIAJES_A_FACTURAR\' es DBN" +
                                 "ull.", e);
                     }
                 }
                 set {
-                    this[this.tableFN_VIAJES_A_FACTURAR.FECHA_HORA_FINColumn] = value;
+                    this[this.tableFN_VIAJES_A_FACTURAR.Fecha_Hora_FinColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsITEMNull() {
-                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.ITEMColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetITEMNull() {
-                this[this.tableFN_VIAJES_A_FACTURAR.ITEMColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsID_VIAJENull() {
-                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.ID_VIAJEColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetID_VIAJENull() {
-                this[this.tableFN_VIAJES_A_FACTURAR.ID_VIAJEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12948,50 +12644,74 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCANT_KMNull() {
-                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.CANT_KMColumn);
+            public bool IsNro_ViajeNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.Nro_ViajeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCANT_KMNull() {
-                this[this.tableFN_VIAJES_A_FACTURAR.CANT_KMColumn] = global::System.Convert.DBNull;
+            public void SetNro_ViajeNull() {
+                this[this.tableFN_VIAJES_A_FACTURAR.Nro_ViajeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsIMPORTE_TOTALNull() {
-                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.IMPORTE_TOTALColumn);
+            public bool IsId_ViajeNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.Id_ViajeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetIMPORTE_TOTALNull() {
-                this[this.tableFN_VIAJES_A_FACTURAR.IMPORTE_TOTALColumn] = global::System.Convert.DBNull;
+            public void SetId_ViajeNull() {
+                this[this.tableFN_VIAJES_A_FACTURAR.Id_ViajeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFECHA_HORA_INICIONull() {
-                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.FECHA_HORA_INICIOColumn);
+            public bool IsKm_RecorridosNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.Km_RecorridosColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFECHA_HORA_INICIONull() {
-                this[this.tableFN_VIAJES_A_FACTURAR.FECHA_HORA_INICIOColumn] = global::System.Convert.DBNull;
+            public void SetKm_RecorridosNull() {
+                this[this.tableFN_VIAJES_A_FACTURAR.Km_RecorridosColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsFECHA_HORA_FINNull() {
-                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.FECHA_HORA_FINColumn);
+            public bool IsImporte_TotalNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.Importe_TotalColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetFECHA_HORA_FINNull() {
-                this[this.tableFN_VIAJES_A_FACTURAR.FECHA_HORA_FINColumn] = global::System.Convert.DBNull;
+            public void SetImporte_TotalNull() {
+                this[this.tableFN_VIAJES_A_FACTURAR.Importe_TotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFecha_Hora_InicioNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.Fecha_Hora_InicioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFecha_Hora_InicioNull() {
+                this[this.tableFN_VIAJES_A_FACTURAR.Fecha_Hora_InicioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFecha_Hora_FinNull() {
+                return this.IsNull(this.tableFN_VIAJES_A_FACTURAR.Fecha_Hora_FinColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFecha_Hora_FinNull() {
+                this[this.tableFN_VIAJES_A_FACTURAR.Fecha_Hora_FinColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13525,40 +13245,6 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PRC_BUSCAR_CLIENTE_HABILITADORow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class PRC_REGISTRO_VIAJERowChangeEvent : global::System.EventArgs {
-            
-            private PRC_REGISTRO_VIAJERow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_REGISTRO_VIAJERowChangeEvent(PRC_REGISTRO_VIAJERow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_REGISTRO_VIAJERow Row {
                 get {
                     return this.eventRow;
                 }
@@ -17548,205 +17234,6 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class PRC_REGISTRO_VIAJETableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public PRC_REGISTRO_VIAJETableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "DESCONOCIDOS4.PRC_REGISTRO_VIAJE";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Chof", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Clie", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Auto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Turno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cant_KM", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_hora_ini", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_hora_fin", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GD1C2017DataSet.PRC_REGISTRO_VIAJEDataTable registrarViaje(global::System.Nullable<int> Chof, global::System.Nullable<int> Clie, global::System.Nullable<int> Auto, global::System.Nullable<int> Turno, global::System.Nullable<decimal> Cant_KM, global::System.Nullable<global::System.DateTime> Fecha_hora_ini, global::System.Nullable<global::System.DateTime> Fecha_hora_fin) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((Chof.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(Chof.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((Clie.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(Clie.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Auto.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Auto.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((Turno.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(Turno.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Cant_KM.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((decimal)(Cant_KM.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((Fecha_hora_ini.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((System.DateTime)(Fecha_hora_ini.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Fecha_hora_fin.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(Fecha_hora_fin.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            GD1C2017DataSet.PRC_REGISTRO_VIAJEDataTable dataTable = new GD1C2017DataSet.PRC_REGISTRO_VIAJEDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class CHOFERES_MAYOR_RECAUDACIONTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -17859,9 +17346,9 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "CHOFERES_MAYOR_RECAUDACION";
-            tableMapping.ColumnMappings.Add("CHOFER_ID", "CHOFER_ID");
-            tableMapping.ColumnMappings.Add("CHOFER_DNI", "CHOFER_DNI");
-            tableMapping.ColumnMappings.Add("TOTAL_FACTURADO", "TOTAL_FACTURADO");
+            tableMapping.ColumnMappings.Add("Id Chofer", "Id Chofer");
+            tableMapping.ColumnMappings.Add("Dni Chofer", "Dni Chofer");
+            tableMapping.ColumnMappings.Add("Total Recaudacion", "Total Recaudacion");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18031,8 +17518,8 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "CHOFERES_VIAJE_MAS_LARGO";
             tableMapping.ColumnMappings.Add("CHOFER", "CHOFER");
-            tableMapping.ColumnMappings.Add("NUM_VIAJE", "NUM_VIAJE");
-            tableMapping.ColumnMappings.Add("KM_RECORRIDOS", "KM_RECORRIDOS");
+            tableMapping.ColumnMappings.Add("Nro Viaje", "Nro Viaje");
+            tableMapping.ColumnMappings.Add("Km Recorridos", "Km Recorridos");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18202,7 +17689,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "CLIENTES_MAYOR_CONSUMO";
             tableMapping.ColumnMappings.Add("CLIENTE", "CLIENTE");
-            tableMapping.ColumnMappings.Add("TOTAL_FACTURADO", "TOTAL_FACTURADO");
+            tableMapping.ColumnMappings.Add("Total Facturado", "Total Facturado");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18373,7 +17860,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.DataSetTable = "CLIENTES_MAS_VECES_MISMO_AUTO";
             tableMapping.ColumnMappings.Add("CLIENTE", "CLIENTE");
             tableMapping.ColumnMappings.Add("AUTOMOVIL", "AUTOMOVIL");
-            tableMapping.ColumnMappings.Add("CANT_VIAJES", "CANT_VIAJES");
+            tableMapping.ColumnMappings.Add("Cantidad de Viajes", "Cantidad de Viajes");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19218,13 +18705,13 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "FN_VIAJES_A_RENDIR";
-            tableMapping.ColumnMappings.Add("ITEM", "ITEM");
-            tableMapping.ColumnMappings.Add("ID_VIAJE", "ID_VIAJE");
             tableMapping.ColumnMappings.Add("CLIENTE", "CLIENTE");
-            tableMapping.ColumnMappings.Add("CANTIDAD_KM", "CANTIDAD_KM");
-            tableMapping.ColumnMappings.Add("IMPORTE_TOTAL", "IMPORTE_TOTAL");
-            tableMapping.ColumnMappings.Add("FECHA_HORA_INICIO", "FECHA_HORA_INICIO");
-            tableMapping.ColumnMappings.Add("FECHA_HORA_FIN", "FECHA_HORA_FIN");
+            tableMapping.ColumnMappings.Add("Nro Rendicion", "Nro Rendicion");
+            tableMapping.ColumnMappings.Add("Id Viaje", "Id Viaje");
+            tableMapping.ColumnMappings.Add("Km Recorridos", "Km Recorridos");
+            tableMapping.ColumnMappings.Add("Importe Total", "Importe Total");
+            tableMapping.ColumnMappings.Add("Fecha Hora Inicio", "Fecha Hora Inicio");
+            tableMapping.ColumnMappings.Add("Fecha Hora Fin", "Fecha Hora Fin");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19241,9 +18728,9 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ITEM, ID_VIAJE, CLIENTE, CANTIDAD_KM, IMPORTE_TOTAL, FECHA_HORA_INICIO, FE" +
-                "CHA_HORA_FIN FROM DESCONOCIDOS4.FN_VIAJES_A_RENDIR(@CHOFER, @FECHA_RENDICION, @T" +
-                "URNO)";
+            this._commandCollection[0].CommandText = "SELECT Cliente, [Fecha Hora Fin], [Fecha Hora Inicio], [Id Viaje], [Importe Total" +
+                "], [Km Recorridos], [Nro Rendicion] FROM DESCONOCIDOS4.FN_VIAJES_A_RENDIR(@CHOFE" +
+                "R, @FECHA_RENDICION, @TURNO) AS FN_VIAJES_A_RENDIR_1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CHOFER", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHA_RENDICION", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -19391,13 +18878,13 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "FN_VIAJES_A_FACTURAR";
-            tableMapping.ColumnMappings.Add("ITEM", "ITEM");
-            tableMapping.ColumnMappings.Add("ID_VIAJE", "ID_VIAJE");
             tableMapping.ColumnMappings.Add("CLIENTE", "CLIENTE");
-            tableMapping.ColumnMappings.Add("CANT_KM", "CANT_KM");
-            tableMapping.ColumnMappings.Add("IMPORTE_TOTAL", "IMPORTE_TOTAL");
-            tableMapping.ColumnMappings.Add("FECHA_HORA_INICIO", "FECHA_HORA_INICIO");
-            tableMapping.ColumnMappings.Add("FECHA_HORA_FIN", "FECHA_HORA_FIN");
+            tableMapping.ColumnMappings.Add("Nro Viaje", "Nro Viaje");
+            tableMapping.ColumnMappings.Add("Id Viaje", "Id Viaje");
+            tableMapping.ColumnMappings.Add("Km Recorridos", "Km Recorridos");
+            tableMapping.ColumnMappings.Add("Importe Total", "Importe Total");
+            tableMapping.ColumnMappings.Add("Fecha Hora Inicio", "Fecha Hora Inicio");
+            tableMapping.ColumnMappings.Add("Fecha Hora Fin", "Fecha Hora Fin");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19414,8 +18901,9 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ITEM, ID_VIAJE, CLIENTE, CANT_KM, IMPORTE_TOTAL, FECHA_HORA_INICIO, FECHA_" +
-                "HORA_FIN FROM DESCONOCIDOS4.FN_VIAJES_A_FACTURAR(@CLIENTE, @FECHA_HASTA)";
+            this._commandCollection[0].CommandText = "SELECT Cliente, [Fecha Hora Fin], [Fecha Hora Inicio], [Id Viaje], [Importe Total" +
+                "], [Km Recorridos], [Nro Viaje] FROM DESCONOCIDOS4.FN_VIAJES_A_FACTURAR(@CLIENTE" +
+                ", @FECHA_HASTA) AS FN_VIAJES_A_FACTURAR_1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CLIENTE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FECHA_HASTA", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -19467,7 +18955,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.IDbCommand[32];
+            this._commandCollection = new global::System.Data.IDbCommand[33];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "DESCONOCIDOS4.PRC_ALTA_CHOFER";
@@ -19782,6 +19270,18 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Tel", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mail", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[31])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fec_nac", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[32] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Connection = new global::System.Data.SqlClient.SqlConnection(global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).CommandText = "DESCONOCIDOS4.PRC_REGISTRO_VIAJE";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).CommandType = global::System.Data.CommandType.StoredProcedure;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Chof", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Clie", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Auto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Turno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cant_KM", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_hora_ini_base", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_hora_fin_base", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21468,6 +20968,70 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             else {
                 return ((object)(returnValue));
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int registrarViaje(global::System.Nullable<int> Chof, global::System.Nullable<int> Clie, global::System.Nullable<int> Auto, global::System.Nullable<int> Turno, global::System.Nullable<decimal> Cant_KM, global::System.Nullable<global::System.DateTime> Fecha_hora_ini_base, global::System.Nullable<global::System.DateTime> Fecha_hora_fin_base) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[32]));
+            if ((Chof.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(Chof.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((Clie.HasValue == true)) {
+                command.Parameters[2].Value = ((int)(Clie.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Auto.HasValue == true)) {
+                command.Parameters[3].Value = ((int)(Auto.Value));
+            }
+            else {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Turno.HasValue == true)) {
+                command.Parameters[4].Value = ((int)(Turno.Value));
+            }
+            else {
+                command.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Cant_KM.HasValue == true)) {
+                command.Parameters[5].Value = ((decimal)(Cant_KM.Value));
+            }
+            else {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Fecha_hora_ini_base.HasValue == true)) {
+                command.Parameters[6].Value = ((System.DateTime)(Fecha_hora_ini_base.Value));
+            }
+            else {
+                command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Fecha_hora_fin_base.HasValue == true)) {
+                command.Parameters[7].Value = ((System.DateTime)(Fecha_hora_fin_base.Value));
+            }
+            else {
+                command.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
