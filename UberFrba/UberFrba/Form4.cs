@@ -331,7 +331,7 @@ namespace UberFrba
             (this.Controls["grupoDatosPersona"]).Controls["btnAceptar"].Click += (sender, e) =>
                 SingletonDatosUsuario.Instance.rol.accionBotonClienteChofer(
                 sender, e, this, "Eliminar", rolParaAlta,
-                this.idPersona
+                this.idTipoRol
             );
         }
 
